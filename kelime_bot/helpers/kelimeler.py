@@ -100,4 +100,4 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
 
 
 def kelime_sec():
-    return random.choice(kelimeler)
+    return random.choice(kelimeler).replace(" ","")
