@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command("rating"))
 async def ratingsa(c:Client, m:Message):
-    metin = """📝 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 10 𝖮𝗒𝗎𝗇𝖼𝗎 :
+    metin = """📝 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 15 𝖮𝗒𝗎𝗇𝖼𝗎 :
 
 """
     eklenen = 1
@@ -21,6 +21,6 @@ async def ratingsa(c:Client, m:Message):
         if  not eklenen in [1,2,3]:
             metin +=  f"{eklenen} - **{kisi[0]}** :  {kisi[1]} \n" 
         eklenen+=1
-        if eklenen == 10:
+        if eklenen == 15:
             break
     await c.send_message(m.chat.id, metin)
