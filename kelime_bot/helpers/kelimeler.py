@@ -1,6 +1,6 @@
 import random
 kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","yapmak","kullanılmak","değil","görmek",
-             "teniden", "çoğu", "fakat", "lira", "oynamak", "çiçek", "şehir", "yükselmek", "mücadele", "varlık", "yapmak",
+             "yeniden", "çoğu", "fakat", "lira", "oynamak", "çiçek", "şehir", "yükselmek", "mücadele", "varlık", "yapmak",
              "güven", "gerek", "tedavi", "birim", "rahat", "soğuk", "orası", "kitap", "paylaşmak", "hesap", "vücut",
              "toprak", "üzeri", "sistem", "hoş", "çekilmek", "teknik", "yaklaşmak", "yıl", "tarih", "kesin", "abla",
              "ince", "eğer", "oysa", "karşılık","vermek", "sahip", "artık", "kişi", "diğer", "dönem", "yine", "bunlar",
@@ -95,7 +95,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'paşa', 'sıcaklık', 'tamam', 'güven', 'marka', 'yaprak', 'yarar', 'yayılmak', 'akmak', 'çizmek', 'düşünülmek',
              'gönül', 'hayal', 'ilerlemek', 'şarap', 'yukarıda', 'altın', 'düzenlemek', 'satınalmak', 'sunulmak', 'temiz',
              'vitamin', 'ek', 'geç', 'hareketetmek', 'yumurta', 'aşırı', 'eylem', 'istenmek', 'kesim', 'kriz', 'birim',
-             'kapanmak'
+             'kapanmak', 'hayaksi'
              ]
 
 
