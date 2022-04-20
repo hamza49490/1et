@@ -13,7 +13,7 @@ async def ratingsa(c:Client, m:Message):
 
     metin2 = metin
     for kisi in rating:
-        Metin2 +=  f"**{kisi}** :  {rating[kisi]}  𝖯𝗎𝖺𝗇\n"
+        metin2 +=  f"**{kisi}** :  {rating[kisi]}  𝖯𝗎𝖺𝗇\n"
     await c.send_message(m.chat.id, metin2)
 
 
