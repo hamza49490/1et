@@ -21,9 +21,7 @@ async def ratingsa(c:Client, m:Message):
                 metin += f"**{kisi}** :  {puan}  𝖯𝗎𝖺𝗇\n"
                 eklenen += 1
                 puanlar.remove(puan)
-                if eklenen == 20:
-                    puanlar = []
-                    break
+             
                 
                 
     await c.send_message(m.chat.id, metin)
