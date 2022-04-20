@@ -10,9 +10,9 @@ async def ratingsa(c:Client, m:Message):
 
 """
 
-
+    s = sorted(rating.items(), key=lambda x: x[1], reverse=True)
     metin2 = metin
-    for kisi in rating:
+    for kisi in s:
         metin2 +=  f"**{kisi}** :  {rating[kisi]}  𝖯𝗎𝖺𝗇\n"
     await c.send_message(m.chat.id, metin2)
 
