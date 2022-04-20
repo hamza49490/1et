@@ -13,13 +13,13 @@ async def ratingsa(c:Client, m:Message):
     s = sorted(rating.items(), key=lambda x: x[1], reverse=True)
     for kisi in s:
         if eklenen == 1:
-            metin +=  f"🥇 - **{kisi[0]}** :  {kisi[1]}  
+            metin +=  f"🥇 - **{kisi[0]}** :  {kisi[1]} " 
         if eklenen == 2:
-            metin +=  f"🥈 - **{kisi[0]}** :  {kisi[1]}  
+            metin +=  f"🥈 - **{kisi[0]}** :  {kisi[1]}  "
         if eklenen == 3:
-            metin +=  f"🥉 - **{kisi[0]}** :  {kisi[1]}  
+            metin +=  f"🥉 - **{kisi[0]}** :  {kisi[1]}  "
         else:
-            metin +=  f"{eklenen} - **{kisi[0]}** :  {kisi[1]}  
+            metin +=  f"{eklenen} - **{kisi[0]}** :  {kisi[1]} " 
         eklenen+=1
         if eklenen == 10:
             break
