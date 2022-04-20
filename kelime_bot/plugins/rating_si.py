@@ -6,7 +6,6 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command("rating"))
 async def ratingsa(c:Client, m:Message):
-    global rating
     metin = """📝 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 20 𝖮𝗒𝗎𝗇𝖼𝗎 :
 
 """
@@ -21,6 +20,7 @@ async def ratingsa(c:Client, m:Message):
                 metin += f"**{kisi}** :  {puan}  𝖯𝗎𝖺𝗇\n"
                 eklenen += 1
                 puanlar.remove(puan)
+                rating.pop(kisi)
              
                 
                 
