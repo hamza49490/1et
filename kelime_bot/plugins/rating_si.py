@@ -6,21 +6,21 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command("rating"))
 async def ratingsa(c:Client, m:Message):
-    global rating
     metin = """📝 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 20 𝖮𝗒𝗎𝗇𝖼𝗎 :
 
 """
-    eklenen = 0
-    puanlar = []
-    for kisi in rating:
-        puanlar.append(rating[kisi])
-    puanlar.sort(reverse = True)
-    for puan in puanlar:
-        for kisi in rating:
-            if puan == rating[kisi]:
-                metin += f"**{kisi}** :  {puan}  𝖯𝗎𝖺𝗇\n"
-                eklenen += 1
-                if eklenen == 20:
-                    break
-                
+    eklenen = 1
+    s = sorted(rating.items(), key=lambda x: x[1], reverse=True)
+    for kisi in s:
+        if eklenen == 1:
+            metin +=  f"🥇 - **{kisi[0]}** :  {kisi[1]} \n" 
+        if eklenen == 2:
+            metin +=  f"🥈 - **{kisi[0]}** :  {kisi[1]}  \n"
+        if eklenen == 3:
+            metin +=  f"🥉 - **{kisi[0]}** :  {kisi[1]}  \n"
+        if  not eklenen in [1,2,3]:
+            metin +=  f"{eklenen} - **{kisi[0]}** :  {kisi[1]} \n" 
+        eklenen+=1
+        if eklenen == 20:
+            break
     await c.send_message(m.chat.id, metin)
