@@ -21,6 +21,6 @@ async def ratingsa(c:Client, m:Message):
         if  not eklenen in [1,2,3]:
             metin +=  f"{eklenen} - **{kisi[0]}** :  {kisi[1]} \n" 
         eklenen+=1
-        if eklenen == 20:
+        if eklenen == 21:
             break
     await c.send_message(m.chat.id, metin)
