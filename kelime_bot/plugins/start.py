@@ -6,7 +6,7 @@ from kelime_bot import oyun
 from kelime_bot.helpers.kelimeler import *
 from kelime_bot.helpers.keyboards import *
 
-@Client.on_message(filters.command("game") & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("game") & ~filters.private & ~filters.channel & ~filters.edited)
 async def kelimeoyun(c:Client, m:Message):
     global oyun
     aktif = False
@@ -40,8 +40,6 @@ async def kelimeoyun(c:Client, m:Message):
 💰 𝖪𝖺𝗓𝖺𝗇𝖽𝗂𝗋𝖺𝖼𝖺𝗄 𝖯𝗎𝖺𝗇 : 1
 🔎 İ𝗉𝗎𝖼𝗎 : 1. {oyun[m.chat.id]["kelime"][0]}
 ✍🏻 𝖴𝗓𝗎𝗇𝗅𝗎𝗄 : {int(len(kelime_list)/2)} 
-
 ✏️ 𝖪𝖺𝗋𝗂𝗌𝗂𝗄 𝖧𝖺𝗋𝖿𝗅𝖾𝗋𝖽𝖾𝗇 𝖣𝗈𝗀𝗋𝗎 𝖪𝖾𝗅𝗂𝗆𝖾𝗒𝗂 𝖡𝗎𝗅𝗎𝗇 🥳 🥳 🥳
         """
         await c.send_message(m.chat.id, text)
-        
