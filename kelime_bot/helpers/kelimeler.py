@@ -21,7 +21,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'ad', 'yani', 'süre', 'dönmek', 'açmak', 'oturmak', 'anlatmak', 'bırakmak', 'hemen', 'saat', 'yaş', 'sorun', 'devlet',
              'sahip', 'sıra', 'yazmak', 'yüzde', 'ay', 'atmak', 'tutmak', 'bunu', 'olay', 'düşmek', 'duymak', 'söz', 'güzel',
              'sevmek', 'biraz', 'zor', 'çıkarmak', 'şu', 'koymak', 'tek', 'sistem', 'birlikte', 'verilmek', 'kim', 'alınmak', 'genç',
-             'kapı', 'kitap', 'üzerine', 'burada', 'gece', 'alan', 'birbiri', 'işte', 'beklemek', 'uzun', 'hiçbir', 'bugün', 'dönem',
+             'kapı', 'kitap', 'üzerine', 'burada', 'gece', 'alan', 'birbiri', 'İşte', 'beklemek', 'uzun', 'hiçbir', 'bugün', 'dönem',
              'arkadaş', 'ürün', 'aile', 'üç', 'okumak', 'erkek', 'herkes', 'güç', 'belki', 'gerçek', 'tam', 'ilgili', 'ilişki',
              'çevre', 'eski', 'aramak', 'yaşam', 'halk', 'yakın', 'sokak', 'bey', 'tarih', 'özellik', 'bölüm', 'özel', 'akıl',
              'kimse', 'pek', 'eğer', 'gerek', 'özellikle', 'anlam', 'yüksek', 'banka', 'kez', 'ayak', 'taşımak', 'geri', 'toplum',
