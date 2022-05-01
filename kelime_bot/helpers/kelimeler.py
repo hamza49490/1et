@@ -8,7 +8,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              "tutmak", "birbiri", "hiçbir", "yapmak", "su", "gibi", "hal", "doğru", "orta", "başka", "büyük", "etmek",
              "yeni", "fazla", "sormak", "onlar", "açmak", "hem", "hep", "ses", "anlamak", "değil", "saat", "nasıl",
              'aynı', 'sıkıcı', 'sıradan', 'benzer', 'rutin', 'porsiyon', 'yemek', 'tabak', 'lokanta', 'yarım', 'restoran',
-             'servet', 'kazanmak', 'senginlik', 'mal', 'mülk', para', 'tabure', 'oturmak', 'sandalye', 'Koltuk', 'yemekhane',
+             'servet', 'kazanmak', 'senginlik', 'mal', 'mülk', 'para', 'tabure', 'oturmak', 'sandalye', 'Koltuk', 'yemekhane',
              'sırt', 'çamaşır', 'kirli', 'yıkamak', 'makine', 'deterjan', 'giymek', 'miço', 'tayfa', 'gemi', 'kaptan', 'deniz',
              'yardımcı', 'eskimo', 'kutup', 'buzul', 'kar', 'soğuk', 'balık', 'hasır', 'sepet', 'şapka', 'plaj', 'deniz', 'sermek',
              'bukalemun', 'hayvan', 'renk', 'kertenkele', 'değişmek', 'sürüngen', 'konvoy', 'araba', 'gitmek', 'dizilmek', 'arka',
