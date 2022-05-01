@@ -9,7 +9,7 @@ keyboard = InlineKeyboardMarkup([
     ],
     [
         InlineKeyboardButton("🇹🇷  𝖮𝗐𝗇𝖾𝗋 ", url="t.me/Zenciler_Kurucu"),
-        InlineKeyboardButton("✏️  𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/SharkGameKanal"),
+        InlineKeyboardButton("✏️  𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/SharkGameKanal/2"),
     ],
     [
         InlineKeyboardButton("📡 𝖪𝗎𝗋𝖾𝗌𝖾𝗅 𝖳𝗈𝗉 20 ", url="t.me/SharkGameKanal/12"),
