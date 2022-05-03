@@ -106,7 +106,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'gönül', 'hayal', 'ilerlemek', 'şarap', 'yukarıda', 'altın', 'düzenlemek', 'satınalmak', 'sunulmak', 'temiz',
              'vitamin', 'ek', 'geç', 'hareketetmek', 'yumurta', 'aşırı', 'eylem', 'istenmek', 'kesim', 'kriz', 'birim',
              'kapanmak', 'kahrolmak', 'boş', 'göz', 'kulak', 'burun', 'ayı', 'dal', 'merkez', 'maydanoz', 'mayonez', 'ketçap',
-             'görüşmek', 'ülke', 'Türkiye', 'olmak', 'üzere', 'toplam', 'bin', 'kez', 'izlemek', 'özlemek', 'özenti', 'görüş',
+             'görüşmek', 'ülke', 'türkiye', 'olmak', 'üzere', 'toplam', 'bin', 'kez', 'izlemek', 'özlemek', 'özenti', 'görüş',
              'kamera', 'arka', 'fon', 'müzik', 'fenomen', 'dizi', 'kurt', 'isyan', 'komik', 'komedi', 'ayrılık', 'fenalaşmak',
              'diriliş', 'kesinti', 'deprem', 'fay hattı', 'üzere', 'toplantı', 'salon', 'düğün', 'gelin', 'damat', 'gelinlik',
              'model', 'moderatör', 'başvuru', 'form', 'çay', 'kaşık', 'bardak', 'cam', 'tren', 'tavan', 'müzisyen', 'orman', 'endüstri',
