@@ -123,7 +123,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'kaçiyor', 'atlatmak', 'uykular', 'rüya','babacan', 'babacık', 'babadağ', 'babaevi', 'köşe', 'babalık', 'babasız', 'bacaklı', 'bacanak',
              'bacasız', 'bacı', 'bademci', 'bademli', 'bademsi', 'badem', 'bagetli', 'bağımlı', 'bağıntı', 'bağırma', 'bağışçı', 'bağışık', 'bağlama', 'bahadır',
              'baharat', 'baharcı', 'baharlı', 'bahçeci', 'bahçeli', 'bahisçi', 'zabıta', 'zafran', 'zağara', 'zağsız', 'zahire', 'zahiri', 'zahmet', 'zahter',
-             'zamansız', 'zambak', zamsız, zarfçı, zarflı, 'zaruri', 'zaviye', 'zayiat', 'zayiçe', 'zebani', 'zecren', 'zedeli', 'zekalı', 'zekice', 'zelber',
+             'zamansız', 'zambak', 'zamsız', 'zarfçı', 'zarflı', 'zaruri', 'zaviye', 'zayiat', 'zayiçe', 'zebani', 'zecren', 'zedeli', 'zekalı', 'zekice', 'zelber',
              'zakkum', 'zembil', 'zemzem', 'zengin', 'zeplin', 'zerrin', 'zevali', 'zevkli', 'zevzek', 'zeybek', 'zeyrek', 'zeytin', 'zıhsız'
              ]
 
