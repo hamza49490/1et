@@ -8,15 +8,15 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              "tutmak", "birbiri", "hiçbir", "yapmak", "su", "gibi", "hal", "doğru", "orta", "başka", "büyük", "etmek",
              "yeni", "fazla", "sormak", "onlar", "açmak", "hem", "hep", "ses", "anlamak", "değil", "saat", "nasıl",
              'aynı', 'sıkıcı', 'sıradan', 'benzer', 'rutin', 'porsiyon', 'yemek', 'tabak', 'lokanta', 'yarım', 'restoran',
-             'servet', 'kazanmak', 'senginlik', 'mal', 'mülk', 'para', 'tabure', 'oturmak', 'sandalye', 'Koltuk', 'yemekhane',
+             'servet', 'kazanmak', 'senginlik', 'mal', 'mülk', 'para', 'tabure', 'oturmak', 'sandalye', 'koltuk', 'yemekhane',
              'sırt', 'çamaşır', 'kirli', 'yıkamak', 'makine', 'deterjan', 'giymek', 'miço', 'tayfa', 'gemi', 'kaptan', 'deniz',
-             'yardımcı', 'eskimo', 'kutup', 'buzul', 'kar', 'soğuk', 'balık', 'hasır', 'sepet', 'şapka', 'plaj', 'deniz', 'sermek',
+             'yardımcı', 'eskimo', 'kutup', 'buzul', 'kar', 'soğuk', 'balık', 'hazır', 'sepet', 'şapka', 'plaj', 'deniz', 'sermek',
              'bukalemun', 'hayvan', 'renk', 'kertenkele', 'değişmek', 'sürüngen', 'konvoy', 'araba', 'gitmek', 'dizilmek', 'arka',
              'düğün', 'vezne', 'banka', 'para', 'ödeme', 'almak', 'muhasebe', 'cephe', 'savaş', 'ordu', 'asker', 'saldırmak', 'barış',
              'ziraat', 'tarım', 'çiftçi', 'toprak', 'hayvan', 'banka', 'fabl', 'hayvan', 'la fontaine', 'masal', 'insan', 'hikaye', 'mecaz',
-             'kelime', 'sözcük', 'gerçek anlam', 'yan anlam', 'terim anlam', 'özne', 'cümle', 'kişi', 'varlık', 'öge', 'fay', 'hat', 'deprem',
-             'kırılmak', 'sarsılmak', 'istanbul', 'varsayım', 'olmamış', 'tutku', 'farz et', 'diyelim', 'cümle', 'paragraf', 'sınav', 'soru',
-             'ana', 'düşünce', 'yardımcı düşünce', 'metin', 'üç nokta', 'noktalama', 'son', 'tamamlanmamış', 'istenmeyen', 'cümle'
+             'kelime', 'sözcük', 'gerçekanlam', 'yananlam', 'terimanlam', 'özne', 'cümle', 'kişi', 'varlık', 'öge', 'fay', 'hat', 'deprem',
+             'kırılmak', 'sarsılmak', 'istanbul', 'varsayım', 'olmamış', 'tutku', 'farzet', 'diyelim', 'cümle', 'paragraf', 'sınav', 'soru',
+             'ana', 'düşünce', 'yardımcıdüşünce', 'metin', 'üçnokta', 'noktalama', 'son', 'tamamlanmamış', 'istenmeyen', 'cümle'
              'bir', 've', 'olmak', 'bu', 'için', 'o', 'ben', 'demek', 'çok', 'yapmak', 'ne', 'gibi', 'daha', 'almak',
              'var', 'kendi', 'gelmek', 'ile', 'vermek', 'ama', 'sonra', 'kadar', 'yer', 'en', 'insan', 'değil', 'her',
              'istemek', 'yıl', 'çıkmak', 'görmek', 'gün', 'biz', 'gitmek', 'iş', 'şey', 'ara', 'ki', 'bilmek', 'el', 'zaman',
@@ -108,7 +108,7 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'kapanmak', 'kahrolmak', 'boş', 'göz', 'kulak', 'burun', 'ayı', 'dal', 'merkez', 'maydanoz', 'mayonez', 'ketçap',
              'görüşmek', 'ülke', 'türkiye', 'olmak', 'üzere', 'toplam', 'bin', 'kez', 'izlemek', 'özlemek', 'özenti', 'görüş',
              'kamera', 'arka', 'fon', 'müzik', 'fenomen', 'dizi', 'kurt', 'isyan', 'komik', 'komedi', 'ayrılık', 'fenalaşmak',
-             'diriliş', 'kesinti', 'deprem', 'fay hattı', 'üzere', 'toplantı', 'salon', 'düğün', 'gelin', 'damat', 'gelinlik',
+             'diriliş', 'kesinti', 'deprem', 'fayhattı', 'üzere', 'toplantı', 'salon', 'düğün', 'gelin', 'damat', 'gelinlik',
              'model', 'moderatör', 'başvuru', 'form', 'çay', 'kaşık', 'bardak', 'cam', 'tren', 'tavan', 'müzisyen', 'orman', 'endüstri',
              'mühendis', 'mimar', 'inşaat', 'malzeme', 'kalite', 'orman', 'dikmek', 'pratik', 'kolay', 'zekâ', 'çabuk', 'hızlı', 'çözüm',
              'mesai', 'saat', 'iş', 'fazla', 'akşam', 'kalmak', 'akrostiş', 'şiir', 'mısra', 'isim', 'ilk', 'kıta', 'bambu', 'sazlık',
@@ -116,11 +116,15 @@ kelimeler = ["güzel ","bilgi ","sorun","sağlamak ","bırakmak","zaman","su","y
              'yaz', 'kadın', 'sallamak', 'çuval', 'torba', 'doldurmak', 'yem', 'un', 'koymak', 'ajanda', 'defter', 'iş', 'yazmak', 'gün',
              'toplantı', 'iştah', 'acıkmak', 'kesilmek', 'açmak', 'lezzet', 'yemek', 'ihale', 'belediye', 'girmek', 'açmak', 'yolsuzluk',
              'kazanmak', 'hile', 'aldatmak', 'kandırmak', 'oyun', 'yapmak', 'kumar', 'halay', 'düğün', 'çekmek', 'oynamak', 'mendil',
-             'mahmut tuncer', 'plaket', 'ödül', 'tören', 'başarı', 'vermek', 'teşekkür', 'staj', 'öğrenci', 'çalışmak', 'üniversite', 'tecrübe',
+             'tuncer', 'plaket', 'ödül', 'tören', 'başarı', 'vermek', 'teşekkür', 'staj', 'öğrenci', 'çalışmak', 'üniversite', 'tecrübe',
              'kazanmak', 'çalışmak', 'deneyim', 'yıl', 'macun', 'cam', 'pencere', 'tutmak', 'diş', 'mesir', 'mızıkçı', 'çocuk', 'küsmek', 'darılmak',
-             'bozmak', 'oyun', 'çavdar', 'arpa', 'tahıl', 'buğday', 'kepek', 'ekmek', 'veresiye', 'peşin', 'borç', 'satın almak', 'ödemek', 'defter',
+             'bozmak', 'oyun', 'çavdar', 'arpa', 'tahıl', 'buğday', 'kepek', 'ekmek', 'veresiye', 'peşin', 'borç', 'satınalmak', 'ödemek', 'defter',
              'performans', 'değerlendirme', 'başarı', 'ders', 'ödev', 'yüksek', 'geceler', 'kaybolunca', 'ağir', 'bayraktar', 'bulmaca', 'hiç', 'mağlup',
-             'kaçiyor', 'atlatmak', 'uykular', 'rüya'
+             'kaçiyor', 'atlatmak', 'uykular', 'rüya','babacan', 'babacık', 'babadağ', 'babaevi', 'köşe', 'babalık', 'babasız', 'bacaklı', 'bacanak',
+             'bacasız', 'bacı', 'bademci', 'bademli', 'bademsi', 'badem', 'bagetli', 'bağımlı', 'bağıntı', 'bağırma', 'bağışçı', 'bağışık', 'bağlama', 'bahadır',
+             'baharat', 'baharcı', 'baharlı', 'bahçeci', 'bahçeli', 'bahisçi', 'zabıta', 'zafran', 'zağara', 'zağsız', 'zahire', 'zahiri', 'zahmet', 'zahter',
+             'zamansız', 'zambak', zamsız, zarfçı, zarflı, 'zaruri', 'zaviye', 'zayiat', 'zayiçe', 'zebani', 'zecren', 'zedeli', 'zekalı', 'zekice', 'zelber',
+             'zakkum', 'zembil', 'zemzem', 'zengin', 'zeplin', 'zerrin', 'zevali', 'zevkli', 'zevzek', 'zeybek', 'zeyrek', 'zeytin', 'zıhsız'
              ]
 
 
