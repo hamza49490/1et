@@ -24,7 +24,7 @@ async def buldu(c:Client, m:Message):
             if m.text.lower().replace(" ","") == oyun[m.chat.id]["kelime"]:
                 await c.send_message(m.chat.id,f"🥳 𝖳𝖾𝖻𝗋𝗂𝗄𝗅𝖾𝗋 !\n**{m.from_user.mention}** \n**<code>{oyun[m.chat.id]['kelime']}</code>** , 𝖪𝖾𝗅𝗂𝗆𝖾𝗌𝗂𝗇𝗂 \n𝖡𝗎𝗅𝖽𝗎 ✅")
                 if f"{m.from_user.mention}" in rating:
-                    rating[f"{m.from_user.mention}"] = 1
+                    rating[f"{m.from_user.mention}"] = +1
                 else:
                     rating[f"{m.from_user.mention}"] = 1
                 
