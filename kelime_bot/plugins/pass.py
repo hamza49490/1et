@@ -21,7 +21,7 @@ async def passs(c:Client, m:Message):
     if aktif:
         if oyun[m.chat.id]["pass"] < 5:
             oyun[m.chat.id]["pass"] += 1 
-            await c.send_message(m.chat.id,f"📖 𝖳𝗈𝗉𝗅𝖺𝗆 5 𝗉𝖺𝗌𝗌 𝗁𝖺𝗄𝗄𝗂𝗇𝗂𝗓 𝗏𝖺𝗋𝖽𝗂𝗋 !\n🥳 𝖪𝖾𝗅𝗂𝗆𝖾 𝖯𝖺𝗌 𝖦𝖾𝖼𝗂𝗅𝖽𝗂 !\n✏️ 𝖣𝗈𝗀𝗋𝗎 𝖪𝖾𝗅𝗂𝗆𝖾 : **<code>{oyun[m.chat.id]['kelime']}</code>**")
+            await c.send_message(m.chat.id,f"•> `5 Pass Hakkın Var` !\n🥳 𝖪𝖾𝗅𝗂𝗆𝖾 𝖯𝖺𝗌 𝖦𝖾𝖼𝗂𝗅𝖽𝗂 !\n🎯 𝖣𝗈𝗀𝗋𝗎 𝖪𝖾𝗅𝗂𝗆𝖾 : **<code>{oyun[m.chat.id]['kelime']}</code>**")
             
             oyun[m.chat.id]["kelime"] = kelime_sec()
             oyun[m.chat.id]["aktif"] = True
