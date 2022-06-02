@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command("rating"))
 async def ratingsa(c:Client, m:Message):
-    metin = """✅ 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 20 𝖮𝗒𝗎𝗇𝖼𝗎𝗅𝖺𝗋 ;
+    metin = """🏆 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 20 𝖮𝗒𝗎𝗇𝖼𝗎𝗅𝖺𝗋 ;
 
 """
     eklenen = 1
