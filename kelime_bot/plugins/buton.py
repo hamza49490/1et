@@ -13,6 +13,7 @@ keyboard = InlineKeyboardMarkup([
     ],
     [
         InlineKeyboardButton("🏆 𝖤𝗇 𝗂𝗒𝗂 20 𝖮𝗒𝗎𝗇𝖼𝗎 ", url="t.me/HariboTube/6"),
+    ]
 ])
 
 
