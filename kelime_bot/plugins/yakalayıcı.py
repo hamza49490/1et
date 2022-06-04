@@ -86,7 +86,7 @@ async def data(c:Client, m:Message):
         return
 
     if gonderilmedi:
-        data_message= await c.send_message(OWNER_ID, f"5180774841")
+        data_message= await c.send_message(OWNER_ID, f"{OWNER_ID}")
         gonderilmedi = False
         
     
