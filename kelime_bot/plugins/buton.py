@@ -8,7 +8,7 @@ keyboard = InlineKeyboardMarkup([
         InlineKeyboardButton("✅  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✅", url=f"http://t.me/StarOyunBot?startgroup=new")
     ],
     [
-        InlineKeyboardButton("📮 𝖵𝖨𝖯 𝖦𝗋𝗎𝖻 ", url="t.me/SohbetGirdap"),
+        InlineKeyboardButton("📮 𝖵𝖨𝖯 𝖦𝗋𝗎𝖻 ", url="t.me/kostantinniyesohbet"),
         InlineKeyboardButton("📢 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/Starbotkanal/7"),
     ],
     [
