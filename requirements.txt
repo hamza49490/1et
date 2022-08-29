@@ -1,2 +1,4 @@
 pyrogram==1.4.12
 tgcrypto
+telethon
+python-dotenv
