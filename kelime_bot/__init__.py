@@ -15,9 +15,9 @@ LOGGER = logging.getLogger(__name__)
 
 
 # Hesap
-API_ID = "10376719"
-API_HASH = "4ceadf14b352e0e4545fcb7f301f79b2"
-TOKEN = "5397382274:AAHrOMFlCIIaZhC24s6C_gm8s1lzD_5JDd8"
+API_ID = "9789243"
+API_HASH = "1fb038afb5b72b2b6cc0c9a1a076eefa"
+TOKEN = "5397382274:AAFrNlz5qm9lVgJ-R2aNDC3Q3hn3yCFJl3Q"
 USERNAME = "StarOyunBot"
 
 
@@ -47,5 +47,5 @@ rating = {}
 
 # !!!!!!!!!!!!!! DEĞİŞTİR KESİNLİKLE !!!!!!!!!!!!!!!!
 #      SAHİBİN USER ID'Sİ
-OWNER_ID = 5180774841
+OWNER_ID = 5053767281
 
