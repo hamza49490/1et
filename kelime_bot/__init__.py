@@ -24,7 +24,7 @@ USERNAME = "StarOyunBot"
 
 
 # BOT CLIENTİ
-bot = Client(
+app = Client(
     ":memory:",
     API_ID,
     API_HASH,
