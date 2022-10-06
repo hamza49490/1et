@@ -5,14 +5,11 @@ from pyrogram.types import InlineKeyboardButton
 
 keyboard = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton("✅  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✅", url=f"http://t.me/StarOyunBot?startgroup=new")
+        InlineKeyboardButton("✅  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✅", url=f"http://t.me/BlackOyunbot?startgroup=new")
     ],
     [
-        InlineKeyboardButton("📮 𝖲𝗎𝗉𝗉𝗈𝗋𝗍 ", url="t.me/Starbotdestek"),
-        InlineKeyboardButton("📢 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/Starbotkanal/7"),
-    ],
-    [
-        InlineKeyboardButton("✍🏻 𝖬𝗎̈𝗓𝗂𝗄 𝖡𝗈𝗍𝗎 " , url="t.me/Mp3MuzikBot")
+        InlineKeyboardButton("📮 𝖲𝗎𝗉𝗉𝗈𝗋𝗍 ", url="t.me/SohbetParis"),
+        InlineKeyboardButton("📢 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/armancbey_benim/5"),
     ]
 ])
 
