@@ -17,8 +17,8 @@ LOGGER = logging.getLogger(__name__)
 # Hesap
 API_ID = "16347484"
 API_HASH = "da52627a852e4d62633fd6ab72dee4c4"
-TOKEN = "5646584041:AAHXoEyX3MgVyCcPWsZvS0IGpQopO7zSUhY"
-USERNAME = "BlackOyunbot"
+TOKEN = "6023289249:AAEsBHMDr1W4BgltqZBliS7Djyozi6NaWU4"
+USERNAME = "KelimeTRBot"
 
 
 
@@ -47,5 +47,5 @@ rating = {}
 
 # !!!!!!!!!!!!!! DEĞİŞTİR KESİNLİKLE !!!!!!!!!!!!!!!!
 #      SAHİBİN USER ID'Sİ
-OWNER_ID = 5053767281
+OWNER_ID = 5533927130
 
