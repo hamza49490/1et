@@ -28,6 +28,6 @@ START = """
 """
 PRIVATE /start MESSAGE
 """
-@Client.on_message(filters.command("start") & filters.private)
+@Client.on_message(filters.command("bsjdjejske") & filters.private)
 async def priv_start(c:Client, m:Message):
     await c.send_message(m.chat.id, START, reply_markup=keyboard)
