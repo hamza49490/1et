@@ -17,7 +17,7 @@ destek = InlineKeyboardMarkup([
 
 baslat = InlineKeyboardMarkup([
     [
-    Button.inline("Yeniden Başla" , callback_data="turet"),
+    InlineKeyboardButton("Yeniden Başla" , callback_data="turet"),
     ]
 
 ])
