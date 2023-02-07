@@ -4,10 +4,13 @@ from pyrogram.types import InlineKeyboardMarkup
 kanal = InlineKeyboardMarkup([
     [
     InlineKeyboardButton("💡 Komutlar 💡" , url= "t.me/KelimeTR/6"),
-    ],
+    ]
+
+])
+
+deste = InlineKeyboardMarkup([
     [
     InlineKeyboardButton("♻️ Küresel Skor ♻️" , url= "t.me/KelimeTR/7"),
     ]
 
 ])
-
