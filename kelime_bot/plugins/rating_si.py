@@ -2,6 +2,7 @@ from kelime_bot import rating
 from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import Message
+from kelime_bot.helpers.keyboards import *
 
 
 @Client.on_message(filters.command("skor"))
