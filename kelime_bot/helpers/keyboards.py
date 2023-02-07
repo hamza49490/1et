@@ -8,7 +8,7 @@ kanal = InlineKeyboardMarkup([
 
 ])
 
-deste = InlineKeyboardMarkup([
+destek = InlineKeyboardMarkup([
     [
     InlineKeyboardButton("♻️ Küresel Skor ♻️" , url= "t.me/KelimeTR/7"),
     ]
