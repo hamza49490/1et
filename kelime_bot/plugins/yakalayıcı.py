@@ -22,7 +22,7 @@ async def buldu(c:Client, m:Message):
     try:
         if m.chat.id in oyun:
             if m.text.lower().replace(" ","") == oyun[m.chat.id]["kelime"]:
-                await c.send_message(m.chat.id,f"✍🏻 𝖳𝖾𝖻𝗋𝗂𝗄𝗅𝖾𝗋 !\n**{m.from_user.mention}** \n**<code>{oyun[m.chat.id]['kelime']}</code>** , 𝖪𝖾𝗅𝗂𝗆𝖾𝗌𝗂𝗇𝗂 \n𝖡𝗎𝗅𝖽𝗎 ✅")
+                await c.send_message(m.chat.id,f"✍🏻 𝖳𝖾𝖻𝗋𝗂𝗄𝗅𝖾𝗋 !\n**{m.from_user.mention}** \n**<code>{oyun[m.chat.id]['kelime']}</code>** , 𝖪𝖾𝗅𝗂𝗆𝖾𝗌𝗂𝗇𝗂 \n𝖡𝗎𝗅𝖽𝗎 ✅", reply_markup=destek)
                 if f"{m.from_user.mention}" in rating:
                     rating[f"{m.from_user.mention}"] += 1
                 else:
@@ -47,7 +47,7 @@ async def buldu(c:Client, m:Message):
                     for i in siralama:
                         siralama_text += i + "\n"
                     oyun[m.chat.id] = {}
-                    return await c.send_message(m.chat.id,f"•> 𝖪𝖾𝗅𝗂𝗆𝖾 𝖮𝗒𝗎𝗇𝗎 𝖻𝗂𝗍𝗍𝗂 ✓ \n\n🏆 𝖯𝗎𝖺𝗇 𝖳𝖺𝖻𝗅𝗈𝗌𝗎 :\n\n{siralama_text}\n\n• 𝖸𝖾𝗇𝗂 𝖮𝗒𝗎𝗇 𝖻𝖺𝗌𝗅𝖺𝗍𝗆𝖺𝗄 𝗂𝖼𝗂𝗇 /game 𝗒𝖺𝗓𝖺𝖻𝗂𝗅𝗂𝗋𝗌𝗂𝗇𝗂𝗓 !")
+                    return await c.send_message(m.chat.id,f"•> 𝖪𝖾𝗅𝗂𝗆𝖾 𝖮𝗒𝗎𝗇𝗎 𝖻𝗂𝗍𝗍𝗂 ✓ \n\n🏆 𝖯𝗎𝖺𝗇 𝖳𝖺𝖻𝗅𝗈𝗌𝗎 :\n\n{siralama_text}\n\n• 𝖸𝖾𝗇𝗂 𝖮𝗒𝗎𝗇 𝖻𝖺𝗌𝗅𝖺𝗍𝗆𝖺𝗄 𝗂𝖼𝗂𝗇 /game 𝗒𝖺𝗓𝖺𝖻𝗂𝗅𝗂𝗋𝗌𝗂𝗇𝗂𝗓 !", reply_markup=destek)
                 
                 
                 
