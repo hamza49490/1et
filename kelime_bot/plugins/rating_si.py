@@ -20,7 +20,7 @@ async def ratingsa(c:Client, m:Message):
         if eklenen == 3:
             metin +=  f"**🥉  {kisi[0]}  :  {kisi[1]}  Puan**\n"
         if  not eklenen in [1,2,3]:
-            metin +=  f"** {eklenen})  {kisi[0]}  :  {kisi[1]}  Puan**\n" 
+            metin +=  f"** {eklenen} )  {kisi[0]}  :  {kisi[1]}  Puan**\n" 
         eklenen+=1
         if eklenen == 21:
             break
