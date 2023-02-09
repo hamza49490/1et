@@ -47,4 +47,4 @@ async def passs(c:Client, m:Message):
         else:
             await c.send_message(m.chat.id, f"**<code>💭 Pass Hakkın Tükendi ! </code>\n♻️ Oyunu Bitirmek İçin /kapat Yazın .**", reply_markup=destek)
     else:
-        await m.reply(f"**💭 Şuan Aktif Oyun Yok !\n♻️ Yeni Oyun için /baslat Yazın .**", reply_markup=destek)
+        await m.reply(f"**💭 Şuan Aktif Oyun Yok !\n♻️ Başlatmak için /baslat Yazın .**", reply_markup=destek)
