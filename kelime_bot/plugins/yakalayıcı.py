@@ -41,7 +41,7 @@ async def buldu(c:Client, m:Message):
                 if not oyun[m.chat.id]["round"] <= 60:
                     siralama = []
                     for i in oyun[m.chat.id]["oyuncular"]:
-                        siralama.append(f"▫️ {i}  :   {oyun[m.chat.id]['oyuncular'][i]} **Puan**")
+                        siralama.append(f"**• {i}  :  {oyun[m.chat.id]['oyuncular'][i]}  Puan**")
                     siralama.sort(reverse=True)
                     siralama_text = ""
                     for i in siralama:
@@ -57,14 +57,13 @@ async def buldu(c:Client, m:Message):
                 for harf in kelime:
                     kelime_list+= harf + " "
             
-                text = f"""**
-🎯 Raund : {oyun[m.chat.id]['round']}/60 
+                text = f"""**🎯 Raund : {oyun[m.chat.id]['round']}/60 
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
-♻️ Karışık Harflerden Doğru Kelimeyi Bulun .
+♻️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
                 await c.send_message(m.chat.id, text)
     except KeyError:
