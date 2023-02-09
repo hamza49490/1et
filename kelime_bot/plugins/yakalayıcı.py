@@ -41,13 +41,13 @@ async def buldu(c:Client, m:Message):
                 if not oyun[m.chat.id]["round"] <= 60:
                     siralama = []
                     for i in oyun[m.chat.id]["oyuncular"]:
-                        siralama.append(f"{i} :   {oyun[m.chat.id]['oyuncular'][i]}  𝖯𝗎𝖺𝗇")
+                        siralama.append(f"▫️ {i}  :   {oyun[m.chat.id]['oyuncular'][i]} **Puan**")
                     siralama.sort(reverse=True)
                     siralama_text = ""
                     for i in siralama:
                         siralama_text += i + "\n"
                     oyun[m.chat.id] = {}
-                    return await c.send_message(m.chat.id,f"•> 𝖪𝖾𝗅𝗂𝗆𝖾 𝖮𝗒𝗎𝗇𝗎 𝖻𝗂𝗍𝗍𝗂 ✓ \n\n🏆 𝖯𝗎𝖺𝗇 𝖳𝖺𝖻𝗅𝗈𝗌𝗎 :\n\n{siralama_text}\n\n• 𝖸𝖾𝗇𝗂 𝖮𝗒𝗎𝗇 𝖻𝖺𝗌𝗅𝖺𝗍𝗆𝖺𝗄 𝗂𝖼𝗂𝗇 /game 𝗒𝖺𝗓𝖺𝖻𝗂𝗅𝗂𝗋𝗌𝗂𝗇𝗂𝗓 !", reply_markup=destek)
+                    return await c.send_message(m.chat.id,f"**💡 Kelime Oyunu Bitti .\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}", reply_markup=destek)
                 
                 
                 
@@ -57,15 +57,15 @@ async def buldu(c:Client, m:Message):
                 for harf in kelime:
                     kelime_list+= harf + " "
             
-                text = f"""
-🎯 𝖱𝖺𝗎𝗇𝖽 : {oyun[m.chat.id]['round']}/60
-📝 𝖪𝖾𝗅𝗂𝗆𝖾 :   <code>{kelime_list}</code>
-💰 𝖪𝖺𝗓𝖺𝗇𝖽𝗂𝗋𝖺𝖼𝖺𝗄 𝖯𝗎𝖺𝗇 : 1
-🔎 İ𝗉𝗎𝖼𝗎 : 1. {oyun[m.chat.id]["kelime"][0]}
-✍🏻 𝖴𝗓𝗎𝗇𝗅𝗎𝗄 : {int(len(kelime_list)/2)} 
+                text = f"""**
+🎯 Raund : {oyun[m.chat.id]['round']}/60 
+📖 Kelime :   <code>{kelime_list}</code>
+💰 Kazandıracak Puan : 1
+🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
+🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
-✏️ 𝖪𝖺𝗋𝗂𝗌𝗂𝗄 𝖧𝖺𝗋𝖿𝗅𝖾𝗋𝖽𝖾𝗇 𝖣𝗈𝗀𝗋𝗎 𝖪𝖾𝗅𝗂𝗆𝖾𝗒𝗂 𝖡𝗎𝗅𝗎𝗇 🥳 🥳 🥳
-                        """
+♻️ Karışık Harflerden Doğru Kelimeyi Bulun .
+            **"""
                 await c.send_message(m.chat.id, text)
     except KeyError:
         pass
