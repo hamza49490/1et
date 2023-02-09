@@ -7,7 +7,7 @@ from kelime_bot.helpers.keyboards import *
 
 @Client.on_message(filters.command("skor"))
 async def ratingsa(c:Client, m:Message):
-    metin = """🏆 𝖦𝗅𝗈𝖻𝖺𝗅 𝖳𝗈𝗉 20 𝖮𝗒𝗎𝗇𝖼𝗎𝗅𝖺𝗋 ;
+    metin = """🎖️ Global Top 20 :
 
 """
     eklenen = 1
