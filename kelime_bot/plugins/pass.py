@@ -21,7 +21,7 @@ async def passs(c:Client, m:Message):
     if aktif:
         if oyun[m.chat.id]["pass"] < 5:
             oyun[m.chat.id]["pass"] += 1 
-            await c.send_message(m.chat.id,f"**💡 Toplam 5 Pass Hakkın Var !\n🌟 Kelime Pas Geçildi !\n♻️ Doğru Kelime : <code>{oyun[m.chat.id]['kelime']}</code>**")
+            await c.send_message(m.chat.id,f"**💡 Toplam 5 Pass Hakkın Var .\n🌟 Kelime Pas Geçildi .\n♻️ Doğru Kelime : {oyun[m.chat.id]['kelime']}**")
             
             oyun[m.chat.id]["kelime"] = kelime_sec()
             oyun[m.chat.id]["aktif"] = True
@@ -33,18 +33,17 @@ async def passs(c:Client, m:Message):
             for harf in kelime:
                 kelime_list+= harf + " "
             
-            text = f"""**
-🎯 Raund : {oyun[m.chat.id]['round']}/60 
+            text = f"""**🎯 Raund : {oyun[m.chat.id]['round']}/60 
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
-♻️ Karışık Harflerden Doğru Kelimeyi Bulun .
+♻️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
             await c.send_message(m.chat.id, text)
             
         else:
-            await c.send_message(m.chat.id, f"**<code>💭 Pass Hakkın Tükendi ! </code>\n♻️ Oyunu Bitirmek İçin /kapat Yazın .**", reply_markup=destek)
+            await c.send_message(m.chat.id, f"**💭 Pass Hakkın Tükendi .\n♻️ Oyunu Bitirmek İçin /kapat Yazın . . .**", reply_markup=destek)
     else:
-        await m.reply(f"**💭 Şuan Aktif Oyun Yok !\n♻️ Başlatmak için /baslat Yazın .**", reply_markup=destek)
+        await m.reply(f"**💭 Şuan Aktif Oyun Yok .\n♻️ Başlatmak için /baslat Yazın . . .**", reply_markup=destek)
