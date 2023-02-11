@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from kelime_bot.helpers.keyboards import *
 
 
-@Client.on_message(filters.command("skor"))
+@Client.on_message(filters.command("nfjdkee"))
 async def ratingsa(c:Client, m:Message):
     metin = """**🎖️  Global Top 20  🎖️**
 
