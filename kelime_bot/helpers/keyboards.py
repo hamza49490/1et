@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 kanal = InlineKeyboardMarkup([
     [
-    InlineKeyboardButton("💡 ᴛᴜ̈ᴍ ᴋᴏᴍᴜᴛʟᴀʀ " , url= "t.me/KelimeTR/6"),
+    InlineKeyboardButton("💡 ᴛᴜ̈ᴍ ᴋᴏᴍᴜᴛʟᴀʀ " , url= "t.me/KelimeTR"),
     ]
 
 ])
