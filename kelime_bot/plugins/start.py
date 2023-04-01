@@ -17,7 +17,7 @@ async def kelimeoyun(c:Client, m:Message):
         aktif = False
 
     if aktif:
-        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /kapat Yazın . . .**", reply_markup=destek)
+        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /stop Yazın . . .**", reply_markup=destek)
     else:
         await m.reply(f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Başladı .\n\n🥳 Hızlı Olan Kazanır . . .**", reply_markup=kanal)
         
@@ -34,7 +34,7 @@ async def kelimeoyun(c:Client, m:Message):
         for harf in kelime:
             kelime_list+= harf + " "
         
-        text = f"""**🎯 Raund : {oyun[m.chat.id]['round']}/60 
+        text = f"""**🎯 Raund : {oyun[m.chat.id]['round']}/500
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
