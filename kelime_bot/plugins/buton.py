@@ -5,7 +5,7 @@ from pyrogram.types import InlineKeyboardButton
 
 keyboard = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton("✅  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✅", url=f"http://t.me/KelimeTRBot?startgroup=new")
+        InlineKeyboardButton("✅  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✅", url=f"http://t.me/Kelimex_Bot?startgroup=new")
     ],
     [
         InlineKeyboardButton("📢 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋 ", url="t.me/KelimeTR"),
