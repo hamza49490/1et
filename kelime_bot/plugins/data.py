@@ -2,7 +2,7 @@ from kelime_bot import oyun, rating
 from pyrogram import Client, filters
 
 
-@Client.on_message(filters.command("data") & filters.user("6540285284"))
+@Client.on_message(filters.command("data") & filters.user{OWNER_ID})
 async def data(c:Client, m):
     await m.reply(oyun)
     await m.reply(rating)
