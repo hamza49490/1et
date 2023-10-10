@@ -9,7 +9,7 @@ from kelime_bot.helpers.keyboards import *
 
 @Client.on_message(filters.command("game") & ~filters.edited)
 async def gameoyun(_, message: Message):
-    await send_message(m.chat.id, text_message, kanal)
+    await message.reply(m.chat.id, text_message, kanal)
     
 text_message = """ Lütfen Seçim Yapın  """
     
