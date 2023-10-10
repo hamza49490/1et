@@ -21,7 +21,7 @@ async def passs(c:Client, m:Message):
     if aktif:
         if oyun[m.chat.id]["pass"] < 5:
             oyun[m.chat.id]["pass"] += 1 
-            await c.send_message(m.chat.id,f"**💡 Toplam 5 Pass Hakkın Var .\n➻ {oyun[m.chat.id]['kelime']} Pas Geçildi .**")
+            await c.send_message(m.chat.id,f"**➻ Toplam 5 Pass Hakkın Var .\n✅ {oyun[m.chat.id]['kelime']} Pas Geçildi .**")
             
             oyun[m.chat.id]["kelime"] = kelime_sec()
             oyun[m.chat.id]["aktif"] = True
@@ -39,11 +39,12 @@ async def passs(c:Client, m:Message):
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
-♻️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
+👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
             await c.send_message(m.chat.id, text)
             
         else:
-            await c.send_message(m.chat.id, f"**💭 Pass Hakkın Tükendi .\n♻️ Oyunu Bitirmek İçin /kapat Yazın . . .**")
     else:
-        await m.reply(f"**💭 Şuan Aktif Oyun Yok .\n♻️ Başlatmak için /turet Yazın . . .**")
+         else:
+            await c.send_message(m.chat.id, f"**💭 Pass Hakkın Tükendi .\n➻ Oyunu Bitirmek için ➡️ /kapat**")
+        await m.reply(f"**💭 Aktif Oyun Yok .\n➻ Yeni Oyun için ➡️ /turet**")
