@@ -7,7 +7,7 @@ from kelime_bot.helpers.keyboards import *
 from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
 
-@@Client.on_callback_query(filters.regex("kapat"))
+@@Client.on_callback_query(filters.regex("kat"))
 async def stop(_, query: CallbackQuery):
     global oyun
     
