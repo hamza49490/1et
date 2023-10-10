@@ -7,7 +7,7 @@ katap = InlineKeyboardMarkup([
 ])
 
 tutap = InlineKeyboardMarkup([
-   InlineKeyboardButton(" Oyunu Kapat", callback_data="turet")
+   InlineKeyboardButton(" Oyunu Kapat", callback_data="tut")
 
 ])
 
