@@ -7,7 +7,7 @@ from kelime_bot.helpers.keyboards import *
 from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
 
-@@Client.on_callback_query(filters.regex("kat"))
+@Client.on_callback_query(filters.regex("kat"))
 async def stop(_, query: CallbackQuery):
     global oyun
     
@@ -19,7 +19,7 @@ async def stop(_, query: CallbackQuery):
     for i in siralama:
         siralama_text += i + "\n"     
     
-    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}")
+    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}"reply_markup=katap)
     oyun[m.chat.id] = {}
 
 
