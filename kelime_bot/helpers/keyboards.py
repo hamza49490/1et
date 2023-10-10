@@ -1,8 +1,13 @@
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardMarkup
 
-kanal = InlineKeyboardMarkup([
-   InlineKeyboardButton(" Türet Oyunu", callback_data="turet")
+katap = InlineKeyboardMarkup([
+   InlineKeyboardButton(" Tekrar Oyna", callback_data="turet")
+
+])
+
+tutap = InlineKeyboardMarkup([
+   InlineKeyboardButton(" Oyunu Kapat", callback_data="turet")
 
 ])
 
