@@ -19,7 +19,7 @@ async def stop(_, query: CallbackQuery):
     for i in siralama:
         siralama_text += i + "\n"     
     
-    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}"reply_markup=katap)
+    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}", reply_markup=katap)
     oyun[m.chat.id] = {}
 
 
