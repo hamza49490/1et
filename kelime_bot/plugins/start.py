@@ -19,7 +19,7 @@ async def kelimeoyun(_, query: CallbackQuery):
         aktif = False
 
     if aktif:
-        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /kapat Yazın . . .**", reply_markup=destek)
+        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /kapat Yazın . . .**")
     else:
         await m.reply(f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Başladı .\n\n🥳 Hızlı Olan Kazanır . . .**")
         
@@ -59,7 +59,7 @@ async def kelimeoyun(c:Client, m:Message):
         aktif = False
 
     if aktif:
-        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /kapat Yazın . . .**", reply_markup=destek)
+        await m.reply("**💭 Zaten Aktif Oyun Var .\n♻️ Durdurmak için /kapat Yazın . . .**")
     else:
         await m.reply(f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Başladı .\n\n🥳 Hızlı Olan Kazanır . . .**")
         
