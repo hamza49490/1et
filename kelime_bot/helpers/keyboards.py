@@ -3,7 +3,6 @@ from pyrogram.types import InlineKeyboardMarkup
 
 kanal = InlineKeyboardMarkup([
    InlineKeyboardButton(" Türet Oyunu", callback_data="turet")
-   ] 
 
 ])
 
