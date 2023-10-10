@@ -8,8 +8,6 @@ kanal = InlineKeyboardMarkup([
 ])
 
 destek = InlineKeyboardMarkup([
-    [
     InlineKeyboardButton("💭 ᴅᴜʏᴜʀᴜ ᴋᴀɴᴀʟɪ " , url= "t.me/KelimeTR"),
-    ]
 
 ])
