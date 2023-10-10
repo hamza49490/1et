@@ -8,7 +8,7 @@ from kelime_bot.helpers.kelimeler import *
 from kelime_bot.helpers.keyboards import *
 
 
-@Client.on_callback_query(filters.regex("turet"))
+@Client.on_callback_query(filters.regex("tut"))
 async def kelimeoyun(_, query: CallbackQuery):        
     global oyun
     aktif = False
