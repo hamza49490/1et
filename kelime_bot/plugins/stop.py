@@ -2,7 +2,7 @@ from pyrogram import Client
 from pyrogram import filters
 from random import shuffle
 from kelime_bot import USERNAME
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from kelime_bot.helpers.keyboards import *
 from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
