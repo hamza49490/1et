@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from kelime_bot.helpers.keyboards import *
 
 
-@Client.on_message(filters.command("ratings"))
+@Client.on_message(filters.command("skorlar"))
 async def ratingsa(c:Client, m:Message):
     metin = """**🎖️  Global Top 20  🎖️**
 
@@ -24,4 +24,4 @@ async def ratingsa(c:Client, m:Message):
         eklenen+=1
         if eklenen == 21:
             break
-    await c.send_message(m.chat.id, metin, reply_markup=destek)
+    await c.send_message(m.chat.id, metin)
