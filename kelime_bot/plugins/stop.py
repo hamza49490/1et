@@ -2,7 +2,7 @@ from pyrogram import Client
 from pyrogram import filters
 from random import shuffle
 from kelime_bot import USERNAME
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import Message
 from kelime_bot.helpers.keyboards import *
 from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
@@ -19,7 +19,7 @@ async def stop(_, query: CallbackQuery):
     for i in siralama:
         siralama_text += i + "\n"     
     
-    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}", reply_markup=katap)
+    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}")
     oyun[m.chat.id] = {}
 
 
