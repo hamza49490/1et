@@ -2,12 +2,12 @@ from pyrogram import Client
 from pyrogram import filters
 from random import shuffle
 from kelime_bot import USERNAME
-from pyrogram.types import Message
+from pyrogram.types import Message, CallbackQuery
 from kelime_bot.helpers.keyboards import *
 from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
 
-@Client.on_callback_query(filters.regex("kat"))
+@Client.on_callback_query(filters.regex("kapat"))
 async def stop(_, query: CallbackQuery):
     global oyun
     
@@ -37,6 +37,6 @@ async def stop(c:Client, m:Message):
     for i in siralama:
         siralama_text += i + "\n"     
     
-    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}")
+    await c.send_message(m.chat.id, f"**{m.from_user.mention} Tarafından .\n💡 Kelime Oyunu Bitti .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}", reply_markup=katap)
     oyun[m.chat.id] = {}
     
