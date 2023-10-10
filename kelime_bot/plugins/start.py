@@ -1,13 +1,20 @@
 from pyrogram import Client
 from pyrogram import filters
 from random import shuffle
-from pyrogram.types import Message
+from pyrogram import Client, filters
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from kelime_bot import oyun
 from kelime_bot.helpers.kelimeler import *
 from kelime_bot.helpers.keyboards import *
 
-@Client.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
-async def kelimeoyun(c:Client, m:Message):
+@Client.on_message(filters.command("game") & ~filters.edited)
+async def gameoyun(_, message: Message):
+    await c.send_message(m.chat.id, text_message, )
+    
+text_message = """ Lütfen Seçim Yapın  """
+    
+@Client.on_callback_query(filters.regex("turet"))
+async def kelimeoyun(_, query: CallbackQuery):
     global oyun
     aktif = False
     try:
