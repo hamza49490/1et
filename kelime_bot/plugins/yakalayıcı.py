@@ -9,12 +9,6 @@ from kelime_bot import *
 
 
 
-
-
-
-
-
-
 @Client.on_message(filters.text & ~filters.private & ~filters.channel)
 async def buldu(c:Client, m:Message):
     global oyun
@@ -22,7 +16,7 @@ async def buldu(c:Client, m:Message):
     try:
         if m.chat.id in oyun:
             if m.text.lower().replace(" ","") == oyun[m.chat.id]["kelime"]:
-                await c.send_message(m.chat.id,f"**{m.from_user.mention} , Tebrikler 🥳\n{oyun[m.chat.id]['kelime']} , Kelimesini Buldu ✅**")
+                await c.send_message(m.chat.id,f"**{m.from_user.mention} \n{oyun[m.chat.id]['kelime']} , Kelimesini Buldu 🎯**")
                 if f"{m.from_user.mention}" in rating:
                     rating[f"{m.from_user.mention}"] += 1
                 else:
@@ -47,7 +41,7 @@ async def buldu(c:Client, m:Message):
                     for i in siralama:
                         siralama_text += i + "\n"
                     oyun[m.chat.id] = {}
-                    return await c.send_message(m.chat.id,f"**💡 Kelime Oyunu Bitti .\n\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}")
+                    return await c.send_message(m.chat.id,f"**🧩 Oyun Bitti .\n\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}")
                 
                 
                 
@@ -63,7 +57,7 @@ async def buldu(c:Client, m:Message):
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
-♻️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
+👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
                 await c.send_message(m.chat.id, text)
     except KeyError:
