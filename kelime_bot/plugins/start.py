@@ -22,7 +22,7 @@ async def kelimeoyun(c:Client, m:Message):
     if aktif:
         await m.reply("**➻ Oyunu Durdurmak için ➡️ /kapat**")
     else:
-        await m.reply(f"**➻ {m.from_user.mention} \n🎲 Oyun Başlatıldı ...**")
+        #await m.reply(f"**➻ {m.from_user.mention} \n🎲 Oyun Başlatıldı ...**")
         
         oyun[m.chat.id] = {"kelime":kelime_sec()}
         oyun[m.chat.id]["aktif"] = True
@@ -37,7 +37,10 @@ async def kelimeoyun(c:Client, m:Message):
         for harf in kelime:
             kelime_list+= harf + " "
         
-        text = f"""**🎯 Raund : {oyun[m.chat.id]['round']}/80
+        text = f"""**➻ {m.from_user.mention}
+🎲 Oyun Başlatıldı ...
+        
+🎯 Raund : {oyun[m.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
 🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
