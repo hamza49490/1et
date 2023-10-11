@@ -41,7 +41,7 @@ async def buldu(c:Client, m:Message):
                     for i in siralama:
                         siralama_text += i + "\n"
                     oyun[m.chat.id] = {}
-                    return await c.send_message(m.chat.id,f"**🧩 Oyun Bitti .\n\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}")
+                    return await c.send_message(m.chat.id,f"**💭 Oyun Bitti .\n\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}")
                 
                 
                 
