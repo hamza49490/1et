@@ -472,7 +472,7 @@ async def tag1(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="tag2"))
 async def tag2(event):
-    await event.edit(f"**🔺 ᴇxᴛʀᴀ ᴋᴏᴍᴜᴛ 🔺\n\n» /bul\n   - ᴀɴɪɴᴅᴀ şᴀʀᴋɪ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /vbul\n   - ᴀɴɪɴᴅᴀ ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /ara\n   - ʟɪɴᴋ ʜᴀʟɪɴᴅᴇ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /bots\n   - ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /admins\n   - ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /dels\n   - ᴛᴏᴘʟᴜ ᴍᴇsᴀᴊ sɪʟᴇʀɪᴍ .\n\n» /id\n   - ɢʀᴜᴘ & ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ'sɪɴɪ ᴏ̈ɢ̆ʀᴇɴɪɴ .\n\n» /iletisim\n   - ʙɪᴢɪᴍʟᴇ ɪʟᴇᴛɪşɪᴍᴇ ɢᴇᴄ̧ɪɴ .**",
+    await event.edit(f"**🔺 ᴇxᴛʀᴀ ᴋᴏᴍᴜᴛ 🔺\n\n» /bul\n   - ᴀɴɪɴᴅᴀ şᴀʀᴋɪ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /vbul\n   - ᴀɴɪɴᴅᴀ ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /ara\n   - ʟɪɴᴋ ʜᴀʟɪɴᴅᴇ ɪɴᴅɪʀɪʀɪᴍ .\n\n» /bots\n   - ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /admins\n   - ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /dels\n   - ᴛᴏᴘʟᴜ ᴍᴇsᴀᴊ sɪʟᴇʀɪᴍ .\n\n» /id\n   - ɢʀᴜᴘ & ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ'sɪɴɪ ᴏ̈ɢ̆ʀᴇɴɪɴ .\n\n» /iletisim\n   - ʙɪᴢɪᴍʟᴇ ɪʟᴇᴛɪşɪᴍᴇ ɢᴇᴄ̧ɪɴ .\n\n»/grup\n   - ɢʀᴜᴘ ʜᴀᴋᴋɪɴᴅᴀ ʙɪʟɢɪ ᴠᴇʀɪʀɪᴍ .**",
 		     buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
@@ -495,7 +495,7 @@ async def handler(event):
 	
 @client.on(events.callbackquery.CallbackQuery(data="tag4"))
 async def tag4(event):
-    await event.edit(f"**🔺  ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ  🔺\n\n» /d\n   - ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /c\n   - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /soz\n   - ᴄ̧ᴇşɪᴛʟɪ sᴏ̈ᴢʟᴇʀ ᴀᴛᴀʀɪᴍ .\n\n» /eros\n   -  ɢʀᴜᴘᴛᴀᴋɪ ᴜ̈ʏᴇʟᴇʀɪ sʜɪᴘʟᴇʀɪᴍ .\n\n» /slap\n   - ᴇɢ̆ʟᴇɴᴍᴇᴋ ɪᴄ̧ɪɴ ᴋᴜʟʟᴀɴɪɴ .**", buttons=(
+    await event.edit(f"**🔺  ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ  🔺\n\n» /d\n   - ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /c\n   - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /soz\n   - ᴄ̧ᴇşɪᴛʟɪ sᴏ̈ᴢʟᴇʀ ᴀᴛᴀʀɪᴍ .\n\n» /eros\n   -  ɢʀᴜᴘᴛᴀᴋɪ ᴜ̈ʏᴇʟᴇʀɪ sʜɪᴘʟᴇʀɪᴍ .\n\n» /slap\n   - ᴇɢ̆ʟᴇɴᴍᴇᴋ ɪᴄ̧ɪɴ ᴋᴜʟʟᴀɴɪɴ .\n\n»/turet\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ̧ᴀʀɪᴍ .\n\n»/kapat\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴋᴀᴘᴀᴛɪʀɪᴍ .\n\n»/pass\n   - ᴋᴇʟɪᴍᴇʏɪ ᴘᴀss ɢᴇᴄ̧ᴇʀɪᴍ .**", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
                      ]
