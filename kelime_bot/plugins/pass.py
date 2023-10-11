@@ -21,7 +21,7 @@ async def passs(c:Client, m:Message):
     if aktif:
         if oyun[m.chat.id]["pass"] < 5:
             oyun[m.chat.id]["pass"] += 1 
-            await c.send_message(m.chat.id,f"**➻ Toplam 5 Pass Hakkın Var .**\n🗯️ `{oyun[m.chat.id]['kelime']}` **Pas Geçildi .**")
+            await m.edit(m.chat.id,f"**➻ Toplam 5 Pass Hakkın Var .**\n🗯️ `{oyun[m.chat.id]['kelime']}` **Pas Geçildi .**")
             
             oyun[m.chat.id]["kelime"] = kelime_sec()
             oyun[m.chat.id]["aktif"] = True
@@ -41,7 +41,7 @@ async def passs(c:Client, m:Message):
 
 👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
-            await c.edit_message(m.chat.id, text)
+            await m.edit(m.chat.id, text)
             
         else:
             await c.send_message(m.chat.id, f"**💭 Pass Hakkın Tükendi .\n➻ Oyunu Bitirmek için ➡️ /kapat**")
