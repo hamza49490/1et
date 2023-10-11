@@ -17,8 +17,8 @@ LOGGER = logging.getLogger(__name__)
 # Hesap
 API_ID = "16347484"
 API_HASH = "da52627a852e4d62633fd6ab72dee4c4"
-TOKEN = "6581228589:AAFYJ3dRskY8aYRMJde7-XbYOfzkpbLo8bM"
-USERNAME = "EpikTestBot"
+TOKEN = "6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA"
+USERNAME = "BuketTaggerBot"
 
 
 
