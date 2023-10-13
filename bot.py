@@ -71,8 +71,6 @@ OWNER = [6540285284]
 #SUDO = []
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 
-#SUDO_USERS = set()
-
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 app = Client("GUNC",
@@ -94,7 +92,7 @@ etiketuye = []
 isleyen = []
 user_sayi = []
 
-###############
+##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
     try:
@@ -697,15 +695,11 @@ async def romantik(event):
 #    mentions += f"\n**✓ Hesapların Sayısı: {deleted}**"
 #    await event.reply(mentions)
 
-#@client.on(events.NewMessage(pattern='/sil'))
-#async def handle_delete(event):
-#    chat = await event.get_chat()
-#    if not chat.megagroup:
-#        return
-#    if event.is_reply:
-#        message = await event.get_reply_message()
-#        await client.delete_messages(chat, message)
-#        await client.delete()
+#   message = await event.reply("🔁 Hazırlanıyor...")
+
+#   await asyncio.sleep(3)
+
+#    await message.delete()
 
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
@@ -755,6 +749,14 @@ async def is_group_admin(event):
 
 @client.on(events.NewMessage(pattern='/bots'))
 async def show_bots(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
+        return
+	    
     all_users = await event.client.get_participants(event.chat_id)
     bot_list = []
     for user in all_users:
@@ -764,10 +766,17 @@ async def show_bots(event):
         await event.reply(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list))
     else:
         await event.reply("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**")
-	    
 
 @client.on(events.NewMessage(pattern='/admins'))
 async def show_admins(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
+        return
+	    
     chat = await event.get_chat()
     admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
     admin_list = ""
@@ -777,6 +786,14 @@ async def show_admins(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="admins"))
 async def show_admins(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.edit("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
+        return
+	    
     chat = await event.get_chat()
     admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
     admin_list = ""
@@ -784,7 +801,6 @@ async def show_admins(event):
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
     await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**")
     
-
 @client.on(events.NewMessage(pattern='/id'))
 async def id(event):
     if event.reply_to_msg_id:
@@ -903,16 +919,18 @@ async def mentionalladmin(event):
   global anlik_calisan
   if event.is_private:
     return await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**")
+
   admins = []
-  async for admin in client.iter_participants(event.chat_id):
+  async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
     return await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**",buttons=(
                      [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
+	             Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
                      ]
                    ), 
                  link_preview=False)
+	  
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.group(1)
