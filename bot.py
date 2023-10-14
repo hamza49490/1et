@@ -94,7 +94,7 @@ user_sayi = []
 
 ##############################
 # Welcome message template
-MESSAGE = "**➻ ᴍᴇʀʜᴀʙᴀ, {}\n🎉 ʜᴏş ɢᴇʟᴅɪɴ !**"
+MESSAGE = "**➻ ᴍᴇʀʜᴀʙᴀ, {}\n ɴᴇ ʏᴀᴘɪʏᴏʀsᴜɴ 🫠**"
 
 @app.on_message(filters.new_chat_members)
 async def welcome(client, message):
