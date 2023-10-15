@@ -3,7 +3,7 @@ import requests
 import random
 from datetime import datetime
 
-bot_token = '6518015522:AAGZXrb7eBmfZiU0HHJTkhUaEcCYLwRCF8I'
+bot_token = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
 
 bot_active = False
 
