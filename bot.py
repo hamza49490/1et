@@ -93,8 +93,7 @@ isleyen = []
 user_sayi = []
 
 ##############################
-# Welcome message template
-MESSAGE = "**➻ ᴍᴇʀʜᴀʙᴀ, {}\n ɴᴇ ʏᴀᴘɪʏᴏʀsᴜɴ 🫠**"
+MESSAGE = "**🎉 ᴍᴇʀʜᴀʙᴀ, {}\n ʜᴏş ɢᴇʟᴅɪɴɪᴢ !**"
 
 @app.on_message(filters.new_chat_members)
 async def welcome(client, message):
