@@ -37,3 +37,4 @@ Pillow==9.1.0
 ujson
 yt-dlp
 git+https://github.com/yt-dlp/yt-dlp.git
+telebot
