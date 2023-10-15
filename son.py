@@ -62,7 +62,7 @@ def calculate_zodiac_sign(message):
             {"name": "𝖺𝗌𝗅𝖺𝗇", "start_date": datetime(birthday.year, 7, 23), "end_date": datetime(birthday.year, 8, 22)},
             {"name": "𝖻𝖺𝗌̧𝖺𝗄", "start_date": datetime(birthday.year, 8, 23), "end_date": datetime(birthday.year, 9, 22)},
             {"name": "𝗍𝖾𝗋𝖺𝗓𝗂", "start_date": datetime(birthday.year, 9, 23), "end_date": datetime(birthday.year, 10, 22)},
-            {"name": "𝖠𝗄𝗋𝖾𝗉", "start_date": datetime(birthday.year, 10, 23), "end_date": datetime(birthday.year, 11, 21)},
+            {"name": "𝖺𝗄𝗋𝖾𝗉", "start_date": datetime(birthday.year, 10, 23), "end_date": datetime(birthday.year, 11, 21)},
             {"name": "𝗒𝖺𝗒", "start_date": datetime(birthday.year, 11, 22), "end_date": datetime(birthday.year, 12, 21)},
             {"name": "𝗈𝗀̆𝗅𝖺𝗄", "start_date": datetime(birthday.year, 12, 22), "end_date": datetime(birthday.year, 1, 19)},
             {"name": "𝗄𝗈𝗏𝖺", "start_date": datetime(birthday.year, 1, 20), "end_date": datetime(birthday.year, 2, 18)},
