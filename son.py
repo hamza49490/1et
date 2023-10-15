@@ -9,12 +9,6 @@ bot_active = False
 
 bot = telebot.TeleBot(bot_token)
 
-# /dart komutuna yanıt veren bir işlev
-@bot.message_handler(commands=['dart'])
-def dart_at(message):
-    dart_result = random.randint(1, 20)  # 1 ile 20 arasında rastgele bir dart sonucu seçin
-    bot.send_message(message.chat.id, f"🎯")
-
 # /yas komutuna yanıt veren bir işlev
 @bot.message_handler(commands=['yas'])
 def calculate_age(message):
