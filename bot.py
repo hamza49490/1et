@@ -93,13 +93,12 @@ isleyen = []
 user_sayi = []
 
 ##############################
-MESSAGE = "**🎉 ᴍᴇʀʜᴀʙᴀ, {}\n ʜᴏş ɢᴇʟᴅɪɴɪᴢ !**"
-
-@app.on_message(filters.new_chat_members)
-async def welcome(client, message):
-    new_members = [u.mention for u in message.new_chat_members]
-    text = MESSAGE.format(", ".join(new_members))
-    await message.reply_text(text, disable_web_page_preview=True)
+#MESSAGE = "**🎉 ᴍᴇʀʜᴀʙᴀ, {}\n ʜᴏş ɢᴇʟᴅɪɴɪᴢ !**"
+#@app.on_message(filters.new_chat_members)
+#async def welcome(client, message):
+#    new_members = [u.mention for u in message.new_chat_members]
+#    text = MESSAGE.format(", ".join(new_members))
+#    await message.reply_text(text, disable_web_page_preview=True)
 	
 ##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
