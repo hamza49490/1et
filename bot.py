@@ -1590,8 +1590,11 @@ async def reload(client: Client, message: Message):
 
 @app.on_message(filters.command(["alive"], ["/", ""]))
 async def alive(c: Client, message: Message):
+    message = await event.reply("🔁 ʙᴇᴋʟᴇ ...")
+    await asyncio.sleep(2)
+    await message.delete()
     await message.reply_text(f"**@{BOT_USERNAME} ʙɪʟɢɪʟᴇʀɪ .\n\n║▻  ⚙️ ᴠᴇʀsɪʏᴏɴ [ {__version__} ]\n║▻  💠 ᴘʏᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__python__}\n║▻  💻 ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__telethon__}**")
- 
+
 @app.on_message(filters.command(["eros"],["/", ""]))
 async def eros(c:Client, m:Message):
     users = await c.get_chat_members(m.chat.id, limit=1000)
