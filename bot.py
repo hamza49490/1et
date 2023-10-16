@@ -116,38 +116,42 @@ async def chatbot(event):
     if "Ne yapıyorsun" in mesaj or "ne yapıyorsun" in mesaj or "Nabıyon" in mesaj or "nabıyon" in mesaj :
         await event.reply(f"**{random.choice(x8)}**")
     if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj  or "😢" in mesaj:
-        await event.reply(f"{random.choice(x9)}")
+        await event.reply(f"**{random.choice(x9)}**")
     if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
-        await event.reply(f"{random.choice(x10)}")
+        await event.reply(f"**{random.choice(x10)}**")
     if "ne" in mesaj or "Ne" in mesaj:
-        await event.reply(f"{random.choice(x11)}")
+        await event.reply(f"**{random.choice(x11)}**")
     if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
-        await event.reply(f"{random.choice(x12)}")
+        await event.reply(f"**{random.choice(x12)}**")
     if "Mal" in mesaj or "mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
-        await event.reply(f"{random.choice(x13)}")
+        await event.reply(f"**{random.choice(x13)}**")
     if "Balım" in mesaj or "balım" in mesaj:
-        await event.reply(f"{random.choice(x14)}")
+        await event.reply(f"**{random.choice(x14)}**")
     if "Canım" in mesaj or "canım" in mesaj:
-        await event.reply(f"{random.choice(x15)}")
-    if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj:
-        await event.reply(f"{random.choice(x16)}")
+        await event.reply(f"**{random.choice(x15)}**")
+    if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj or "Görüşürüz" in mesaj or "görüşürüz" in mesaj:
+        await event.reply(f"**{random.choice(x16)}**")
     if "Sinirlendim" in mesaj or "sinirlendim" in mesaj or "😡" in mesaj or "🤬" in mesaj:
-        await event.reply(f"{random.choice(x17)}")
+        await event.reply(f"**{random.choice(x17)}**")
     if "tanışalım mı" in mesaj or "Tanışalım mı" in mesaj:
-        await event.reply(f"{random.choice(x18)}")
+        await event.reply(f"**{random.choice(x18)}**")
     if "İsmin ne" in mesaj or "ismin ne" in mesaj  or "Adın ne" in mesaj or "adın ne" in mesaj:
-        await event.reply(f"{random.choice(x19)}")
+        await event.reply(f"**{random.choice(x19)}**")
     if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyim sen" in mesaj or "İyim sen" in mesaj:
-        await event.reply(f"{random.choice(x20)}")
+        await event.reply(f"**{random.choice(x20)}**")
     if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj  or "😄" in mesaj:
-        await event.reply(f"{random.choice(x21)}")
+        await event.reply(f"**{random.choice(x21)}**")
     if "Büyüğüm" in mesaj or "büyüğüm" in mesaj or "büyük" in mesaj  or "Büyük" in mesaj:
-        await event.reply(f"{random.choice(x22)}")
+        await event.reply(f"**{random.choice(x22)}**")
     if "Aiko" in mesaj or "aiko" in mesaj:
-        await event.reply(f"{random.choice(x23)}")
+        await event.reply(f"**{random.choice(x23)}**")
     if "Merve" in mesaj or "merve" in mesaj or "merfe" in mesaj  or "Merfe" in mesaj:
-        await event.reply(f"{random.choice(x24)}")
-	    
+        await event.reply(f"**{random.choice(x24)}**")
+    if "Günaydın" in mesaj or "günaydın" in mesaj:
+        await event.reply(f"**{random.choice(x25)}**")
+    if "İyi geceler" in mesaj or "iyi geceler" in mesaj:
+        await event.reply(f"**{random.choice(x26)}**")
+	       
 
 
 
@@ -176,6 +180,8 @@ x21 = ("Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin y
 x22 = ("Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük :)",)
 x23 = ("Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsüm emi .",)
 x24 = ("Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭", "Çok özletti kendini :)",)
+x25 = ("Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳",)
+x26 = ("Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",)
 #x21 = ("", "", "", "",)
 
 @client.on(events.NewMessage(pattern='(?i)buket+'))
