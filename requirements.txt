@@ -1,8 +1,6 @@
 pyrogram==1.3.6
-telethon
 python-dotenv
 motor
-pillow
 aiohttp
 requests
 pymongo[srv]
@@ -25,8 +23,6 @@ youtube_search_python
 requests
 youtube_search
 ffmpeg
-aiohttp
-aiofiles
 asyncio==3.4.3
 youtube_search
 python-arq
@@ -34,7 +30,8 @@ search_engine_parser
 wget 
 ffmpeg-python
 Pillow==9.1.0
+TgCrypto
 ujson
+lyricsgenius
 yt-dlp
 git+https://github.com/yt-dlp/yt-dlp.git
-telebot
