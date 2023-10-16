@@ -21,6 +21,7 @@ from telethon.sync import types
 from datetime import datetime 
 from telethon.errors.rpcerrorlist import PeerFloodError
 from telethon import Button
+from pyrogram.errors import FloodWait
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
@@ -67,7 +68,6 @@ GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığ
 OWNER_ID = int(os.environ.get("OWNER_ID","6540285284")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
-#SUDO_USERS = []
 #SUDO = []
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 
@@ -77,7 +77,7 @@ app = Client("GUNC",
              api_id=api_id,
              api_hash=api_hash,
              bot_token=bot_token
-             )
+	    )
 
 anlik_calisan = []
 tekli_calisan = []
@@ -86,19 +86,161 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
-ozel_list = [6156690167]
+ozel_list = [6540285284]
 grup_sayi = []
 etiketuye = []
 isleyen = []
 user_sayi = []
 
-##############################
-#MESSAGE = "**🎉 ᴍᴇʀʜᴀʙᴀ, {}\n ʜᴏş ɢᴇʟᴅɪɴɪᴢ !**"
-#@app.on_message(filters.new_chat_members)
-#async def welcome(client, message):
-#    new_members = [u.mention for u in message.new_chat_members]
-#    text = MESSAGE.format(", ".join(new_members))
-#    await message.reply_text(text, disable_web_page_preview=True)
+@client.on(events.NewMessage)
+async def chatbot(event):
+    global isleyen
+    mesaj = str(event.raw_text)
+    qrup = event.chat_id
+    if qrup not in isleyen:
+        return
+    if "selam" in mesaj or "Selam" in mesaj  or "SELAM" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
+        await event.reply(f"**{random.choice(x1)}**")
+    if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj or "Ne Haber" in mesaj or "ne haber" in mesaj:
+        await event.reply(f"**{random.choice(x2)}**")
+    if "Adam" in mesaj or "adam" in mesaj:
+        await event.reply(f"**{random.choice(x3)}**")
+    if "iyim" in mesaj or "İyiyim" in mesaj:
+        await event.reply(f"**{random.choice(x4)}**")
+    if "Hoş Geldin" in mesaj or "hoş geldin" in mesaj:
+        await event.reply(f"**{random.choice(x5)}**")
+    if "Merhaba" in mesaj or "merhaba" in mesaj:
+        await event.reply(f"**{random.choice(x6)}**")
+    if "Ban" in mesaj or "ban" in mesaj :
+        await event.reply(f"**{random.choice(x7)}**")
+    if "Ne yapıyorsun" in mesaj or "ne yapıyorsun" in mesaj or "Nabıyon" in mesaj or "nabıyon" in mesaj :
+        await event.reply(f"**{random.choice(x8)}**")
+    if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj  or "😢" in mesaj:
+        await event.reply(f"{random.choice(x9)}")
+    if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
+        await event.reply(f"{random.choice(x10)}")
+    if "ne" in mesaj or "Ne" in mesaj:
+        await event.reply(f"{random.choice(x11)}")
+    if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
+        await event.reply(f"{random.choice(x12)}")
+    if "Mal" in mesaj or "mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
+        await event.reply(f"{random.choice(x13)}")
+    if "Balım" in mesaj or "balım" in mesaj:
+        await event.reply(f"{random.choice(x14)}")
+    if "Canım" in mesaj or "canım" in mesaj:
+        await event.reply(f"{random.choice(x15)}")
+    if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj:
+        await event.reply(f"{random.choice(x16)}")
+    if "Sinirlendim" in mesaj or "sinirlendim" in mesaj or "😡" in mesaj or "🤬" in mesaj:
+        await event.reply(f"{random.choice(x17)}")
+    if "tanışalım mı" in mesaj or "Tanışalım mı" in mesaj:
+        await event.reply(f"{random.choice(x18)}")
+    if "İsmin ne" in mesaj or "ismin ne" in mesaj  or "Adın ne" in mesaj or "adın ne" in mesaj:
+        await event.reply(f"{random.choice(x19)}")
+    if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyim sen" in mesaj or "İyim sen" in mesaj:
+        await event.reply(f"{random.choice(x20)}")
+    if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj  or "😄" in mesaj:
+        await event.reply(f"{random.choice(x21)}")
+    if "Büyüğüm" in mesaj or "büyüğüm" in mesaj or "büyük" in mesaj  or "Büyük" in mesaj:
+        await event.reply(f"{random.choice(x22)}")
+    if "Aiko" in mesaj or "aiko" in mesaj:
+        await event.reply(f"{random.choice(x23)}")
+    if "Merve" in mesaj or "merve" in mesaj or "merfe" in mesaj  or "Merfe" in mesaj:
+        await event.reply(f"{random.choice(x24)}")
+	    
+
+
+
+
+x1 = ("Aleyküm Selam 🎉", "Selam", "Ase", "As",)
+x2 = ("İyiyim senden naber", "İyiyim sen", "Kötü ya sen", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",)
+x3 = ("Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",)
+x4 = ("İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",)
+x5 = ("Naber", "Ne haber kanka", "Hoş buldum nabiyon", "hb, nasılsın",)
+x6 = ("Merhaba, Hoş geldin", "Merhaba, Hoş Geldin", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",)
+x7 = ("Ayıp ettin :/", "Helal len yusufi", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",)
+x8 = ("Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",)
+x9 = ("Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",)
+x10 = ("tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "",)
+x11 = ("What !", "Anlamadın mı hala ?", "Yok bişey :)",)
+x12 = ("Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...",)
+x13 = ("Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni kendinle karıştırdın galiba :)", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...",)
+x14 = ("Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈",)
+x15 = ("Cicim", "Bebeğim", "Bitanem", "Hayatım",)
+x16 = ("Nereye, Karpuz Kesmiştik .", "Hoşuma yeterince gittin, otur oturduğun yerde 🤫", "Görüşürüz, Hakkını helal et ...", "Kal desem kalır mı acaba 🤔",)
+x17 = ("Farkettim .", "Sakin ol, Şampiyon .", "Bakıyorum da Domates gibi kızardın .", "Ne yapayım .",)
+x18 = ("Olur tanışalım .", "Kim olduğunu biliyorum :)", "Kendini tanıt !", "Düşünmem gerek 🤔",)
+x19 = ("Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum :)",)
+x20 = ("Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Birazcık kötüyüm .", "Mükemmelim tıpkı senin gibi 🤭",)
+x21 = ("Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim .",)
+x22 = ("Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük :)",)
+x23 = ("Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsüm emi .",)
+x24 = ("Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭", "Çok özletti kendini :)",)
+#x21 = ("", "", "", "",)
+
+@client.on(events.NewMessage(pattern='(?i)buket+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
+
+@client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
+async def chatbot(event):
+    global isleyen
+    emr = event.pattern_match.group(1)
+    qrup = event.chat_id
+    if emr == "ON" or emr == "on" or emr == "On":
+        if qrup not in isleyen:
+            isleyen.append(qrup)
+            aktiv_olundu = "✅ **Artık Konuşabilirim !**"
+            await event.reply(aktiv_olundu)
+            return
+        await event.reply("⚠️ **Zaten Konuşabiliyorum !**")
+        return
+    elif emr == "OFF" or emr == "off" or emr == "Off":
+        if qrup in isleyen:
+            isleyen.remove(qrup)
+            await event.reply("⛔️ **Artık Konuşamicam !**")
+            return
+        await event.reply("⚠️ **Zaten Konuşamıyorum !**")
+        return
+    
+    else:
+        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Active  ➻  /sohbetmod on\n⛔  Deactive  ➻  /sohbetmod off .**")
+
+
+### STATS KOMUTU
+@client.on(events.NewMessage(pattern='^/stats ?(.*)'))
+async def son_durum(event):
+    global anlik_calisan,grup_sayi,ozel_list
+    sender = await event.get_sender()
+    if sender.id not in ozel_list:
+      return
+    await event.respond(f"**@{BOT_USERNAME} Verileri 🖥️\n\nToplam Grub: {len(grup_sayi)}\n\nAnlık Çalışan Grub: {len(anlik_calisan)}\n\nToplam Kullanıcı: {len(user_sayi)}**")
+
+### BROADCAST KOMUTU
+@client.on(events.NewMessage(pattern='^/broadcast ?(.*)'))
+async def duyuru(event):
+ 
+  global grup_sayi,ozel_list
+  sender = await event.get_sender()
+  if sender.id not in ozel_list:
+    return
+  reply = await event.get_reply_message()
+  await event.respond(f"**Toplam {len(grup_sayi)} Gruba'a mesaj gönderiliyor...**")
+  for x in grup_sayi:
+    try:
+      await client.send_message(x,f"**📣 Reklam\n\n{reply.message}**")
+    except:
+      pass
+  await event.respond(f"Gönderildi.")
+	    
+MESSAGE = "**🎉 Merhaba, {}\n Hoş Geldin ..!**"
+
+@app.on_message(filters.new_chat_members)
+async def newuser(client: Client, message: Message):
+    chat_id = message.chat.id
+    new_members = [u.mention for u in message.new_chat_members]
+    text = MESSAGE.format(", ".join(new_members))
+    await message.reply_text(text, disable_web_page_preview=True)
 	
 ##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
@@ -257,14 +399,6 @@ kart = "♤ ♡ ♢ ♧ 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 �
 rutbe = (
 "ᴇᴍɴɪʏᴇᴛ ᴍᴜ̈ᴅᴜ̈ʀᴜ̈", "ᴇᴍɴɪʏᴇᴛ ᴀᴍɪʀɪ", "ʙᴀşᴋᴏᴍɪsᴇʀ", "ᴋᴏᴍɪsᴇʀ", "ᴏʀɢᴇɴᴇʀᴀʟ", "ᴋᴜʀᴍᴀʏ", "ᴘɪʏᴀᴅᴇ", "sᴜ̈ᴠᴀʀɪ", "ᴛᴀɴᴋᴄ̧ɪ", "ᴛᴏᴘᴄ̧ᴜ", "ᴋᴏʀɢᴇɴᴇʀᴀʟ", "ᴛᴜ̈ᴍɢᴇɴᴇʀᴀʟ", "ᴛᴜɢ̆ɢᴇɴᴇʀᴀʟ",
 "ᴀʟʙᴀʏ", "ʏᴀʀʙᴀʏ", "ʙɪɴʙᴀşɪ", "ʏᴜ̈ᴢʙᴀşɪ", "ᴜ̈sᴛᴇɢ̆ᴍᴇɴ", "ᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛsᴜʙᴀʏ", "ᴀsᴛsᴜʙᴀʏ ʙᴀşᴄ̧ᴀᴠᴜş", "ᴀsᴛsᴜʙᴀʏ ᴜ̈sᴛᴄ̧ᴀᴠᴜş", "ᴀsᴛsᴜʙᴀʏ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴏɴʙᴀşɪ", "ᴄ̧ᴀᴠᴜş", "ᴏɴʙᴀşɪ",
-)
-
-say = (
-"7", "10", "12", "17", "21", "25",
-"32", "33", "40", "45", "47", "50",
-"54", "58","62", "67", "71", "75",
-"81", "82", "86", "89", "95", "99", "100",
-"500", "1000",
 )
 
 d = (
@@ -575,43 +709,6 @@ async def slap(event):
     else:
         await event.respond("**💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ ...**")
 
-#@client.on(events.NewMessage(pattern='/dc'))
-#async def test(event):
-#    await event.reply("**⬇️ Seçimini Yap ⬇️**", buttons=(
-#                      [
-#                       Button.inline("👻 Doğruluk", data="d"),
-#	               Button.inline("♻️ Cesaret", data="c")
-#                      ]
-#                    ),
-#                    link_preview=False)
-
-#@client.on(events.callbackquery.CallbackQuery(data="d"))
-#async def sahib(event):
-#    await event.reply(f"**👻 Doğruluk Seçtin, Çok Güzel .\n\n💬 Sorum Şu: {random.choice(d)}**")
-
-#@client.on(events.callbackquery.CallbackQuery(data="c"))
-#async def sahib(event):
-#    await event.reply(f"**♻️ Cesaret Seçtin, Sanırım Fazla Cesaretlisin .\n\n💬 Yapman Gereken şu: {random.choice(c)}**")
-
-#@client.on(events.NewMessage(pattern="^/adminler ?(.*)")) Adminleri tek tek etiketler
-#async def mentionall(tagadmin):
-#
-#	if tagadmin.pattern_match.group(1):
-#		seasons = tagadmin.pattern_match.group(1)
-#	else:
-#		seasons = ""
-#
-#	chat = await tagadmin.get_input_chat()
-#	a_=0
-#	await tagadmin.delete()
-#	async for i in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
-#		if a_ == 500:
-#			break
-#		a_+=5
-#		await tagadmin.client.send_message(tagadmin.chat_id, "**[{}](tg://user?id={}) {}**".format(i.first_name, i.id, seasons))
-#		sleep(1)
-
-
 @app.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n🗒️ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ : {random.choice(c)}**")
@@ -621,6 +718,7 @@ async def dsor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
 
 ############################################################
+
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
     await event.reply(f"**🗨️ sᴇᴄ̧ɪᴍɪɴɪ ʏᴀᴘ . . .**", buttons=(
@@ -672,41 +770,8 @@ async def romantik(event):
                    ),  
                  link_preview=False)
 
-	
-############################################################
-#@client.on(events.NewMessage(pattern='/sudolist'))
-#async def sudolist_handler(event):
-#    sudo_list_formatted = ''
-#    for sudo_id in SUDO:
-#        sudo = await client.get_entity(sudo_id)
-#        sudo_list_formatted += f'➙ [{sudo.first_name}](tg://user?id={sudo.id})'
-#    owner_list_formatted = ''
-#    for owner_id in OWNER:
-#        owner = await client.get_entity(owner_id)
-#        owner_list_formatted += f'➙ [{owner.first_name}](tg://user?id={owner.id})'
-#   await event.respond(f'**👨🏻‍💻 Sahibim :\n{owner_list_formatted}\n\n⭐️ Yardımcıları :\n{sudo_list_formatted}**')
-#    await event.delete()
-
-#@client.on(events.NewMessage(pattern='/delet'))
-#async def banda(event):
-#    if not event.is_group:
-#        return await event.reply("✓ **Sadece Grublarda Kullanılır ...**")
-#    info = await event.client.get_entity(event.chat_id)
-#    title = info.title if info.title else "Bu sohbet"
-#    mentions = f'**{title}\nSilinen Hesapları :**'
-#    deleted = 0
-#    async for user in event.client.iter_participants(event.chat_id):
-#        if user.deleted:
-#            mentions += f"\n**✓ Silinmiş Hesap: {user.id}**"
-#            deleted += 1
-#            await event.client.kick_participant(event.chat_id, user.id)
-#    mentions += f"\n**✓ Hesapların Sayısı: {deleted}**"
-#    await event.reply(mentions)
-
 #   message = await event.reply("🔁 Hazırlanıyor...")
-
 #   await asyncio.sleep(3)
-
 #    await message.delete()
 
 @client.on(events.NewMessage(pattern='/dels'))
@@ -1590,32 +1655,52 @@ async def reload(client: Client, message: Message):
 
 @app.on_message(filters.command(["alive"], ["/", ""]))
 async def alive(c: Client, message: Message):
-    message = await event.reply("🔁 ʙᴇᴋʟᴇ ...")
+    message = await message.reply_text("🔁 ʙᴇᴋʟᴇ ...")
     await asyncio.sleep(2)
     await message.delete()
     await message.reply_text(f"**@{BOT_USERNAME} ʙɪʟɢɪʟᴇʀɪ .\n\n║▻  ⚙️ ᴠᴇʀsɪʏᴏɴ [ {__version__} ]\n║▻  💠 ᴘʏᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__python__}\n║▻  💻 ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__telethon__}**")
-
-@app.on_message(filters.command(["eros"],["/", ""]))
-async def eros(c:Client, m:Message):
-    users = await c.get_chat_members(m.chat.id, limit=1000)
+	    
+#@app.on_message(filters.command(["eros"],["/", ""]))
+#async def eros(c:Client, m:Message):
+#    users = await c.get_chat_members(m.chat.id, limit=1000)
+#    
+#    users_l = []
+#    for user in users:
+#        if user.user.is_bot or user.user.is_deleted:
+#            pass
+#        else:
+#            users_l.append(user.user)
+#    count = len(users_l)
     
-    users_l = []
-    for user in users:
-        if user.user.is_bot or user.user.is_deleted:
-            pass
-        else:
-            users_l.append(user.user)
-    count = len(users_l)
+#    ilk = users_l[randint(0,count)]
+#    iki = users_l[randint(0,count)]
     
-    ilk = users_l[randint(0,count)]
-    iki = users_l[randint(0,count)]
-    
-    if ilk.id==1550788256 or ilk.id==5576614947 or iki.id==5375589992 or iki.id==5576614947:
-        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[ ✍🏻 ](tg://user?id=5053767281) ❤️ [ . ](tg://user?id=5533927130)**")
+#    if ilk.id==1550788256 or ilk.id==5576614947 or iki.id==5375589992 or iki.id==5576614947:
+#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[ ✍🏻 ](tg://user?id=5053767281) ❤️ [ . ](tg://user?id=5533927130)**")
         
-    else:
-        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n{ilk.mention} ❣️ {iki.mention}\n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.choice(say)}**")
+#    else:
+#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n{ilk.mention} ❣️ {iki.mention}\n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.choice(say)}**")
+@client.on(events.NewMessage(pattern='/eros'))
+async def eros_oku(event):
+    users = []
+    async for user in client.iter_participants(event.chat_id):
+        if not user.bot and not user.deleted and not user.is_self:
+            users.append(user)
 
+    if len(users) < 2:
+        return
+    
+    first_user, second_user = random.sample(users, 2)
+    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
+    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
+    
+    response = (
+        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
+        f"{first_user_md_mention} ❣️ {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
+    )
+    
+    await event.respond(response, parse_mode="Markdown")
+client.run_until_disconnected()
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
@@ -1998,4 +2083,3 @@ class LAN(object):
 app.run()
 print(" Bot çalışıyor :)")
 client.run_until_disconnected()
-
