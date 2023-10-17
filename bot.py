@@ -439,6 +439,29 @@ async def tag4(event):
                  link_preview=False)
 	
 ##########################
+
+@client.on(events.NewMessage(pattern='/eros'))
+async def eros_oku(event):
+    users = []
+    async for user in client.iter_participants(event.chat_id):
+        if not user.bot and not user.deleted and not user.is_self:
+            users.append(user)
+
+    if len(users) < 2:
+        return
+    
+    first_user, second_user = random.sample(users, 2)
+    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
+    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
+    
+    response = (
+        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
+        f"{first_user_md_mention} ❣️ {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
+    )
+    
+    await event.respond(response, parse_mode="Markdown")
+
+
 @client.on(events.NewMessage(pattern='/slap'))
 async def slap(event):
     if event.is_private:
@@ -1416,74 +1439,6 @@ async def btag(event):
                       ]
                     ),
                     link_preview=False)
- 
-#########################
-
-@app.on_message(filters.new_chat_members, group=1)
-async def hg(bot: Client, msg: Message):
-    for new_user in msg.new_chat_members:
-        if str(new_user.id) == str(BOT_ID):
-            await msg.reply(
-                f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🛡️  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
-    )
-        elif str(new_user.id) == str(OWNER_ID):
-            await msg.reply('**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
-		
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
-async def reload(client: Client, message: Message):
-    await message.reply_text("**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
-                ],
-            ],
-        ),
-    )	    
-	
-#@app.on_message(filters.command(["eros"],["/", ""]))
-#async def eros(c:Client, m:Message):
-#    users = await c.get_chat_members(m.chat.id, limit=1000)
-#    
-#    users_l = []
-#    for user in users:
-#        if user.user.is_bot or user.user.is_deleted:
-#            pass
-#        else:
-#            users_l.append(user.user)
-#    count = len(users_l)
-    
-#    ilk = users_l[randint(0,count)]
-#    iki = users_l[randint(0,count)]
-    
-#    if ilk.id==1550788256 or ilk.id==5576614947 or iki.id==5375589992 or iki.id==5576614947:
-#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[ ✍🏻 ](tg://user?id=5053767281) ❤️ [ . ](tg://user?id=5533927130)**")
-        
-#    else:
-#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n{ilk.mention} ❣️ {iki.mention}\n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.choice(say)}**")
-@client.on(events.NewMessage(pattern='/eros'))
-async def eros_oku(event):
-    users = []
-    async for user in client.iter_participants(event.chat_id):
-        if not user.bot and not user.deleted and not user.is_self:
-            users.append(user)
-
-    if len(users) < 2:
-        return
-    
-    first_user, second_user = random.sample(users, 2)
-    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
-    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
-    
-    response = (
-        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
-        f"{first_user_md_mention} ❣️ {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
-    )
-    
-    await event.respond(response, parse_mode="Markdown")
-client.run_until_disconnected()
-
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
