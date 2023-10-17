@@ -1421,10 +1421,10 @@ async def btag(event):
                     link_preview=False)
 
 @app.on_message(filters.new_chat_members, group=1)
-async def hg(bot: Client, message: Message):
+async def zar(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
-            await message.reply(
+            await msg.reply(
                 f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🛡️  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
