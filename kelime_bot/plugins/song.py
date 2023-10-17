@@ -144,11 +144,11 @@ async def ytsearch(_, message: Message):
     except Exception as e:
         await message.reply_text(str(e))
 
-@app.on_message(filters.command(["c"], ["/", ""]))
+@Client.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n🗒️ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ : {random.choice(c)}**")
  
-@app.on_message(filters.command(["d"], ["/", ""]))
+@Client.on_message(filters.command(["d"], ["/", ""]))
 async def dsor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
 
