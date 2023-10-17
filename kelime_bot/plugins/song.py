@@ -162,35 +162,16 @@ async def ytsearch(_, message: Message):
     except Exception as e:
         await message.reply_text(str(e))
 
+
 @Client.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n🗒️ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ : {random.choice(c)}**")
- 
+
+
 @Client.on_message(filters.command(["d"], ["/", ""]))
-async def csor(client: Client, message: Message):
+async def dsor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
 
-                                           
-#@app.on_message(filters.command(["eros"],["/", ""]))
-#async def eros(c:Client, m:Message):
-#    users = await c.get_chat_members(m.chat.id, limit=1000)
-#    
-#    users_l = []
-#    for user in users:
-#        if user.user.is_bot or user.user.is_deleted:
-#            pass
-#        else:
-#            users_l.append(user.user)
-#    count = len(users_l)
-    
-#    ilk = users_l[randint(0,count)]
-#    iki = users_l[randint(0,count)]
-    
-#    if ilk.id==1550788256 or ilk.id==5576614947 or iki.id==5375589992 or iki.id==5576614947:
-#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[ ✍🏻 ](tg://user?id=5053767281) ❤️ [ . ](tg://user?id=5533927130)**")
-        
-#    else:
-#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n{ilk.mention} ❣️ {iki.mention}\n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.choice(say)}**")
 
 d = (
 "Telefonunda en son aradığın şey neydi?","Birisi kız arkadaşın / erkek arkadaşından ayrılmak için sana 1 milyon tl önerseydi, yapar mıydın?","Bu grupda en az kimi seviyorsun ve neden?","Hiç sınıfta yüksek sesle geğirdin mi?","Hiç sınıfta yüksek sesle geğirdin mi?","Yerden bir şeyi alıp hiç yedin mi?","Bir gün karşı cins olarak uyanırsan, ilk yapacağın şey nedir?","Hiç havuzda işedin mi?","Asansörde hiç gaz kaçırdın mı?",
@@ -238,4 +219,25 @@ c = (
 "Oyundaki oyunculardan biri hakkında hikaye uydur", "15 saniye içerisinde sondan başa doğru alfabeyi oku okurken ses at", "Bir köpek gibi havla havlarken ses at","Bir şarkıyı baştan sona söyle söylerken ses at","Çıktığın en kötü ve en iyi kişiyi açıkla.","Bir dakika boyunca karşı cinsten biri gibi yürü.","Sevgiline atıp atabileceğin en acımasız mesajı gönder.","Oyunda yer alan her kişi hakkında bildiğin komik bir şey anlat.",
 "Ünlü restoranlardan birini ara ve menülerini öğrenirken dalga geç.","Eski bir şarkıyı aç ve onu taklit ederek söylemeye çalış söylerken ses at","1 tur boyunca farklı bir dilde konuş.","Eski sevgiline mesaj at ve onu unutamadığını söyle.","2 tur boyunca “sen” kelimesini duyunca kuş gibi ses çıkart.","Telefondaki tarayıcı geçmişini herkese göster.","Odadan birisi için satın alacakmış gibi iç çamaşırı araştırması yap.",
 )
+                                           
+#@app.on_message(filters.command(["eros"],["/", ""]))
+#async def eros(c:Client, m:Message):
+#    users = await c.get_chat_members(m.chat.id, limit=1000)
+#    
+#    users_l = []
+#    for user in users:
+#        if user.user.is_bot or user.user.is_deleted:
+#            pass
+#        else:
+#            users_l.append(user.user)
+#    count = len(users_l)
+    
+#    ilk = users_l[randint(0,count)]
+#    iki = users_l[randint(0,count)]
+    
+#    if ilk.id==1550788256 or ilk.id==5576614947 or iki.id==5375589992 or iki.id==5576614947:
+#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[ ✍🏻 ](tg://user?id=5053767281) ❤️ [ . ](tg://user?id=5533927130)**")
+        
+#    else:
+#        await m.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n{ilk.mention} ❣️ {iki.mention}\n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.choice(say)}**")
 
