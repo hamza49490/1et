@@ -30,6 +30,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
+from pyrogram.types import Message
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 import random
@@ -61,7 +62,7 @@ LOGGER = logging.getLogger(__name__)
 api_id = int(os.environ.get("APP_ID","18049084"))
 api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
 bot_token = os.environ.get("TOKEN","6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY")
-BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
+BOT_ID = int(os.environ.get("BOT_ID", "6559325433"))
 DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://ok:ok@cluster0.uooya.mongodb.net/myFirstDatabase?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
 BOT_USERNAME = os.environ.get("BOT_USERNAME","AikoDenemeBot") # Botunuzun kullanıcı adı.
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL","-1001983841726")) # Botunuzun eylemleri kaydedeceği kayıt grubunun id'si.
@@ -1420,10 +1421,10 @@ async def btag(event):
                     link_preview=False)
 
 @app.on_message(filters.new_chat_members, group=1)
-async def hg(bot: Client, msg: Message):
+async def hg(bot: Client, message: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
-            await msg.reply(
+            await message.reply(
                 f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🛡️  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
