@@ -827,7 +827,7 @@ async def mentionalladmin(event):
         return
       if usrnum == 1:
         await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
-        await asyncio.sleep(5)
+        await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
 
@@ -962,7 +962,7 @@ async def tag(event):
         return
       if usrnum == 1:
         await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
-        await asyncio.sleep(5)
+        await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
      
@@ -1088,7 +1088,7 @@ async def vtag(event):
         return
       if usrnum == 1:
         await client.send_message(event.chat_id, f"**{usrtxt}  {random.choice(sor)}**")
-        await asyncio.sleep(5)
+        await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
 
@@ -1150,8 +1150,8 @@ async def otag(event):
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
-        await asyncio.sleep(5)
+        await client.send_message(event.chat_id, f"**{usrtxt}**")
+        await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
 
@@ -1214,7 +1214,7 @@ async def stag(event):
         return
       if usrnum == 1:
         await client.send_message(event.chat_id, f"**{usrtxt}  {random.choice(guzelsoz)}**")
-        await asyncio.sleep(5)
+        await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
 
