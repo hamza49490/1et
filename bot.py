@@ -342,7 +342,6 @@ tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa d
 #@client.on(events.NewMessage(pattern='(?i)buket+'))
 #async def yeni_mesaj(event: events.NewMessage.Event):
 #    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
-
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
@@ -356,33 +355,31 @@ async def chatbot(event):
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
-
-@client.on(events.callbackquery.CallbackQuery(data="on"))
-async def start(event):
+    if emr == "ON" or emr == "on" or emr == "On":
         if qrup not in isleyen:
             isleyen.append(qrup)
             aktiv_olundu = "✅ **Artık Konuşabilirim !**"
-            await event.edit(aktiv_olundu)
+            await event.reply(aktiv_olundu)
             return
-        await event.edit("⚠️ **Zaten Konuşabiliyorum !**")
+        await event.reply("⚠️ **Zaten Konuşabiliyorum !**")
         return
-	
-@client.on(events.callbackquery.CallbackQuery(data="off"))
-async def start(event):
+    elif emr == "OFF" or emr == "off" or emr == "Off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await event.edit("⛔️ **Artık Konuşamicam !**")
+            await event.reply("⛔️ **Artık Konuşamicam !**")
             return
-        await event.edit("⚠️ **Zaten Konuşamıyorum !**")
+        await event.reply("⚠️ **Zaten Konuşamıyorum !**")
         return
-
+    
+    else:
         await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
                      [
-                      Button.inline("🗨️ Aktif et", data="on"),
-		      Button.inline("🗨️ Devre Dışı", data="off"),
-		     ]
-                   ),  
+	             Button.inline("✅ Tıkla", emr == "ON")
+                     ]
+                   ), 
                  link_preview=False)
+	
+
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
 startbutton = "**♻️ ʟᴜ̈ᴛғᴇɴ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ !\n\n🗒️ ɴᴏᴛ : \n\n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ‌ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...**"
