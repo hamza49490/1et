@@ -9,7 +9,6 @@ from asyncio import sleep
 from time import time
 from os import remove
 import pyrogram
-from bot import bot
 from pyrogram import filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import PeerIdInvalid
