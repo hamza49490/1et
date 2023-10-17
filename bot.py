@@ -127,7 +127,7 @@ async def chatbot(event):
     if "Nabıyon" in mesaj or "nabıyon" in mesaj :
         await event.reply(f"**{random.choice(nabiyon)}**")
 	    
-    if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj  or "😢" in mesaj:
+    if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj:
         await event.reply(f"**{random.choice(uzgun)}**")
 	    
     if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
@@ -163,7 +163,7 @@ async def chatbot(event):
     if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyiyimm sen" in mesaj or "İyiyim sen" in mesaj:
         await event.reply(f"**{random.choice(iyisen)}**")
 	    
-    if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj  or "😄" in mesaj:
+    if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj:
         await event.reply(f"**{random.choice(gullu)}**")
 	    
     if "Büyüğüm" in mesaj or "büyüğüm" in mesaj or "büyük" in mesaj  or "Büyük" in mesaj:
@@ -207,11 +207,19 @@ async def chatbot(event):
 
     if "oyun" in mesaj or "Oyun" in mesaj or "Game" in mesaj or "game" in mesaj:
         await event.reply(f"**{random.choice(trt)}**")
-	    
+
+    if "Evet" in mesaj or "evet" in mesaj or "Evt" in mesaj or "evt" in mesaj:
+        await event.reply(f"**{random.choice(evt)}**")
+
+    if "hyr" in mesaj or "Hyr" in mesaj or "Hayır" in mesaj or "hayır" in mesaj:
+        await event.reply(f"**{random.choice(hyrr)}**")
+
+    if "🙄" in mesaj:
+        await event.reply(f"**{random.choice(gzs)}**")
 
 selam = ( "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .", )
 
-nasilsin = ( "İyiyim senden naber", "İyiyim sen", "Kötü ya sen", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳", )
+nasilsin = ( "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳", )
 
 adam = ( "Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏", )
 
@@ -245,11 +253,11 @@ sinirlendim = ( "Farkettim .", "Sakin ol, Şampiyon .", "Bakıyorum da Domates g
 
 tanis = ( "Olur tanışalım .", "Kim olduğunu biliyorum :)", "Kendini tanıt !", "Düşünmem gerek 🤔", )
 
-adne = ( "Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum :)", )
+adne = ( "Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum ❣️", )
 
 iyisen = ( "Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Birazcık kötüyüm .", "Mükemmelim tıpkı senin gibi 🤭", )
 
-gullu = ( "Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim .", )
+gullu = ( "Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim 💕", )
 
 buyuk = ( "Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük :)", )
 
@@ -278,6 +286,12 @@ hms = ( "hmmmm", "ne hm 🙄", "öhm öhm, naber 💕", )
 bts = ( "Sensin bot !", "Bot mu, o da ne :)", "Ayb ya, nerem bota benziyor .", )
 
 trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, /d mi /c mi .", )
+
+evt = ( "Hayır", )
+
+hyrr = ( "Ne hayır 🙄", "Evet", )
+
+gzs = ("Gözler ömre bedel 😂", "Yukarıda ne var 🤔",)
 
 #x21 = ( "", "", "", "", )
 
