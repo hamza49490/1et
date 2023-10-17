@@ -216,8 +216,8 @@ async def chatbot(event):
 	    	
 
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-startmesaj =  "**💘 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗨️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
-startbutton = "**♻️ ʟᴜ̈ᴛғᴇɴ ᴏᴋᴜʏᴜɴ :\n\n👁️‍🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴜᴢᴀ ᴇᴋʟᴇᴅɪᴋᴛᴇɴ sᴏɴʀᴀ, sᴀᴅᴇᴄᴇ | ᴍᴇsᴀᴊʟᴀʀɪ sɪʟᴍᴇ | ʏᴇᴛᴋɪsɪ ᴠᴇʀᴍᴇɴɪᴢ ʏᴇᴛᴇʀʟɪ'ᴅɪʀ ...\n\n🗒️ ɴᴏᴛ : \n• ᴛᴇᴋʟɪ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇ ᴀʀᴀʟɪɢ̆ɪ 5 sᴀɴɪʏᴇᴅɪʀ ...\n• ᴄ̧ᴏᴋʟᴜ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇ ᴀʀᴀʟɪɢ̆ɪ 2 sᴀɴɪʏᴇᴅɪʀ ...\n\n👤  ɪʟᴇᴛɪşɪᴍ  :**"
+startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
+startbutton = "**♻️ ʟᴜ̈ᴛғᴇɴ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ !\n\n🗒️ ɴᴏᴛ : \n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ‌ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...**"
 noadmin = "**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**"
 nogroup = "**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**"
 
@@ -389,7 +389,7 @@ async def help(event):
                       Button.inline("🗨️ ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
                       Button.inline("📚 ᴇxᴛʀᴀ ᴋᴏᴍᴜᴛ", data="tag2")
 		      ],[
-                      Button.inline("🔥 ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ", data="tag4"),
+                      Button.inline("🎮 ᴏʏᴜɴ ᴋᴏᴍᴜᴛ", data="tag4"),
 		      Button.inline("🧑🏻‍💻 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ", data="tag3")
                   ],[
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="start")
@@ -431,7 +431,7 @@ async def handler(event):
 	
 @client.on(events.callbackquery.CallbackQuery(data="tag4"))
 async def tag4(event):
-    await event.edit(f"**🔺  ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ  🔺\n\n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ̧ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...\n\n» /d\n   - ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /c\n   - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /soz\n   - ᴄ̧ᴇşɪᴛʟɪ sᴏ̈ᴢʟᴇʀ ᴀᴛᴀʀɪᴍ .\n\n» /eros\n   -  ɢʀᴜᴘᴛᴀᴋɪ ᴜ̈ʏᴇʟᴇʀɪ sʜɪᴘʟᴇʀɪᴍ .\n\n» /slap\n   - ᴇɢ̆ʟᴇɴᴍᴇᴋ ɪᴄ̧ɪɴ ᴋᴜʟʟᴀɴɪɴ .\n\n» /turet\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ̧ᴀʀɪᴍ .\n\n» /kapat\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴋᴀᴘᴀᴛɪʀɪᴍ .\n\n» /pass\n   - ᴋᴇʟɪᴍᴇʏɪ ᴘᴀss ɢᴇᴄ̧ᴇʀɪᴍ .\n\n» /yas\n   - ᴅᴏɢ̆ᴜᴍ ɢᴜ̈ɴᴜ̈ɴᴜ̈ᴢᴜ̈ sᴏ̈ʏʟᴇʀɪᴍ .\n\n» /burc\n - ʙᴜʀᴄᴜɴᴜᴢᴜ sᴏ̈ʏʟᴇʀɪᴍ .**", buttons=(
+    await event.edit(f"**🔺  ᴏʏᴜɴ ᴋᴏᴍᴜᴛ  🔺\n\n» /d\n   - ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /c\n   - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ sᴏʀᴀʀɪᴍ .\n\n» /soz\n   - ᴄ̧ᴇşɪᴛʟɪ sᴏ̈ᴢʟᴇʀ ᴀᴛᴀʀɪᴍ .\n\n» /eros\n   -  ɢʀᴜᴘᴛᴀᴋɪ ᴜ̈ʏᴇʟᴇʀɪ sʜɪᴘʟᴇʀɪᴍ .\n\n» /slap\n   - ᴇɢ̆ʟᴇɴᴍᴇᴋ ɪᴄ̧ɪɴ ᴋᴜʟʟᴀɴɪɴ .\n\n» /turet\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ̧ᴀʀɪᴍ .\n\n» /kapat\n   - ᴋᴇʟɪᴍᴇ ᴛᴜ̈ʀᴇᴛ ᴏʏᴜɴᴜ ᴋᴀᴘᴀᴛɪʀɪᴍ .\n\n» /pass\n   - ᴋᴇʟɪᴍᴇʏɪ ᴘᴀss ɢᴇᴄ̧ᴇʀɪᴍ .\n\n» /yas\n   - ᴅᴏɢ̆ᴜᴍ ɢᴜ̈ɴᴜ̈ɴᴜ̈ᴢᴜ̈ sᴏ̈ʏʟᴇʀɪᴍ .\n\n» /burc\n - ʙᴜʀᴄᴜɴᴜᴢᴜ sᴏ̈ʏʟᴇʀɪᴍ .**", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
                      ]
@@ -454,7 +454,7 @@ async def eros_oku(event):
     
     response = (
         f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
-        f"{first_user_md_mention} ❣️ {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
+        f"{first_user_md_mention} 💕 {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
     )
     
     await event.respond(response, parse_mode="Markdown")
