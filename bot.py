@@ -313,7 +313,9 @@ async def chatbot(event):
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
-    if emr == "on" or emr == "On":
+    #if emr == "on" or emr == "On":
+@client.on(events.callbackquery.CallbackQuery(data="on"))
+async def start(event):
         if qrup not in isleyen:
             isleyen.append(qrup)
             aktiv_olundu = "✅ **Artık Konuşabilirim !**"
@@ -332,7 +334,7 @@ async def chatbot(event):
     else:
         await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
                      [
-                      Button.inline("🗨️ Aktif", data="on")
+                      Button.inline("🗨️ Aktif et", data="on")
 		     ]
                    ),  
                  link_preview=False)
