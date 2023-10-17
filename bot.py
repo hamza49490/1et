@@ -105,54 +105,79 @@ async def chatbot(event):
         return
     if "selam" in mesaj or "Selam" in mesaj  or "SELAM" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
         await event.reply(f"**{random.choice(x1)}**")
-    if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj or "Ne Haber" in mesaj or "ne haber" in mesaj:
+	    
+    if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
         await event.reply(f"**{random.choice(x2)}**")
+	    
     if "Adam" in mesaj or "adam" in mesaj:
         await event.reply(f"**{random.choice(x3)}**")
+	    
     if "iyim" in mesaj or "İyiyim" in mesaj:
         await event.reply(f"**{random.choice(x4)}**")
+	    
     if "Hoş Geldin" in mesaj or "hoş geldin" in mesaj:
         await event.reply(f"**{random.choice(x5)}**")
+	    
     if "Merhaba" in mesaj or "merhaba" in mesaj:
         await event.reply(f"**{random.choice(x6)}**")
+	    
     if "Ban" in mesaj or "ban" in mesaj :
         await event.reply(f"**{random.choice(x7)}**")
+	    
     if "Ne yapıyorsun" in mesaj or "ne yapıyorsun" in mesaj or "Nabıyon" in mesaj or "nabıyon" in mesaj :
         await event.reply(f"**{random.choice(x8)}**")
+	    
     if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj  or "😢" in mesaj:
         await event.reply(f"**{random.choice(x9)}**")
+	    
     if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
         await event.reply(f"**{random.choice(x10)}**")
+	    
     if "buket" in mesaj or "buket" in mesaj:
         await event.reply(f"**{random.choice(x11)}**")
+	    
     if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
         await event.reply(f"**{random.choice(x12)}**")
+	    
     if "Mal" in mesaj or "mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
         await event.reply(f"**{random.choice(x13)}**")
+	    
     if "Balım" in mesaj or "balım" in mesaj:
         await event.reply(f"**{random.choice(x14)}**")
+	    
     if "Canım" in mesaj or "canım" in mesaj:
         await event.reply(f"**{random.choice(x15)}**")
+	    
     if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj or "Görüşürüz" in mesaj or "görüşürüz" in mesaj:
         await event.reply(f"**{random.choice(x16)}**")
+	    
     if "Sinirlendim" in mesaj or "sinirlendim" in mesaj or "😡" in mesaj or "🤬" in mesaj:
         await event.reply(f"**{random.choice(x17)}**")
+	    
     if "tanışalım mı" in mesaj or "Tanışalım mı" in mesaj:
         await event.reply(f"**{random.choice(x18)}**")
+	    
     if "İsmin ne" in mesaj or "ismin ne" in mesaj  or "Adın ne" in mesaj or "adın ne" in mesaj:
         await event.reply(f"**{random.choice(x19)}**")
-    if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyim sen" in mesaj or "İyim sen" in mesaj:
+	    
+    if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyiyimm sen" in mesaj or "İyiyim sen" in mesaj:
         await event.reply(f"**{random.choice(x20)}**")
+	    
     if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj  or "😄" in mesaj:
         await event.reply(f"**{random.choice(x21)}**")
+	    
     if "Büyüğüm" in mesaj or "büyüğüm" in mesaj or "büyük" in mesaj  or "Büyük" in mesaj:
         await event.reply(f"**{random.choice(x22)}**")
+	    
     if "Aiko" in mesaj or "aiko" in mesaj:
         await event.reply(f"**{random.choice(x23)}**")
-    if "Merve" in mesaj or "merve" in mesaj or "merfe" in mesaj  or "Merfe" in mesaj:
+	    
+    if "Merve" in mesaj or "merve" in mesaj:
         await event.reply(f"**{random.choice(x24)}**")
+	    
     if "Günaydın" in mesaj or "günaydın" in mesaj:
         await event.reply(f"**{random.choice(x25)}**")
+	    
     if "İyi geceler" in mesaj or "iyi geceler" in mesaj:
         await event.reply(f"**{random.choice(x26)}**")
 	       
@@ -164,11 +189,11 @@ x3 = ("Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin
 x4 = ("İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",)
 x5 = ("Naber", "Ne haber kanka", "Hoş buldum nabiyon", "nasılsın",)
 x6 = ("Merhaba, Hoş geldin", "Merhaba, Hoş Geldin", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",)
-x7 = ("Ayıp ettin :/", "Helal len yusufi", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",)
+x7 = ("Ayıp ettin :/", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",)
 x8 = ("Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",)
 x9 = ("Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",)
 x10 = ("tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .",)
-x11 = ("What !", "Efendim Canım ", "Burdayım Bitanem",)
+x11 = ("What dedin gülüm !", "Efendim Canım ", "Burdayım Bitanem",)
 x12 = ("Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...",)
 x13 = ("Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni kendinle karıştırdın galiba :)", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...",)
 x14 = ("Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈",)
@@ -184,6 +209,7 @@ x23 = ("Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .",
 x24 = ("Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭", "Çok özletti kendini :)",)
 x25 = ("Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳",)
 x26 = ("Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",)
+
 #x21 = ("", "", "", "",)
 
 #@client.on(events.NewMessage(pattern='(?i)buket+'))
