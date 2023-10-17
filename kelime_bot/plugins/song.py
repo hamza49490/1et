@@ -145,11 +145,11 @@ async def ytsearch(_, message: Message):
         await message.reply_text(str(e))
 
 @Client.on_message(filters.command(["c"], ["/", ""]))
-async def csor(client: Client, message: Message):
+async def csor(client, message):
     await message.reply_text(f"**🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n🗒️ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ : {random.choice(c)}**")
  
 @Client.on_message(filters.command(["d"], ["/", ""]))
-async def dsor(client: Client, message: Message):
+async def dsor(client, message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
 
 #@app.on_message(filters.command(["eros"],["/", ""]))
