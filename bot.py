@@ -18,6 +18,10 @@ from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from datetime import datetime
 from random import randint
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+from pyrogram.types import Message, User
+from pyrogram.types.messages_and_media import Message
+from pyrogram import Client, filters
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
