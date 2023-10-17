@@ -342,8 +342,7 @@ sor = (
 'Aşk mı? para mı?','En son yaptığın en saçma olay neydi?','Keşke şu olsada yesek dediğin şey neydi?','Karşı cinste aradığın krater nedir?','Karşı cinsin ilk neresine bakıyorsun?','Grupta sevdiğin 3 kişiyi etiketler misin?','Grupta en sevmediğin 3 kişiyi etiketler misin?','Grupta işte aradığım eş adayı dediğin kişiyi etiketler misin?','En Sevdiğin Renk Nedir ...',
 'Aşkın yaşı yoktur diyorlar doğru mu?','Bir adaya düşsen yanına alacağın üç şey ne olurdu?','Grupta sevgilin var mı?','İnstagrama günde kaç story atıyorsun?','Hangi şehirde yaşıyorsun','Şehrini üç kelime ile anlatır mısın?','Memleketini üç kelime ile anlatır mısın?','Geçmişe dönüp yaşadığın bir olayı silebilmen mümkün olsaydı hangi olay olurdu?',
 )
-
-# BAŞLANGIÇ MESAJI 
+ 
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   if event.is_private:
@@ -438,8 +437,6 @@ async def tag4(event):
                    ),  
                  link_preview=False)
 	
-##########################
-
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
     users = []
@@ -528,7 +525,6 @@ async def slap(event):
     else:
         await event.respond("**💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ ...**")
 
-############################################################
 
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
@@ -581,9 +577,6 @@ async def romantik(event):
                    ),  
                  link_preview=False)
 
-#   message = await event.reply("🔁 Hazırlanıyor...")
-#   await asyncio.sleep(3)
-#    await message.delete()
 
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
@@ -767,7 +760,6 @@ async def grup_info(event):
     await event.respond(response_text, buttons=[[owner_button]])
 
 
-#ETİKET İŞLEMİ İPTAL
 @client.on(events.NewMessage(pattern='^/cancel ?(.*)'))
 async def cancel(event):
   global anlik_calisan
@@ -797,7 +789,6 @@ async def cancel(event):
                     ),
                     link_preview=False)
 
-#################
 @client.on(events.NewMessage(pattern="^/atag ?(.*)"))
 async def mentionalladmin(event):
   global anlik_calisan
@@ -864,10 +855,6 @@ async def mentionalladmin(event):
                     ),
                     link_preview=False)
 
-#mrt = await message.reply_text("✓ **Lütfen Bekleyin ...**")
-#    await asyncio.sleep(2)
-#    await mrt.edit(f"** xd **")
-#######################
 @client.on(events.NewMessage(pattern="^/utag ?(.*)"))
 async def utag(event):
   global gece_tag
@@ -933,7 +920,6 @@ async def utag(event):
                     ),
                     link_preview=False)
 
-#########################
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
   global gece_tag
@@ -999,7 +985,6 @@ async def tag(event):
                     ),
                     link_preview=False)
 	    
-#########################
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
   global gece_tag
@@ -1062,7 +1047,6 @@ async def etag(event):
                     ),
                     link_preview=False)
      
-########################
 @client.on(events.NewMessage(pattern="^/vtag ?(.*)"))
 async def vtag(event):
   global gece_tag
@@ -1125,7 +1109,6 @@ async def vtag(event):
                     ),
                     link_preview=False)
 
-########################
 @client.on(events.NewMessage(pattern="^/otag ?(.*)"))
 async def otag(event):
   global gece_tag
@@ -1188,7 +1171,6 @@ async def otag(event):
                     ),
                     link_preview=False)
 
-#########################
 @client.on(events.NewMessage(pattern="^/stag ?(.*)"))
 async def stag(event):
   global gece_tag
@@ -1251,7 +1233,6 @@ async def stag(event):
                     ),
                     link_preview=False)
     
-#########################
 @client.on(events.NewMessage(pattern="^/rtag ?(.*)"))
 async def rtag(event):
   global gece_tag
@@ -1314,7 +1295,6 @@ async def rtag(event):
                     ),
                     link_preview=False)
 
-############################
 @client.on(events.NewMessage(pattern="^/ktag ?(.*)"))
 async def ktag(event):
   global gece_tag
@@ -1377,7 +1357,6 @@ async def ktag(event):
                     ),
                     link_preview=False)
 
-###########################
 @client.on(events.NewMessage(pattern="^/btag ?(.*)"))
 async def btag(event):
   global gece_tag
@@ -1439,6 +1418,31 @@ async def btag(event):
                       ]
                     ),
                     link_preview=False)
+
+@app.on_message(filters.new_chat_members, group=1)
+async def hg(bot: Client, msg: Message):
+    for new_user in msg.new_chat_members:
+        if str(new_user.id) == str(BOT_ID):
+            await msg.reply(
+                f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🛡️  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
+    )
+        elif str(new_user.id) == str(OWNER_ID):
+            await msg.reply('**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
+
+
+@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
+async def reload(client: Client, message: Message):
+    await message.reply_text("**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**",
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
+                ],
+            ],
+        ),
+			    )
+	
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
