@@ -214,6 +214,51 @@ async def chatbot(event):
     else:
         await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Active  ➻  /sohbetmod on\n⛔  Deactive  ➻  /sohbetmod off .**")
 	    	
+@client.on(events.NewMessage(pattern="^.banda ?(.*)"))
+async def banda(event):
+    if not event.is_group:
+        return await event.reply("Bu əmr qruplar üçün etibarlıdır!")
+    info = await event.client.get_entity(event.chat_id)
+    title = info.title if info.title else "This chat"
+    mentions = f'**{title}** qrupunda olan silinmiş hesaplar:\n'
+    deleted = 0
+    async for user in event.client.iter_participants(event.chat_id):
+        if user.deleted:
+            mentions += f"\nSilinmiş hesap `{user.id}`"
+            deleted += 1
+            await event.client.kick_participant(event.chat_id, user.id)
+    mentions += f"\nSilinmiş hesaplar` = {deleted}`\n\n__• By @EdaletRoBot__"
+    await event.reply(mentions)
+
+@client.on(events.NewMessage(pattern='/bilgi'))
+async def bilgi(event):
+    chat = await event.get_chat()
+    id = event.chat_id
+    sohbet = await client.get_entity(chat)
+    baslik = sohbet.title if sohbet.title else "Bilinmiyor.."
+    silinen = 0
+    botlar = 0
+    async for user in event.client.iter_participants(event.chat_id):
+        if user.deleted:
+            silinen += 1
+        elif user.bot:
+              botlar += 1
+
+    uyeler = await client.get_participants(sohbet)
+
+    veriler = f"● {baslik} Grubu İçin Analizler\n\n👥 Üye Sayısı: {len(uyeler)}\n👻 Silinen Hesap Sayısı: {silinen}\n🤖 Bot Sayısı: {botlar}\n〽️ Grup İsmi: {baslik}\n🆔 Grup ID: {id}"
+
+   a = await event.reply("🔄 Analiz Ediliyor..")
+    await a.edit("🔄 Analiz Ediliyor..."
+    await asyncio.slee(2)
+    await a.edit("🔄 Analiz Ediliyor...")
+    await asyncio.slee(2)
+    await a.edit("🔄 Analiz Ediliyor..."
+    await asyncio.slee(2)
+    await a.edit("〽️ Sonuçlar Getiriliyor..\nGeliştirici: @uslanmazmurti")
+    await asyncio.slee(2)
+    await client.send_message(id, veriler)
+    await a.delete()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
