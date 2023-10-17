@@ -54,7 +54,7 @@ from pyrogram.errors import (
 )
 
 
-@teletips.on_message(filters.command(["admins","staff"]))
+@Client.on_message(filters.command(["admins","staff"]))
 async def admins(client, message):
   try: 
     adminList = []
@@ -100,7 +100,7 @@ async def admins(client, message):
   except FloodWait as e:
     await asyncio.sleep(e.value)       
 
-@teletips.on_message(filters.command("bots"))
+@Client.on_message(filters.command("bots"))
 async def bots(client, message):  
   try:    
     botList = []
@@ -119,7 +119,7 @@ async def bots(client, message):
   except FloodWait as e:
     await asyncio.sleep(e.value)
       
-@app.on_message(filters.command('me', [".", "!", "@", "/"]))
+@Client.on_message(filters.command('me', [".", "!", "@", "/"]))
 async def info(bot, update):
     
     text = f"""  **ℹ MƏLUMAT**
@@ -142,7 +142,7 @@ async def info(bot, update):
         reply_markup=mesil
     )
 
-@app.on_message(filters.command('admins', [".", "!", "@", "/"]))
+@Client.on_message(filters.command('admins', [".", "!", "@", "/"]))
 async def admins(client, message):
   try: 
     adminList = []
@@ -189,7 +189,7 @@ async def admins(client, message):
     await asyncio.sleep(e.value)
 
 
-@app.on_message(filters.command('del', [".", "!", "@", "/"]) & filters.group)
+@Client.on_message(filters.command('del', [".", "!", "@", "/"]) & filters.group)
 async def delAcc(client, msj):
     # ayuyes
     chat_id = msj.chat.id
@@ -203,7 +203,7 @@ async def delAcc(client, msj):
     await app.send_message(chat_id, f"{shesablar}\n\n🗑 **Silinən Hesabların Sayı -{len(DELETED)}**\n**🗨 Qrup:** {msj.chat.title}\n👤 **İcraçı:** {msj.from_user.mention}")	
 
 
-@app.on_message(filters.command('admins', [".", "!", "@", "/"]))
+@Client.on_message(filters.command('admins', [".", "!", "@", "/"]))
 async def admins(client, message):
   try: 
     adminList = []
@@ -248,3 +248,4 @@ async def admins(client, message):
       await app.send_message(message.chat.id, text2)           
   except FloodWait as e:
     await asyncio.sleep(e.value)
+
