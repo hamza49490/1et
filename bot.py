@@ -65,7 +65,7 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot") # Botunuzun kulla
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL","-1001983841726")) # Botunuzun eylemleri kaydedeceği kayıt grubunun id'si.
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığınız mesajı gönderme türü. Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True olarak ayarlayın.
-OWNER_ID = int(os.environ.get("OWNER_ID", "6540285284")) # Sahip hesabın id'si
+OWNER_ID = int(os.environ.get("OWNER_ID", "6181368568")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
 #SUDO = []
@@ -237,14 +237,7 @@ async def chatbot(event):
 #    except:
 #      pass
 #  await event.respond(f"Gönderildi.")
-	    
-#MESSAGE = "**🎉 Merhaba, {}\n Hoş Geldin ..!**"
-#@app.on_message(filters.new_chat_members)
-#async def newuser(client: Client, message: Message):
-#    new_members = [u.mention for u in message.new_chat_members]
-#    text = MESSAGE.format(", ".join(new_members))
-#    await message.reply_text(text, disable_web_page_preview=True)
-	
+	    	
 ##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
@@ -1654,12 +1647,7 @@ async def reload(client: Client, message: Message):
                 ],
             ],
         ),
-    )
-
-@app.on_message(filters.command(["alive"], ["/", ""]))
-async def alive(c: Client, message: Message):
-    await message.reply_text(f"**@{BOT_USERNAME} ʙɪʟɢɪʟᴇʀɪ .\n\n║▻  ⚙️ ᴠᴇʀsɪʏᴏɴ [ {__version__} ]\n║▻  💠 ᴘʏᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__python__}\n║▻  💻 ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪʏᴏɴ : {__telethon__}**")
-	    
+    )	    
 #@app.on_message(filters.command(["eros"],["/", ""]))
 #async def eros(c:Client, m:Message):
 #    users = await c.get_chat_members(m.chat.id, limit=1000)
@@ -2083,3 +2071,4 @@ class LAN(object):
 app.run()
 print(" Bot çalışıyor :)")
 client.run_until_disconnected()
+
