@@ -18,7 +18,7 @@ from pyrogram.types import (
 )
   
 ##############################
-@app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
+@Client.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
     try:
         await message.delete()
@@ -67,7 +67,7 @@ async def bul(_, message):
     except Exception as e:
         print(e)
 
-@app.on_message(filters.command(["vbul", "vsong"]) & ~filters.edited)
+@Client.on_message(filters.command(["vbul", "vsong"]) & ~filters.edited)
 async def vsong(client, message):
     try:
         await message.delete()
@@ -117,7 +117,7 @@ async def vsong(client, message):
     except Exception as e:
         print(e)
 
-@app.on_message(filters.command(["ara", "search"]) & ~filters.edited)
+@Client.on_message(filters.command(["ara", "search"]) & ~filters.edited)
 async def ytsearch(_, message: Message):
     try:
         await message.delete()
@@ -143,7 +143,7 @@ async def ytsearch(_, message: Message):
     except Exception as e:
         await message.reply_text(str(e))
 
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
 async def reload(client: Client, message: Message):
     await message.reply_text("**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**",
         reply_markup=InlineKeyboardMarkup(
