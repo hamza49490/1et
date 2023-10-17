@@ -139,7 +139,7 @@ async def chatbot(event):
     if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
         await event.reply(f"**{random.choice(sg)}**")
 	    
-    if "Mal" in mesaj or "mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
+    if "Mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
         await event.reply(f"**{random.choice(mal)}**")
 	    
     if "Balım" in mesaj or "balım" in mesaj or "Bebeğim" in mesaj or "bebeğim" in mesaj:
@@ -244,7 +244,7 @@ async def chatbot(event):
     if "Tatlı" in mesaj or "Yemek" in mesaj:
         await event.reply(f"**{random.choice(tymm)}**")
 
-    if "Kes" in mesaj or "kes" in mesaj:
+    if "Kes" in mesaj:
         await event.reply(f"**{random.choice(kmm)}**")
 
 
@@ -272,7 +272,7 @@ buket = ( "What dedin gülüm !", "Efendim Canım ", "Burdayım Bitanem", "Bana 
 
 sg = ( "Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...", )
 
-mal = ( "Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni kendinle karıştırdın galiba :)", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...", )
+mal = ( "Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni birine benzettin galiba 🙄", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...", )
 
 balim = ( "Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈", )
 
