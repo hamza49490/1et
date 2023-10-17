@@ -24,6 +24,7 @@ from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 import time
+from kelime_bot import OWNER_ID
 from os import remove
 import datetime
 import motor.motor_asyncio
