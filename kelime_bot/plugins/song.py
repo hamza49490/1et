@@ -30,13 +30,6 @@ from random import randint
 from pyrogram.errors import FloodWait
 import random, os, logging, asyncio
 
-app = Client("GUNC",
-             api_id=bot.api_id,
-             api_hash=bot.api_hash,
-             bot_token=bot.bot_token,
-             plugins=dict(root='pyrogram_plugins')
-            )
-
 
 @app.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
@@ -262,7 +255,3 @@ c = (
 "Oyundaki oyunculardan biri hakkında hikaye uydur", "15 saniye içerisinde sondan başa doğru alfabeyi oku okurken ses at", "Bir köpek gibi havla havlarken ses at","Bir şarkıyı baştan sona söyle söylerken ses at","Çıktığın en kötü ve en iyi kişiyi açıkla.","Bir dakika boyunca karşı cinsten biri gibi yürü.","Sevgiline atıp atabileceğin en acımasız mesajı gönder.","Oyunda yer alan her kişi hakkında bildiğin komik bir şey anlat.",
 "Ünlü restoranlardan birini ara ve menülerini öğrenirken dalga geç.","Eski bir şarkıyı aç ve onu taklit ederek söylemeye çalış söylerken ses at","1 tur boyunca farklı bir dilde konuş.","Eski sevgiline mesaj at ve onu unutamadığını söyle.","2 tur boyunca “sen” kelimesini duyunca kuş gibi ses çıkart.","Telefondaki tarayıcı geçmişini herkese göster.","Odadan birisi için satın alacakmış gibi iç çamaşırı araştırması yap.",
 )
-
-app.run()
-print(f"Bot aktif .")
-idle()
