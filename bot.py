@@ -187,13 +187,13 @@ async def chatbot(event):
     if "nerelisin" in mesaj or "Nerelisin" in mesaj:
         await event.reply(f"**{random.choice(nereli)}**")
 
-    if "pm" in mesaj or "Pm" in mesaj:
+    if "Konuşma" in mesaj or "konuşma" in mesaj or "sus" in mesaj or "Sus" in mesaj:
         await event.reply(f"**{random.choice(pms)}**")
 
     if "Kırdın" in mesaj or "kırdın" in mesaj or "kırıldım" in mesaj or "Kırıldım" in mesaj:
         await event.reply(f"**{random.choice(krdn)}**")
 
-    if "kanka" in mesaj or "Kanka" in mesaj or "knk" in mesaj or "Knk" in mesaj:
+    if "kanka" in mesaj or "Kanka" in mesaj:
         await event.reply(f"**{random.choice(knks)}**")
 
     if "sıkıldım" in mesaj or "skldm" in mesaj or "Sıkıldım" in mesaj or "Skldm" in mesaj:
@@ -281,7 +281,7 @@ knks = ( "Aaaa kankam gelmiş .", "Kanki", )
 
 skdm = ( "Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?", )
 
-hms = ( "hmmmm", "ne hm 🙄", "öhm öhm, naber 💕", )
+hms = ( "Sen konuşma 🙄", "Hayır, sus", "Şuan kalbimi kırdın 😢", )
 
 bts = ( "Sensin bot !", "Bot mu, o da ne :)", "Ayb ya, nerem bota benziyor .", )
 
