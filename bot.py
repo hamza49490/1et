@@ -247,18 +247,7 @@ async def bilgi(event):
     uyeler = await client.get_participants(sohbet)
 
     veriler = f"● {baslik} Grubu İçin Analizler\n\n👥 Üye Sayısı: {len(uyeler)}\n👻 Silinen Hesap Sayısı: {silinen}\n🤖 Bot Sayısı: {botlar}\n〽️ Grup İsmi: {baslik}\n🆔 Grup ID: {id}"
-
-   a = await event.reply("🔄 Analiz Ediliyor..")
-    await a.edit("🔄 Analiz Ediliyor..."
-    await asyncio.slee(2)
-    await a.edit("🔄 Analiz Ediliyor...")
-    await asyncio.slee(2)
-    await a.edit("🔄 Analiz Ediliyor..."
-    await asyncio.slee(2)
-    await a.edit("〽️ Sonuçlar Getiriliyor..\nGeliştirici: @uslanmazmurti")
-    await asyncio.slee(2)
     await client.send_message(id, veriler)
-    await a.delete()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
