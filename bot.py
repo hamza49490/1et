@@ -329,7 +329,7 @@ async def chatbot(event):
         return
     
     else:
-        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Active  ➻  /sohbetmod on\n⛔  Deactive  ➻  /sohbetmod off .**")
+        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**")
 	    	
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
@@ -499,7 +499,7 @@ async def start(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="help"))
 async def help(event):
-    await event.edit(f"{startbutton}  **👨🏻‍💻 [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID})**", buttons=(
+    await event.edit(f"{startbutton}", buttons=(
 
                     [
                       Button.inline("🗨️ ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
@@ -556,6 +556,10 @@ async def tag4(event):
 	
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+	    
     users = []
     async for user in client.iter_participants(event.chat_id):
         if not user.bot and not user.deleted and not user.is_self:
