@@ -16,6 +16,7 @@ import random, os, logging, asyncio
 from asyncio import sleep
 from time import time
 from os import remove
+import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.sync import types
 from datetime import datetime 
@@ -39,6 +40,7 @@ from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import shutil, psutil, traceback
 import traceback
 import aiofiles
+import shutil, psutil, traceback, os
 from random import randint
 from pyrogram import Client, filters, __version__
 from pyrogram.types import Message
@@ -679,18 +681,6 @@ async def id(event):
         else:
             return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
 
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
-async def reload(client: Client, message: Message):
-    await message.reply_text("**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
-                ],
-            ],
-        ),
-    )	 
-	
 @client.on(events.NewMessage(pattern='/iletisim'))
 async def zar(event):
     mrt = await event.reply("✓  **ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪɴ ...**")
