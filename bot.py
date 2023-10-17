@@ -244,6 +244,10 @@ async def chatbot(event):
     if "Tatlı" in mesaj or "Yemek" in mesaj:
         await event.reply(f"**{random.choice(tymm)}**")
 
+    if "Kes" in mesaj or "kes" in mesaj:
+        await event.reply(f"**{random.choice(kmm)}**")
+
+
 selam = ( "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .", )
 
 nasilsin = ( "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳", )
@@ -308,7 +312,7 @@ knks = ( "Aaaa kankam gelmiş .", "Efendim Kanka 💕", )
 
 skdm = ( "Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?", )
 
-hms = ( "hmmmm 🙄", )
+hms = ( "hmmmm 🙄", "Yeter ama aaaa 🙄", )
 
 bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
 
@@ -337,6 +341,8 @@ crkn = ( "Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄
 dmy = ( "Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄", )
 
 tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺", )
+
+kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳", )
 
 #x21 = ( "", "", "", "", )
 #@client.on(events.NewMessage(pattern='(?i)buket+'))
