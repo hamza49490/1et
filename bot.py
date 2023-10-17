@@ -68,9 +68,16 @@ GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığ
 OWNER_ID = int(os.environ.get("OWNER_ID", "6181368568")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
+#SUDO = []
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+
+app = Client("GUNC",
+             api_id=api_id,
+             api_hash=api_hash,
+             bot_token=bot_token
+	    )
 
 anlik_calisan = []
 tekli_calisan = []
@@ -1784,7 +1791,8 @@ class LAN(object):
         USER_UNBAN_NOTIFY = "**💞 Hoppala, Çok Şanslısın ! \n👨🏻‍💻 [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) Yasağınızı kaldırdı !**"
         BLOCKS = "🆔 **Kullanıcı ID : {}\n⏱ Süre : {}\n🗓 Yasaklanan Tarih : {}\n💬 Sebep : {}**\n\n"
         TOTAL_BLOCK = "🚷 **Yasaklanan Kullanıcılar :** `{}`\n\n{}"
-		
+
+app.run()
 print(" Bot çalışıyor :)")
 client.run_until_disconnected()
 
