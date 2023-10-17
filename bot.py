@@ -214,39 +214,36 @@ async def chatbot(event):
 
 
 ### STATS KOMUTU
-@client.on(events.NewMessage(pattern='^/stats ?(.*)'))
-async def son_durum(event):
-    global anlik_calisan,grup_sayi,ozel_list
-    sender = await event.get_sender()
-    if sender.id not in ozel_list:
-      return
-    await event.respond(f"**@{BOT_USERNAME} Verileri 🖥️\n\nToplam Grub: {len(grup_sayi)}\n\nAnlık Çalışan Grub: {len(anlik_calisan)}\n\nToplam Kullanıcı: {len(user_sayi)}**")
+#@client.on(events.NewMessage(pattern='^/stats ?(.*)'))
+#async def son_durum(event):
+#    global anlik_calisan,grup_sayi,ozel_list
+#    sender = await event.get_sender()
+#    if sender.id not in ozel_list:
+#      return
+#    await event.respond(f"**@{BOT_USERNAME} Verileri 🖥️\n\nToplam Grub: {len(grup_sayi)}\n\nAnlık Çalışan Grub: {len(anlik_calisan)}\n\nToplam Kullanıcı: {len(user_sayi)}**")
 
-### BROADCAST KOMUTU
-@client.on(events.NewMessage(pattern='^/broadcast ?(.*)'))
-async def duyuru(event):
- 
-  global grup_sayi,ozel_list
-  sender = await event.get_sender()
-  if sender.id not in ozel_list:
-    return
-  reply = await event.get_reply_message()
-  await event.respond(f"**Toplam {len(grup_sayi)} Gruba'a mesaj gönderiliyor...**")
-  for x in grup_sayi:
-    try:
-      await client.send_message(x,f"**📣 Reklam\n\n{reply.message}**")
-    except:
-      pass
-  await event.respond(f"Gönderildi.")
+#@client.on(events.NewMessage(pattern='^/broadcast ?(.*)'))
+#async def duyuru(event):
+
+#  global grup_sayi,ozel_list
+#  sender = await event.get_sender()
+#  if sender.id not in ozel_list:
+#    return
+#  reply = await event.get_reply_message()
+#  await event.respond(f"**Toplam {len(grup_sayi)} Gruba'a mesaj gönderiliyor...**")
+#  for x in grup_sayi:
+#    try:
+#      await client.send_message(x,f"**📣 Reklam\n\n{reply.message}**")
+#    except:
+#      pass
+#  await event.respond(f"Gönderildi.")
 	    
-MESSAGE = "**🎉 Merhaba, {}\n Hoş Geldin ..!**"
-
-@app.on_message(filters.new_chat_members)
-async def newuser(client: Client, message: Message):
-    chat_id = message.chat.id
-    new_members = [u.mention for u in message.new_chat_members]
-    text = MESSAGE.format(", ".join(new_members))
-    await message.reply_text(text, disable_web_page_preview=True)
+#MESSAGE = "**🎉 Merhaba, {}\n Hoş Geldin ..!**"
+#@app.on_message(filters.new_chat_members)
+#async def newuser(client: Client, message: Message):
+#    new_members = [u.mention for u in message.new_chat_members]
+#    text = MESSAGE.format(", ".join(new_members))
+#    await message.reply_text(text, disable_web_page_preview=True)
 	
 ##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
