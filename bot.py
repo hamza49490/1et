@@ -301,6 +301,14 @@ gzs = ("Gözler ömre bedel 😂", "Yukarıda ne var 🤔",)
 
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
+        return
+	    
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
