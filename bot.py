@@ -355,34 +355,34 @@ async def chatbot(event):
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
-    if emr == "ON" or emr == "on" or emr == "On":
+    if emr == "on" or emr == "On":
         if qrup not in isleyen:
             isleyen.append(qrup)
-            aktiv_olundu = "✅ **Artık Konuşabilirim !**"
+            aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀʙɪʟɪʀɪᴍ !**"
             await event.reply(aktiv_olundu)
             return
-        await event.reply("⚠️ **Zaten Konuşabiliyorum !**")
+        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀʙɪʟɪʏᴏʀᴜᴍ .**")
         return
-    elif emr == "OFF" or emr == "off" or emr == "Off":
+    elif emr == "off" or emr == "Off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await event.reply("⛔️ **Artık Konuşamicam !**")
+            await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴅᴇᴠʀᴇ ᴅɪşɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀᴍᴀᴍ !**")
             return
-        await event.reply("⚠️ **Zaten Konuşamıyorum !**")
+        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
         return
     
     else:
-        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
+        await event.reply("**💕  ʙᴜᴋᴇᴛ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ  :\n\n» /sohbetmod on\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴋᴛɪғ ᴇᴛ.\n» /sohbetmod off\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ .**", buttons=(
                      [
-	             Button.inline("✅ Tıkla", emr == "ON")
-                     ]
-                   ), 
-                 link_preview=False)
+	              Button.url('🎉 ʙɪʟɢɪ ᴇᴅɪɴɪɴ', f'https://t.me/{GROUP_SUPPORT}')
+                    ]
+                  ),
+                link_preview=False)
 	
 
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
-startbutton = "**♻️ ʟᴜ̈ᴛғᴇɴ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ !\n\n🗒️ ɴᴏᴛ : \n\n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ‌ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...**"
+startbutton = "**💕 ʟᴜ̈ᴛғᴇɴ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ !\n\n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ‌ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...**"
 noadmin = "**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**"
 nogroup = "**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**"
 
