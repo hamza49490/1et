@@ -162,7 +162,7 @@ x1 = ("Aleyküm Selam 🎉", "Selam", "Ase", "As",)
 x2 = ("İyiyim senden naber", "İyiyim sen", "Kötü ya sen", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",)
 x3 = ("Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",)
 x4 = ("İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",)
-x5 = ("Naber", "Ne haber kanka", "Hoş buldum nabiyon", "hb, nasılsın",)
+x5 = ("Naber", "Ne haber kanka", "Hoş buldum nabiyon", "nasılsın",)
 x6 = ("Merhaba, Hoş geldin", "Merhaba, Hoş Geldin", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",)
 x7 = ("Ayıp ettin :/", "Helal len yusufi", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",)
 x8 = ("Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",)
@@ -186,9 +186,9 @@ x25 = ("Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatl
 x26 = ("Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",)
 #x21 = ("", "", "", "",)
 
-@client.on(events.NewMessage(pattern='(?i)buket+'))
-async def yeni_mesaj(event: events.NewMessage.Event):
-    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
+#@client.on(events.NewMessage(pattern='(?i)buket+'))
+#async def yeni_mesaj(event: events.NewMessage.Event):
+#    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
 
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
@@ -241,7 +241,7 @@ kart = "♤ ♡ ♢ ♧ 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 �
 
 rutbe = (
 "ᴇᴍɴɪʏᴇᴛ ᴍᴜ̈ᴅᴜ̈ʀᴜ̈", "ᴇᴍɴɪʏᴇᴛ ᴀᴍɪʀɪ", "ʙᴀşᴋᴏᴍɪsᴇʀ", "ᴋᴏᴍɪsᴇʀ", "ᴏʀɢᴇɴᴇʀᴀʟ", "ᴋᴜʀᴍᴀʏ", "ᴘɪʏᴀᴅᴇ", "sᴜ̈ᴠᴀʀɪ", "ᴛᴀɴᴋᴄ̧ɪ", "ᴛᴏᴘᴄ̧ᴜ", "ᴋᴏʀɢᴇɴᴇʀᴀʟ", "ᴛᴜ̈ᴍɢᴇɴᴇʀᴀʟ", "ᴛᴜɢ̆ɢᴇɴᴇʀᴀʟ",
-"ᴀʟʙᴀʏ", "ʏᴀʀʙᴀʏ", "ʙɪɴʙᴀşɪ", "ʏᴜ̈ᴢʙᴀşɪ", "ᴜ̈sᴛᴇɢ̆ᴍᴇɴ", "ᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛsᴜʙᴀʏ", "ᴀsᴛsᴜʙᴀʏ ʙᴀşᴄ̧ᴀᴠᴜş", "ᴀsᴛsᴜʙᴀʏ ᴜ̈sᴛᴄ̧ᴀᴠᴜş", "ᴀsᴛsᴜʙᴀʏ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴏɴʙᴀşɪ", "ᴄ̧ᴀᴠᴜş", "ᴏɴʙᴀşɪ",
+"ᴀʟʙᴀʏ", "ʏᴀʀʙᴀʏ", "ʙɪɴʙᴀşɪ", "ʏᴜ̈ᴢʙᴀşɪ", "ᴜ̈sᴛᴇɢ̆ᴍᴇɴ", "ᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛᴇɢ̆ᴍᴇɴ", "ᴀsᴛsᴜʙᴀʏ", "ᴀsᴛsᴜʙᴀʏ ᴜ̈sᴛᴄ̧ᴀᴠᴜş", "ᴀsᴛsᴜʙᴀʏ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴄ̧ᴀᴠᴜş", "ᴜᴢᴍᴀɴ ᴏɴʙᴀşɪ", "ᴄ̧ᴀᴠᴜş", "ᴏɴʙᴀşɪ",
 )
 
 romantiksoz = (
