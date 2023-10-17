@@ -309,19 +309,11 @@ async def chatbot(event):
     if not await is_group_admin(event):
         await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
         return
-
-        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
-                     [
-                      Button.inline("🗨️ Aktif et", data="on"),
-		      Button.inline("🗨️ Devre Dışı", data="off"),
-		     ]
-                   ),  
-                 link_preview=False)
 	    
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
-    #if emr == "on" or emr == "On":
+
 @client.on(events.callbackquery.CallbackQuery(data="on"))
 async def start(event):
         if qrup not in isleyen:
@@ -331,7 +323,7 @@ async def start(event):
             return
         await event.edit("⚠️ **Zaten Konuşabiliyorum !**")
         return
-    #elif emr == "off" or emr == "Off":
+	
 @client.on(events.callbackquery.CallbackQuery(data="off"))
 async def start(event):
         if qrup in isleyen:
@@ -340,9 +332,14 @@ async def start(event):
             return
         await event.edit("⚠️ **Zaten Konuşamıyorum !**")
         return
-    
-    #else:
-	    	
+
+        await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
+                     [
+                      Button.inline("🗨️ Aktif et", data="on"),
+		      Button.inline("🗨️ Devre Dışı", data="off"),
+		     ]
+                   ),  
+                 link_preview=False)
 # ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 startmesaj =  "**🎉 ᴍᴇʀʜᴀʙᴀ\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴜɴᴀ ᴇᴋʟᴇᴍᴇʏᴇ ɴᴇ ᴅᴇʀsɪɴ, ᴇʟɪᴍᴅᴇɴ ɢᴇʟᴇɴ ʜᴇʀşᴇʏɪ ʏᴀᴘᴍᴀʏᴀ ʜᴀᴢɪʀɪᴍ ...\n\n🗯️ sɪᴢᴇ ʏᴀʀᴅɪᴍᴄɪ ᴏʟᴀʙɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ ...**"
 startbutton = "**♻️ ʟᴜ̈ᴛғᴇɴ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ !\n\n🗒️ ɴᴏᴛ : \n\n» /sohbetmod\n   - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ɪᴄ‌ɪɴ ᴋᴜʟʟᴀɴɪɴ  ...**"
