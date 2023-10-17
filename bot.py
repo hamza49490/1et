@@ -92,6 +92,7 @@ etiketuye = []
 isleyen = []
 user_sayi = []
 
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
