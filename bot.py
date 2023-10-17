@@ -3,10 +3,19 @@ from telethon.tl import types
 from telethon import Button
 from telethon.tl import types
 from telethon.tl import functions
+import wget
+from yt_dlp import YoutubeDL
+import os, youtube_dl, requests, time
+from youtube_search import YoutubeSearch
+from pyrogram.handlers import MessageHandler
+import yt_dlp
 from telethon import events
 from telethon import errors
 from telethon import TelegramClient
 import random, os, logging, asyncio
+from asyncio import sleep
+from time import time
+from os import remove
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.sync import types
 from datetime import datetime 
@@ -17,11 +26,23 @@ from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from datetime import datetime
-from random import randint
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
+import string
+import time
+import datetime
+import motor.motor_asyncio
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+import shutil, psutil, traceback
+import traceback
+import aiofiles
+from random import randint
+from pyrogram import Client, filters, __version__
+from pyrogram.types import Message
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
