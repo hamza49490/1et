@@ -1087,9 +1087,10 @@ async def tag(event):
     usrnum = 0
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
-      if user.is_bot == True:
+      rxyzdev_tagTot[event.chat_id] += 1
+      if User.is_bot == True:
         pass
-      elif user.is_deleted == True:
+      elif User.is_deleted == True:
         pass
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
