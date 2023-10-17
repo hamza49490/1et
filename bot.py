@@ -94,12 +94,6 @@ grup_sayi = []
 etiketuye = []
 isleyen = []
 user_sayi = []
-
-
-@client.on(events.ChatAction)
-async def handler(event):
-    if event.user_joined:
-        await event.reply(f"👋{user.first_name} Aramıza Xoş Gəldin")
 	    
 
 @client.on(events.NewMessage)
