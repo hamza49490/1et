@@ -216,6 +216,7 @@ async def chatbot(event):
 
     if "🙄" in mesaj:
         await event.reply(f"**{random.choice(gzs)}**")
+	    
 
 selam = ( "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .", )
 
@@ -261,7 +262,7 @@ gullu = ( "Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfi
 
 buyuk = ( "Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük :)", )
 
-aiko = ( "Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", )
+aiko = ( "Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", "Öldü artık yok 🙄", )
 
 merve = ( "Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭", "Çok özletti kendini :)", )
 
@@ -287,9 +288,9 @@ bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
 
 trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, /d mi /c mi .", )
 
-evt = ( "Hayır", )
+evt = ( "Hayır", "Hayır dedim", )
 
-hyrr = ( "Ne hayır 🙄", "Evet", )
+hyrr = ( "Ne hayır 🙄", "Evet", "Evet dedim", )
 
 gzs = ("Gözler ömre bedel 😂", "Yukarıda ne var 🤔",)
 
