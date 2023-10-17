@@ -202,7 +202,7 @@ async def chatbot(event):
     if "hm" in mesaj or "Hm" in mesaj:
         await event.reply(f"**{random.choice(hms)}**")
 
-    if "bot" in mesaj or "Bot" in mesaj:
+    if "Geçmiş olsun" in mesaj:
         await event.reply(f"**{random.choice(bts)}**")
 
     if "oyun" in mesaj or "Oyun" in mesaj or "Game" in mesaj or "game" in mesaj:
@@ -273,7 +273,7 @@ kyas = ( "Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Sende
 
 nereli = ( "Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın bir yerindenim .", )
 
-pms = ( "Ban geliyor 🤭", "Hayır, yasak :/", )
+pms = ( "Sen konuşma 🤭", "Hayır, Konuşacam 🙄", )
 
 krdn = ( "Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .", )
 
@@ -281,9 +281,9 @@ knks = ( "Aaaa kankam gelmiş .", "Kanki", )
 
 skdm = ( "Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?", )
 
-hms = ( "Sen konuşma 🙄", "Hayır, sus", "Şuan kalbimi kırdın 😢", )
+hms = ( "hmmmm 🙄", )
 
-bts = ( "Sensin bot !", "Bot mu, o da ne :)", "Ayb ya, nerem bota benziyor .", )
+bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
 
 trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, /d mi /c mi .", )
 
