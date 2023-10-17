@@ -66,7 +66,7 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot") # Botunuzun kulla
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL","-1001983841726")) # Botunuzun eylemleri kaydedeceği kayıt grubunun id'si.
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığınız mesajı gönderme türü. Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True olarak ayarlayın.
-OWNER_ID = int(os.environ.get("OWNER_ID", "6181368568")) # Sahip hesabın id'si
+OWNER_ID = int(os.environ.get("OWNER_ID","6540285284")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
 #SUDO = []
@@ -1481,6 +1481,7 @@ async def eros_oku(event):
     await event.respond(response, parse_mode="Markdown")
 client.run_until_disconnected()
 
+
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
@@ -1684,6 +1685,7 @@ async def delcmd_off(chat_id: int): # Grup için mesaj silme özeliğini kapatı
 
 
 ################# SAHİP KOMUTLARI #############
+# Verileri listeleme komutu
 @app.on_message(filters.command("istatistik") & filters.user(OWNER_ID))
 async def botstats(bot: Client, message: Message):
     g4rip = await bot.send_message(message.chat.id, LAN.STATS_STARTED.format(message.from_user.mention))
@@ -1706,9 +1708,12 @@ async def botstats(bot: Client, message: Message):
     await g4rip.edit(text=LAN.STATS.format(BOT_USERNAME, total_users, groups, pms, total, used, disk_usage, free, cpu_usage, ram_usage, __version__), parse_mode="md")
 
 
+
+# Botu ilk başlatan kullanıcıların kontrolünü sağlar.
 @app.on_message()
 async def G4RIP(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
+
 
 
 # Broadcast komutu
@@ -1823,7 +1828,6 @@ def humanbytes(size):
         size /= power
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
-
 
 
 ########### ÇOKLU DİL ##############
