@@ -61,7 +61,7 @@ LOGGER = logging.getLogger(__name__)
 
 api_id = int(os.environ.get("APP_ID","18049084"))
 api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
-bot_token = os.environ.get("TOKEN","6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY")
+bot_token = os.environ.get("TOKEN","6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
 BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
 DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
 BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot") # Botunuzun kullanıcı adı.
