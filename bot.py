@@ -211,32 +211,6 @@ async def chatbot(event):
     
     else:
         await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Active  ➻  /sohbetmod on\n⛔  Deactive  ➻  /sohbetmod off .**")
-
-
-### STATS KOMUTU
-#@client.on(events.NewMessage(pattern='^/stats ?(.*)'))
-#async def son_durum(event):
-#    global anlik_calisan,grup_sayi,ozel_list
-#    sender = await event.get_sender()
-#    if sender.id not in ozel_list:
-#      return
-#    await event.respond(f"**@{BOT_USERNAME} Verileri 🖥️\n\nToplam Grub: {len(grup_sayi)}\n\nAnlık Çalışan Grub: {len(anlik_calisan)}\n\nToplam Kullanıcı: {len(user_sayi)}**")
-
-#@client.on(events.NewMessage(pattern='^/broadcast ?(.*)'))
-#async def duyuru(event):
-
-#  global grup_sayi,ozel_list
-#  sender = await event.get_sender()
-#  if sender.id not in ozel_list:
-#    return
-#  reply = await event.get_reply_message()
-#  await event.respond(f"**Toplam {len(grup_sayi)} Gruba'a mesaj gönderiliyor...**")
-#  for x in grup_sayi:
-#    try:
-#      await client.send_message(x,f"**📣 Reklam\n\n{reply.message}**")
-#    except:
-#      pass
-#  await event.respond(f"Gönderildi.")
 	    	
 ##############################
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
@@ -620,7 +594,7 @@ async def tag2(event):
 async def handler(event):
        sender = await event.get_sender()
        if sender.id in OWNER:
-            await event.edit(f"**🔺 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ 🔺\n\n» /istatistik\n   - ɪsᴛᴀᴛɪsᴛɪᴋʟᴇʀɪᴍɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /reklam\n   - ɢʀᴜᴘʟᴀʀᴀ ʀᴇᴋʟᴀᴍ ᴀᴛᴀʀɪᴍ .\n\n» /block\n   - ɪsᴛᴇᴅɪɢ̆ɪɴ ᴋɪşɪʏɪ ʏᴀsᴀᴋʟᴀʀɪᴍ .\n\n» /unblock\n   - ᴋɪşɪɴɪɴ ʏᴀsᴀɢ̆ɪɴɪ ᴋᴀʟᴅɪʀɪʀɪᴍ .\n\n» /blocklist\n   - ʏᴀsᴀᴋʟɪʟᴀʀɪɴ ʟɪsᴛᴇsɪɴɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /alive\n   - ʜᴀᴋᴋɪᴍᴅᴀ ʙɪʟɢɪ ᴠᴇʀɪʀɪᴍ .**", buttons=(
+            await event.edit(f"**🔺 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ 🔺\n\n» /istatistik\n   - ɪsᴛᴀᴛɪsᴛɪᴋʟᴇʀɪᴍɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .\n\n» /reklam\n   - ɢʀᴜᴘʟᴀʀᴀ ʀᴇᴋʟᴀᴍ ᴀᴛᴀʀɪᴍ .\n\n» /block\n   - ɪsᴛᴇᴅɪɢ̆ɪɴ ᴋɪşɪʏɪ ʏᴀsᴀᴋʟᴀʀɪᴍ .\n\n» /unblock\n   - ᴋɪşɪɴɪɴ ʏᴀsᴀɢ̆ɪɴɪ ᴋᴀʟᴅɪʀɪʀɪᴍ .\n\n» /blocklist\n   - ʏᴀsᴀᴋʟɪʟᴀʀɪɴ ʟɪsᴛᴇsɪɴɪ ɢᴏ̈sᴛᴇʀɪʀɪᴍ .**", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
                      ]
