@@ -374,7 +374,7 @@ async def chatbot(event):
     else:
         await event.reply("**💕  ʙᴜᴋᴇᴛ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ  :\n\n» /sohbetmod on\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴋᴛɪғ ᴇᴛ.\n» /sohbetmod off\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ .**", buttons=(
                      [
-	              Button.url('🎉 ʙɪʟɢɪ ᴇᴅɪɴɪɴ', f'https://t.me/{GROUP_SUPPORT}')
+	              Button.url('🎉  ʙɪʟɢɪ  ᴇᴅɪɴɪɴ ', f'https://t.me/{GROUP_SUPPORT}')
                     ]
                   ),
                 link_preview=False)
