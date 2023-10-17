@@ -103,7 +103,7 @@ async def chatbot(event):
     qrup = event.chat_id
     if qrup not in isleyen:
         return
-    if "selam" in mesaj or "Selam" in mesaj  or "SELAM" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
+    if "Selam" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
         await event.reply(f"**{random.choice(selam)}**")
 	    
     if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
@@ -124,7 +124,7 @@ async def chatbot(event):
     if "Ban" in mesaj or "ban" in mesaj :
         await event.reply(f"**{random.choice(ban)}**")
 	    
-    if "Nabıyon" in mesaj or "nabıyon" in mesaj :
+    if "Nabıyon" in mesaj or "nabıyon" in mesaj  or "Napıyorsun" in mesaj or "napıyorsun" in mesaj:
         await event.reply(f"**{random.choice(nabiyon)}**")
 	    
     if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj:
@@ -142,10 +142,10 @@ async def chatbot(event):
     if "Mal" in mesaj or "mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
         await event.reply(f"**{random.choice(mal)}**")
 	    
-    if "Balım" in mesaj or "balım" in mesaj:
+    if "Balım" in mesaj or "balım" in mesaj or "Bebeğim" in mesaj or "bebeğim" in mesaj:
         await event.reply(f"**{random.choice(balim)}**")
 	    
-    if "Canım" in mesaj or "canım" in mesaj:
+    if "Canım" in mesaj or "canım" in mesaj or "Bitanem" in mesaj or "bitanem" in mesaj:
         await event.reply(f"**{random.choice(canim)}**")
 	    
     if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj or "Görüşürüz" in mesaj or "görüşürüz" in mesaj:
@@ -202,7 +202,7 @@ async def chatbot(event):
     if "hm" in mesaj or "Hm" in mesaj:
         await event.reply(f"**{random.choice(hms)}**")
 
-    if "Geçmiş olsun" in mesaj:
+    if "Geçmiş olsun" in mesaj or "geçmiş olsun" in mesaj:
         await event.reply(f"**{random.choice(bts)}**")
 
     if "oyun" in mesaj or "Oyun" in mesaj or "Game" in mesaj or "game" in mesaj:
@@ -216,7 +216,33 @@ async def chatbot(event):
 
     if "🙄" in mesaj:
         await event.reply(f"**{random.choice(gzs)}**")
+
+    if "Of" in mesaj:
+        await event.reply(f"**{random.choice(ofs)}**")
+
+    if "çikolata" in mesaj or "Çikolata" in mesaj:
+        await event.reply(f"**{random.choice(cklta)}**")
 	    
+    if "Lan" in mesaj or "lan" in mesaj:
+        await event.reply(f"**{random.choice(lna)}**")
+
+    if "Dedim" in mesaj or "dedim" in mesaj:
+        await event.reply(f"**{random.choice(dddm)}**")
+
+    if "Yalan" in mesaj or "yalan" in mesaj:
+        await event.reply(f"**{random.choice(ylna)}**")
+
+    if "Sağol" in mesaj or "sağol" in mesaj:
+        await event.reply(f"**{random.choice(sgll)}**")
+
+    if "Çirkin" in mesaj or "çirkin" in mesaj:
+        await event.reply(f"**{random.choice(crkn)}**")
+
+    if "Pm" in mesaj or "Dm" in mesaj:
+        await event.reply(f"**{random.choice(dmy)}**")
+
+    if "Tatlı" in mesaj or "Yemek" in mesaj:
+        await event.reply(f"**{random.choice(tymm)}**")
 
 selam = ( "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .", )
 
@@ -246,7 +272,7 @@ mal = ( "Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarı
 
 balim = ( "Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈", )
 
-canim = ( "Cicim", "Bebeğim", "Bitanem", "Hayatım", )
+canim = ( "Gülüm 💕", "Bebeğim 💕", "Bitanem 💕", "Hayatım 💕", "Turşu suratlım 💕", )
 
 gidiyorum = ( "Nereye, Karpuz Kesmiştik .", "Hoşuma yeterince gittin, otur oturduğun yerde 🤫", "Görüşürüz, Hakkını helal et ...", "Kal desem kalır mı acaba 🤔", )
 
@@ -288,14 +314,31 @@ bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
 
 trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, /d mi /c mi .", )
 
-evt = ( "Hayır", "Hayır dedim", )
+evt = ( "Hayır", "Hayır dedim", "yioooooooo", )
 
-hyrr = ( "Ne hayır 🙄", "Evet", "Evet dedim", )
+hyrr = ( "Ne demek hayır 🙄", "Evet", "Evet dedim", )
 
-gzs = ("Gözler ömre bedel 😂", "Yukarıda ne var 🤔",)
+gzs = ( "Gözler ömre bedel 😂", "Yukarıda ne var 🤔", )
+
+ofs = ( "of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄", )
+
+cklta = ( "Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋", )
+
+lna = ( " Ne var lan 🙄", "Bana mı dedin 😠", "Lannnnn sus 🙄", )
+
+dddm = ( "Ne dedin ?", "Anlamadım ?", "Neden öyle dedin ?", )
+
+ylna = ( "Yalan söyleyen kim 🙄", "Yalan konuşmayın çarparım 🙄", "Terbiyesiz 😠", )
+
+sgll = ( "Sende sağol 💕", "Başımız sağolsun .", )
+
+crkn = ( "Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄", )
+
+dmy = ( "Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄", )
+
+tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺", )
 
 #x21 = ( "", "", "", "", )
-
 #@client.on(events.NewMessage(pattern='(?i)buket+'))
 #async def yeni_mesaj(event: events.NewMessage.Event):
 #    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
