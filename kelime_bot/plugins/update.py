@@ -18,6 +18,13 @@ from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 import secrets
 import aiohttp
+from pyrogram import Client, filters
+from pyrogram.types import Message
+import os
+import asyncio
+from pyrogram import enums
+from pyrogram.enums import ChatMemberStatus
+from pyrogram.errors import FloodWait
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
@@ -47,6 +54,71 @@ from pyrogram.errors import (
 )
 
 
+@teletips.on_message(filters.command(["admins","staff"]))
+async def admins(client, message):
+  try: 
+    adminList = []
+    ownerList = []
+    async for admin in teletips.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+      if admin.privileges.is_anonymous == False:
+        if admin.user.is_bot == True:
+          pass
+        elif admin.status == ChatMemberStatus.OWNER:
+          ownerList.append(admin.user)
+        else:  
+          adminList.append(admin.user)
+      else:
+        pass   
+    lenAdminList= len(ownerList) + len(adminList)  
+    text2 = f"**GROUP STAFF - {message.chat.title}**\n\n"
+    try:
+      owner = ownerList[0]
+      if owner.username == None:
+        text2 += f"👑 Sahip\n└ {owner.mention}\n\n👮🏻 Admins\n"
+      else:
+        text2 += f"👑 Sahip\n└ @{owner.username}\n\n👮🏻 Admins\n"
+    except:
+      text2 += f"👑 Sahip\n└ <i>Hidden</i>\n\n👮🏻 Admins\n"
+    if len(adminList) == 0:
+      text2 += "└ <i>Yöneticiler gizlendi</i>"  
+      await teletips.send_message(message.chat.id, text2)   
+    else:  
+      while len(adminList) > 1:
+        admin = adminList.pop(0)
+        if admin.username == None:
+          text2 += f"├ {admin.mention}\n"
+        else:
+          text2 += f"├ @{admin.username}\n"    
+      else:    
+        admin = adminList.pop(0)
+        if admin.username == None:
+          text2 += f"└ {admin.mention}\n\n"
+        else:
+          text2 += f"└ @{admin.username}\n\n"
+      text2 += f"✅ | **Toplam yönetici sayısı**: {lenAdminList}\n❌ | Botlar ve gizli yöneticiler reddedildi."  
+      await teletips.send_message(message.chat.id, text2)           
+  except FloodWait as e:
+    await asyncio.sleep(e.value)       
+
+@teletips.on_message(filters.command("bots"))
+async def bots(client, message):  
+  try:    
+    botList = []
+    async for bot in teletips.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.BOTS):
+      botList.append(bot.user)
+    lenBotList = len(botList) 
+    text3  = f"**BOT LİSTESİ - {message.chat.title}**\n\n🤖 Botlar\n"
+    while len(botList) > 1:
+      bot = botList.pop(0)
+      text3 += f"├ @{bot.username}\n"    
+    else:    
+      bot = botList.pop(0)
+      text3 += f"└ @{bot.username}\n\n"
+      text3 += f"✅ | **Toplam bot sayısı**: {lenBotList}"  
+      await teletips.send_message(message.chat.id, text3)
+  except FloodWait as e:
+    await asyncio.sleep(e.value)
+      
 @app.on_message(filters.command('me', [".", "!", "@", "/"]))
 async def info(bot, update):
     
