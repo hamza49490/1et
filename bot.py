@@ -123,7 +123,7 @@ async def chatbot(event):
         await event.reply(f"**{random.choice(x9)}**")
     if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
         await event.reply(f"**{random.choice(x10)}**")
-    if "ne" in mesaj or "Ne" in mesaj:
+    if "buket" in mesaj or "buket" in mesaj:
         await event.reply(f"**{random.choice(x11)}**")
     if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
         await event.reply(f"**{random.choice(x12)}**")
@@ -168,7 +168,7 @@ x7 = ("Ayıp ettin :/", "Helal len yusufi", "Adamın dibisin sen :)", "Grub boş
 x8 = ("Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",)
 x9 = ("Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",)
 x10 = ("tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .",)
-x11 = ("What !", "Anlamadın mı hala ?", "Yok bişey :)",)
+x11 = ("What !", "Efendim Canım ", "Burdayım Bitanem",)
 x12 = ("Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...",)
 x13 = ("Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni kendinle karıştırdın galiba :)", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...",)
 x14 = ("Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈",)
