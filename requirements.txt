@@ -32,7 +32,7 @@ ffmpeg-python
 Pillow==9.1.0
 TgCrypto
 ujson
-lyricsgenius
+telethon
 yt-dlp
 git+https://github.com/yt-dlp/yt-dlp.git
 telebot
