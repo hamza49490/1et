@@ -153,7 +153,7 @@ async def csor(client: Client, message: Message):
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
 
-@app.on_message(filters.new_chat_members, group=1)
+@Client.on_message(filters.new_chat_members, group=1)
 async def hg(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
@@ -164,7 +164,7 @@ async def hg(bot: Client, msg: Message):
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply('**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
 		
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
 async def reload(client: Client, message: Message):
     await message.reply_text("**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**")
     
