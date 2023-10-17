@@ -16,12 +16,12 @@ import random, os, logging, asyncio
 from asyncio import sleep
 from time import time
 from os import remove
-import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.sync import types
 from datetime import datetime 
 from telethon.errors.rpcerrorlist import PeerFloodError
 from telethon import Button
+from pyrogram.errors import FloodWait
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
@@ -32,6 +32,8 @@ from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
+import random
+import shutil, psutil, traceback, os
 import string
 import time
 import datetime
@@ -40,7 +42,6 @@ from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import shutil, psutil, traceback
 import traceback
 import aiofiles
-import shutil, psutil, traceback, os
 from random import randint
 from pyrogram import Client, filters, __version__
 from pyrogram.types import Message
@@ -59,10 +60,10 @@ LOGGER = logging.getLogger(__name__)
 
 api_id = int(os.environ.get("APP_ID","18049084"))
 api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
-bot_token = os.environ.get("TOKEN","6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
+bot_token = os.environ.get("TOKEN","6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY")
 BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
-DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
-BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot") # Botunuzun kullanıcı adı.
+DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://ok:ok@cluster0.uooya.mongodb.net/myFirstDatabase?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
+BOT_USERNAME = os.environ.get("BOT_USERNAME","AikoDenemeBot") # Botunuzun kullanıcı adı.
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL","-1001983841726")) # Botunuzun eylemleri kaydedeceği kayıt grubunun id'si.
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığınız mesajı gönderme türü. Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True olarak ayarlayın.
@@ -1417,6 +1418,7 @@ async def btag(event):
                     link_preview=False)
  
 #########################
+
 @app.on_message(filters.new_chat_members, group=1)
 async def hg(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
@@ -1439,6 +1441,7 @@ async def reload(client: Client, message: Message):
             ],
         ),
     )	    
+	
 #@app.on_message(filters.command(["eros"],["/", ""]))
 #async def eros(c:Client, m:Message):
 #    users = await c.get_chat_members(m.chat.id, limit=1000)
