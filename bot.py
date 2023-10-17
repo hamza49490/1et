@@ -323,7 +323,9 @@ async def start(event):
             return
         await event.reply("⚠️ **Zaten Konuşabiliyorum !**")
         return
-    elif emr == "off" or emr == "Off":
+    #elif emr == "off" or emr == "Off":
+@client.on(events.callbackquery.CallbackQuery(data="off"))
+async def start(event):
         if qrup in isleyen:
             isleyen.remove(qrup)
             await event.reply("⛔️ **Artık Konuşamicam !**")
@@ -334,7 +336,8 @@ async def start(event):
     else:
         await event.reply("**🎉 Buket Sohbet Modu :\n\n✅  Aktif Et  ➻  /sohbetmod on\n⛔  Kapat  ➻  /sohbetmod off .**", buttons=(
                      [
-                      Button.inline("🗨️ Aktif et", data="on")
+                      Button.inline("🗨️ Aktif et", data="on"),
+		      Button.inline("🗨️ Devre Dışı", data="off"),
 		     ]
                    ),  
                  link_preview=False)
