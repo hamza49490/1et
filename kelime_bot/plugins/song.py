@@ -26,7 +26,6 @@ from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import shutil, psutil, traceback
 import traceback
 import aiofiles
-from pyrogram import enums
 from pyrogram.enums import ChatMemberStatus
 from random import randint
 from pyrogram import Client, filters, __version__
