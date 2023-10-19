@@ -105,7 +105,7 @@ async def handler(event):
                       Button.inline("Dedektif 🕵", data="dedektif")
                       ],
                       [
-                      Button.inline("Lanetli 🙇", data="lanetli"),
+                      Button.inline("Kahin Çırak 🙇", data="kahinc"),
                       Button.inline("Tarikatçı Avcı 💂", data="tavci")
                       ],
                       [
@@ -141,7 +141,7 @@ async def handler(event):
                       ],
                       [
                       Button.inline("Efendi 🛡", data="efendi"),
-                      Button.inline("Güzellik 💅", data="guzellik")
+                      Button.inline("Güzel 💅", data="guzel")
                       ],
                       [
                       Button.inline("Fırtına Getiren 🌩", data="fgetiren"),
@@ -213,9 +213,18 @@ async def handler(event):
 
 
 
-@client.on(events.callbackquery.CallbackQuery(data="tavci"))
+@client.on(events.callbackquery.CallbackQuery(data="koylu"))
 async def handler(event):
-    await event.edit(f"{tavci}", buttons=(
+    await event.edit(f"{koyluu}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="sarhos"))
+async def handler(event):
+    await event.edit(f"{sarhoss}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -224,16 +233,16 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="gozcu"))
 async def handler(event):
-    await event.edit(f"{gozcu}", buttons=(
+    await event.edit(f"{gozcuu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="yancı"))
+@client.on(events.callbackquery.CallbackQuery(data="yanci"))
 async def handler(event):
-    await event.edit(f"{yancı}", buttons=(
+    await event.edit(f"{yancii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -242,26 +251,35 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="seyirci"))
 async def handler(event):
-    await event.edit(f"{seyirci}", buttons=(
+    await event.edit(f"{seyircii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
+
 
 @client.on(events.callbackquery.CallbackQuery(data="silahsor"))
 async def handler(event):
-    await event.edit(f"{silahsor}", buttons=(
+    await event.edit(f"{silahsorr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-
 @client.on(events.callbackquery.CallbackQuery(data="kmelek"))
 async def handler(event):
-    await event.edit(f"{kmelek}", buttons=(
+    await event.edit(f"{kmelekk}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="aptal"))
+async def handler(event):
+    await event.edit(f"{aptall}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -270,7 +288,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="mason"))
 async def handler(event):
-    await event.edit(f"{mason}", buttons=(
+    await event.edit(f"{masonn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -279,7 +297,25 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="dedektif"))
 async def handler(event):
-    await event.edit(f"{dedektif}", buttons=(
+    await event.edit(f"{dedektiff}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="kahinc"))
+async def handler(event):
+    await event.edit(f"{kahincc}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="tavci"))
+async def handler(event):
+    await event.edit(f"{tavcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -288,7 +324,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="eros"))
 async def handler(event):
-    await event.edit(f"{eros}", buttons=(
+    await event.edit(f"{eross}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -297,7 +333,16 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="avci"))
 async def handler(event):
-    await event.edit(f"{avci}", buttons=(
+    await event.edit(f"{avcii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="beceriksiz"))
+async def handler(event):
+    await event.edit(f"{beceriksizz}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -306,7 +351,16 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="demirci"))
 async def handler(event):
-    await event.edit(f"{demirci}", buttons=(
+    await event.edit(f"{demircii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="karak"))
+async def handler(event):
+    await event.edit(f"{karakk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -315,16 +369,16 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="prens"))
 async def handler(event):
-    await event.edit(f"{prens}", buttons=(
+    await event.edit(f"{prenss}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="muhtar"))
+@client.on(events.callbackquery.CallbackQuery(data="bbaskani"))
 async def handler(event):
-    await event.edit(f"{muhtar}", buttons=(
+    await event.edit(f"{bbaskanii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -333,25 +387,25 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kahin"))
 async def handler(event):
-    await event.edit(f"{kahin}", buttons=(
+    await event.edit(f"{kahinn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="hükümdar"))
+@client.on(events.callbackquery.CallbackQuery(data="hukumdar"))
 async def handler(event):
-    await event.edit(f"{hükümdar}", buttons=(
+    await event.edit(f"{hukumdarr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="barışçıl"))
+@client.on(events.callbackquery.CallbackQuery(data="bariscil"))
 async def handler(event):
-    await event.edit(f"{bariscil}", buttons=(
+    await event.edit(f"{bariscill}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -360,7 +414,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="ybilge"))
 async def handler(event):
-    await event.edit(f"{ybilge}", buttons=(
+    await event.edit(f"{ybilgee}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -369,16 +423,25 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="uyutucu"))
 async def handler(event):
-    await event.edit(f"{uyutucu}", buttons=(
+    await event.edit(f"{uyutucuu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="fedai"))
+@client.on(events.callbackquery.CallbackQuery(data="kurdumsu"))
 async def handler(event):
-    await event.edit(f"{fedai}", buttons=(
+    await event.edit(f"{kurdumsuu}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+    
+@client.on(events.callbackquery.CallbackQuery(data="sehit"))
+async def handler(event):
+    await event.edit(f"{sehitt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -387,7 +450,17 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="simyaci"))
 async def handler(event):
-    await event.edit(f"{simyaci}", buttons=(
+    await event.edit(f"{simyacii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+
+@client.on(events.callbackquery.CallbackQuery(data="efendi"))
+async def handler(event):
+    await event.edit(f"{efendii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -396,25 +469,34 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="guzel"))
 async def handler(event):
-    await event.edit(f"{guzel}", buttons=(
+    await event.edit(f"{guzell}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="fırtına"))
+@client.on(events.callbackquery.CallbackQuery(data="fgetiren"))
 async def handler(event):
-    await event.edit(f"{mason}", buttons=(
+    await event.edit(f"{fgetirenn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="yabani"))
+@client.on(events.callbackquery.CallbackQuery(data="hain"))
 async def handler(event):
-    await event.edit(f"{dedektif}", buttons=(
+    await event.edit(f"{hainn}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+    
+@client.on(events.callbackquery.CallbackQuery(data="ycocuk"))
+async def handler(event):
+    await event.edit(f"{ycocukk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -423,62 +505,27 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="lanetli"))
 async def handler(event):
-    await event.edit(f"{lanetli}", buttons=(
+    await event.edit(f"{lanetlii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
+
+################################
 
 @client.on(events.callbackquery.CallbackQuery(data="kurtadam"))
 async def handler(event):
-    await event.edit(f"{kurtadam}", buttons=(
+    await event.edit(f"{kurtadamm}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
-
+    
 @client.on(events.callbackquery.CallbackQuery(data="alfakurt"))
 async def handler(event):
-    await event.edit(f"{alfakurt}", buttons=(
-                      [
-                      Button.inline("👈 Geri", data="grstart")
-                      ],
-                    ),
-                    link_preview=False)
-
-@client.on(events.callbackquery.CallbackQuery(data="karmelek"))
-async def handler(event):
-    await event.edit(f"{karmelek}", buttons=(
-                      [
-                      Button.inline("👈 Geri", data="grstart")
-                      ],
-                    ),
-                    link_preview=False)
-
-
-@client.on(events.callbackquery.CallbackQuery(data="mistik"))
-async def handler(event):
-    await event.edit(f"{mistik}", buttons=(
-                      [
-                      Button.inline("👈 Geri", data="grstart")
-                      ],
-                    ),
-                    link_preview=False)
-
-@client.on(events.callbackquery.CallbackQuery(data="haydut"))
-async def handler(event):
-    await event.edit(f"{haydut}", buttons=(
-                      [
-                      Button.inline("👈 Geri", data="grstart")
-                      ],
-                    ),
-                    link_preview=False)
-
-@client.on(events.callbackquery.CallbackQuery(data="duzenbaz"))
-async def handler(event):
-    await event.edit(f"{duzenbaz}", buttons=(
+    await event.edit(f"{alfakurtt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -487,21 +534,139 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="falci"))
 async def handler(event):
-    await event.edit(f"{falci}", buttons=(
+    await event.edit(f"{falcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
-
 
 @client.on(events.callbackquery.CallbackQuery(data="yavrukurt"))
 async def handler(event):
-    await event.edit(f"{yavrukurt}", buttons=(
+    await event.edit(f"{yavrukurtt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
                     ),
                     link_preview=False)
 
+@client.on(events.callbackquery.CallbackQuery(data="lycan"))
+async def handler(event):
+    await event.edit(f"{lycann}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="haydut"))
+async def handler(event):
+    await event.edit(f"{haydutt}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="mistik"))
+async def handler(event):
+    await event.edit(f"{mistikk}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="duzenbaz"))
+async def handler(event):
+    await event.edit(f"{duzenbazz}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="karmelek"))
+async def handler(event):
+    await event.edit(f"{karmelekk}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+################################
+
+@client.on(events.callbackquery.CallbackQuery(data="iblis"))
+async def handler(event):
+    await event.edit(f"{ibliss}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+    
+@client.on(events.callbackquery.CallbackQuery(data="tarikatci"))
+async def handler(event):
+    await event.edit(f"{tarikatcii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="rahip"))
+async def handler(event):
+    await event.edit(f"{rahipp}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="hirsiz"))
+async def handler(event):
+    await event.edit(f"{hirsizz}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="kustasi"))
+async def handler(event):
+    await event.edit(f"{kustasii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="skatil"))
+async def handler(event):
+    await event.edit(f"{skatill}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="kundakci"))
+async def handler(event):
+    await event.edit(f"{kundakcii}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="buyucu"))
+async def handler(event):
+    await event.edit(f"{buyucu}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+    
 client.run_until_disconnected()
