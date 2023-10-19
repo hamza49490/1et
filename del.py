@@ -1,10 +1,9 @@
 import telebot
 import requests
 import random
-from Config import Config
 from datetime import datetime
 
-bot_token = Config.BOT_TOKEN
+bot_token = '6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY'
 
 bot_active = False
 
