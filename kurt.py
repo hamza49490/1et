@@ -451,16 +451,3 @@ async def handler(event):
                     link_preview=False)
 
 client.run_until_disconnected()
-
-
-pyrogram==1.4.8
-beautifulsoup4
-requests
-feedparser==6.0.2
-telethon
-cryptg
-requests
-heroku3
-pyrogram
-TgCrypto
-
