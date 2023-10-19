@@ -213,7 +213,7 @@ async def chatbot(event):
     if "çikolata" in mesaj or "Çikolata" in mesaj:
         await event.reply(f"**{random.choice(cklta)}**")
 	    
-    if "Lan" in mesaj or "lan" in mesaj:
+    if "Lan" in mesaj or "lann" in mesaj:
         await event.reply(f"**{random.choice(lna)}**")
 
     if "Dedim" in mesaj or "dedim" in mesaj:
