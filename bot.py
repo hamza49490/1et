@@ -74,11 +74,6 @@ OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
-app = Client("GUNC",
-             api_id=api_id,
-             api_hash=api_hash,
-             bot_token=bot_token
-	    )
 
 anlik_calisan = []
 tekli_calisan = []
@@ -572,30 +567,6 @@ async def tag4(event):
                    ),  
                  link_preview=False)
 
-@app.on_message(filters.new_chat_members, group=1)
-async def zar(bot: Client, msg: Message):
-    for new_user in msg.new_chat_members:
-        if str(new_user.id) == str(BOT_ID):
-            await msg.reply(
-                f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
-    )
-        elif str(new_user.id) == str(OWNER_ID):
-            await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...')
-
-
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
-async def reload(client: Client, message: Message):
-    await message.reply_text(f"**♻️ ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n♻️ ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**",
-    reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
-                ],
-            ],
-        ),
-			    )
-	
 
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
@@ -2147,7 +2118,5 @@ async def handler(event):
                     link_preview=False)
 
 	
-        
-app.run()
 print(" Bot çalışıyor :)")
 client.run_until_disconnected()
