@@ -17,9 +17,11 @@ from Config import Config
 from pyrogram import Client
 from pyrogram import filters
 
-api_id = int(os.environ.get("API_ID"))
-api_hash = os.environ.get("API_HASH")
-bot_token = os.environ.get("BOT_TOKEN")
+
+api_id = int(os.environ.get("APP_ID","18049084"))
+api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
+bot_token = os.environ.get("TOKEN","6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY")
+
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 logging.basicConfig(
@@ -39,22 +41,24 @@ async def start(event):
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurt Takımı', data='kurt'),
-                       Button.inline('👤 Bireysel', data='bireysel')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                      ],
+                      [
+                       Button.inline('👤 Diğer Düşmanlar', data='bireysel')
                       ],
                     ),
                     link_preview=False)
 
-@client.on(events.NewMessage(pattern="^/kurt$"))
-async def start(event):
   if event.is_group:
     return await client.send_message(event.chat_id, f"**💕 Bir rol takımı seçin .**", buttons=(
                       [
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurt Takımı', data='kurt'),
-                       Button.inline('👤 Bireysel', data='bireysel')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                      ],
+                      [
+                       Button.inline('👤 Diğer Düşmanlar', data='bireysel')
                       ],
                     ),
                     link_preview=False)
@@ -69,8 +73,10 @@ async def start(event):
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurt Takımı', data='kurt'),
-                       Button.inline('👤 Bireysel', data='bireysel')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                      ],
+                      [
+                       Button.inline('👤 Diğer Düşmanlar', data='bireysel')
                       ],
                     ),
                     link_preview=False)
@@ -79,55 +85,71 @@ async def start(event):
 async def handler(event):
     await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
                       [
-                      Button.inline("Tarikat Avcısı 💂", data="tavci")
-                      ],
-                      [
-                      Button.inline("Gözcü 👳", data="gozcu"),
+                      Button.inline("Köylü 👱", data="koylu"),
                       Button.inline("Sarhoş 🍻", data="sarhos")
                       ],
                       [
-                      Button.inline("Yancı 💋", data="yancı"),
-                      Button.inline("Seyirci 👁", data="seyirci")
+                      Button.inline("Gözcü 👳", data="gozcu"),
+                      Button.inline("Yancı 💋", data="yanci")
                       ],
                       [
-                      Button.inline("Silahşör 🔫", data="silahsor"),
-                      Button.inline("Koruyucu Melek 👼", data="kmelek")
+                      Button.inline("Seyirci 👁", data="seyirci"),
+                      Button.inline("Silahşör 🔫", data="silahsor")
+                      ],
+                      [
+                      Button.inline("Koruyucu Melek 👼", data="kmelek"),
+                      Button.inline("Aptal 🃏", data="aptal")
                       ],
                       [
                       Button.inline("Mason 👷", data="mason"),
-                      Button.inline("Dedektif 🕵️", data="dedektif")
+                      Button.inline("Dedektif 🕵", data="dedektif")
                       ],
                       [
-                      Button.inline("Lanetli 😾", data="lanetli"),
-                      Button.inline("Avcı 🎯", data="avci")
+                      Button.inline("Lanetli 🙇", data="lanetli"),
+                      Button.inline("Tarikatçı Avcı 💂", data="tavci")
                       ],
                       [
                       Button.inline("Eros 🏹", data="eros"),
-                      Button.inline("Demirci ⚒️", data="demirci")
+                      Button.inline("Avcı 🎯", data="avci")
+                      ],
+                      [
+                      Button.inline("Beceriksiz 🤕", data="beceriksiz"),
+                      Button.inline("Demirci ⚒", data="demirci")
+                      ],
+                      [
+                      Button.inline("Kara kurt 🐺🌑", data="karak")
                       ],
                       [
                       Button.inline("Prens 💍", data="prens"),
-                      Button.inline("Muhtar 🎖", data="muhtar")
+                      Button.inline("Belediye Başkanı 🎖", data="bbaskani")
                       ],
                       [
                       Button.inline("Kahin 🌀", data="kahin"),
-                      Button.inline("Hükümdar 👑", data="hükümdar")
+                      Button.inline("Hükümdar 👑", data="hukumdar")
                       ],
                       [
-                      Button.inline("Barışçıl ☮️", data="barışçıl"),
+                      Button.inline("Barışçıl ☮️", data="bariscil"),
                       Button.inline("Yaşlı Bilge 📚", data="ybilge")
                       ],
                       [
                       Button.inline("Uyutucu 💤", data="uyutucu"),
-                      Button.inline("Fedai 🔰", data="fedai")
+                      Button.inline("Kurdumsu 👱‍🌚", data="kurdumsu")
                       ],
                       [
-                      Button.inline("Simyacı 🍵", data="simyaci"),
-                      Button.inline("Güzel 💅", data="guzel")
+                      Button.inline("Şehit 🔰", data="sehit"),
+                      Button.inline("Simyacı 🍵", data="simyaci")
                       ],
                       [
-                      Button.inline("Fırtına Getiren 🌩", data="fırtına"),
-                      Button.inline("Yabanı Çocuk 👶", data="yabani")
+                      Button.inline("Efendi 🛡", data="efendi"),
+                      Button.inline("Güzellik 💅", data="guzellik")
+                      ],
+                      [
+                      Button.inline("Fırtına Getiren 🌩", data="fgetiren"),
+                      Button.inline("Hain 🖕", data="hain")
+                      ],
+                      [
+                      Button.inline("Yabani Çocuk 👶", data="ycocuk"),
+                      Button.inline("Lanetli 😾", data="lanetli")
                       ],
                       [
                       Button.inline("👈 Geri", data="grstart")
@@ -147,6 +169,9 @@ async def handler(event):
                       Button.inline("Yavru Kurt 🐶", data="yavrukurt")
                       ],
                       [
+                      Button.inline("Lycan 🐺🌝", data="lycan")
+                      ],
+                      [
                       Button.inline("Haydut 🦉", data="haydut"),
                       Button.inline("Mistik ☄️", data="mistik")
                       ],
@@ -159,6 +184,34 @@ async def handler(event):
                       ]
                     ),
                     link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="bireysel"))
+async def handler(event):
+    await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
+                      [
+                      Button.inline("İblis 👺", data="iblis"),
+                      Button.inline("Tarikatçı 👤", data="tarikatci")
+                      ],
+                      [
+                      Button.inline("Rahip ✝️", data="rahip"),
+                      Button.inline("Hırsız 😈", data="hirsiz")
+                      ],
+                      [
+                      Button.inline("Kukla ustası 🕴", data="kustasi"),
+                      Button.inline("Seri Katil 🔪", data="skatil")
+                      ],
+                      [
+                      Button.inline("Kundakçı 🔥", data="kundakci"),
+                      Button.inline("Büyücü ⚰️", data="buyucu")
+                      ],
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ]
+                    ),
+                    link_preview=False)
+
+
+
 
 @client.on(events.callbackquery.CallbackQuery(data="tavci"))
 async def handler(event):
