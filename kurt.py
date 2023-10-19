@@ -196,7 +196,7 @@ async def handler(event):
                       Button.inline("Hırsız 😈", data="hirsiz")
                       ],
                       [
-                      Button.inline("Çift Giden🎭", data="cgiden")
+                      Button.inline("Çift - Giden 🎭", data="cgiden")
                       ],
                       [
                       Button.inline("Kukla ustası 🕴", data="kustasi"),
@@ -217,7 +217,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="koylu"))
 async def handler(event):
-    await event.edit(f"{koyluu}", buttons=(
+    await event.edit(f"**🌟 Rol : Köylü 👱\n\n🗯️ Hakkında :\n**{koyluu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -226,7 +226,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="sarhos"))
 async def handler(event):
-    await event.edit(f"{sarhoss}", buttons=(
+    await event.edit(f"**🌟 Rol : Sarhoş 🍻**{sarhoss}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -235,7 +235,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="gozcu"))
 async def handler(event):
-    await event.edit(f"{gozcuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Gözcü 👳**{gozcuu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -244,7 +244,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="yanci"))
 async def handler(event):
-    await event.edit(f"{yancii}", buttons=(
+    await event.edit(f"**🌟 Rol : Yancı 💋**{yancii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -253,7 +253,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="seyirci"))
 async def handler(event):
-    await event.edit(f"{seyircii}", buttons=(
+    await event.edit(f"**🌟 Rol : Seyirci 👁**{seyircii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -263,7 +263,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="silahsor"))
 async def handler(event):
-    await event.edit(f"{silahsorr}", buttons=(
+    await event.edit(f"**🌟 Rol : Silahşör 🔫**{silahsorr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -272,7 +272,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kmelek"))
 async def handler(event):
-    await event.edit(f"{kmelekk}", buttons=(
+    await event.edit(f"**🌟 Rol : Koruyucu Melek 👼**{kmelekk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -281,7 +281,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="aptal"))
 async def handler(event):
-    await event.edit(f"{aptall}", buttons=(
+    await event.edit(f"**🌟 Rol : Aptal 🃏**{aptall}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -290,7 +290,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="mason"))
 async def handler(event):
-    await event.edit(f"{masonn}", buttons=(
+    await event.edit(f"**🌟 Rol : Mason 👷**{masonn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -299,7 +299,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="dedektif"))
 async def handler(event):
-    await event.edit(f"{dedektiff}", buttons=(
+    await event.edit(f"**🌟 Rol : Dedektif 🕵**{dedektiff}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -308,7 +308,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="gozcuc"))
 async def handler(event):
-    await event.edit(f"{gozcucc}", buttons=(
+    await event.edit(f"**🌟 Rol : Gözcü Çırağı 🙇**{gozcucc}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -317,7 +317,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="tavci"))
 async def handler(event):
-    await event.edit(f"{tavcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Tarikatçı Avcı 💂**{tavcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -326,7 +326,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="eros"))
 async def handler(event):
-    await event.edit(f"{eross}", buttons=(
+    await event.edit(f"**🌟 Rol : Eros 🏹**{eross}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -335,7 +335,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="avci"))
 async def handler(event):
-    await event.edit(f"{avcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Avcı 🎯**{avcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -344,7 +344,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="beceriksiz"))
 async def handler(event):
-    await event.edit(f"{beceriksizz}", buttons=(
+    await event.edit(f"**🌟 Rol : Beceriksiz 🤕**{beceriksizz}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -353,7 +353,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="demirci"))
 async def handler(event):
-    await event.edit(f"{demircii}", buttons=(
+    await event.edit(f"**🌟 Rol : Demirci ⚒**{demircii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -362,7 +362,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="karak"))
 async def handler(event):
-    await event.edit(f"{karakk}", buttons=(
+    await event.edit(f"**🌟 Rol : Kara kurt 🐺🌑**{karakk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -371,7 +371,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="prens"))
 async def handler(event):
-    await event.edit(f"{prenss}", buttons=(
+    await event.edit(f"**🌟 Rol : Prens 💍**{prenss}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -380,7 +380,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="bbaskani"))
 async def handler(event):
-    await event.edit(f"{bbaskanii}", buttons=(
+    await event.edit(f"**🌟 Rol : Belediye Başkanı 🎖**{bbaskanii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -389,7 +389,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kahin"))
 async def handler(event):
-    await event.edit(f"{kahinn}", buttons=(
+    await event.edit(f"**🌟 Rol : Kahin 🌀**{kahinn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -398,7 +398,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="hukumdar"))
 async def handler(event):
-    await event.edit(f"{hukumdarr}", buttons=(
+    await event.edit(f"**🌟 Rol : Hükümdar 👑**{hukumdarr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -407,7 +407,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="bariscil"))
 async def handler(event):
-    await event.edit(f"{bariscill}", buttons=(
+    await event.edit(f"**🌟 Rol : Barışçıl ☮️**{bariscill}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -416,7 +416,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="ybilge"))
 async def handler(event):
-    await event.edit(f"{ybilgee}", buttons=(
+    await event.edit(f"**🌟 Rol : Yaşlı Bilge 📚**{ybilgee}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -425,7 +425,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="uyutucu"))
 async def handler(event):
-    await event.edit(f"{uyutucuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Uyutucu 💤**{uyutucuu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -434,7 +434,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kurdumsu"))
 async def handler(event):
-    await event.edit(f"{kurdumsuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Kurdumsu 👱‍🌚**{kurdumsuu}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -443,7 +443,7 @@ async def handler(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="sehit"))
 async def handler(event):
-    await event.edit(f"{sehitt}", buttons=(
+    await event.edit(f"**🌟 Rol : Şehit 🔰**{sehitt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -452,7 +452,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="simyaci"))
 async def handler(event):
-    await event.edit(f"{simyacii}", buttons=(
+    await event.edit(f"**🌟 Rol : Simyacı 🍵**{simyacii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -462,7 +462,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="efendi"))
 async def handler(event):
-    await event.edit(f"{efendii}", buttons=(
+    await event.edit(f"**🌟 Rol : Efendi 🛡**{efendii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -471,7 +471,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="guzel"))
 async def handler(event):
-    await event.edit(f"{guzell}", buttons=(
+    await event.edit(f"**🌟 Rol : Güzel 💅**{guzell}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -480,7 +480,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="fgetiren"))
 async def handler(event):
-    await event.edit(f"{fgetirenn}", buttons=(
+    await event.edit(f"**🌟 Rol : Fırtına Getiren 🌩**{fgetirenn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -489,7 +489,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="hain"))
 async def handler(event):
-    await event.edit(f"{hainn}", buttons=(
+    await event.edit(f"**🌟 Rol : Hain 🖕**{hainn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -498,7 +498,7 @@ async def handler(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="ycocuk"))
 async def handler(event):
-    await event.edit(f"{ycocukk}", buttons=(
+    await event.edit(f"**🌟 Rol : Yabani Çocuk 👶**{ycocukk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -507,7 +507,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="lanetli"))
 async def handler(event):
-    await event.edit(f"{lanetlii}", buttons=(
+    await event.edit(f"**🌟 Rol : Lanetli 😾**{lanetlii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -518,7 +518,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kurtadam"))
 async def handler(event):
-    await event.edit(f"{kurtadamm}", buttons=(
+    await event.edit(f"**🌟 Rol : Kurtadam 🐺**{kurtadamm}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -527,7 +527,7 @@ async def handler(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="alfakurt"))
 async def handler(event):
-    await event.edit(f"{alfakurtt}", buttons=(
+    await event.edit(f"**🌟 Rol : Alfa Kurt ⚡️**{alfakurtt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -536,7 +536,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="falci"))
 async def handler(event):
-    await event.edit(f"{falcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Falcı 🔮**{falcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -545,7 +545,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="yavrukurt"))
 async def handler(event):
-    await event.edit(f"{yavrukurtt}", buttons=(
+    await event.edit(f"**🌟 Rol : Yavru Kurt 🐶**{yavrukurtt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -554,7 +554,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="lycan"))
 async def handler(event):
-    await event.edit(f"{lycann}", buttons=(
+    await event.edit(f"**🌟 Rol : Lycan 🐺🌝**{lycann}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -563,7 +563,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="haydut"))
 async def handler(event):
-    await event.edit(f"{haydutt}", buttons=(
+    await event.edit(f"**🌟 Rol : Haydut 🦉**{haydutt}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -572,7 +572,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="mistik"))
 async def handler(event):
-    await event.edit(f"{mistikk}", buttons=(
+    await event.edit(f"**🌟 Rol : Mistik ☄️**{mistikk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -581,7 +581,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="duzenbaz"))
 async def handler(event):
-    await event.edit(f"{duzenbazz}", buttons=(
+    await event.edit(f"**🌟 Rol : Düzenbaz Kurt 🐑**{duzenbazz}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -590,7 +590,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="karmelek"))
 async def handler(event):
-    await event.edit(f"{karmelekk}", buttons=(
+    await event.edit(f"**🌟 Rol : Kara Melek 👼🐺**{karmelekk}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -601,7 +601,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="iblis"))
 async def handler(event):
-    await event.edit(f"{ibliss}", buttons=(
+    await event.edit(f"**🌟 Rol : İblis 👺**{ibliss}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -610,7 +610,7 @@ async def handler(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="tarikatci"))
 async def handler(event):
-    await event.edit(f"{tarikatcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Tarikatçı 👤**{tarikatcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -619,7 +619,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="rahip"))
 async def handler(event):
-    await event.edit(f"{rahipp}", buttons=(
+    await event.edit(f"**🌟 Rol : Rahip ✝️**{rahipp}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -628,7 +628,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="hirsiz"))
 async def handler(event):
-    await event.edit(f"{hirsizz}", buttons=(
+    await event.edit(f"**🌟 Rol : Hırsız 😈**{hirsizz}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -637,7 +637,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kustasi"))
 async def handler(event):
-    await event.edit(f"{kustasii}", buttons=(
+    await event.edit(f"**🌟 Rol : Kukla ustası 🕴**{kustasii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -646,7 +646,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="cgiden"))
 async def handler(event):
-    await event.edit(f"{cgidenn}", buttons=(
+    await event.edit(f"**🌟 Rol : Çift - Giden 🎭**{cgidenn}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -655,7 +655,7 @@ async def handler(event):
     
 @client.on(events.callbackquery.CallbackQuery(data="skatil"))
 async def handler(event):
-    await event.edit(f"{skatill}", buttons=(
+    await event.edit(f"**🌟 Rol : Seri Katil 🔪**{skatill}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -664,7 +664,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kundakci"))
 async def handler(event):
-    await event.edit(f"{kundakcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Kundakçı 🔥**{kundakcii}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
@@ -673,7 +673,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="necromancer"))
 async def handler(event):
-    await event.edit(f"{necromancerr}", buttons=(
+    await event.edit(f"**🌟 Rol : Necromancer ⚰️**{necromancerr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
