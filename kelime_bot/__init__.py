@@ -9,9 +9,9 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
-API_ID = "16347484"
-API_HASH = "da52627a852e4d62633fd6ab72dee4c4"
-TOKEN = "6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY"
+API_ID = "26573250"
+API_HASH = "6306d2d23b1083a6f757f64f0b0c609c"
+TOKEN = "6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY"
 USERNAME = "AikoDenemeBot"
 OWNER_ID = 6540285284
 
