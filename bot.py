@@ -1,18 +1,29 @@
+import random
+import shutil, psutil, traceback, os
+import string
+import time
+import datetime
+import motor.motor_asyncio
+import shutil, psutil, traceback
+import traceback
+import aiofiles
+import wget
+import yt_dlp
+import os, youtube_dl, requests, time
+import random, os, logging, asyncio
 import telethon
+from Config import Config
 from telethon.tl import types
 from telethon import Button
 from telethon.tl import types
 from telethon.tl import functions
-import wget
 from yt_dlp import YoutubeDL
-import os, youtube_dl, requests, time
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-import yt_dlp
+from yt_dlp import YoutubeDL
 from telethon import events
 from telethon import errors
 from telethon import TelegramClient
-import random, os, logging, asyncio
 from asyncio import sleep
 from time import time
 from os import remove
@@ -33,16 +44,7 @@ from pyrogram.types import Message, User
 from pyrogram.types import Message
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-import random
-import shutil, psutil, traceback, os
-import string
-import time
-import datetime
-import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-import shutil, psutil, traceback
-import traceback
-import aiofiles
 from random import randint
 from pyrogram import Client, filters, __version__
 from pyrogram.types import Message
@@ -59,27 +61,15 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-api_id = int(os.environ.get("APP_ID","18049084"))
-api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
-bot_token = os.environ.get("TOKEN","6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
-BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
-DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
-BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot") # Botunuzun kullanıcı adı.
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL","-1001983841726")) # Botunuzun eylemleri kaydedeceği kayıt grubunun id'si.
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
-GONDERME_TURU = os.environ.get("GONDERME_TURU", False) # Botunuzun yanıtladığınız mesajı gönderme türü. Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True olarak ayarlayın.
-OWNER_ID = int(os.environ.get("OWNER_ID","6540285284")) # Sahip hesabın id'si
-OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
-OWNER = [6540285284]
-#SUDO = []
-LANGAUGE = os.environ.get("LANGAUGE", "TR")
-
+api_id = int(os.environ.get("API_ID"))
+api_hash = os.environ.get("API_HASH")
+bot_token = os.environ.get("BOT_TOKEN")
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 app = Client("GUNC",
-             api_id=api_id,
-             api_hash=api_hash,
-             bot_token=bot_token
+             api_id=API_ID,
+             api_hash=API_HASH,
+             bot_token=Config.BOT_TOKEN
 	    )
 
 anlik_calisan = []
@@ -1985,7 +1975,7 @@ class LAN(object):
         KULLANICI_BILGILENDIRME = "\n\n**✓ Kişiyi bilgilendirdim.**"
         KULLANICI_BILGILENDIRMEME = "\n\n❌ **Kişiyi bilgilendirmeye çalışırken bir hata oluştu:** \n\n`{}`"
         UNBANNED_USER = "🆓 **Yasak Kaldırıldı !\nKaldıran : {}\nKullanıcı ID : {}**"
-        USER_UNBAN_NOTIFY = "**💞 Hoppala, Çok Şanslısın ! \n👨🏻‍💻 [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) Yasağınızı kaldırdı !**"
+        USER_UNBAN_NOTIFY = "**💞 Hoppala, Çok Şanslısın ! \n👨🏻‍💻 Sahibim Yasağınızı kaldırdı !**"
         BLOCKS = "🆔 **Kullanıcı ID : {}\n⏱ Süre : {}\n🗓 Yasaklanan Tarih : {}\n💬 Sebep : {}**\n\n"
         TOTAL_BLOCK = "🚷 **Yasaklanan Kullanıcılar :** `{}`\n\n{}"
 		
