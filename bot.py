@@ -12,7 +12,7 @@ import yt_dlp
 import os, youtube_dl, requests, time
 import random, os, logging, asyncio
 import telethon
-from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, tag1, tag2, tag3, tag4, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz
+from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz
 from telethon.tl import types
 from telethon import Button
 from telethon.tl import types
@@ -444,7 +444,7 @@ async def help(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="tag1"))
 async def tag1(event):
-    await event.edit(f"{tag1}", buttons=(
+    await event.edit(f"{etikett}", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help")
                      ]
@@ -453,7 +453,7 @@ async def tag1(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="tag2"))
 async def tag2(event):
-    await event.edit(f"{tag2}",
+    await event.edit(f"{extraa}",
 		     buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
@@ -465,7 +465,7 @@ async def tag2(event):
 async def handler(event):
        sender = await event.get_sender()
        if sender.id in OWNER:
-            await event.edit(f"{tag3}", buttons=(
+            await event.edit(f"{sahipp}", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
                      ]
@@ -476,7 +476,7 @@ async def handler(event):
 	
 @client.on(events.callbackquery.CallbackQuery(data="tag4"))
 async def tag4(event):
-    await event.edit(f"{tag4}", buttons=(
+    await event.edit(f"{oyunn}", buttons=(
                      [
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
                      ]
