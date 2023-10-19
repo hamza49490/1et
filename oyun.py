@@ -1,33 +1,25 @@
 import heroku3
 import random, os, logging, asyncio
+import time
+import os
+import heroku3
+import logging
+from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.events import StopPropagation
-
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-import time
-import os
-import heroku3
-from telethon import TelegramClient, events
-
+from Config import Config
 from pyrogram import Client
 from pyrogram import filters
-import logging
 
-api_id = int(os.environ.get("APP_ID","18049084"))
-api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
-bot_token = os.environ.get("TOKEN","6686468684:AAEe2sSuc8ZkYBFL2jozDJ5AHUXYv4UqtpU")
- 
+api_id = int(os.environ.get("API_ID"))
+api_hash = os.environ.get("API_HASH")
+bot_token = os.environ.get("BOT_TOKEN")
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
-
-app = Client("GUNC",
-             api_id=api_id,
-             api_hash=api_hash,
-             bot_token=bot_token
-            )
 
 logging.basicConfig(
     level=logging.INFO,
@@ -37,7 +29,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 
-@client.on(events.NewMessage(pattern="^/start$"))
+@client.on(events.NewMessage(pattern="^/kurt$"))
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
