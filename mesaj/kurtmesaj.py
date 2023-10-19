@@ -49,3 +49,6 @@ cgidenn = "**Ataların başkalarının kılığına girebiliyordu… Fakat sen o
 skatill = "**Akıl hastanesi zaten sıkıcı bir yerdi. Şaka şaka. Şu anda özgürsün ama her zamanki işine dönmen lazım: Soğukkanlılıkla öldürmek! Seri Katil kendi takımında yalnız bir oyuncudur. Sadece son kalan oyuncu olursa oyunu kazanır (Aşık olma durumu hariç). Seri Katil olarak herhangi birini öldürebilirsin. Kurtlar sana saldırırsa rastgele bir tanesini öldürürsün ve yaşamaya devam edersin .**"
 kundakcii = "**Sen Kundakçısın 🔥. Yetişkinlerin çocukları korkutmak için söylediği ve senin yaptıklarını anlatan korku hikayeleri var. Şehirleri yerle bir edebilecek yanıcı bir çözüm için gizli bir tarifiniz var! Bu çözüm ile her gece iki evin üzerine benzin dökebilirsin. En az bir evi başarıyla benzinleyebilirsen, tüm benzinlenen evleri ateşe verebilir ve içindeki köylüleri yakabilirsin .**"
 necromancerr = "Necromancer'in ölenlerin rolünü seçme şansı var. Geceleri Necromancer, oyunun geri kalan kısmı için ölü olan bir rol olmayı seçebilir. Oyunu Necromancer olarak kazanamaz. Necromancer ve Çift Giden aynı oyunda olmaz.\n( Necromancer = Büyücü )"
+
+rols = "**🗒️ Lütfen Bir Takım Seçin ...**"
+bilgis = "**🗒️ Lütfen Bir Rol Seçin ...**"
