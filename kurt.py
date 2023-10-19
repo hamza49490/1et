@@ -5,7 +5,7 @@ import os
 import heroku3
 import logging 
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
-from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, skatill, kundakcii, buyucu
+from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgiden, skatill, kundakcii, buyucu
 from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
@@ -196,6 +196,9 @@ async def handler(event):
                       [
                       Button.inline("Rahip ✝️", data="rahip"),
                       Button.inline("Hırsız 😈", data="hirsiz")
+                      ],
+                      [
+                      Button.inline("Çift Giden🎭", data="cgiden")
                       ],
                       [
                       Button.inline("Kukla ustası 🕴", data="kustasi"),
@@ -643,6 +646,15 @@ async def handler(event):
                     ),
                     link_preview=False)
 
+@client.on(events.callbackquery.CallbackQuery(data="cgiden"))
+async def handler(event):
+    await event.edit(f"{cgidenn}", buttons=(
+                      [
+                      Button.inline("👈 Geri", data="grstart")
+                      ],
+                    ),
+                    link_preview=False)
+    
 @client.on(events.callbackquery.CallbackQuery(data="skatil"))
 async def handler(event):
     await event.edit(f"{skatill}", buttons=(
