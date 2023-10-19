@@ -4,11 +4,11 @@ import random
 from Config import Config
 from datetime import datetime
 
-bot_token = Config.BOT_TOKEN
+#bot_token = ''
 
 bot_active = False
 
-bot = telebot.TeleBot(bot_token)
+bot = telebot.TeleBot(Config.BOT_TOKEN)
 
 # /yas komutuna yanıt veren bir işlev
 @bot.message_handler(commands=['yas'])
