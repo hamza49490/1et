@@ -13,7 +13,6 @@ import os, youtube_dl, requests, time
 import random, os, logging, asyncio
 import telethon
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, tag1, tag2, tag3, tag4, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz
-from Config import Config
 from telethon.tl import types
 from telethon import Button
 from telethon.tl import types
