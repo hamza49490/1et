@@ -387,8 +387,101 @@ async def chatbot(event):
                   ),
                 link_preview=False)
 	
+@client.on(events.NewMessage(pattern='/eros'))
+async def eros_oku(event):
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+	    
+    users = []
+    async for user in client.iter_participants(event.chat_id):
+        if not user.bot and not user.deleted and not user.is_self:
+            users.append(user)
 
-# ~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    if len(users) < 2:
+        return
+    
+    first_user, second_user = random.sample(users, 2)
+    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
+    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
+    
+    response = (
+        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
+        f"{first_user_md_mention} 💕 {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
+    )
+    
+    await event.respond(response, parse_mode="Markdown")
+
+
+@client.on(events.NewMessage(pattern='/slap'))
+async def slap(event):
+    if event.is_private:
+        return await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**")
+
+    if event.reply_to_msg_id:
+        reply_message = await event.get_reply_message()
+        user = reply_message.sender
+        if user:
+            user_name = f"[{user.first_name}](tg://user?id={user.id})"
+            slap_phrases = [
+	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
+	             	                f"{user_name} 'ın Kulağını Çekti! Acımış Olmalı 😕",
+		                        f"{user_name} 'ı Arabayla Ezdi! Öldün Bebek 🥴",
+		                        f"{user_name} 'ı Soydu! 5 Kuruş'u Kaldı 😕",
+		                        f"{user_name} 'ı Yemeğe Çıkardı! Hayrola İnşallah 🤭",
+		                        f"{user_name} 'a Sarıldı! Sevgi Dolu Kucaklaşma 💞",
+		                        f"{user_name} 'ın Üstüne Çay Döktü! Yanıyorsun Fuat Abi 🔥",
+                                        f"{user_name} 'ın Üzerine Pasta Fırlattı! Afiyet Olsun 😋",
+                                        f"{user_name} 'ın Üstüne Benzin Döktü!",
+                                        f"{user_name} 'ı Ateşe Attı! Yanıyorsun Ayten 🤣",
+                                        f"{user_name} 'ın Üstüne Su Döktü!",
+                                        f"{user_name} 'a Osmanlı Tokatı Attı! Yerle Bir Oldu :)",
+                                        f"{user_name} 'a Çikolata Verdi! Hadi Yine İyisin 🥳",
+                                        f"{user_name} 'ı Zencilere Sattı! Geçmiş Olsun 🥳",
+                                        f"{user_name} 'ı Turşu Kavonozuna Soktu! Turşu {user_name}",
+                                        f"{user_name} 'ın Üzerine Buz Dolabı Attı!",
+                                        f"{user_name} 'ın Kafasını Duvara Sürterek Yaktı! Zavallı Ağlicak :)",
+                                        f"{user_name} 'ı Ormana Kaçırdı! Acaba Ne Olacak 🤭",
+                                        f"{user_name} 'ı Banyoda Suikast Etti! Banyoda Ne İşin Vardı 🤣",
+		                        f"{user_name} 'a Kafa Attı! Mermiler Seksin, Alemde Teksin 😁",
+		                        f"{user_name} 'a Harçlık Verdi! Kendine Çikolata Alırsın 😁",
+                                        f"{user_name} 'a Kavanoz Fırlattı! Başka Bişey Bulamadı Sanırım 🙄",
+	  	                        f"{user_name} 'a Domates Fırlattı! Suratı Kıp Kırmızı Oldu 😁",
+		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
+		                        f"{user_name} 'a İğne Sapladı! Bu Acıtmıştır Sanırım 🥲",
+		                        f"{user_name} 'a Çelme Taktı! Geber 😁",
+		                        f"{user_name} 'ın Yüzüne Tükürdü 🤬",
+		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
+		                        f"{user_name} 'a Omuz attı! Ne bakıyon Birader !",
+		                        f"{user_name} 'a Yumurta Fırlattı! Tam isabet 🎯",
+		                        f"{user_name} 'ın Saçını Çekti! Acıdı mı 😁",
+		          	        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
+		                        f"{user_name} 'ın Kafasında Şişe Kırdı! Kafası Acımış Olmalı 🥲",
+		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
+		                        f"{user_name} 'a Kafa Attı! Burnu Kırıldı 😱",
+		                        f"{user_name} 'a Yumruk attı ! Buz Koy Morarmasın 🤕",
+		                        f"{user_name} 'ın Kafasına Taş Attı! Rahmetliyi Sevmezdik 🥴",
+                                        f"{user_name} 'a 619 Çekti! Zavallı Bayıldı 😁",
+                                        f"{user_name} 'a Osmanlı Tokatı Attı! Şamar Oğlana Döndü 😱",
+                                        f"Marketten Beyin Satın Aldı! Artık {user_name} 'ın Beyni Var .",
+                                        f"Beyni'nin Yarısını {user_name} 'a Verdi! Artık Aç Kalmayacak 😋",
+                                        f"{user_name} 'ı Camdan Attı! Kafası Yarıldı ve Öldü .",
+                                        f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
+                                        f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
+                                        f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
+		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
+	    ]
+            slap_phrase = random.choice(slap_phrases)
+            await event.respond(f"**[{event.sender.first_name}](tg://user?id={event.sender.id}) ,  {slap_phrase}**")
+        else:
+            await event.respond("**👁️‍🗨️ ᴜ̈ᴢɢᴜ̈ɴᴜ̈ᴍ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍɪʏᴏʀᴜᴍ !**")
+    else:
+        await event.respond("**💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ ...**")
+
+##################################################
+##################################################
+##################################################
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   if event.is_private:
@@ -482,99 +575,31 @@ async def tag4(event):
                      ]
                    ),  
                  link_preview=False)
-	
-@client.on(events.NewMessage(pattern='/eros'))
-async def eros_oku(event):
-    if event.is_private:
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
-        return
-	    
-    users = []
-    async for user in client.iter_participants(event.chat_id):
-        if not user.bot and not user.deleted and not user.is_self:
-            users.append(user)
 
-    if len(users) < 2:
-        return
-    
-    first_user, second_user = random.sample(users, 2)
-    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
-    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
-    
-    response = (
-        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
-        f"{first_user_md_mention} 💕 {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
+@app.on_message(filters.new_chat_members, group=1)
+async def zar(bot: Client, msg: Message):
+    for new_user in msg.new_chat_members:
+        if str(new_user.id) == str(BOT_ID):
+            await msg.reply(
+                f'''{hgbot}''', 
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
-    
-    await event.respond(response, parse_mode="Markdown")
+        elif str(new_user.id) == str(OWNER_ID):
+            await msg.reply(f'{hgowner}**')
 
 
-@client.on(events.NewMessage(pattern='/slap'))
-async def slap(event):
-    if event.is_private:
-        return await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**")
-
-    if event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        user = reply_message.sender
-        if user:
-            user_name = f"[{user.first_name}](tg://user?id={user.id})"
-            slap_phrases = [
-	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
-	             	                f"{user_name} 'ın Kulağını Çekti! Acımış Olmalı 😕",
-		                        f"{user_name} 'ı Arabayla Ezdi! Öldün Bebek 🥴",
-		                        f"{user_name} 'ı Soydu! 5 Kuruş'u Kaldı 😕",
-		                        f"{user_name} 'ı Yemeğe Çıkardı! Hayrola İnşallah 🤭",
-		                        f"{user_name} 'a Sarıldı! Sevgi Dolu Kucaklaşma 💞",
-		                        f"{user_name} 'ın Üstüne Çay Döktü! Yanıyorsun Fuat Abi 🔥",
-                                        f"{user_name} 'ın Üzerine Pasta Fırlattı! Afiyet Olsun 😋",
-                                        f"{user_name} 'ın Üstüne Benzin Döktü!",
-                                        f"{user_name} 'ı Ateşe Attı! Yanıyorsun Ayten 🤣",
-                                        f"{user_name} 'ın Üstüne Su Döktü!",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Yerle Bir Oldu :)",
-                                        f"{user_name} 'a Çikolata Verdi! Hadi Yine İyisin 🥳",
-                                        f"{user_name} 'ı Zencilere Sattı! Geçmiş Olsun 🥳",
-                                        f"{user_name} 'ı Turşu Kavonozuna Soktu! Turşu {user_name}",
-                                        f"{user_name} 'ın Üzerine Buz Dolabı Attı!",
-                                        f"{user_name} 'ın Kafasını Duvara Sürterek Yaktı! Zavallı Ağlicak :)",
-                                        f"{user_name} 'ı Ormana Kaçırdı! Acaba Ne Olacak 🤭",
-                                        f"{user_name} 'ı Banyoda Suikast Etti! Banyoda Ne İşin Vardı 🤣",
-		                        f"{user_name} 'a Kafa Attı! Mermiler Seksin, Alemde Teksin 😁",
-		                        f"{user_name} 'a Harçlık Verdi! Kendine Çikolata Alırsın 😁",
-                                        f"{user_name} 'a Kavanoz Fırlattı! Başka Bişey Bulamadı Sanırım 🙄",
-	  	                        f"{user_name} 'a Domates Fırlattı! Suratı Kıp Kırmızı Oldu 😁",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a İğne Sapladı! Bu Acıtmıştır Sanırım 🥲",
-		                        f"{user_name} 'a Çelme Taktı! Geber 😁",
-		                        f"{user_name} 'ın Yüzüne Tükürdü 🤬",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a Omuz attı! Ne bakıyon Birader !",
-		                        f"{user_name} 'a Yumurta Fırlattı! Tam isabet 🎯",
-		                        f"{user_name} 'ın Saçını Çekti! Acıdı mı 😁",
-		          	        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'ın Kafasında Şişe Kırdı! Kafası Acımış Olmalı 🥲",
-		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'a Kafa Attı! Burnu Kırıldı 😱",
-		                        f"{user_name} 'a Yumruk attı ! Buz Koy Morarmasın 🤕",
-		                        f"{user_name} 'ın Kafasına Taş Attı! Rahmetliyi Sevmezdik 🥴",
-                                        f"{user_name} 'a 619 Çekti! Zavallı Bayıldı 😁",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Şamar Oğlana Döndü 😱",
-                                        f"Marketten Beyin Satın Aldı! Artık {user_name} 'ın Beyni Var .",
-                                        f"Beyni'nin Yarısını {user_name} 'a Verdi! Artık Aç Kalmayacak 😋",
-                                        f"{user_name} 'ı Camdan Attı! Kafası Yarıldı ve Öldü .",
-                                        f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
-                                        f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
-                                        f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
-		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
-	    ]
-            slap_phrase = random.choice(slap_phrases)
-            await event.respond(f"**[{event.sender.first_name}](tg://user?id={event.sender.id}) ,  {slap_phrase}**")
-        else:
-            await event.respond("**👁️‍🗨️ ᴜ̈ᴢɢᴜ̈ɴᴜ̈ᴍ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍɪʏᴏʀᴜᴍ !**")
-    else:
-        await event.respond("**💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ ...**")
-
+@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
+async def reload(client: Client, message: Message):
+    await message.reply_text(f"{reloads}",
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
+                ],
+            ],
+        ),
+			    )
+	
 
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
@@ -627,7 +652,9 @@ async def romantik(event):
                    ),  
                  link_preview=False)
 
-
+##################################################
+##################################################
+##################################################
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
     if event.is_private:
@@ -809,7 +836,9 @@ async def grup_info(event):
 
     await event.respond(response_text, buttons=[[owner_button]])
 
-
+##################################################
+##################################################
+##################################################
 @client.on(events.NewMessage(pattern='^/cancel ?(.*)'))
 async def cancel(event):
   global anlik_calisan
@@ -1467,34 +1496,11 @@ async def btag(event):
                       Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
                       ]
                     ),
-                    link_preview=False)
+                    link_preview=False)	
 
-@app.on_message(filters.new_chat_members, group=1)
-async def zar(bot: Client, msg: Message):
-    for new_user in msg.new_chat_members:
-        if str(new_user.id) == str(BOT_ID):
-            await msg.reply(
-                f'''{hgbot}''', 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
-    )
-        elif str(new_user.id) == str(OWNER_ID):
-            await msg.reply(f'{hgowner}**')
-
-
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
-async def reload(client: Client, message: Message):
-    await message.reply_text(f"{reloads}",
-    reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", callback_data="admins"),
-                ],
-            ],
-        ),
-			    )
-	
-
-################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
+##################################################
+##################################################
+##################################################
 class Database: 
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
