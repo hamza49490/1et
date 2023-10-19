@@ -40,7 +40,7 @@ async def start(event):
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
                       ],
                       [
                        Button.inline('👤 Diğer Düşmanlar', data='bireysel')
@@ -54,7 +54,7 @@ async def start(event):
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
                       ],
                       [
                        Button.inline('👤 Diğer Düşmanlar', data='bireysel')
@@ -72,7 +72,7 @@ async def start(event):
                        Button.inline('👱 Köylü Takımı', data='koylu')
                       ],
                       [
-                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurt')
+                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
                       ],
                       [
                        Button.inline('👤 Diğer Düşmanlar', data='bireysel')
@@ -156,7 +156,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="kurt"))
+@client.on(events.callbackquery.CallbackQuery(data="kurttakim"))
 async def handler(event):
     await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
                       [
