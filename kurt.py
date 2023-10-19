@@ -4,6 +4,7 @@ import time
 import os
 import heroku3
 import logging
+from mesaj.kurtmesaj import ...
 from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
