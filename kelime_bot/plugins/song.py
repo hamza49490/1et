@@ -16,6 +16,7 @@ from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
+from kelime_bot import BOT_ID
 import random
 import shutil, psutil, traceback, os
 import string
@@ -35,7 +36,6 @@ from pyrogram.errors import (
     PeerIdInvalid,
     UserIsBlocked,
 )
-
 
 ##############################
 @Client.on_message(filters.command(["bul", "song"]) & ~filters.edited)
