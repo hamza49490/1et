@@ -5,7 +5,7 @@ import os
 import heroku3
 import logging 
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
-from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgiden, skatill, kundakcii, buyucu
+from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgiden, skatill, kundakcii, necromancerr
 from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
@@ -206,7 +206,7 @@ async def handler(event):
                       ],
                       [
                       Button.inline("Kundakçı 🔥", data="kundakci"),
-                      Button.inline("Büyücü ⚰️", data="buyucu")
+                      Button.inline("Necromancer ⚰️", data="necromancer")
                       ],
                       [
                       Button.inline("👈 Geri", data="grstart")
@@ -673,9 +673,9 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="buyucu"))
+@client.on(events.callbackquery.CallbackQuery(data="necromancer"))
 async def handler(event):
-    await event.edit(f"{buyucu}", buttons=(
+    await event.edit(f"{necromancerr}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
