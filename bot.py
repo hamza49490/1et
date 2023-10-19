@@ -79,7 +79,7 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
-ozel_list = [6540285284]
+ozel_list = []
 grup_sayi = []
 etiketuye = []
 isleyen = []
