@@ -219,43 +219,43 @@ async def handler(event):
 async def handler(event):
     await event.edit(f"**🌟 Rol : Köylü 👱\n\n🗯️ Hakkında :\n**{koyluu}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="sarhos"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Sarhoş 🍻**{sarhoss}", buttons=(
+    await event.edit(f"**🌟 Rol : Sarhoş 🍻\n\n🗯️ Hakkında :\n**{sarhoss}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="gozcu"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Gözcü 👳**{gozcuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Gözcü 👳\n\n🗯️ Hakkında :\n**{gozcuu}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="yanci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Yancı 💋**{yancii}", buttons=(
+    await event.edit(f"**🌟 Rol : Yancı 💋\n\n🗯️ Hakkında :\n**{yancii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="seyirci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Seyirci 👁**{seyircii}", buttons=(
+    await event.edit(f"**🌟 Rol : Seyirci 👁\n\n🗯️ Hakkında :\n**{seyircii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
@@ -263,198 +263,198 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="silahsor"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Silahşör 🔫**{silahsorr}", buttons=(
+    await event.edit(f"**🌟 Rol : Silahşör 🔫\n\n🗯️ Hakkında :\n**{silahsorr}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="kmelek"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Koruyucu Melek 👼**{kmelekk}", buttons=(
+    await event.edit(f"**🌟 Rol : Koruyucu Melek 👼\n\n🗯️ Hakkında :\n**{kmelekk}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="aptal"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Aptal 🃏**{aptall}", buttons=(
+    await event.edit(f"**🌟 Rol : Aptal 🃏\n\n🗯️ Hakkında :\n**{aptall}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="mason"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Mason 👷**{masonn}", buttons=(
+    await event.edit(f"**🌟 Rol : Mason 👷\n\n🗯️ Hakkında :\n**{masonn}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="dedektif"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Dedektif 🕵**{dedektiff}", buttons=(
+    await event.edit(f"**🌟 Rol : Dedektif 🕵\n\n🗯️ Hakkında :\n**{dedektiff}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="gozcuc"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Gözcü Çırağı 🙇**{gozcucc}", buttons=(
+    await event.edit(f"**🌟 Rol : Gözcü Çırağı 🙇\n\n🗯️ Hakkında :\n**{gozcucc}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="tavci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Tarikatçı Avcı 💂**{tavcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Tarikatçı Avcı 💂\n\n🗯️ Hakkında :\n**{tavcii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="eros"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Eros 🏹**{eross}", buttons=(
+    await event.edit(f"**🌟 Rol : Eros 🏹\n\n🗯️ Hakkında :\n**{eross}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="avci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Avcı 🎯**{avcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Avcı 🎯\n\n🗯️ Hakkında :\n**{avcii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="beceriksiz"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Beceriksiz 🤕**{beceriksizz}", buttons=(
+    await event.edit(f"**🌟 Rol : Beceriksiz 🤕\n\n🗯️ Hakkında :\n**{beceriksizz}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="demirci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Demirci ⚒**{demircii}", buttons=(
+    await event.edit(f"**🌟 Rol : Demirci ⚒\n\n🗯️ Hakkında :\n**{demircii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="karak"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kara kurt 🐺🌑**{karakk}", buttons=(
+    await event.edit(f"**🌟 Rol : Kara kurt 🐺🌑\n\n🗯️ Hakkında :\n**{karakk}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="prens"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Prens 💍**{prenss}", buttons=(
+    await event.edit(f"**🌟 Rol : Prens 💍\n\n🗯️ Hakkında :\n**{prenss}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="bbaskani"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Belediye Başkanı 🎖**{bbaskanii}", buttons=(
+    await event.edit(f"**🌟 Rol : Belediye Başkanı 🎖\n\n🗯️ Hakkında :\n**{bbaskanii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="kahin"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kahin 🌀**{kahinn}", buttons=(
+    await event.edit(f"**🌟 Rol : Kahin 🌀\n\n🗯️ Hakkında :\n**{kahinn}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="hukumdar"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Hükümdar 👑**{hukumdarr}", buttons=(
+    await event.edit(f"**🌟 Rol : Hükümdar 👑\n\n🗯️ Hakkında :\n**{hukumdarr}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="bariscil"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Barışçıl ☮️**{bariscill}", buttons=(
+    await event.edit(f"**🌟 Rol : Barışçıl ☮️\n\n🗯️ Hakkında :\n**{bariscill}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="ybilge"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Yaşlı Bilge 📚**{ybilgee}", buttons=(
+    await event.edit(f"**🌟 Rol : Yaşlı Bilge 📚\n\n🗯️ Hakkında :\n**{ybilgee}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="uyutucu"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Uyutucu 💤**{uyutucuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Uyutucu 💤\n\n🗯️ Hakkında :\n**{uyutucuu}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="kurdumsu"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kurdumsu 👱‍🌚**{kurdumsuu}", buttons=(
+    await event.edit(f"**🌟 Rol : Kurdumsu 👱‍🌚\n\n🗯️ Hakkında :\n**{kurdumsuu}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="sehit"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Şehit 🔰**{sehitt}", buttons=(
+    await event.edit(f"**🌟 Rol : Şehit 🔰\n\n🗯️ Hakkında :\n**{sehitt}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="simyaci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Simyacı 🍵**{simyacii}", buttons=(
+    await event.edit(f"**🌟 Rol : Simyacı 🍵\n\n🗯️ Hakkında :\n**{simyacii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
@@ -462,54 +462,54 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="efendi"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Efendi 🛡**{efendii}", buttons=(
+    await event.edit(f"**🌟 Rol : Efendi 🛡\n\n🗯️ Hakkında :\n**{efendii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="guzel"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Güzel 💅**{guzell}", buttons=(
+    await event.edit(f"**🌟 Rol : Güzel 💅\n\n🗯️ Hakkında :\n**{guzell}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="fgetiren"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Fırtına Getiren 🌩**{fgetirenn}", buttons=(
+    await event.edit(f"**🌟 Rol : Fırtına Getiren 🌩\n\n🗯️ Hakkında :\n**{fgetirenn}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="hain"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Hain 🖕**{hainn}", buttons=(
+    await event.edit(f"**🌟 Rol : Hain 🖕\n\n🗯️ Hakkında :\n**{hainn}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="ycocuk"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Yabani Çocuk 👶**{ycocukk}", buttons=(
+    await event.edit(f"**🌟 Rol : Yabani Çocuk 👶\n\n🗯️ Hakkında :\n**{ycocukk}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="lanetli"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Lanetli 😾**{lanetlii}", buttons=(
+    await event.edit(f"**🌟 Rol : Lanetli 😾\n\n🗯️ Hakkında :\n**{lanetlii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="koylutakim")
                       ],
                     ),
                     link_preview=False)
@@ -518,81 +518,81 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kurtadam"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kurtadam 🐺**{kurtadamm}", buttons=(
+    await event.edit(f"**🌟 Rol : Kurtadam 🐺\n\n🗯️ Hakkında :\n**{kurtadamm}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="alfakurt"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Alfa Kurt ⚡️**{alfakurtt}", buttons=(
+    await event.edit(f"**🌟 Rol : Alfa Kurt ⚡️\n\n🗯️ Hakkında :\n**{alfakurtt}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="falci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Falcı 🔮**{falcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Falcı 🔮\n\n🗯️ Hakkında :\n**{falcii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="yavrukurt"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Yavru Kurt 🐶**{yavrukurtt}", buttons=(
+    await event.edit(f"**🌟 Rol : Yavru Kurt 🐶\n\n🗯️ Hakkında :\n**{yavrukurtt}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="lycan"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Lycan 🐺🌝**{lycann}", buttons=(
+    await event.edit(f"**🌟 Rol : Lycan 🐺🌝\n\n🗯️ Hakkında :\n**{lycann}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="haydut"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Haydut 🦉**{haydutt}", buttons=(
+    await event.edit(f"**🌟 Rol : Haydut 🦉\n\n🗯️ Hakkında :\n**{haydutt}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="mistik"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Mistik ☄️**{mistikk}", buttons=(
+    await event.edit(f"**🌟 Rol : Mistik ☄️\n\n🗯️ Hakkında :\n**{mistikk}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="duzenbaz"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Düzenbaz Kurt 🐑**{duzenbazz}", buttons=(
+    await event.edit(f"**🌟 Rol : Düzenbaz Kurt 🐑\n\n🗯️ Hakkında :\n**{duzenbazz}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="karmelek"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kara Melek 👼🐺**{karmelekk}", buttons=(
+    await event.edit(f"**🌟 Rol : Kara Melek 👼🐺\n\n🗯️ Hakkında :\n**{karmelekk}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="kurttakim")
                       ],
                     ),
                     link_preview=False)
@@ -601,81 +601,81 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="iblis"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : İblis 👺**{ibliss}", buttons=(
+    await event.edit(f"**🌟 Rol : İblis 👺\n\n🗯️ Hakkında :\n**{ibliss}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="tarikatci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Tarikatçı 👤**{tarikatcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Tarikatçı 👤\n\n🗯️ Hakkında :\n**{tarikatcii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="rahip"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Rahip ✝️**{rahipp}", buttons=(
+    await event.edit(f"**🌟 Rol : Rahip ✝️\n\n🗯️ Hakkında :\n**{rahipp}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="hirsiz"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Hırsız 😈**{hirsizz}", buttons=(
+    await event.edit(f"**🌟 Rol : Hırsız 😈\n\n🗯️ Hakkında :\n**{hirsizz}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="kustasi"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kukla ustası 🕴**{kustasii}", buttons=(
+    await event.edit(f"**🌟 Rol : Kukla ustası 🕴\n\n🗯️ Hakkında :\n**{kustasii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="cgiden"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Çift - Giden 🎭**{cgidenn}", buttons=(
+    await event.edit(f"**🌟 Rol : Çift - Giden 🎭\n\n🗯️ Hakkında :\n**{cgidenn}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="skatil"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Seri Katil 🔪**{skatill}", buttons=(
+    await event.edit(f"**🌟 Rol : Seri Katil 🔪\n\n🗯️ Hakkında :\n**{skatill}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="kundakci"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Kundakçı 🔥**{kundakcii}", buttons=(
+    await event.edit(f"**🌟 Rol : Kundakçı 🔥\n\n🗯️ Hakkında :\n**{kundakcii}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="necromancer"))
 async def handler(event):
-    await event.edit(f"**🌟 Rol : Necromancer ⚰️**{necromancerr}", buttons=(
+    await event.edit(f"**🌟 Rol : Necromancer ⚰️\n\n🗯️ Hakkında :\n**{necromancerr}", buttons=(
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="bireysel")
                       ],
                     ),
                     link_preview=False)
