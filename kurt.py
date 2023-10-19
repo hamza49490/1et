@@ -4,7 +4,7 @@ import time
 import os
 import heroku3
 import logging 
-from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, kahincc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
+from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, skatill, kundakcii, buyucu
 from telethon import TelegramClient, events
 from telethon import Button
@@ -106,7 +106,7 @@ async def handler(event):
                       Button.inline("Dedektif 🕵", data="dedektif")
                       ],
                       [
-                      Button.inline("Kahin Çırak 🙇", data="kahinc"),
+                      Button.inline("Gözcü Çırağı 🙇", data="gozcuc"),
                       Button.inline("Tarikatçı Avcı 💂", data="tavci")
                       ],
                       [
@@ -305,9 +305,9 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="kahinc"))
+@client.on(events.callbackquery.CallbackQuery(data="gozcuc"))
 async def handler(event):
-    await event.edit(f"{kahincc}", buttons=(
+    await event.edit(f"{gozcucc}", buttons=(
                       [
                       Button.inline("👈 Geri", data="grstart")
                       ],
