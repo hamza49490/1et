@@ -17,9 +17,9 @@ from pyrogram import Client, filters
 
 
 
-api_id = int(os.environ.get("APP_ID","18049084"))
-api_hash = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
-bot_token = os.environ.get("TOKEN","6559325433:AAF-G05bNjC-S5TwbmW222eY77SU8jM5GhY")
+api_id = int(os.environ.get("APP_ID","26573250"))
+api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
+bot_token = os.environ.get("TOKEN","6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY")
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
