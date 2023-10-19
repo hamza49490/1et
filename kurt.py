@@ -3,8 +3,9 @@ import random, os, logging, asyncio
 import time
 import os
 import heroku3
-import logging
-from mesaj.kurtmesaj import ...
+import logging 
+from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, kahincc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
+from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, skatill, kundakcii, buyucu
 from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
