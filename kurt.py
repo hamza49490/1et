@@ -5,7 +5,7 @@ import os
 import heroku3
 import logging 
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
-from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr
+from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from telethon import TelegramClient, events
 from telethon import Button
 from telethon import TelegramClient, events
@@ -35,9 +35,9 @@ LOGGER = logging.getLogger(__name__)
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
-     await event.reply(f"**💕 Bir rol takımı seçin .**", buttons=(
+     await event.reply(f"{rols}", buttons=(
                       [
-                       Button.inline('👱 Köylü Takımı', data='koylu')
+                       Button.inline('👱 Köylü Takımı', data='koylutakim')
                       ],
                       [
                        Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
@@ -49,9 +49,9 @@ async def start(event):
                     link_preview=False)
 
   if event.is_group:
-    return await client.send_message(event.chat_id, f"**💕 Bir rol takımı seçin .**", buttons=(
+    return await client.send_message(event.chat_id, f"{rols}", buttons=(
                       [
-                       Button.inline('👱 Köylü Takımı', data='koylu')
+                       Button.inline('👱 Köylü Takımı', data='koylutakim')
                       ],
                       [
                        Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
@@ -66,10 +66,10 @@ async def start(event):
 @client.on(events.callbackquery.CallbackQuery(data="grstart"))
 async def start(event):
     async for usr in client.iter_participants(event.chat_id):
-     await event.edit(f"**💕 Bir rol takımı seçin .**",
+     await event.edit(f"{rols}",
                     buttons=(
                       [
-                       Button.inline('👱 Köylü Takımı', data='koylu')
+                       Button.inline('👱 Köylü Takımı', data='koylutakim')
                       ],
                       [
                        Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
@@ -80,9 +80,9 @@ async def start(event):
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="koylu"))
+@client.on(events.callbackquery.CallbackQuery(data="koylutakim"))
 async def handler(event):
-    await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
+    await event.edit(f"{bilgis}", buttons=(
                       [
                       Button.inline("Köylü 👱", data="koylu"),
                       Button.inline("Sarhoş 🍻", data="sarhos")
@@ -158,7 +158,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kurttakim"))
 async def handler(event):
-    await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
+    await event.edit(f"{bilgis}", buttons=(
                       [
                       Button.inline("Kurtadam 🐺", data="kurtadam"),
                       Button.inline("Alfa Kurt ⚡️", data="alfakurt")
@@ -186,7 +186,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="bireysel"))
 async def handler(event):
-    await event.edit(f"**💕 Hakkında bilgi almak istediğiniz rolü seçin .**", buttons=(
+    await event.edit(f"{bilgis}", buttons=(
                       [
                       Button.inline("İblis 👺", data="iblis"),
                       Button.inline("Tarikatçı 👤", data="tarikatci")
