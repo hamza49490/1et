@@ -14,9 +14,7 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.events import StopPropagation
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-from Config import Config
-from pyrogram import Client
-from pyrogram import filters
+
 
 
 api_id = int(os.environ.get("APP_ID","18049084"))
