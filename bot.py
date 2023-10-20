@@ -657,6 +657,12 @@ async def is_group_admin(event):
 
 @client.on(events.NewMessage(pattern='/grup'))
 async def sahib(event):
+	
+    response_text = f'** {user_first_name} ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...**'
+    response = await event.respond(response_text)
+    await asyncio.sleep(2)
+    await response.delete()
+	
     await event.reply(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
                      [
                       Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
@@ -669,7 +675,7 @@ async def sahib(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="grup"))
 async def sahib(event):
-    await event.reply(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
+    await event.edit(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
                      [
                       Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
 		      Button.inline("👤 ɢʀᴜᴘ ᴀᴅᴍɪɴʟᴇʀɪ", data="gadmin")
@@ -681,34 +687,25 @@ async def sahib(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="gbot"))
 async def show_bots(event):
-    if event.is_private:
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
-        return
 	    
+    geri_button = Button.inline("✅  ɢᴇʀɪ", data="grup")	
     all_users = await event.client.get_participants(event.chat_id)
     bot_list = []
     for user in all_users:
         if isinstance(user, types.User) and user.bot:
             bot_list.append(user.username)
     if bot_list:
-        await event.reply(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list), buttons=[[geri_button]])
+        await event.edit(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list), buttons=[[geri_button]])
     else:
-        await event.reply("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**")
+        await event.edit("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**", buttons=(
+                     [
+                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+                     ]
+                   ),  
+                 link_preview=False)
 
 @client.on(events.callbackquery.CallbackQuery(data="gadmin"))
-async def show_admins(event):
-    if event.is_private:
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
-        return
-	    
+async def show_admins(event):	    
     chat = await event.get_chat()
     admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
     admin_list = ""
@@ -725,13 +722,6 @@ async def show_admins(event):
 async def grup_info(event):
 
     user = await event.get_sender()
-    user_first_name = f"[{user.first_name}](tg://user?id={user.id})"
-
-    response_text = f'** {user_first_name} ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...**'
-    response = await event.respond(response_text)
-    await asyncio.sleep(2)
-    await response.delete()
-
     chat = await event.get_chat()
     group_name = chat.title
     group_id = chat.id
@@ -771,7 +761,7 @@ async def grup_info(event):
         f'{special_status}'
     )
 
-    await event.respond(response_text, buttons=[[geri_button]])
+    await event.edit(response_text, buttons=[[geri_button]])
 
 @client.on(events.NewMessage(pattern='/id'))
 async def id(event):
