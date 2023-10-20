@@ -63,4 +63,5 @@ async def buldu(c:Client, m:Message):
 👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
                 await c.send_message(m.chat.id, text)
-
+    except KeyError:
+        pass
