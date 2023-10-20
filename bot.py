@@ -657,7 +657,15 @@ async def is_group_admin(event):
 
 @client.on(events.NewMessage(pattern='/grup'))
 async def sahib(event):
-	
+    if event.is_private:
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
+        return
+
+    user_first_name = f"[{user.first_name}](tg://user?id={user.id})"
     response_text = f'** {user_first_name} ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...**'
     response = await event.respond(response_text)
     await asyncio.sleep(2)
