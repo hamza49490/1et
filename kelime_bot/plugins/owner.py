@@ -20,7 +20,7 @@ from pyrogram.errors import (
 )
 
 
-#############################################
+################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
@@ -94,6 +94,43 @@ mongo_db_veritabani = MongoClient(DATABASE_URL)
 dcmdb = mongo_db_veritabani.handlers
 
 
+
+################## KULLANICI KONTROLLERİ #############
+async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
+    chat_id = cmd.chat.id
+    if not await db.is_user_exist(chat_id):
+        if cmd.chat.type == "private":
+            await db.add_user(chat_id)
+            await bot.send_message(LOG_CHANNEL,LAN.BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id))
+        else:
+            await db.add_user(chat_id)
+            chat = bot.get_chat(chat_id)
+            if str(chat_id).startswith("-100"):
+                new_chat_id = str(chat_id)[4:]
+            else:
+                new_chat_id = str(chat_id)[1:]
+            await bot.send_message(LOG_CHANNEL,LAN.GRUP_BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id, chat.title, cmd.chat.id, cmd.chat.id, cmd.message_id))
+
+    ban_status = await db.get_ban_status(chat_id) # Yasaklı Kullanıcı Kontrolü
+    if ban_status["is_banned"]:
+        if int((datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])).days) > int(ban_status["ban_duration"]):
+            await db.remove_ban(chat_id)
+        else:
+            if GROUP_SUPPORT:
+                msj = f"@{GROUP_SUPPORT}"
+            else:
+                msj = f"[{LAN.SAHIBIME}](tg://user?id={OWNER_ID})"
+            if cmd.chat.type == "private":
+                await cmd.reply_text(LAN.PRIVATE_BAN.format(msj), quote=True)
+            else:
+                await cmd.reply_text(LAN.GROUP_BAN.format(msj),quote=True)
+                await bot.leave_chat(cmd.chat.id)
+            return
+    await cmd.continue_propagation()
+
+
+
+
 ############### Broadcast araçları ###########
 broadcast_ids = {}
 
@@ -157,12 +194,37 @@ async def main_broadcast_handler(m, db): # Ana Broadcast Mantığı
     if failed == 0:
         await m.reply_text(text=LAN.BROADCAST_STOPPED.format(completed_in, total_users, done, success, failed), quote=True,)
     else:
-        await m.reply_document(document="broadcast.txt", caption=LAN.BROADCAST_STOPPED.format(completed_in, total_users, done, success, failed), quote=True,)
-    os.remove("broadcast.txt")
+        await m.reply_document(document="broadcast-logs-g4rip.txt", caption=LAN.BROADCAST_STOPPED.format(completed_in, total_users, done, success, failed), quote=True,)
+    os.remove("broadcast-logs-g4rip.txt")
 
 
-################# SAHİP KOMUTLARI ############
-@Client.on_message(filters.command("istatistik") & filters.user(OWNER_ID))
+
+# Genelde müzik botlarının mesaj silme özelliği olur. Bu özelliği ReadMe.md dosyasındaki örnekteki gibi kullanabilirsiniz.
+delcmdmdb = dcmdb.admins
+
+async def delcmd_is_on(chat_id: int) -> bool: # Grup için mesaj silme özeliğinin açık olup olmadığını kontrol eder.
+    chat = await delcmdmdb.find_one({"chat_id": chat_id})
+    return not chat
+
+
+async def delcmd_on(chat_id: int): # Grup için mesaj silme özeliğini açar.
+    already_del = await delcmd_is_on(chat_id)
+    if already_del:
+        return
+    return await delcmdmdb.delete_one({"chat_id": chat_id})
+
+
+async def delcmd_off(chat_id: int): # Grup için mesaj silme özeliğini kapatır.
+    already_del = await delcmd_is_on(chat_id)
+    if not already_del:
+        return
+    return await delcmdmdb.insert_one({"chat_id": chat_id})
+
+
+
+################# SAHİP KOMUTLARI #############
+# Verileri listeleme komutu
+@app.on_message(filters.command("istatistik") & filters.user(OWNER_ID))
 async def botstats(bot: Client, message: Message):
     g4rip = await bot.send_message(message.chat.id, LAN.STATS_STARTED.format(message.from_user.mention))
     all_users = await db.get_all_users()
@@ -183,13 +245,17 @@ async def botstats(bot: Client, message: Message):
     total_users = await db.total_users_count()
     await g4rip.edit(text=LAN.STATS.format(BOT_USERNAME, total_users, groups, pms, total, used, disk_usage, free, cpu_usage, ram_usage, __version__), parse_mode="md")
 
+
+
 # Botu ilk başlatan kullanıcıların kontrolünü sağlar.
-@Client.on_message()
+@app.on_message()
 async def G4RIP(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
 
+
+
 # Broadcast komutu
-@Client.on_message(filters.command("reklam") & filters.user(OWNER_ID) & filters.reply)
+@app.on_message(filters.command("reklam") & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
@@ -206,6 +272,8 @@ def humanbytes(size):
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
 
+
+########### ÇOKLU DİL ##############
 class LAN(object):
 
     if LANGAUGE == "TR":
@@ -213,9 +281,26 @@ class LAN(object):
         BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})**"
         GRUP_BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})\n💬 Grub : {}\n🌟 Grub ID: {}\n🎲 Mesaj Linki : [Buraya Tıkla](https://t.me/c/{}/{})**"
         SAHIBIME = "sahibime"
+        PRIVATE_BAN = "🗒️ **Üzgünüm, yasaklandınız! Bunun bir hata olduğunu düşünyorsanız {} yazın.**"
+        GROUP_BAN = "🗒️ **Üzgünüm, grubunuz karalisteye alındı! Burada daha fazla kalamam. Bunun bir hata olduğunu düşünyorsanız {} yazın.**"
         NOT_ONLINE = "Aktif değil"
         BOT_BLOCKED = "Botu engellemiş"
+        USER_ID_FALSE = "**Kullanıcı ID Yanlış .**"
         BROADCAST_STARTED = "**✓ Reklam başlatıldı!**"
         BROADCAST_STOPPED = "**✓ Reklam ( {} )  tamamlandı .\n\n👤 Kayıtlı Kullanıcı : {}\n♻️ Gönderme Denemesi : {}\n✅ Başarılı : {}\n⛔ Başarısız : {}**"
         STATS_STARTED = "{} **Veriler Toplanıyor !**"
-        STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""		
+        STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""
+        BAN_REASON = "Yasaklandığınız için @{} tarafından otomatik olarak oluşturulmuştur ."
+        NEED_USER = "**Lütfen Kullanıcı kimliği verin.**"
+        BANNED_GROUP = "🚷 **Yasaklandı!\n\nTarafından : {}\nGrup ID : {}\nSüre : {}\nSebep : {}**"
+        AFTER_BAN_GROUP = "**Üzgünüm grubunuz kara listeye alındı! \n\nSebep :{}**\n\n**Daha fazla burada kalamam. Bunun bir hata olduğunu düşünüyorsanız destek grubuna gelin.**"
+        GROUP_BILGILENDIRILDI = "\n\n✅ **Grubu bilgilendirdim ve gruptan ayrıldım.**"
+        GRUP_BILGILENDIRILEMEDI = "\n\n❌ **Grubu bilgilendirmeye çalışırken bir hata oluştu:** \n\n`{}`"
+        USER_BANNED = "🚷 **Yasaklandı! \n\nTarafından : {}\nKullanıcı ID : {}\nSüre : {}\nSebep : {}**"
+        AFTER_BAN_USER = "**Üzgünüm kara listeye alındınız! \n\nSebep : {}**"
+        KULLANICI_BILGILENDIRME = "\n\n**✓ Kişiyi bilgilendirdim.**"
+        KULLANICI_BILGILENDIRMEME = "\n\n❌ **Kişiyi bilgilendirmeye çalışırken bir hata oluştu:** \n\n`{}`"
+        UNBANNED_USER = "🆓 **Yasak Kaldırıldı !\nKaldıran : {}\nKullanıcı ID : {}**"
+        USER_UNBAN_NOTIFY = "**💞 Hoppala, Çok Şanslısın ! \n👨🏻‍💻 [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) Yasağınızı kaldırdı !**"
+        BLOCKS = "🆔 **Kullanıcı ID : {}\n⏱ Süre : {}\n🗓 Yasaklanan Tarih : {}\n💬 Sebep : {}**\n\n"
+        TOTAL_BLOCK = "🚷 **Yasaklanan Kullanıcılar :** `{}`\n\n{}"
