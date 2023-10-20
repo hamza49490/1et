@@ -70,7 +70,7 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME","AikoDenemeBot") # Botunuzun kullan
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 OWNER_ID = int(os.environ.get("OWNER_ID","6540285284")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
-OWNER = [6540285284]
+
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 
