@@ -1,41 +1,27 @@
 import wget
-from yt_dlp import YoutubeDL
 import os, youtube_dl, requests, time
-from youtube_search import YoutubeSearch
-from pyrogram.handlers import MessageHandler
 import yt_dlp
 import random, os, logging, asyncio
-from asyncio import sleep
-from time import time
-from os import remove
-from pyrogram.errors import FloodWait
-from datetime import datetime
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from pyrogram.errors import PeerIdInvalid
-from pyrogram.types import Message, User
-from pyrogram.types.messages_and_media import Message
-from pyrogram import Client, filters
-from kelime_bot import BOT_ID, BOT_USERNAME, OWNER_ID
 import random
 import shutil, psutil, traceback, os
 import string
 import time
 import datetime
-import motor.motor_asyncio
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-import shutil, psutil, traceback
-import traceback
 import aiofiles
+from yt_dlp import YoutubeDL
+from youtube_search import YoutubeSearch
 from random import randint
-from pyrogram import Client, filters, __version__
-from pyrogram.types import Message
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
+from asyncio import sleep
+from time import time
+from os import remove
+from datetime import datetime
+from pyrogram import filters
+from pyrogram.handlers import MessageHandler
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.errors import PeerIdInvalid
+from pyrogram.types import Message, User
+from pyrogram import Client, filters
+from kelime_bot import BOT_ID, BOT_USERNAME, OWNER_ID
 
 ##############################
 @Client.on_message(filters.command(["bul", "song"]) & ~filters.edited)
