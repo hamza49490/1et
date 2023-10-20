@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, Message
 
 
-@Client.on_message(command(["reload"]))
+@Client.on_message(command(["r"]))
 async def update_admin(client: Client, message: Message):
     global admins
     if message.chat.type == "private":
