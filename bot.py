@@ -9,7 +9,7 @@ import traceback
 import aiofiles
 import wget
 import yt_dlp
-import os, youtube_dl, requests, time
+import os, requests, time
 import random, os, logging, asyncio
 import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
@@ -19,10 +19,7 @@ from telethon.tl import types
 from telethon import Button
 from telethon.tl import types
 from telethon.tl import functions
-from yt_dlp import YoutubeDL
-from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-from yt_dlp import YoutubeDL
 from telethon import events
 from telethon import errors
 from telethon import TelegramClient
@@ -40,22 +37,12 @@ from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from datetime import datetime
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
-from pyrogram.types import Message
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from random import randint
-from pyrogram import Client, filters, __version__
-from pyrogram.types import Message
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
+
 
 logging.basicConfig(
     level=logging.INFO,
