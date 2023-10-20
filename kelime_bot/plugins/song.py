@@ -16,7 +16,7 @@ from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-from kelime_bot import BOT_ID, USERNAME
+from kelime_bot import BOT_ID, USERNAME, OWNER_ID
 import random
 import shutil, psutil, traceback, os
 import string
