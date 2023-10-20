@@ -325,9 +325,6 @@ tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa d
 kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳", )
 
 #x21 = ( "", "", "", "", )
-#@client.on(events.NewMessage(pattern='(?i)buket+'))
-#async def yeni_mesaj(event: events.NewMessage.Event):
-#    await event.reply(f"➻ **Sohbet modu aktif etmek için /sohbetmod on yazın ...**")
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
