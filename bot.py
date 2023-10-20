@@ -1455,10 +1455,8 @@ async def btag(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern="^/kurt$"))
+@client.on(events.NewMessage(pattern='/kurt'))
 async def start(event):
-  if event.is_private:
-    async for usr in client.iter_participants(event.chat_id):
      await event.reply(f"{rols}", buttons=(
                       [
                        Button.inline('👱 Köylü Takımı', data='koylutakim')
@@ -1472,24 +1470,8 @@ async def start(event):
                     ),
                     link_preview=False)
 
-  if event.is_group:
-    return await client.send_message(event.chat_id, f"{rols}", buttons=(
-                      [
-                       Button.inline('👱 Köylü Takımı', data='koylutakim')
-                      ],
-                      [
-                       Button.inline('🐺 Kurtlar & Müttefikleri', data='kurttakim')
-                      ],
-                      [
-                       Button.inline('👤 Diğer Düşmanlar', data='bireysel')
-                      ],
-                    ),
-                    link_preview=False)
-
-
 @client.on(events.callbackquery.CallbackQuery(data="grstart"))
 async def start(event):
-    async for usr in client.iter_participants(event.chat_id):
      await event.edit(f"{rols}",
                     buttons=(
                       [
