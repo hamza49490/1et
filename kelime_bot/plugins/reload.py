@@ -1,6 +1,6 @@
 import asyncio
 from asyncio import sleep
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, Message
 
 
