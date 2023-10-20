@@ -655,7 +655,31 @@ async def is_group_admin(event):
         pass
     return False
 
-@client.on(events.NewMessage(pattern='/bots'))
+@client.on(events.NewMessage(pattern='/grup'))
+async def sahib(event):
+    await event.reply(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
+                     [
+                      Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
+		      Button.inline("👤 ɢʀᴜᴘ ᴀᴅᴍɪɴʟᴇʀɪ", data="gadmin")
+		     ],[
+                      Button.inline("⚙️ ɢʀᴜᴘ ʙɪʟɢɪʟᴇʀɪ", data="gbilgi")
+                     ]
+                   ),  
+                 link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="grup"))
+async def sahib(event):
+    await event.reply(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
+                     [
+                      Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
+		      Button.inline("👤 ɢʀᴜᴘ ᴀᴅᴍɪɴʟᴇʀɪ", data="gadmin")
+		     ],[
+                      Button.inline("⚙️ ɢʀᴜᴘ ʙɪʟɢɪʟᴇʀɪ", data="gbilgi")
+                     ]
+                   ),  
+                 link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="gbot"))
 async def show_bots(event):
     if event.is_private:
         await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
@@ -671,11 +695,11 @@ async def show_bots(event):
         if isinstance(user, types.User) and user.bot:
             bot_list.append(user.username)
     if bot_list:
-        await event.reply(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list))
+        await event.reply(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list), buttons=[[geri_button]])
     else:
         await event.reply("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**")
 
-@client.on(events.NewMessage(pattern='/admins'))
+@client.on(events.callbackquery.CallbackQuery(data="gadmin"))
 async def show_admins(event):
     if event.is_private:
         await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
@@ -690,56 +714,15 @@ async def show_admins(event):
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await event.respond(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**")
-
-@client.on(events.callbackquery.CallbackQuery(data="admins"))
-async def show_admins(event):
-    if event.is_private:
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.edit("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
-        return
-	    
-    chat = await event.get_chat()
-    admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
-    admin_list = ""
-    for admin in admins:
-        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**")
+    await event.respond(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**",, buttons=(
+                     [
+                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+                     ]
+                   ),  
+                 link_preview=False)
     
-@client.on(events.NewMessage(pattern='/id'))
-async def id(event):
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        user_id = previous_message.sender_id
-        chat_id = event.chat_id
-        if event.is_private:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
-        else:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
-
-
-    else:
-        user_id = event.sender_id
-        chat_id = event.chat_id
-        if event.is_private:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
-        else:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
-
-@client.on(events.NewMessage(pattern='/iletisim'))
-async def zar(event):
-    mrt = await event.reply("✓  **ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪɴ ...**")
-    await asyncio.sleep(2)
-    await mrt.edit(f"**👨🏻‍💻 [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID})**")
-
-@client.on(events.NewMessage(pattern='/grup'))
+@client.on(events.callbackquery.CallbackQuery(data="gbilgi"))
 async def grup_info(event):
-    if event.is_private:
-        await event.respond("**✓  sᴀᴅᴇᴄᴇ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴɪʟᴀʙɪʟɪʀ .**")
-        return
 
     user = await event.get_sender()
     user_first_name = f"[{user.first_name}](tg://user?id={user.id})"
@@ -778,7 +761,7 @@ async def grup_info(event):
     if not special_status:
         special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
 
-    owner_button = Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
+    geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
 
     response_text = (
         f'➻ **ɢʀᴜᴘ ᴀᴅɪ : {group_name}**\n'
@@ -788,8 +771,34 @@ async def grup_info(event):
         f'{special_status}'
     )
 
-    await event.respond(response_text, buttons=[[owner_button]])
+    await event.respond(response_text, buttons=[[geri_button]])
 
+@client.on(events.NewMessage(pattern='/id'))
+async def id(event):
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        user_id = previous_message.sender_id
+        chat_id = event.chat_id
+        if event.is_private:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
+        else:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
+
+
+    else:
+        user_id = event.sender_id
+        chat_id = event.chat_id
+        if event.is_private:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
+        else:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
+
+@client.on(events.NewMessage(pattern='/iletisim'))
+async def zar(event):
+    mrt = await event.reply("✓  **ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪɴ ...**")
+    await asyncio.sleep(2)
+    await mrt.edit(f"**👨🏻‍💻 [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID})**")
+	
 ##################################################
 ##################################################
 ##################################################
@@ -815,12 +824,7 @@ async def cancel(event):
 
   sender = await event.get_sender()
   rxyzdev_stopT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-  if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️  ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...\n\n➻ {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+  if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️  ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...\n\n➻ {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/atag ?(.*)"))
 async def mentionalladmin(event):
@@ -832,13 +836,8 @@ async def mentionalladmin(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**",buttons=(
-                     [
-	             Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
-	  
+    return await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**")
+
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.group(1)
@@ -856,22 +855,12 @@ async def mentionalladmin(event):
     anlik_calisan.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
-    await event.respond("**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await event.respond("**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     async for usr in client.iter_participants(event.chat_id,filter=ChannelParticipantsAdmins):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
       if event.chat_id not in anlik_calisan:
-        await event.respond("**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+        await event.respond("**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...**")
         return
       if usrnum == 1:
         await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
@@ -881,12 +870,7 @@ async def mentionalladmin(event):
 
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...**")
 
 @client.on(events.NewMessage(pattern="^/utag ?(.*)"))
 async def utag(event):
@@ -899,12 +883,7 @@ async def utag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -923,12 +902,7 @@ async def utag(event):
     anlik_calisan.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
-    await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
@@ -946,12 +920,7 @@ async def utag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
@@ -964,12 +933,7 @@ async def tag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -987,12 +951,7 @@ async def tag(event):
     anlik_calisan.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
-    await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
 
     gece_tag.append(event.chat_id)
     usrnum = 0
@@ -1011,12 +970,7 @@ async def tag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 	    
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
@@ -1029,12 +983,7 @@ async def etag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -1050,12 +999,7 @@ async def etag(event):
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /etag**")
     
   if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
@@ -1073,12 +1017,7 @@ async def etag(event):
 
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
      
 @client.on(events.NewMessage(pattern="^/vtag ?(.*)"))
 async def vtag(event):
@@ -1091,12 +1030,7 @@ async def vtag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -1112,12 +1046,7 @@ async def vtag(event):
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /vtag**")
     
   if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
@@ -1135,12 +1064,7 @@ async def vtag(event):
 
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/otag ?(.*)"))
 async def otag(event):
@@ -1153,12 +1077,7 @@ async def otag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -1174,12 +1093,7 @@ async def otag(event):
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /otag**")
     
   if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
@@ -1197,12 +1111,7 @@ async def otag(event):
 
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/stag ?(.*)"))
 async def stag(event):
@@ -1215,12 +1124,7 @@ async def stag(event):
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
+    return await event.respond(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -1236,12 +1140,7 @@ async def stag(event):
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /stag**")
     
   if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
+    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**")
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
@@ -1259,199 +1158,8 @@ async def stag(event):
 
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
     
-@client.on(events.NewMessage(pattern="^/rtag ?(.*)"))
-async def rtag(event):
-  global gece_tag
-  rxyzdev_tagTot[event.chat_id] = 0
-  if event.is_private:
-    return await event.respond(f"{nogroup}")
-  
-  admins = []
-  async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
-    admins.append(admin.id)
-  if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
-  
-  if event.pattern_match.group(1):
-    mode = "text_on_cmd"
-    msg = event.pattern_match.group(1)
-  elif event.reply_to_msg_id:
-    mode = "text_on_reply"
-    msg = event.reply_to_msg_id
-    if msg == None:
-        return await event.respond("__ᴇꜱᴋɪ ᴍᴇꜱᴀᴊʟᴀʀɪ ɢᴏʀᴇᴍɪʏᴏʀᴜᴍ!__")
-  elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("__ᴇᴛɪᴋᴇᴛʟᴇᴍᴇ ᴍᴇꜱᴀᴊɪ ʏᴀᴢᴍᴀᴅɪɴ!__")
-  else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /rtag**")
-    
-  if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
-    gece_tag.append(event.chat_id)
-    usrnum = 0
-    usrtxt = ""
-    async for usr in client.iter_participants(event.chat_id):
-      rxyzdev_tagTot[event.chat_id] += 1
-      usrnum += 1
-      usrtxt += f"[{random.choice(renk)}](tg://user?id={usr.id}) , "
-      if event.chat_id not in gece_tag:
-        return
-      if usrnum == 5:
-        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
-        await asyncio.sleep(2)
-        usrnum = 0
-        usrtxt = ""
-
-    sender = await event.get_sender()
-    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
-
-@client.on(events.NewMessage(pattern="^/ktag ?(.*)"))
-async def ktag(event):
-  global gece_tag
-  rxyzdev_tagTot[event.chat_id] = 0
-  if event.is_private:
-    return await event.respond(f"{nogroup}")
-  
-  admins = []
-  async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
-    admins.append(admin.id)
-  if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
-  
-  if event.pattern_match.group(1):
-    mode = "text_on_cmd"
-    msg = event.pattern_match.group(1)
-  elif event.reply_to_msg_id:
-    mode = "text_on_reply"
-    msg = event.reply_to_msg_id
-    if msg == None:
-        return await event.respond("__ᴇꜱᴋɪ ᴍᴇꜱᴀᴊʟᴀʀɪ ɢᴏʀᴇᴍɪʏᴏʀᴜᴍ!__")
-  elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("__ᴇᴛɪᴋᴇᴛʟᴇᴍᴇ ᴍᴇꜱᴀᴊɪ ʏᴀᴢᴍᴀᴅɪɴ!__")
-  else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /ktag**")
-    
-  if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
-    gece_tag.append(event.chat_id)
-    usrnum = 0
-    usrtxt = ""
-    async for usr in client.iter_participants(event.chat_id):
-      rxyzdev_tagTot[event.chat_id] += 1
-      usrnum += 1
-      usrtxt += f"[{random.choice(kart)}](tg://user?id={usr.id}) , "
-      if event.chat_id not in gece_tag:
-        return
-      if usrnum == 5:
-        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
-        await asyncio.sleep(2)
-        usrnum = 0
-        usrtxt = ""
-
-    sender = await event.get_sender()
-    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)
-
-@client.on(events.NewMessage(pattern="^/btag ?(.*)"))
-async def btag(event):
-  global gece_tag
-  rxyzdev_tagTot[event.chat_id] = 0
-  if event.is_private:
-    return await event.respond(f"{nogroup}")
-  
-  admins = []
-  async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
-    admins.append(admin.id)
-  if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}",buttons=(
-                     [
-                      Button.inline("✅  ʏᴏ̈ɴᴇᴛɪᴄɪʟᴇʀ", data="admins")
-                     ]
-                   ), 
-                 link_preview=False)
-  
-  if event.pattern_match.group(1):
-    mode = "text_on_cmd"
-    msg = event.pattern_match.group(1)
-  elif event.reply_to_msg_id:
-    mode = "text_on_reply"
-    msg = event.reply_to_msg_id
-    if msg == None:
-        return await event.respond("__ᴇꜱᴋɪ ᴍᴇꜱᴀᴊʟᴀʀɪ ɢᴏʀᴇᴍɪʏᴏʀᴜᴍ!__")
-  elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("__ᴇᴛɪᴋᴇᴛʟᴇᴍᴇ ᴍᴇꜱᴀᴊɪ ʏᴀᴢᴍᴀᴅɪɴ!__")
-  else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /btag**")
-    
-  if mode == "text_on_cmd":
-    await client.send_message(event.chat_id, "**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ...**", buttons=(
-                      [
-                      Button.url('🗨️  ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
-                      ]
-                    ),
-                    link_preview=False)
-    gece_tag.append(event.chat_id)
-    usrnum = 0
-    usrtxt = ""
-    async for usr in client.iter_participants(event.chat_id):
-      rxyzdev_tagTot[event.chat_id] += 1
-      usrnum += 1
-      usrtxt += f"[{random.choice(bayrak)}](tg://user?id={usr.id}) , "
-      if event.chat_id not in gece_tag:
-        return
-      if usrnum == 5:
-        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
-        await asyncio.sleep(2)
-        usrnum = 0
-        usrtxt = ""
-
-    sender = await event.get_sender()
-    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻ {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**", buttons=(
-                      [
-                      Button.url('🗨️  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  🗨️', f'https://t.me/{BOT_USERNAME}?startgroup=a')
-                      ]
-                    ),
-                    link_preview=False)	
-
 ##################################################
 ##################################################
 ##################################################
