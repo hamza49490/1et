@@ -16,7 +16,7 @@ from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
-from kelime_bot import BOT_ID, USERNAME, OWNER_ID
+from kelime_bot import BOT_ID, BOT_USERNAME, OWNER_ID
 import random
 import shutil, psutil, traceback, os
 import string
@@ -169,7 +169,7 @@ async def zar(bot: Client, msg: Message):
         if str(new_user.id) == str(BOT_ID):
             await msg.reply(
                 f'''**💞 ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n🗨️ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ ...\n\n🗯️ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ ...**''', 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{USERNAME}?start")]])
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
