@@ -664,7 +664,8 @@ async def sahib(event):
     if not await is_group_admin(event):
         await event.respond("**✓  sᴀᴅᴇᴄᴇ ᴀᴅᴍɪɴʟᴇʀ ᴋᴜʟʟᴀɴᴀʙɪʟɪʀ ...**", parse_mode='markdown')
         return
-
+	    
+    user = await event.get_sender()
     user_first_name = f"[{user.first_name}](tg://user?id={user.id})"
     response_text = f'** {user_first_name} ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...**'
     response = await event.respond(response_text)
@@ -729,7 +730,6 @@ async def show_admins(event):
 @client.on(events.callbackquery.CallbackQuery(data="gbilgi"))
 async def grup_info(event):
 
-    user = await event.get_sender()
     chat = await event.get_chat()
     group_name = chat.title
     group_id = chat.id
