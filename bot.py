@@ -714,7 +714,7 @@ async def show_admins(event):
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await event.respond(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**",, buttons=(
+    await event.respond(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**", buttons=(
                      [
                       Button.inline("🗯️  ɢᴇʀɪ", data="grup")
                      ]
