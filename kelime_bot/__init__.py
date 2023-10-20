@@ -15,6 +15,12 @@ TOKEN = "6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY"
 BOT_ID = "6559325433"
 USERNAME = "AikoDenemeBot"
 OWNER_ID = 6540285284
+DATABASE_URL = "mongodb+srv://ok:ok@cluster0.uooya.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+BOT_USERNAME = "AikoDenemeBot"
+LOG_CHANNEL = "-1001983841726"
+GROUP_SUPPORT = "BuketBilgi"
+GONDERME_TURU = "False"
+LANGAUGE = "TR"
 
 # BOT CLIENTİ
 app = Client(
