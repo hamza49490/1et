@@ -4,7 +4,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.enums import ChatAction, ParseMode
 import openai
 from pyrogram.types import CallbackQuery
-from config import *
 import os,sys,re,requests
 import asyncio,time
 from random import choice
@@ -16,6 +15,10 @@ logging.basicConfig(
     level=logging.WARNING, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
+API_ID = int(os.environ.get("API_ID", "26573250"))
+API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c") 
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY") 
+OPENAI_KEY = os.environ.get("OPENAI_KEY", "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")
 
 StartTime = time.time()
 app = Client(
