@@ -1,20 +1,19 @@
-from pyrogram import Client, filters,enums,idle
-from pyrogram.errors import ApiIdInvalid, ApiIdPublishedFlood, AccessTokenInvalid
+from pyrogram import Client, filters,enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.enums import ChatAction, ParseMode
-import openai
 from pyrogram.types import CallbackQuery
-import os,sys,re,requests
-import asyncio,time
 from random import choice
 from datetime import datetime
+from kelime_bot import OPENAI_KEY
 import logging
-
+import openai
+import os,sys,re,requests
+import asyncio,time
 
 StartTime = time.time()
    
 openai.api_key = OPENAI_KEY
-@app.on_message(filters.command(["buket"],  prefixes=["", "/"]))
+@Client.on_message(filters.command(["buket"],  prefixes=["", "/"]))
 async def chat(bot, message):
     
     try:
