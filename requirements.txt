@@ -36,4 +36,3 @@ telethon
 yt-dlp
 git+https://github.com/yt-dlp/yt-dlp.git
 telebot
-python-telegram-bot
