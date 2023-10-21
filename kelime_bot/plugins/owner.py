@@ -19,13 +19,13 @@ from pyrogram.errors import (
     UserIsBlocked,
 )
 
-izin_verilen_kullanicilar = [6540285284]
+izin_verilen_kullanicilar = [6181368568]
 
 # Sadece izin verilen kullanıcılar bu komutları kullanabilir
 def izinli_kullanici(fonksiyon):
-    async def kontrol_et(client, message):
+    async def kontrol_et(client: Client, message: Message):
         if message.from_user.id in izin_verilen_kullanicilar:
-            await fonksiyon(client, message)
+            await fonksiyon(client: Client, message: Message)
         else:
             await message.reply_text("Bu komutu kullanma izniniz yok.")
     return kontrol_et
@@ -33,7 +33,7 @@ def izinli_kullanici(fonksiyon):
 
 @Client.on_message(filters.command("engelle") & filters.private)
 @izinli_kullanici
-async def engelle(bot: Client, message: Message):
+async def engelle(client: Client, message: Message):
     kullanici_id = message.text.split()[1]
     try:
         await client.block_user(kullanici_id)
@@ -44,7 +44,7 @@ async def engelle(bot: Client, message: Message):
 
 @Client.on_message(filters.command("engelikaldir") & filters.private)
 @izinli_kullanici
-async def engelikaldir(bot: Client, message: Message):
+async def engelikaldir(client: Client, message: Message):
     kullanici_id = message.text.split()[1]
     try:
         await client.unblock_user(kullanici_id)
@@ -55,7 +55,7 @@ async def engelikaldir(bot: Client, message: Message):
 
 @Client.on_message(filters.command("engelliler") & filters.private)
 @izinli_kullanici
-async def engelliler(bot: Client, message: Message):
+async def engelliler(client: Client, message: Message):
     engelliler = await client.get_blocked_users()
     engelliler_listesi = "\n".join([f"{user.user_id}: {user.first_name}" for user in engelliler])
     await message.reply_text(f"Engelli kullanıcılar:\n{engelliler_listesi}")
