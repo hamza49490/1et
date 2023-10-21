@@ -11,6 +11,7 @@ import aiofiles
 from kelime_bot import LOG_CHANNEL, BOT_USERNAME, DATABASE_URL, OWNER_ID, LANGAUGE, GONDERME_TURU, GROUP_SUPPORT
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, filters, __version__
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.errors import (
     FloodWait,
@@ -19,47 +20,37 @@ from pyrogram.errors import (
     UserIsBlocked,
 )
 
-izin_verilen_kullanicilar = [6181368568]
+allowed_users = [6181368568]
 
-# Sadece izin verilen kullanıcılar bu komutları kullanabilir
-def izinli_kullanici(fonksiyon):
-    async def kontrol_et(client: Client, message: Message):
-        if message.from_user.id in izin_verilen_kullanicilar:
-            await fonksiyon(client, message)
-        else:
-            await message.reply_text("Bu komutu kullanma izniniz yok.")
-    return kontrol_et
+# Engelleme komutu
+@Client.on_message(filters.command("block") & filters.user(allowed_users))
+def block_user(client, message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        client.block_user(user_id)
+        message.reply_text(f"Kullanıcı {user_id} engellendi.")
+    else:
+        message.reply_text("Geçersiz komut kullanımı. Kullanım: /block <kullanıcı_id>")
 
+# Engeli kaldırma komutu
+@Client.on_message(filters.command("unblock") & filters.user(allowed_users))
+def unblock_user(client, message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        client.unblock_user(user_id)
+        message.reply_text(f"Kullanıcının engeli kaldırıldı: {user_id}")
+    else:
+        message.reply_text("Geçersiz komut kullanımı. Kullanım: /unblock <kullanıcı_id>")
 
-@Client.on_message(filters.command("engelle") & filters.private)
-@izinli_kullanici
-async def engelle(client: Client, message: Message):
-    kullanici_id = message.text.split()[1]
-    try:
-        await client.block_user(kullanici_id)
-        await message.reply_text(f"{kullanici_id} ID'li kullanıcı engellendi.")
-    except Exception as e:
-        await message.reply_text(f"Hata: {str(e)}")
-
-
-@Client.on_message(filters.command("engelikaldir") & filters.private)
-@izinli_kullanici
-async def engelikaldir(client: Client, message: Message):
-    kullanici_id = message.text.split()[1]
-    try:
-        await client.unblock_user(kullanici_id)
-        await message.reply_text(f"{kullanici_id} ID'li kullanıcının engeli kaldırıldı.")
-    except Exception as e:
-        await message.reply_text(f"Hata: {str(e)}")
-
-
-@Client.on_message(filters.command("engelliler") & filters.private)
-@izinli_kullanici
-async def engelliler(client: Client, message: Message):
-    engelliler = await client.get_blocked_users()
-    engelliler_listesi = "\n".join([f"{user.user_id}: {user.first_name}" for user in engelliler])
-    await message.reply_text(f"Engelli kullanıcılar:\n{engelliler_listesi}")
-
+# Engelliler listesi komutu
+@Client.on_message(filters.command("blocked") & filters.user(allowed_users))
+def get_blocked_users(client, message):
+    blocked_users = client.get_blocked_users()
+    if blocked_users:
+        user_list = "\n".join([f"{user.user_id}: {user.first_name}" for user in blocked_users])
+        message.reply_text(f"Engelli kullanıcılar:\n{user_list}")
+    else:
+        message.reply_text("Engelli kullanıcı bulunmamaktadır.")
 
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
