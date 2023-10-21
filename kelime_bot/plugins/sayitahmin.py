@@ -39,5 +39,4 @@ def guess(client, message):
             chat_id=message.chat.id,
             text="Geçersiz bir sayı girdiniz."
         )
-
-app.run()
+        
