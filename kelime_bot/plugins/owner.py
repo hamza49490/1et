@@ -33,7 +33,7 @@ def izinli_kullanici(fonksiyon):
 
 @Client.on_message(filters.command("engelle") & filters.private)
 @izinli_kullanici
-async def engelle(client, message):
+async def engelle(bot: Client, message: Message):
     kullanici_id = message.text.split()[1]
     try:
         await client.block_user(kullanici_id)
@@ -44,7 +44,7 @@ async def engelle(client, message):
 
 @Client.on_message(filters.command("engelikaldir") & filters.private)
 @izinli_kullanici
-async def engelikaldir(client, message):
+async def engelikaldir(bot: Client, message: Message):
     kullanici_id = message.text.split()[1]
     try:
         await client.unblock_user(kullanici_id)
@@ -55,7 +55,7 @@ async def engelikaldir(client, message):
 
 @Client.on_message(filters.command("engelliler") & filters.private)
 @izinli_kullanici
-async def engelliler(client, message):
+async def engelliler(bot: Client, message: Message):
     engelliler = await client.get_blocked_users()
     engelliler_listesi = "\n".join([f"{user.user_id}: {user.first_name}" for user in engelliler])
     await message.reply_text(f"Engelli kullanıcılar:\n{engelliler_listesi}")
