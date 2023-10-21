@@ -4,7 +4,7 @@ import requests
 
 # "/lyrics" komutunu işleyen bir filtre oluşturun
 @filters.command("lyrics")
-def get_lyrics(_, message: Message):
+def get_lyrics(message: Message):
     # Mesajdaki şarkı adını alın
     song_name = message.text.split("/lyrics", maxsplit=1)[1].strip()
     
