@@ -19,6 +19,48 @@ from pyrogram.errors import (
     UserIsBlocked,
 )
 
+izin_verilen_kullanicilar = [6540285284]
+
+# Sadece izin verilen kullanıcılar bu komutları kullanabilir
+def izinli_kullanici(fonksiyon):
+    async def kontrol_et(client, message):
+        if message.from_user.id in izin_verilen_kullanicilar:
+            await fonksiyon(client, message)
+        else:
+            await message.reply_text("Bu komutu kullanma izniniz yok.")
+    return kontrol_et
+
+
+@Client.on_message(filters.command("engelle") & filters.private)
+@izinli_kullanici
+async def engelle(client, message):
+    kullanici_id = message.text.split()[1]
+    try:
+        await client.block_user(kullanici_id)
+        await message.reply_text(f"{kullanici_id} ID'li kullanıcı engellendi.")
+    except Exception as e:
+        await message.reply_text(f"Hata: {str(e)}")
+
+
+@Client.on_message(filters.command("engelikaldir") & filters.private)
+@izinli_kullanici
+async def engelikaldir(client, message):
+    kullanici_id = message.text.split()[1]
+    try:
+        await client.unblock_user(kullanici_id)
+        await message.reply_text(f"{kullanici_id} ID'li kullanıcının engeli kaldırıldı.")
+    except Exception as e:
+        await message.reply_text(f"Hata: {str(e)}")
+
+
+@Client.on_message(filters.command("engelliler") & filters.private)
+@izinli_kullanici
+async def engelliler(client, message):
+    engelliler = await client.get_blocked_users()
+    engelliler_listesi = "\n".join([f"{user.user_id}: {user.first_name}" for user in engelliler])
+    await message.reply_text(f"Engelli kullanıcılar:\n{engelliler_listesi}")
+
+
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
