@@ -39,3 +39,5 @@ telebot
 beautifulsoup4
 feedparser==6.0.2
 dnspython
+random
+python-telegram-bot
