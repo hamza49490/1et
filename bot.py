@@ -54,7 +54,7 @@ api_id = int(os.environ.get("APP_ID","26573250"))
 api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
 bot_token = os.environ.get("TOKEN","6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY")
 BOT_USERNAME = os.environ.get("BOT_USERNAME","AikoDenemeBot") # Botunuzun kullanıcı adı.
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
+CHANNELL = os.environ.get("CHANNELL", "BuketBilgi") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 OWNER_ID = int(os.environ.get("OWNER_ID","6540285284")) # Sahip hesabın id'si
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
 OWNER = [6540285284]
@@ -466,7 +466,7 @@ async def start(event):
                       Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
+                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
 		      ]
                   ),
                 link_preview=False)
@@ -477,7 +477,7 @@ async def start(event):
                       Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
+                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
 		      ]
                   ),
                 link_preview=False)
@@ -489,7 +489,7 @@ async def start(event):
                       Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
 	              Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{GROUP_SUPPORT}')
+                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
                     ]
                   ),
                 link_preview=False)
