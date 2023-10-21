@@ -112,10 +112,7 @@ async def chatbot(event):
 	    
     if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
         await event.reply(f"**{random.choice(valla)}**")
-	    
-    if "buket" in mesaj or "buket" in mesaj:
-        await event.reply(f"**{random.choice(buket)}**")
-	    
+	    	    
     if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
         await event.reply(f"**{random.choice(sg)}**")
 	    
@@ -247,8 +244,6 @@ nabiyon = ( "Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişe
 uzgun = ( "Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni", )
 
 valla = ( "tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .", )
-
-buket = ( "What dedin gülüm !", "Efendim Canım ", "Burdayım Bitanem", "Bana mı seslendin .", )
 
 sg = ( "Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...", )
 
