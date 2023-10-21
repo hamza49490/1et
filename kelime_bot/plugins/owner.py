@@ -20,39 +20,6 @@ from pyrogram.errors import (
     UserIsBlocked,
 )
 
-allowed_users = [6181368568]
-
-# Engelleme komutu
-@app.on_message(filters.command("block") & filters.user(allowed_users))
-def block_user(client, message):
-    if len(message.command) == 2:
-        user_id = int(message.command[1])
-        client.block_user(user_id)
-        message.reply_text(f"Kullanıcı {user_id} engellendi.")
-    else:
-        message.reply_text("Geçersiz komut kullanımı. Kullanım: /block <kullanıcı_id>")
-
-# Engeli kaldırma komutu
-@app.on_message(filters.command("unblock") & filters.user(allowed_users))
-def unblock_user(client, message):
-    if len(message.command) == 2:
-        user_id = int(message.command[1])
-        client.unblock_user(user_id)
-        message.reply_text(f"Kullanıcının engeli kaldırıldı: {user_id}")
-    else:
-        message.reply_text("Geçersiz komut kullanımı. Kullanım: /unblock <kullanıcı_id>")
-
-# Engelliler listesi komutu
-@app.on_message(filters.command("blocked") & filters.user(allowed_users))
-def get_blocked_users(client, message):
-    blocked_users = client.get_blocked_users()
-    if blocked_users:
-        user_list = "\n".join([f"{user.user_id}: {user.first_name}" for user in blocked_users])
-        message.reply_text(f"Engelli kullanıcılar:\n{user_list}")
-    else:
-        message.reply_text("Engelli kullanıcı bulunmamaktadır.")
-
-
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
