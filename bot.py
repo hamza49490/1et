@@ -52,8 +52,8 @@ LOGGER = logging.getLogger(__name__)
 
 api_id = int(os.environ.get("APP_ID","26573250"))
 api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
-bot_token = os.environ.get("TOKEN","6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
-BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot")
+bot_token = os.environ.get("TOKEN","6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY")
+BOT_USERNAME = os.environ.get("BOT_USERNAME","AikoDenemeBot")
 CHANNELL = os.environ.get("CHANNELL", "BuketBilgi")
 OWNER_ID = int(os.environ.get("OWNER_ID","6540285284"))
 OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
@@ -912,6 +912,7 @@ async def utag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
+
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
   global gece_tag
@@ -936,7 +937,7 @@ async def tag(event):
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     return await event.respond("____")
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ̈ʀɴᴇᴋ : /tag Merhaba**")
+    return await event.respond(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -947,21 +948,26 @@ async def tag(event):
     usrnum = 0
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
+      if usr.bot:
+        continue
+      if usr.deleted:
+        continue
       rxyzdev_tagTot[event.chat_id] += 1
       usrnum += 1
-      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
+      usrtxt += f"{usr.first_name}"
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
+        await client.send_message(event.chat_id, f"{usrtxt}  {msg}")
         await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
      
     sender = await event.get_sender()
-    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+    rxyzdev_initT = f"{sender.first_name}"      
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")
 	    
+
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
   global gece_tag
