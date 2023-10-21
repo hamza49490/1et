@@ -8,6 +8,9 @@ import string
 import time
 import datetime
 import aiofiles
+import requests
+from pyrogram import Client, filters
+from pyrogram.types import Message
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from random import randint
