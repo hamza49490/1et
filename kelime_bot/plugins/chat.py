@@ -4,29 +4,17 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.enums import ChatAction, ParseMode
 import openai
 from pyrogram.types import CallbackQuery
-from config import *
+from kelime_bot import OPENAI_KEY
 import os,sys,re,requests
 import asyncio,time
 from random import choice
 from datetime import datetime
 import logging
 
-FORMAT = "[LEGEND-MUKESH] %(message)s"
-logging.basicConfig(
-    level=logging.WARNING, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-
-
 StartTime = time.time()
-app = Client(
-    "chat-gpt" ,
-    api_id = API_ID,
-    api_hash = API_HASH ,
-    bot_token = BOT_TOKEN
-)
-   
+
 openai.api_key = OPENAI_KEY
-@app.on_message(filters.command(["buket"],  prefixes=["", "/"]))
+@Client.on_message(filters.command(["buket"],  prefixes=["", "/"]))
 async def chat(bot, message):
     
     try:
@@ -46,18 +34,3 @@ async def chat(bot, message):
     except Exception as e:
         await message.reply_text(f"** Hata **")
 
-
-if __name__ == "__main__":
-    print(f"""Bot Aktif !""")
-    try:
-        app.start()
-
-    
-    except (ApiIdInvalid, ApiIdPublishedFlood):
-        raise Exception("API_ID/API_HASH'ınız geçerli değil.")
-    except AccessTokenInvalid:
-        raise Exception("BOT_TOKEN'iniz geçerli değil.")
-    print(f"""REPO'YA KATILIN !""")
-    idle()
-    app.stop()
-    print("Bot Durdu !")
