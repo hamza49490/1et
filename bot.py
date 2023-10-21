@@ -337,7 +337,6 @@ async def chatbot(event):
 	    
     global isleyen
     qrup = event.chat_id
-        if qrup not in isleyen:
             isleyen.append(qrup)
             aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀʙɪʟɪʀɪᴍ !**"
             await event.reply(aktiv_olundu)
@@ -347,7 +346,7 @@ async def chatbot(event):
 
 @client.on(events.NewMessage(pattern="^/sohbetmod off"))
 async def chatbot(event):
-        if qrup in isleyen:
+    qrup = event.chat_id
             isleyen.remove(qrup)
             await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴅᴇᴠʀᴇ ᴅɪşɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀᴍᴀᴍ !**")
             return
