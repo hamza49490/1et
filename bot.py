@@ -182,7 +182,7 @@ async def chatbot(event):
     if "Geçmiş olsun" in mesaj or "geçmiş olsun" in mesaj:
         await event.reply(f"**{random.choice(bts)}**")
 
-    if "oyun" in mesaj or "Oyun" in mesaj or "Game" in mesaj or "game" in mesaj:
+    if "oyun" in mesaj or "Oyun" in mesaj:
         await event.reply(f"**{random.choice(trt)}**")
 
     if "Evet" in mesaj or "evet" in mesaj or "Evt" in mesaj or "evt" in mesaj:
