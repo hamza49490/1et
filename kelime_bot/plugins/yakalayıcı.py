@@ -51,8 +51,8 @@ async def buldu(c:Client, m:Message):
                 for harf in kelime:
                     kelime_list+= harf + " "
             
-                text = f"""**➻ {m.from_user.mention} **
-`{oyun[m.chat.id]['kelime']}` **Kelimesini Buldu !
+                text = f"""**➻ {m.from_user.mention}
+💭 Doğru Kelimeyi Buldu !
                 
 🎯 Raund : {oyun[m.chat.id]['round']}/80 
 📖 Kelime :   <code>{kelime_list}</code>
