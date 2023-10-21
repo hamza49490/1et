@@ -21,7 +21,6 @@ GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False)
 OWNER_ID = int(os.environ.get("OWNER_ID", "6540285284"))
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
-OPENAI_KEY = os.environ.get("OPENAI_KEY", "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")
 
 app = Client(
     ":memory:",
