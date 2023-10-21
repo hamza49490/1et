@@ -28,7 +28,7 @@ from kelime_bot import BOT_ID, BOT_USERNAME, OWNER_ID
 
 # "/lyrics" komutunu işleyen bir filtre oluşturun
 @filters.command("lyrics")
-def get_lyrics(_, message):
+def get_lyrics(client: Client, message: Message):
     # Mesajdaki şarkı adını alın
     song_name = message.text.split("/lyrics", maxsplit=1)[1].strip()
     
