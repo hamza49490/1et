@@ -326,18 +326,8 @@ kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi h
 
 #x21 = ( "", "", "", "", )
 @client.on(events.NewMessage(pattern="^/sohbetmod on"))
-async def chatbot(event):
-    if event.is_private:
-        await event.respond(f"{nogroup}", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond(f"{noadmin}", parse_mode='markdown')
-        return
-	    
+async def chatbot(event):	    
     global isleyen
-    qrup = event.chat_id
-            isleyen.append(qrup)
             aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀʙɪʟɪʀɪᴍ !**"
             await event.reply(aktiv_olundu)
             return
@@ -346,8 +336,7 @@ async def chatbot(event):
 
 @client.on(events.NewMessage(pattern="^/sohbetmod off"))
 async def chatbot(event):
-    qrup = event.chat_id
-            isleyen.remove(qrup)
+    global isleyen
             await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴅᴇᴠʀᴇ ᴅɪşɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀᴍᴀᴍ !**")
             return
         await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
