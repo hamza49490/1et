@@ -325,18 +325,30 @@ tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa d
 kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳", )
 
 #x21 = ( "", "", "", "", )
-@client.on(events.NewMessage(pattern="^/sohbetmod on"))
-async def chatbot(event):	    
+@client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
+async def chatbot(event):
+    if event.is_private:
+        await event.respond(f"{nogroup}", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond(f"{noadmin}", parse_mode='markdown')
+        return
+	    
     global isleyen
+    emr = event.pattern_match.group(1)
+    qrup = event.chat_id
+    if emr == "on" or emr == "On":
+        if qrup not in isleyen:
+            isleyen.append(qrup)
             aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀʙɪʟɪʀɪᴍ !**"
             await event.reply(aktiv_olundu)
             return
         await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀʙɪʟɪʏᴏʀᴜᴍ .**")
         return
-
-@client.on(events.NewMessage(pattern="^/sohbetmod off"))
-async def chatbot(event):
-    global isleyen
+    elif emr == "off" or emr == "Off":
+        if qrup in isleyen:
+            isleyen.remove(qrup)
             await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴅᴇᴠʀᴇ ᴅɪşɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀᴍᴀᴍ !**")
             return
         await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
@@ -349,7 +361,7 @@ async def chatbot(event):
                     ]
                   ),
                 link_preview=False)
-	
+	    
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
     if event.is_private:
