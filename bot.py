@@ -291,7 +291,7 @@ hms = ( "hmmmm 🙄", "Yeter ama aaaa 🙄", )
 
 bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
 
-trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, /d mi /c mi .", )
+trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, d mi c mi ?", )
 
 evt = ( "Hayır", "Hayır dedim", "yioooooooo", )
 
