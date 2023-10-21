@@ -36,8 +36,4 @@ telethon
 yt-dlp
 git+https://github.com/yt-dlp/yt-dlp.git
 telebot
-beautifulsoup4
-feedparser==6.0.2
-dnspython
-random
 python-telegram-bot
