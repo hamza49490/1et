@@ -38,5 +38,9 @@ git+https://github.com/yt-dlp/yt-dlp.git
 telebot
 beautifulsoup4
 feedparser==6.0.2
+pyrogram
+requests
+tgcrypto
+asyncio
 openai==0.27.2
 dnspython
