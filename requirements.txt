@@ -1,4 +1,4 @@
-pyrogram==1.3.6
+pyrogram
 python-dotenv
 motor
 aiohttp
@@ -23,7 +23,7 @@ youtube_search_python
 requests
 youtube_search
 ffmpeg
-asyncio==3.4.3
+asyncio
 youtube_search
 python-arq
 search_engine_parser
