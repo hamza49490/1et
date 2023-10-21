@@ -1,6 +1,6 @@
 from pyrogram import Client, filters,enums,idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram.enums import ChatAction, ParseMode
+from pyrogram.types import ChatAction, ParseMode
 from pyrogram.types import CallbackQuery
 from random import choice
 from datetime import datetime
