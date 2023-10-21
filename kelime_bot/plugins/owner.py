@@ -23,7 +23,7 @@ from pyrogram.errors import (
 allowed_users = [6181368568]
 
 # Engelleme komutu
-@Client.on_message(filters.command("block") & filters.user(allowed_users))
+@app.on_message(filters.command("block") & filters.user(allowed_users))
 def block_user(client, message):
     if len(message.command) == 2:
         user_id = int(message.command[1])
@@ -33,7 +33,7 @@ def block_user(client, message):
         message.reply_text("Geçersiz komut kullanımı. Kullanım: /block <kullanıcı_id>")
 
 # Engeli kaldırma komutu
-@Client.on_message(filters.command("unblock") & filters.user(allowed_users))
+@app.on_message(filters.command("unblock") & filters.user(allowed_users))
 def unblock_user(client, message):
     if len(message.command) == 2:
         user_id = int(message.command[1])
@@ -43,7 +43,7 @@ def unblock_user(client, message):
         message.reply_text("Geçersiz komut kullanımı. Kullanım: /unblock <kullanıcı_id>")
 
 # Engelliler listesi komutu
-@Client.on_message(filters.command("blocked") & filters.user(allowed_users))
+@app.on_message(filters.command("blocked") & filters.user(allowed_users))
 def get_blocked_users(client, message):
     blocked_users = client.get_blocked_users()
     if blocked_users:
