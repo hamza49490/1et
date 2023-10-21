@@ -25,7 +25,7 @@ izin_verilen_kullanicilar = [6181368568]
 def izinli_kullanici(fonksiyon):
     async def kontrol_et(client: Client, message: Message):
         if message.from_user.id in izin_verilen_kullanicilar:
-            await fonksiyon(client: Client, message: Message)
+            await fonksiyon(client, message)
         else:
             await message.reply_text("Bu komutu kullanma izniniz yok.")
     return kontrol_et
