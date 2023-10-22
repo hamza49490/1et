@@ -870,7 +870,7 @@ async def tag(event):
     rxyzdev_initT = f"{sender.first_name}"      
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")
 	    
-@client.on(events.NewMessage(pattern="^/tag ?(.*)"))
+@client.on(events.NewMessage(pattern="^/utag ?(.*)"))
 async def tag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
