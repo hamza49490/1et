@@ -329,29 +329,9 @@ async def chatbot(event):
         return
      
     global isleyen
-    emr = event.pattern_match.group(1)
-    qrup = event.chat_id
-    if emr == "on" or emr == "On":
-        if qrup not in isleyen:
-            isleyen.append(qrup)
-            aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
-            await event.reply(aktiv_olundu, buttons=[
-                [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
-            ])
-            return
-        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
-        return
-    elif emr == "off" or emr == "Off":
-        if qrup in isleyen:
-            isleyen.remove(qrup)
-            await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
-            return
-        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
-        return
-    
-    else:
-        await event.reply("💕  ᴍᴇʀʜᴀʙᴀ  ", buttons=[
-            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
+        await event.reply("💕  sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ  ", buttons=[
+            [Button.inline("✅ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
+	    [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_on")]
         ])
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
@@ -360,18 +340,14 @@ async def callback_sohbetmod_on(event):
     if qrup not in isleyen:
         isleyen.append(qrup)
         aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
-        await event.edit(aktiv_olundu, buttons=[
-            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
-        ])
+        await event.edit(aktiv_olundu)
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
 async def callback_sohbetmod_off(event):
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**", buttons=[
-            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
-        ])
+        await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
 
 
 	    
