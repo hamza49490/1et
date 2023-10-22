@@ -6,7 +6,7 @@ API_KEY = "bc5ca147175e26ed57581b6b"
 
 
 @filters.command(["dolar"])
-def get_dolar(update, context):
+def get_dolar(update, context, update.message)
     message = update.message
     response = requests.get(f"https://api.exchangerate-api.com/v4/latest/USD")
     data = response.json()
@@ -17,7 +17,7 @@ def get_dolar(update, context):
 get_dolar(update, context, message)
 
 @filters.command(["euro"])
-def get_euro(update, context):
+def get_euro(update, context, update.message)
     response = requests.get(f"https://api.exchangerate-api.com/v4/latest/EUR")
     data = response.json()
     euro_kuru = data["rates"]["TRY"]
@@ -27,7 +27,7 @@ def get_euro(update, context):
 get_euro(update, context, message)
 
 @filters.command(["altın"])
-def get_altin(update, context):
+def get_altin(update, context, update.message)
     response = requests.get(f"https://api.exchangerate-api.com/v4/latest/XAU")
     data = response.json()
     altin_kuru = data["rates"]["TRY"]
