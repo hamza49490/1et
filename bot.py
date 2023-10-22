@@ -455,17 +455,17 @@ async def slap(event):
 ##################################################
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
-    if event.is_private:
-#       await event.reply(file='resim.jpg')
-        await event.reply(f"{startmesaj}", buttons=(
-            [
-                Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
-            ],[
-                Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
-            ]
-        ),
-        link_preview=False)
+  if event.is_private:
+    async for usr in client.iter_participants(event.chat_id):
+     await event.reply(f"{startmesaj}", buttons=(
+                      [
+                      Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                    ],[
+                      Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
+                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+		      ]
+                  ),
+                link_preview=False)
 
   if event.is_group:
     return await client.send_message(event.chat_id, f"{startmesaj}", buttons=(
