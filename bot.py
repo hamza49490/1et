@@ -120,7 +120,7 @@ async def guess(event):
     else:
         await event.respond('Daha düşük bir sayı tahmin edin.')
 
-async def game_timer():
+async def game_timer(event):
     global game_active
     await event.respond('Oyun 1 dakika boyunca oynanmadığı için iptal edildi.')
     game_active = False
@@ -136,7 +136,7 @@ async def play(event):
     # Oyunu 1 dakika boyunca bekleyin ve sonra iptal edin
     await asyncio.sleep(60)
     if game_active:
-        await game_timer()
+        await game_timer(event)
 
 @client.on(events.NewMessage)
 async def chatbot(event):
