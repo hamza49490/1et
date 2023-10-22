@@ -83,7 +83,7 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
-@client.on(events.NewMessage(pattern='/start'))
+@client.on(events.NewMessage(pattern='/sayi'))
 async def start(event):
     await event.respond('Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
     raise events.StopPropagation
