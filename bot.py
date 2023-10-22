@@ -79,10 +79,9 @@ async def chatbot(event):
 
     qrup = event.chat_id
     if qrup not in isleyen:
-        return
+        return    
     if "Selam" in mesaj.split() or "Selamün Aleyküm" in mesaj.split():
-        pass
-	await event.reply(f"**{random.choice(selam)}**")
+        await event.reply(f"{random.choice(selam)}")
 	    
     if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
         await event.reply(f"**{random.choice(nasilsin)}**")
