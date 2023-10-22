@@ -83,6 +83,7 @@ isleyen = []
 user_sayi = []    
 
 
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
@@ -90,8 +91,8 @@ async def chatbot(event):
     qrup = event.chat_id
     if qrup not in isleyen:
         return    
-    if "Selam" in mesaj or "selam" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
-        await event.reply(f"**{random.choice(selam)}**")
+    if mesaj == "Selam" or mesaj == "selam" or mesaj == "Selamün Aleyküm" or mesaj == "selamün aleyküm":
+        await event.reply(f"{random.choice(selam)}")
 	    
     if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
         await event.reply(f"**{random.choice(nasilsin)}**")
@@ -366,15 +367,6 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
-
-@client.on(events.ChatAction)
-async def handle_chat_action(event):
-    pass
-    if hasattr(event, 'action'):
-        if isinstance(event.action, types.ChatActionUserJoined):
-            await event.reply(f"{event.user.first_name}, {random.choice(['Hoş geldin!', 'Merhaba!', 'Keyifli sohbetler!', 'Aramıza hoş geldin!'])}")
-        elif isinstance(event.action, types.ChatActionUserLeft):
-            await event.reply(f"{event.user.first_name}, {random.choice(['Görüşmek üzere!', 'Hoşça kal!', 'Tekrar bekleriz!', 'İyi günler dileriz!'])}")
 
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
