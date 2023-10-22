@@ -119,12 +119,10 @@ async def guess(event):
     else:
         await event.respond('Daha düşük bir sayı tahmin edin.')
 
-
 async def game_timer():
     global game_active
-    await client.send_message('Botunuzun_ID', 'Oyun 1 dakika boyunca oynanmadığı için iptal edildi.')
+    await event.respond('Oyun 1 dakika boyunca oynanmadığı için iptal edildi.')
     game_active = False
-
 
 @client.on(events.NewMessage(pattern='/game'))
 async def play(event):
