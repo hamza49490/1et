@@ -8,17 +8,16 @@ def roll_dice(client, message):
     client.send_dice(message.chat.id)
 
 # /sticker komutunu işleyen fonksiyon
-
 @Client.on_message(filters.command('sticker') & filters.reply)
 def convert_to_sticker(client, message):
     reply_message = message.reply_to_message
     if reply_message.photo is not None and len(reply_message.photo) > 0:
-    photo = reply_message.photo[-1]
-    file_id = photo.file_id
-    client.send_sticker(message.chat.id, file_id)
-else:
-    client.send_message(message.chat.id, "Bu mesajda fotoğraf bulunmamaktadır.")
-        
+        photo = reply_message.photo[-1]
+        file_id = photo.file_id
+        client.send_sticker(message.chat.id, file_id)
+    else:
+        client.send_message(message.chat.id, "Bu mesajda fotoğraf bulunmamaktadır.")
+       
 # /photo komutunu işleyen fonksiyon
 @Client.on_message(filters.command('photo') & filters.reply)
 def convert_to_photo(client, message):
