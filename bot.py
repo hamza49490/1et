@@ -83,6 +83,7 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
+import time
 
 @client.on(events.NewMessage(pattern='/sayi'))
 async def start(event):
