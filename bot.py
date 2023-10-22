@@ -76,7 +76,6 @@ user_sayi = []
 async def chatbot(event):
     global isleyen
     mesaj = str(event.raw_text).lower()  # Mesajı küçük harflere dönüştürme
-
     qrup = event.chat_id
     if qrup not in isleyen:
         return    
@@ -318,6 +317,7 @@ kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi h
 
 #x21 = ( "", "", "", "", )
 
+
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
@@ -329,10 +329,11 @@ async def chatbot(event):
         return
      
     global isleyen
-        await event.reply("💕  sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ  ", buttons=[
-            [Button.inline("✅ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
-	    [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_on")]
-        ])
+    await event.reply("**💕  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  **", buttons=[
+        [Button.inline("✅ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ‌", data="sohbetmod_on")],
+        [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_on")]
+    ])
+
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
 async def callback_sohbetmod_on(event):
