@@ -61,20 +61,11 @@ OWNER = [6540285284]
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
-
-anlik_calisan = []
-tekli_calisan = []
 gece_tag = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
-gruplar = []
-ozel_list = []
-grup_sayi = []
-etiketuye = []
-isleyen = []
-user_sayi = []
-	    
+ozel_list = []	    
 
 @client.on(events.NewMessage)
 async def chatbot(event):
@@ -792,24 +783,24 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
+@client.on(events.NewMessage(pattern='^(?i)/cancel'))
+async def cancel(event):
+  global gece_tag
+  if event.is_private:
+    return await event.respond(f"{nogroup}")
+  
+  admins = []
+  async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
+    admins.append(admin.id)
+  if not event.sender_id in admins:
+    return await event.respond(f"{noadmin}")
 
-@client.on(events.NewMessage(pattern="^/stop_tag"))
-async def stop_tag(event):
-    global gece_tag
-    if event.is_private:
-        return await event.respond(f"{nogroup}")
-  
-    admins = []
-    async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
-        admins.append(admin.id)
-    if not event.sender_id in admins:
-        return await event.respond(f"{noadmin}")
-  
-    if event.chat_id in gece_tag:
-        gece_tag.remove(event.chat_id)
-        return await event.respond("Etiketleme işlemi durduruldu.")
-    else:
-        return await event.respond("Etiketleme işlemi zaten durdurulmuş.")
+  global gece_tag
+  gece_tag.remove(event.chat_id)
+
+  sender = await event.get_sender()
+  rxyzdev_stopT = f"[{sender.first_name}](tg://user?id={sender.id})"      
+  if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️  ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...\n\n➻  {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 	    
 
 @client.on(events.NewMessage(pattern="^/atag ?(.*)"))
@@ -866,7 +857,8 @@ async def tag(event):
     sender = await event.get_sender()
     rxyzdev_initT = f"{sender.first_name}"      
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")
-	    
+
+
 @client.on(events.NewMessage(pattern="^/utag ?(.*)"))
 async def tag(event):
   global gece_tag
