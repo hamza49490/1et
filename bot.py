@@ -103,235 +103,279 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Adam" in kelimeler or "adam" in kelimeler:
-        await event.reply(f"**{random.choice(adam)}**")
+    if "adam" in kelimeler or "erkek" in kelimeler:
+        cevap = random.choice(adam)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "iyiyim" in kelimeler or "İyiyim" in kelimeler:
-        await event.reply(f"**{random.choice(iyiyim)}**")
+    if "iyiyim" in kelimeler or "harika" in kelimeler or "mükemmel" in kelimeler:
+        cevap = random.choice(iyiyim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Hoş Geldin" in kelimeler or "hoş geldin" in kelimeler:
-        await event.reply(f"**{random.choice(hoş)}**")
+    if "hoş geldin" in kelimeler or "hg" in kelimeler:
+        cevap = random.choice(hoş)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Merhaba" in kelimeler or "merhaba" in kelimeler:
-        await event.reply(f"**{random.choice(merhaba)}**")
+    if "merhaba" in kelimeler or "mrb" in kelimeler:
+        cevap = random.choice(merhaba)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Ban" in kelimeler or "ban" in kelimeler :
-        await event.reply(f"**{random.choice(ban)}**")
+    if "ban" in kelimeler or "banned" in kelimeler or "banla" in kelimeler or "/ban" in kelimeler:
+        cevap = random.choice(ban)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Nabıyon" in mesaj or "nabıyon" in mesaj  or "Napıyorsun" in mesaj or "napıyorsun" in mesaj:
-        await event.reply(f"**{random.choice(nabiyon)}**")
+    if "nabıyon" in kelimeler or "napıyorsun" in kelimeler or "ne yapıyorsun" in kelimeler:
+        cevap = random.choice(nabiyon)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "😔" in mesaj or "🥺" in mesaj  or "😥" in mesaj:
-        await event.reply(f"**{random.choice(uzgun)}**")
+    if "😔" in kelimeler or "🥺" in kelimeler  or "😥" in kelimeler:
+        cevap = random.choice(uzgun)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "valla" in mesaj or "Valla" in mesaj or "Vallahi" in mesaj or "vallahi" in mesaj:
-        await event.reply(f"**{random.choice(valla)}**")
+    if "valla" in kelimeler or "vallahi" in kelimeler or "yemin" in kelimeler:
+        cevap = random.choice(valla)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    	    
-    if "sg" in mesaj or "Sg" in mesaj or "siktir" in mesaj or "Siktir" in mesaj:
-        await event.reply(f"**{random.choice(sg)}**")
+    if "sg" in kelimeler or "siktir" in kelimeler:
+        cevap = random.choice(sg)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Mal" in mesaj or "gerizekalı" in mesaj or "Gerizekalı" in mesaj:
-        await event.reply(f"**{random.choice(mal)}**")
+    if "mal" in kelimeler or "gerizekalı" in kelimeler or "it" in kelimeler or "şrfsz" in kelimeler or "şerefsiz" in kelimeler:
+        cevap = random.choice(mal)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Balım" in mesaj or "balım" in mesaj or "Bebeğim" in mesaj or "bebeğim" in mesaj:
-        await event.reply(f"**{random.choice(balim)}**")
+    if "balım" in kelimeler or "bebeğim" in kelimeler or "aşkım" in kelimeler:
+        cevap = random.choice(balim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Canım" in mesaj or "canım" in mesaj or "Bitanem" in mesaj or "bitanem" in mesaj:
-        await event.reply(f"**{random.choice(canim)}**")
+    if "canım" in kelimeler or "bitanem" in kelimeler or "yavrum" in kelimeler:
+        cevap = random.choice(canim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "gidiyorum" in mesaj or "Gidiyorum" in mesaj or "gittim" in mesaj or "Gittim" in mesaj or "Görüşürüz" in mesaj or "görüşürüz" in mesaj:
-        await event.reply(f"**{random.choice(gidiyorum)}**")
+    if "gidiyorum" in kelimeler or "gittim" in kelimeler or "görüşürüz" in kelimeler:
+        cevap = random.choice(gidiyorum)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Sinirlendim" in mesaj or "sinirlendim" in mesaj or "😡" in mesaj or "🤬" in mesaj:
-        await event.reply(f"**{random.choice(sinirlendim)}**")
+    if "sinirlendim" in kelimeler or "😡" in kelimeler or "🤬" in kelimeler or "sinirliyim" in kelimeler:
+        cevap = random.choice(sinirlendim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "tanışalım mı" in mesaj or "Tanışalım mı" in mesaj:
-        await event.reply(f"**{random.choice(tanis)}**")
+    if "tanışalım mı" in kelimeler or "tanışabilir miyiz" in kelimeler:
+        cevap = random.choice(tanis)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "İsmin ne" in mesaj or "ismin ne" in mesaj  or "Adın ne" in mesaj or "adın ne" in mesaj:
-        await event.reply(f"**{random.choice(adne)}**")
+    if "ismin ne" in kelimeler  or "adın ne" in kelimeler:
+        cevap = random.choice(adne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "iyi sen" in mesaj or "İyi sen" in mesaj  or "iyiyimm sen" in mesaj or "İyiyim sen" in mesaj:
-        await event.reply(f"**{random.choice(iyisen)}**")
+    if "iyi" in kelimeler  or "kötü" in kelimeler or "iyiyim" in kelimeler:
+        cevap = random.choice(iyisen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "😅" in mesaj or "😂" in mesaj or "🤣" in mesaj:
-        await event.reply(f"**{random.choice(gullu)}**")
+    if "😅" in kelimeler or "😂" in kelimeler or "🤣" in kelimeler:
+        cevap = random.choice(gullu)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Büyüğüm" in mesaj or "büyüğüm" in mesaj or "büyük" in mesaj  or "Büyük" in mesaj:
-        await event.reply(f"**{random.choice(buyuk)}**")
+    if "büyüğüm" in kelimeler or "büyük" in kelimeler:
+        cevap = random.choice(buyuk)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+	
+    if "aiko" in kelimeler:
+        cevap = random.choice(aiko)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Aiko" in mesaj or "aiko" in mesaj:
-        await event.reply(f"**{random.choice(aiko)}**")
+    if "merve" in kelimeler:
+        cevap = random.choice(merve)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Merve" in mesaj or "merve" in mesaj:
-        await event.reply(f"**{random.choice(merve)}**")
+    if "günaydın" in kelimeler or "gny" in kelimeler or "günaydınnn" in kelimeler:
+        cevap = random.choice(gnyy)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "Günaydın" in mesaj or "günaydın" in mesaj:
-        await event.reply(f"**{random.choice(gnyy)}**")
+    if "iyi geceler" in kelimeler "iyi akşamlar" in kelimeler or:
+        cevap = random.choice(igece)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "kaç yaşındasın" in kelimeler or "yaşın kaç" in kelimeler:
+        cevap = random.choice(kyas)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "nerelisin" in kelimeler or "nrlsn" in kelimeler:
+        cevap = random.choice(nereli)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "konuşma" in kelimeler or "sus" in kelimeler or "knşma" in kelimeler:
+        cevap = random.choice(pms)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "kırdın" in kelimeler or "kırıldım" in kelimeler or "kırıcı" in kelimeler or "krldm" in kelimeler:
+        cevap = random.choice(krdn)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "kanka" in kelimeler or "dostum" in kelimeler:
+        cevap = random.choice(knks)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "sıkıldım" in kelimeler or "skldm" in kelimeler:
+        cevap = random.choice(skdm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "hm" in kelimeler or "hmm" in kelimeler:
+        cevap = random.choice(hms)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "geçmiş olsun" in kelimeler:
+        cevap = random.choice(bts)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "oyun" in kelimeler or "game" in kelimeler:
+        cevap = random.choice(trt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "evet" in kelimeler or "evt" in kelimeler:
+        cevap = random.choice(evt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "hyr" in kelimeler or "hayır" in kelimeler:
+        cevap = random.choice(hyrr)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "🙄" in kelimeler:
+        cevap = random.choice(gzs)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "of" in kelimeler:
+        cevap = random.choice(ofs)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+    if "çikolata" in kelimeler:
+        cevap = random.choice(cklta)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "İyi geceler" in mesaj or "iyi geceler" in mesaj:
-        await event.reply(f"**{random.choice(igece)}**")
+    if "lan" in kelimeler or "ln" in kelimeler:
+        cevap = random.choice(lna)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "Kaç yaşındasın" in mesaj or "kaç yaşındasın" in mesaj:
-        await event.reply(f"**{random.choice(kyas)}**")
+    if "dedim" in kelimeler:
+        cevap = random.choice(dddm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "nerelisin" in mesaj or "Nerelisin" in mesaj:
-        await event.reply(f"**{random.choice(nereli)}**")
+    if "yalan" in kelimeler or "yalancı" in kelimeler:
+        cevap = random.choice(ylna)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "Konuşma" in mesaj or "konuşma" in mesaj or "sus" in mesaj or "Sus" in mesaj:
-        await event.reply(f"**{random.choice(pms)}**")
+    if "sağol" in kelimeler:
+        cevap = random.choice(sgll)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "Kırdın" in mesaj or "kırdın" in mesaj or "kırıldım" in mesaj or "Kırıldım" in mesaj:
-        await event.reply(f"**{random.choice(krdn)}**")
+    if "çirkin" in kelimeler:
+        cevap = random.choice(crkn)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "kanka" in mesaj or "Kanka" in mesaj:
-        await event.reply(f"**{random.choice(knks)}**")
+    if "dm" in kelimeler or "pm" in kelimeler:
+        cevap = random.choice(dmy)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "sıkıldım" in mesaj or "skldm" in mesaj or "Sıkıldım" in mesaj or "Skldm" in mesaj:
-        await event.reply(f"**{random.choice(skdm)}**")
+    if "tatlı" in kelimeler or "yemek" in kelimeler:
+        cevap = random.choice(tymm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-    if "hm" in mesaj or "Hm" in mesaj:
-        await event.reply(f"**{random.choice(hms)}**")
-
-    if "Geçmiş olsun" in mesaj or "geçmiş olsun" in mesaj:
-        await event.reply(f"**{random.choice(bts)}**")
-
-    if "oyun" in mesaj or "Oyun" in mesaj:
-        await event.reply(f"**{random.choice(trt)}**")
-
-    if "Evet" in mesaj or "evet" in mesaj or "Evt" in mesaj or "evt" in mesaj:
-        await event.reply(f"**{random.choice(evt)}**")
-
-    if "hyr" in mesaj or "Hyr" in mesaj or "Hayır" in mesaj or "hayır" in mesaj:
-        await event.reply(f"**{random.choice(hyrr)}**")
-
-    if "🙄" in mesaj:
-        await event.reply(f"**{random.choice(gzs)}**")
-
-    if "Of" in mesaj:
-        await event.reply(f"**{random.choice(ofs)}**")
-
-    if "çikolata" in mesaj or "Çikolata" in mesaj:
-        await event.reply(f"**{random.choice(cklta)}**")
-	    
-    if "Lan" in mesaj or "lann" in mesaj:
-        await event.reply(f"**{random.choice(lna)}**")
-
-    if "Dedim" in mesaj or "dedim" in mesaj:
-        await event.reply(f"**{random.choice(dddm)}**")
-
-    if "Yalan" in mesaj or "yalan" in mesaj:
-        await event.reply(f"**{random.choice(ylna)}**")
-
-    if "Sağol" in mesaj or "sağol" in mesaj:
-        await event.reply(f"**{random.choice(sgll)}**")
-
-    if "Çirkin" in mesaj or "çirkin" in mesaj:
-        await event.reply(f"**{random.choice(crkn)}**")
-
-    if "Pm" in mesaj or "Dm" in mesaj:
-        await event.reply(f"**{random.choice(dmy)}**")
-
-    if "Tatlı" in mesaj or "Yemek" in mesaj:
-        await event.reply(f"**{random.choice(tymm)}**")
-
-    if "Kes" in mesaj:
-        await event.reply(f"**{random.choice(kmm)}**")
+    if "kes" in mesaj:
+        cevap = random.choice(kmm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
 
-selam = ["Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .",]
-
+selam = ["Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
-
-adam = ( "Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏", )
-
-iyiyim = ( "İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏", )
-
-hoş = ( "Naber", "Hoş buldum nabıyon", "nasılsın", )
-
-merhaba = ( "Merhaba, Hoş geldin", "Merhaba, Hoş Geldin", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏", )
-
-ban = ( "Ayıp ettin :/", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .", )
-
-nabiyon = ( "Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin", )
-
-uzgun = ( "Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni", )
-
-valla = ( "tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .", )
-
-sg = ( "Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...", )
-
-mal = ( "Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni birine benzettin galiba 🙄", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...", )
-
-balim = ( "Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈", )
-
-canim = ( "Gülüm 💕", "Bebeğim 💕", "Bitanem 💕", "Hayatım 💕", "Turşu suratlım 💕", )
-
-gidiyorum = ( "Nereye, Karpuz Kesmiştik .", "Hoşuma yeterince gittin, otur oturduğun yerde 🤫", "Görüşürüz, Hakkını helal et ...", "Kal desem kalır mı acaba 🤔", )
-
-sinirlendim = ( "Farkettim .", "Sakin ol, Şampiyon .", "Bakıyorum da Domates gibi kızardın .", "Ne yapayım .", )
-
-tanis = ( "Olur tanışalım .", "Kim olduğunu biliyorum :)", "Kendini tanıt !", "Düşünmem gerek 🤔", )
-
-adne = ( "Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum ❣️", )
-
-iyisen = ( "Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Birazcık kötüyüm .", "Mükemmelim tıpkı senin gibi 🤭", )
-
-gullu = ( "Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim 💕", )
-
-buyuk = ( "Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük :)", )
-
-aiko = ( "Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", "Öldü artık yok 🙄", )
-
-merve = ( "Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭", "Çok özletti kendini :)", )
-
-gnyy = ( "Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳", )
-
-igece = ( "Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .", )
-
-kyas = ( "Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Senden büyük olduğum kessin .", )
-
-nereli = ( "Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın bir yerindenim .", )
-
-pms = ( "Sen konuşma 🤭", "Hayır, Konuşacam 🙄", )
-
-krdn = ( "Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .", )
-
-knks = ( "Aaaa kankam gelmiş .", "Efendim Kanka 💕", )
-
-skdm = ( "Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?", )
-
-hms = ( "hmmmm 🙄", "Yeter ama aaaa 🙄", )
-
-bts = ( "Sağolun 😔", "Eyvallah Ciğerim .", )
-
-trt = ( "Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, d mi c mi ?", )
-
-evt = ( "Hayır", "Hayır dedim", "yioooooooo", )
-
-hyrr = ( "Ne demek hayır 🙄", "Evet", "Evet dedim", )
-
-gzs = ( "Gözler ömre bedel 😂", "Yukarıda ne var 🤔", )
-
-ofs = ( "of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄", )
-
-cklta = ( "Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋", )
-
-lna = ( " Ne var lan 🙄", "Bana mı dedin 😠", "Lannnnn sus 🙄", )
-
-dddm = ( "Ne dedin ?", "Anlamadım ?", "Neden öyle dedin ?", )
-
-ylna = ( "Yalan söyleyen kim 🙄", "Yalan konuşmayın çarparım 🙄", "Terbiyesiz 😠", )
-
-sgll = ( "Sende sağol 💕", "Başımız sağolsun .", )
-
-crkn = ( "Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄", )
-
-dmy = ( "Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄", )
-
-tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺", )
-
-kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳", )
+adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
+iyiyim = ["İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",]
+hoş = ["Naber", "Hoş buldum nabıyon", "nasılsın",]
+merhaba = ["Merhaba, Hoş geldin", "Merhaba, Hoş Geldin", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",]
+ban = ["Ayıp ettin :/", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",]
+nabiyon = ["Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",]
+uzgun = ["Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",]
+valla = ["tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .",]
+sg = ["Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...",]
+mal = ["Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni birine benzettin galiba 🙄", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...",]
+balim = ["Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈",]
+canim = ["Gülüm 💕", "Bebeğim 💕", "Bitanem 💕", "Hayatım 💕", "Turşu suratlım 💕",]
+gidiyorum = ["Nereye, Karpuz Kesmiştik .", "Hoşuma yeterince gittin, otur oturduğun yerde 🤫", "Görüşürüz, Hakkını helal et ...", "Kal desem kalır mı acaba 🤔",]
+sinirlendim = ["Farkettim .", "Sakin ol, Şampiyon .", "Bakıyorum da Domates gibi kızardın .", "Ne yapayım .",]
+tanis = ["Olur tanışalım .", "Kim olduğunu biliyorum :)", "Kendini tanıt !", "Düşünmem gerek 🤔",]
+adne = ["Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum ❣️",]
+iyisen = ["Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Birazcık kötüyüm .", "Mükemmelim tıpkı senin gibi 🤭",]
+gullu = ["Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim 💕",]
+buyuk = ["Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük ✓",]
+aiko = ["Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", "Öldü artık yok 🙄",] 
+merve = ["Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭",]
+gnyy = ["Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳",]
+igece = ["Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",]
+kyas = ["Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Senden büyük olduğum kessin .",]
+nereli = ["Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın bir yerindenim .",]
+pms = ["Sen konuşma 🤭", "Hayır, Konuşacam 🙄",]
+krdn = ["Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .",]
+knks = ["Aaaa kankam gelmiş .", "Efendim Kanka 💕",]
+skdm = ["Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?",]
+hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄",]
+bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
+trt = ["Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, d mi c mi ?",]
+evt = ["Hayır", "Hayır dedim", "yioooooooo",]
+hyrr = ]"Ne demek hayır 🙄", "Evet", "Evet dedim",]
+gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔",]
+ofs = ["of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄",]
+cklta = ["Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋",]
+lna = ["Ne var lan 🙄", "Bana mı dedin 😠", "Lannnnn sus 🙄",]
+dddm = ["Ne dedin ?", "Anlamadım ?", "Neden öyle dedin ?",]
+ylna = ["Yalan söyleyen kim 🙄", "Yalan konuşmayın çarparım 🙄", "Terbiyesiz 😠",]
+sgll = ["Sende sağol 💕", "Başımız sağolsun .",]
+crkn = ["Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄",]
+dmy = ["Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄",]
+tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺",]
+kmm= ["Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 
 #x21 = ( "", "", "", "", )
 
