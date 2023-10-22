@@ -367,10 +367,11 @@ async def callback_sohbetmod_off(event):
 
 @client.on(events.ChatAction)
 async def random_hg(event):
-    if isinstance(event.action, types.ChatActionUserJoined):
-        await event.reply(f"{event.user.first_name}, {random.choice(['Hoş geldin!', 'Merhaba!', 'Keyifli sohbetler!', 'Aramıza hoş geldin!'])}")
-    elif isinstance(event.action, types.ChatActionUserLeft):
-        await event.reply(f"{event.user.first_name}, {random.choice(['Görüşmek üzere!', 'Hoşça kal!', 'Tekrar bekleriz!', 'İyi günler dileriz!'])}")
+    if hasattr(event, 'action'):
+        if isinstance(event.action, types.ChatActionUserJoined):
+            await event.reply(f"{event.user.first_name}, {random.choice(['Hoş geldin!', 'Merhaba!', 'Keyifli sohbetler!', 'Aramıza hoş geldin!'])}")
+        elif isinstance(event.action, types.ChatActionUserLeft):
+            await event.reply(f"{event.user.first_name}, {random.choice(['Görüşmek üzere!', 'Hoşça kal!', 'Tekrar bekleriz!', 'İyi günler dileriz!'])}")
 
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
