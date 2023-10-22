@@ -84,21 +84,60 @@ isleyen = []
 user_sayi = []    
 
 
-
 @client.on(events.NewMessage(pattern='/sayi'))
-async def guess(event):
-    try:
-        number = random.randint(1, 100)
-        guess = int(event.message.text)
-        if guess == number:
-            await event.respond('Tebrikler! Doğru tahmin ettiniz.')
-        elif guess < number:
-            await event.respond('Daha yüksek bir sayı tahmin edin.')
-        else:
-            await event.respond('Daha düşük bir sayı tahmin edin.')
-    except ValueError:
-        await event.respond('Geçerli bir sayı girin.')
+async def start(event):
+    await event.respond('Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
+    raise events.StopPropagation
 
+
+@client.on(events.NewMessage(pattern='/iptal'))
+async def cancel(event):
+    global game_active
+    game_active = False
+    await event.respond('Oyun iptal edildi.')
+    raise events.StopPropagation
+
+
+@client.on(events.NewMessage)
+async def guess(event):
+    global game_active, target_number, start_time
+    if not game_active:
+        return
+
+    try:
+        guess_number = int(event.message.text)
+    except ValueError:
+        await event.respond('Geçersiz tahmin! Lütfen bir sayı girin.')
+        return
+
+    if guess_number == target_number:
+        game_active = False
+        elapsed_time = time.time() - start_time
+        await event.respond(f'Tebrikler! Sayıyı doğru tahmin ettiniz. Geçen süre: {elapsed_time:.2f} saniye.')
+    elif guess_number < target_number:
+        await event.respond('Daha yüksek bir sayı tahmin edin.')
+    else:
+        await event.respond('Daha düşük bir sayı tahmin edin.')
+
+
+async def game_timer():
+    global game_active
+    await client.send_message('Botunuzun_ID', 'Oyun 1 dakika boyunca oynanmadığı için iptal edildi.')
+    game_active = False
+
+
+@client.on(events.NewMessage(pattern='/game'))
+async def play(event):
+    global game_active, target_number, start_time
+    game_active = True
+    target_number = random.randint(1, 100)
+    start_time = time.time()
+    await event.respond('Oyun başladı! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
+
+    # Oyunu 1 dakika boyunca bekleyin ve sonra iptal edin
+    await asyncio.sleep(60)
+    if game_active:
+        await game_timer()
 
 @client.on(events.NewMessage)
 async def chatbot(event):
