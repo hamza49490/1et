@@ -510,7 +510,7 @@ async def slap(event):
 
 def get_currency_data(currency):
     # API çağrısı yaparak verileri alın
-    response = requests.get(f"https://api.example.com/currency/{currency}")
+    response = requests.get(f"bc5ca147175e26ed57581b6b{currency}")
     data = response.json()
     
     # Verileri işleyin
