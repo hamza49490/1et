@@ -213,7 +213,7 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 	    
-    if "iyi geceler" in kelimeler "iyi akşamlar" in kelimeler or:
+    if "iyi geceler" in kelimeler or "iyi akşamlar" in kelimeler:
         cevap = random.choice(igece)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
@@ -327,7 +327,6 @@ async def chatbot(event):
         cevap = random.choice(kmm)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
-
 
 selam = ["Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
