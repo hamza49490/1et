@@ -596,6 +596,14 @@ async def romantik(event):
 ##################################################
 ##################################################
 ##################################################
+@client.on(events.NewMessage(pattern='/yanitla'))
+async def handle_command(event):
+    # Komutu gönderen kullanıcıya yanıt verin
+    await event.respond('Mesajı yanıtladım!')
+
+    # Yanıtlanan mesajın altındaki tüm mesajları silin
+    await event.delete(revoke=True)
+
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
     if event.is_private:
@@ -608,7 +616,7 @@ async def purge_messages(event):
 
     reply_msg = await event.get_reply_message()
     if not reply_msg:
-        await event.respond("**✓  sɪʟᴍᴇᴍ ɪᴄ̧ɪɴ ʙɪʀ ᴍᴇsᴀᴊ ʏᴀɴɪᴛʟᴀ .**")
+        await event.respond("**✓  sɪʟᴍᴇᴍ ɪᴄ‌ɪɴ ʙɪʀ ᴍᴇsᴀᴊ ʏᴀɴɪᴛʟᴀ .**")
         return
 
     messages = []
@@ -624,7 +632,7 @@ async def purge_messages(event):
 
     await event.client.delete_messages(event.chat_id, messages)
     time_ = time.perf_counter() - start
-    text = f"**✓  ᴛᴇᴍɪᴢʟᴇᴍᴇ {time_:0.2f} ᴛᴀᴍᴀᴍʟᴀɴᴅɪ ...**"
+    text = f"✓  ᴛᴇᴍɪᴢʟᴇᴍᴇ {time_:0.2f} ᴛᴀᴍᴀᴍʟᴀɴᴅɪ ..."
     await event.respond(text, parse_mode='markdown')
 
 
@@ -641,6 +649,7 @@ async def is_group_admin(event):
     except errors.rpcerrorlist.ChatAdminRequiredError:
         pass
     return False
+	
 
 @client.on(events.NewMessage(pattern='/grup'))
 async def sahib(event):
@@ -789,17 +798,24 @@ async def zar(event):
 ##################################################
 @client.on(events.NewMessage(pattern='/cagir'))
 async def cagir_command(event):
+    if event.is_private:
+        await event.respond(f"{nogroup}", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond(f"{noadmin}", parse_mode='markdown')
+        return
     # Son aktif olan 20 kişiyi al
-    users = await client.get_participants(event.chat_id, limit=4)
+    users = await client.get_participants(event.chat_id, limit=50)
     
     # Etiketleri oluştur
-    tags = ', '.join(f'[{user.first_name}](tg://user?id={user.id})' for user in users)
+    tags = ' , '.join(f'[{user.first_name}](tg://user?id={user.id})' for user in users)
     
     # Komutu kullanan kişinin kullanıcı adını al
     username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
     
     # Etiketleri ve kullanıcı adını gönder
-    await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
+    await event.reply(f'**{tags}\n\n{username} Sizi Oyuna Çağırıyor .**')
 	
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
