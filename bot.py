@@ -38,6 +38,7 @@ from datetime import datetime
 from telethon.errors.rpcerrorlist import PeerFloodError
 from telethon import Button
 from pyrogram.errors import FloodWait
+from telethon import events
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
@@ -365,8 +366,10 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
+
 @client.on(events.ChatAction)
-async def random_hg(event):
+async def handle_chat_action(event):
+    pass
     if hasattr(event, 'action'):
         if isinstance(event.action, types.ChatActionUserJoined):
             await event.reply(f"{event.user.first_name}, {random.choice(['Hoş geldin!', 'Merhaba!', 'Keyifli sohbetler!', 'Aramıza hoş geldin!'])}")
