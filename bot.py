@@ -90,7 +90,6 @@ async def start(event):
     await event.respond('Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
     raise events.StopPropagation
 
-
 @client.on(events.NewMessage(pattern='/iptal'))
 async def cancel(event):
     global game_active
@@ -98,11 +97,10 @@ async def cancel(event):
     await event.respond('Oyun iptal edildi.')
     raise events.StopPropagation
 
-game_active = False
-
 @client.on(events.NewMessage)
 async def guess(event):
     global game_active, target_number, start_time
+    game_active = False
     if not game_active:
         return
 
