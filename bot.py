@@ -794,36 +794,33 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
-
-@client.on(events.NewMessage(pattern='/cagir'))
-async def cagir_command(event):
-    if event.is_private:
-        await event.respond(f"{nogroup}", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond(f"{noadmin}", parse_mode='markdown')
-        return
-     
-    class User:
-        def __init__(self, is_user_deleted, is_bot):
-            self.is_user_deleted = is_user_deleted
-            self.is_bot = is_bot
-     
-    # Son aktif olan 20 kişiyi al
-    users = await client.get_participants(event.chat_id, limit=50)
-    users = [user for user in users if not user.is_user_deleted and not user.is_bot]
- 
-    # Etiketleri oluştur
-    tags = ' , '.join(f'@{user.username}' if user.username else user.first_name for user in users)
-    
+# Komut işleyicisi
+@client.on(events.NewMessage(pattern='/etiketle'))
+async def handle_tagging(event):
     # Komutu kullanan kişinin kullanıcı adını al
-    username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
+    sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
     
-    # Etiketleri ve kullanıcı adını gönder
-    await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
-	
-	
+    # Tüm kullanıcıları al
+    all_users = await client.get_participants(event.chat_id)
+    
+    # Etiketlenecek kullanıcı sayısı
+    tag_count = 20
+    
+    # Botlar ve silinen hesapları hariç tut
+    valid_users = [user for user in all_users if not user.bot and not user.deleted]
+    
+    # İlk tag_count kullanıcıyı al
+    tagged_users = valid_users[:tag_count]
+    
+    # Etiketleri oluştur
+    tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
+    
+    # Mesajı oluştur
+    message = f'{tags}\n\nKomutu kullanan kişi: {sender_username}'
+    
+    # Mesajı gönder
+    await client.send_message(event.chat_id, message)
+
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
 async def cancel(event):
