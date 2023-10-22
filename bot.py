@@ -364,7 +364,7 @@ hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄",]
 bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
 trt = ["Oyun mu istiyorsun /turet yaz .", "Dc oynayalım mı, d mi c mi ?",]
 evt = ["Hayır", "Hayır dedim", "yioooooooo",]
-hyrr = ]"Ne demek hayır 🙄", "Evet", "Evet dedim",]
+hyrr = ["Ne demek hayır 🙄", "Evet", "Evet dedim",]
 gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔",]
 ofs = ["of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄",]
 cklta = ["Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋",]
@@ -378,8 +378,6 @@ tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da
 kmm= ["Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 
 #x21 = ( "", "", "", "", )
-
-
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
