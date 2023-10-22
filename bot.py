@@ -794,6 +794,7 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
+
 @client.on(events.NewMessage(pattern='/cagir'))
 async def cagir_command(event):
     if event.is_private:
@@ -803,16 +804,16 @@ async def cagir_command(event):
     if not await is_group_admin(event):
         await event.respond(f"{noadmin}", parse_mode='markdown')
         return
-	    
-class User:
-    def init(self, is_user_deleted, is_bot):
-        self.is_user_deleted = is_user_deleted
-        self.is_bot = is_bot
-	    
+     
+    class User:
+        def init(self, is_user_deleted, is_bot):
+            self.is_user_deleted = is_user_deleted
+            self.is_bot = is_bot
+     
     # Son aktif olan 20 kişiyi al
     users = await client.get_participants(event.chat_id, limit=50)
     users = [user for user in users if not user.is_user_deleted and not user.is_bot]
-	
+ 
     # Etiketleri oluştur
     tags = ' , '.join(f'@{user.username}' if user.username else user.first_name for user in users)
     
