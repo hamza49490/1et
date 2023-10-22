@@ -367,6 +367,16 @@ async def callback_sohbetmod_off(event):
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
 
+@client.on(events.ChatAction)
+async def welcome_message(event):
+    if event.user_joined:
+        chat = await event.get_chat()
+        if chat.id in isleyen:
+            members = await client.get_participants(chat)
+            member = random.choice(members)
+            await client.send_message(chat, f"Hoş geldin @{member.username}!")
+		
+
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
     if event.is_private:
@@ -803,38 +813,6 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/welcome'))
-async def welcome_command(event):
-    buttons = [
-        [Button.inline("Aktif Et", b"enable_welcome")],
-        [Button.inline("Devre Dışı Bırak", b"disable_welcome")]
-    ]
-    await event.respond("Gruba katılan üyeleri karşılamayı aktif etmek veya devre dışı bırakmak için bir seçenek seçin:", buttons=buttons)
-
-@client.on(events.CallbackQuery)
-async def handle_callback(event):
-    if event.data == b"enable_welcome":
-        # Aktif etme işlemleri
-        await event.answer("Gruba katılan üyeleri karşılama aktif edildi.")
-    elif event.data == b"disable_welcome":
-        # Devre dışı bırakma işlemleri
-        await event.answer("Gruba katılan üyeleri karşılama devre dışı bırakıldı.")
-
-@client.on(events.ChatAction)
-async def handle_chat_action(event):
-    if event.user_joined:
-        # Karşılama aktif mi kontrol et
-        if is_welcome_enabled(event.chat_id):
-            user = await event.get_user()
-            random_message = random.choice(['Merhaba!', 'Hoş geldin!', 'Selam!'])
-            await client.send_message(event.chat_id, f'{random_message} @{user.username}')
-
-def is_welcome_enabled(chat_id):
-    # Gruba özgü karşılama ayarlarını kontrol et
-    # Eğer aktif ise True, değilse False döndür
-    return True  # Örnek olarak her zaman aktif olduğunu varsayalım
-
-
 @client.on(events.NewMessage(pattern='/cagir'))
 async def handle_tagging(event):
     # Komutu kullanan kişinin kullanıcı adını al
