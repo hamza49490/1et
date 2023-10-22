@@ -925,7 +925,7 @@ async def tag(event):
   if not event.sender_id in admins:
     return await event.respond(f"{noadmin}")
   
-  if event.pattern_match.group(1) and not event.pattern_match.group(1).startswith("/"):
+  if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.group(1)
   elif event.reply_to_msg_id:
@@ -936,7 +936,7 @@ async def tag(event):
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     return await event.respond("____")
   else:
-    return await event.respond(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ̈ʀɴᴇᴋ : /tag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -947,24 +947,21 @@ async def tag(event):
     usrnum = 0
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
-      if usr.bot:
-        continue
-      if usr.deleted:
-        continue
       rxyzdev_tagTot[event.chat_id] += 1
       usrnum += 1
-      usrtxt += f"{usr.first_name}"
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await event.respond(f"{usrtxt}  {event.raw_text}")
+        await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
         await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
      
     sender = await event.get_sender()
-    rxyzdev_initT = f"{sender.first_name}"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")
+    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+	
 
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
@@ -1790,4 +1787,5 @@ async def handler(event):
 
 	
 print(" Bot çalışıyor :)")
+client.start()
 client.run_until_disconnected()
