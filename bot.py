@@ -71,15 +71,18 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
-    mesaj = str(event.raw_text)
+    mesaj = str(event.raw_text).lower()  # Mesajı küçük harflere dönüştürme
+
     qrup = event.chat_id
     if qrup not in isleyen:
         return
-    if "Selam" in mesaj or "Selamün Aleyküm" in mesaj or "selamün aleyküm" in mesaj:
-        await event.reply(f"**{random.choice(selam)}**")
+    if "Selam" in mesaj.split() or "Selamün Aleyküm" in mesaj.split():
+        pass
+	await event.reply(f"**{random.choice(selam)}**")
 	    
     if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
         await event.reply(f"**{random.choice(nasilsin)}**")
@@ -332,19 +335,19 @@ async def chatbot(event):
     if emr == "on" or emr == "On":
         if qrup not in isleyen:
             isleyen.append(qrup)
-            aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
             await event.reply(aktiv_olundu, buttons=[
                 [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
             ])
             return
-        await event.reply("🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .")
+        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
         return
     elif emr == "off" or emr == "Off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await event.reply("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+            await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
             return
-        await event.reply("🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !")
+        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
         return
     
     else:
@@ -357,7 +360,7 @@ async def callback_sohbetmod_on(event):
     qrup = event.chat_id
     if qrup not in isleyen:
         isleyen.append(qrup)
-        aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+        aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu, buttons=[
             [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
         ])
@@ -367,7 +370,7 @@ async def callback_sohbetmod_off(event):
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !", buttons=[
+        await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**", buttons=[
             [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
         ])
 
