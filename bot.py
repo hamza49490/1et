@@ -596,13 +596,35 @@ async def romantik(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/yanitla'))
-async def handle_command(event):
-    # Komutu gönderen kullanıcıya yanıt verin
-    await event.respond('Mesajı yanıtladım!')
 
-    # Yanıtlanan mesajın altındaki tüm mesajları silin
-    await event.delete(revoke=True)
+@client.on(events.NewMessage(pattern='/delle'))
+async def purge_messages(event):
+    if event.is_private:
+        await event.respond(f"{nogroup}", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(event):
+        await event.respond(f"{noadmin}", parse_mode='markdown')
+        return
+
+    reply_msg = await event.get_reply_message()
+    if not reply_msg:
+        await event.respond("✓  sɪʟᴍᴇᴍ ɪᴄ‌ɪɴ ʙɪʀ ᴍᴇsᴀᴊ ʏᴀɴɪᴛʟᴀ .")
+        return
+
+    messages = []
+    message_id = reply_msg.id
+    delete_to = event.message.id
+
+    messages.append(reply_msg)
+    async for message in client.iter_messages(event.chat_id, min_id=message_id, max_id=delete_to):
+        messages.append(message)
+
+    await client.delete_messages(event.chat_id, messages)
+    time_ = time.perf_counter() - start
+    text = f"✓  ᴛᴇᴍɪᴢʟᴇᴍᴇ {time_:0.2f} ᴛᴀᴍᴀᴍʟᴀɴᴅɪ ..."
+    await event.respond(text, parse_mode='markdown')
+	
 
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
