@@ -98,6 +98,7 @@ async def cancel(event):
     await event.respond('Oyun iptal edildi.')
     raise events.StopPropagation
 
+game_active = False
 
 @client.on(events.NewMessage)
 async def guess(event):
