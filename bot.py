@@ -335,6 +335,7 @@ async def chatbot(event):
     ])
 
 
+
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
 async def callback_sohbetmod_on(event):
     qrup = event.chat_id
@@ -342,8 +343,8 @@ async def callback_sohbetmod_on(event):
         isleyen.append(qrup)
         aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu)
-            return
-        await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀʙɪʟɪʏᴏʀᴜᴍ .**")
+        return
+    await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
 
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
@@ -352,8 +353,8 @@ async def callback_sohbetmod_off(event):
     if qrup in isleyen:
         isleyen.remove(qrup)
         await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
-            return
-        await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
+        return
+    await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
 
 @client.on(events.NewMessage(pattern='/eros'))
