@@ -34,7 +34,7 @@ from telethon import Button
 from pyrogram.errors import FloodWait
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
-from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantsBots, ChannelParticipantsDeleted
 from datetime import datetime
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
