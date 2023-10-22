@@ -342,6 +342,9 @@ async def callback_sohbetmod_on(event):
         isleyen.append(qrup)
         aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu)
+            return
+        await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀʙɪʟɪʏᴏʀᴜᴍ .**")
+
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
 async def callback_sohbetmod_off(event):
@@ -349,9 +352,10 @@ async def callback_sohbetmod_off(event):
     if qrup in isleyen:
         isleyen.remove(qrup)
         await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
+            return
+        await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
 
 
-	    
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
     if event.is_private:
