@@ -84,11 +84,12 @@ isleyen = []
 user_sayi = []    
 
 
+
 @client.on(events.NewMessage(pattern='/sayi'))
 async def guess(event):
     try:
         number = random.randint(1, 100)
-        guess = int(event.message.message)
+        guess = int(event.message.text)
         if guess == number:
             await event.respond('Tebrikler! Doğru tahmin ettiniz.')
         elif guess < number:
