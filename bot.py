@@ -83,17 +83,19 @@ isleyen = []
 user_sayi = []    
 
 
-
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
     mesaj = str(event.raw_text)
     qrup = event.chat_id
     if qrup not in isleyen:
-        return    
-    if mesaj == "Selam" or mesaj == "selam" or mesaj == "Selamün Aleyküm" or mesaj == "selamün aleyküm":
+        return
+    
+    kelimeler = mesaj.split()  # Mesajı kelimelere ayır
+    
+    if "Selam" in kelimeler or "selam" in kelimeler or "Selamün" in kelimeler or "selamün" in kelimeler:
         await event.reply(f"{random.choice(selam)}")
-	    
+	    	    
     if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
         await event.reply(f"**{random.choice(nasilsin)}**")
 	    
