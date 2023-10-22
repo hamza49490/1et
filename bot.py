@@ -520,10 +520,11 @@ async def photo_to_sticker(event):
     else:
         await event.respond('Bu komutu bir stickerin üzerine yanıtlayarak kullanın.')
 
+
 @client.on(events.NewMessage(pattern='/sticker'))
 async def sticker_to_photo(event):
-     if event.message.reply_to_msg_id:
-         reply_message = await event.get_reply_message()
+    if event.message.reply_to_msg_id:
+        reply_message = await event.get_reply_message()
         if reply_message.media and reply_message.media.document.mime_type == 'image/webp':
             file = await client.download_media(reply_message)
             await client.send_file(event.chat_id, file, reply_to=reply_message, force_document=True)
@@ -531,7 +532,7 @@ async def sticker_to_photo(event):
             await event.respond('Lütfen bir sticker gönderin.')
     else:
         await event.respond('Bu komutu bir fotoğrafın üzerine yanıtlayarak kullanın.')
-
+	    
 
 
 def get_currency_data(currency):
