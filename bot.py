@@ -469,8 +469,8 @@ async def slap(event):
 
 @client.on(events.NewMessage(pattern='/photo'))
 async def photo_to_sticker(event):
-     if event.message.reply_to_msg_id:
-         reply_message = await event.get_reply_message()
+    if event.message.reply_to_msg_id:
+        reply_message = await event.get_reply_message()
         if reply_message.media and reply_message.media.document.mime_type == 'image/jpeg':
             file = await client.download_media(reply_message)
             await client.send_file(event.chat_id, file, force_document=True, reply_to=reply_message)
