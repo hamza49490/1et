@@ -164,7 +164,10 @@ async def zar(bot: Client, msg: Message):
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
 
-
+@Client.on_message(filters.command(["zar"], ["/", ""]))
+def roll_dice(client, message):
+    client.send_dice(message.chat.id)
+    
 @Client.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
 async def reload(client: Client, message: Message):
     await message.reply_text(f"**🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**")
