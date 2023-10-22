@@ -85,15 +85,10 @@ user_sayi = []
 
 
 @client.on(events.NewMessage(pattern='/sayi'))
-async def start(event):
-    await event.respond('Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
-    raise events.StopPropagation
-
-@client.on(events.NewMessage(pattern='/tahmin'))
 async def guess(event):
     try:
         number = random.randint(1, 100)
-        guess = int(event.message.text)
+        guess = int(event.message.message)
         if guess == number:
             await event.respond('Tebrikler! Doğru tahmin ettiniz.')
         elif guess < number:
