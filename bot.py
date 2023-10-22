@@ -330,9 +330,9 @@ async def chatbot(event):
         return
      
     global isleyen
-    await event.reply("**💕  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  **", buttons=[
+    await event.reply("**🎉  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  🎉**", buttons=[
         [Button.inline("✅ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ‌", data="sohbetmod_on")],
-        [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_on")]
+        [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
     ])
 
 
@@ -806,7 +806,7 @@ async def cagir_command(event):
         return
      
     class User:
-        def init(self, is_user_deleted, is_bot):
+        def __init__(self, is_user_deleted, is_bot):
             self.is_user_deleted = is_user_deleted
             self.is_bot = is_bot
      
@@ -822,6 +822,7 @@ async def cagir_command(event):
     
     # Etiketleri ve kullanıcı adını gönder
     await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
+	
 	
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
