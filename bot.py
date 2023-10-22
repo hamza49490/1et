@@ -793,9 +793,9 @@ async def zar(event):
 ##################################################
 ##################################################
 
-
-@client.on(events.NewMessage(pattern="^/cancel"))
-async def stop(event):
+@client.on(events.NewMessage(pattern="^/stop_tag"))
+async def stop_tag(event):
+    global gece_tag
     if event.is_private:
         return await event.respond(f"{nogroup}")
   
@@ -807,13 +807,10 @@ async def stop(event):
   
     if event.chat_id in gece_tag:
         gece_tag.remove(event.chat_id)
-        # Etiketlenen kullanıcıların sayısını al
-        tagged_users = await client.get_participants(event.chat_id)
-        tagged_users_count = len(tagged_users) - 1  # Kendi kendini etiketlediği için 1 çıkar
-        stopper = await client.get_entity(event.sender_id)
-        await event.respond(f"İşlem Durduruldu.\nEtiketlerin sayısı: {tagged_users_count}\nDurduran kişi: {stopper.first_name}")
+        return await event.respond("Etiketleme işlemi durduruldu.")
     else:
-        await event.respond("Etiketleme işlemi zaten durdurulmuş.")
+        return await event.respond("Etiketleme işlemi zaten durdurulmuş.")
+	    
 
 @client.on(events.NewMessage(pattern="^/atag ?(.*)"))
 async def tag(event):
@@ -910,12 +907,12 @@ async def tag(event):
       if usr.bot or usr.deleted:
         continue
       rxyzdev_tagTot[event.chat_id] += 1
-      usrnum += 1
-      usrtxt += f"➻ [{usr.first_name}](tg://user?id={usr.id})\n"
+      usrnum += 7
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) , "
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
+        await client.send_message(event.chat_id, f"**{msg}\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
