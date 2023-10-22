@@ -82,8 +82,6 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
-
-
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
@@ -95,7 +93,8 @@ async def chatbot(event):
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
     
     if "selam" in kelimeler:
-        await event.reply(f"{random.choice(selam)}")
+        cevap = random.choice(selam)
+        await event.reply(cevap)
 	    	    
     if "Nasılsın" in kelimeler or "nasılsın" in kelimeler or "naber" in kelimeler or "Naber" in kelimeler:
         await event.reply(f"**{random.choice(nasilsin)}**")
@@ -236,7 +235,7 @@ async def chatbot(event):
         await event.reply(f"**{random.choice(kmm)}**")
 
 
-selam = ( "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .", )
+selam = ["Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .",]
 
 nasilsin = ( "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳", )
 
