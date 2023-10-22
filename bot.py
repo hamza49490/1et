@@ -913,7 +913,6 @@ async def utag(event):
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
   global gece_tag
@@ -955,18 +954,18 @@ async def tag(event):
         continue
       rxyzdev_tagTot[event.chat_id] += 1
       usrnum += 1
-      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})\n"
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await event.respond(f"{usrtxt}  {msg}")
+        await event.respond(f"{usrtxt}  {event.raw_text}")
         await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
      
     sender = await event.get_sender()
     rxyzdev_initT = f"{sender.first_name}"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")    
+    if event.chat_id in rxyzdev_tagTot:await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")	    
 
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
