@@ -525,7 +525,7 @@ async def photo_to_sticker(event):
 async def sticker_to_photo(event):
     if event.message.reply_to_msg_id:
         reply_message = await event.get_reply_message()
-        if reply_message.media and reply_message.media.document.mime_type == 'image/webp':
+        if reply_message.photo and reply_message.media.document.mime_type == 'image/webp':
             file = await client.download_media(reply_message)
             await client.send_file(event.chat_id, file, reply_to=reply_message, force_document=True)
         else:
