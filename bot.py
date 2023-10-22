@@ -83,6 +83,25 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
+@client.on(events.NewMessage(pattern='/start'))
+async def start(event):
+    await event.respond('Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın!')
+    raise events.StopPropagation
+
+@client.on(events.NewMessage)
+async def guess(event):
+    try:
+        number = random.randint(1, 100)
+        guess = int(event.message.text)
+        if guess == number:
+            await event.respond('Tebrikler! Doğru tahmin ettiniz.')
+        elif guess < number:
+            await event.respond('Daha yüksek bir sayı tahmin edin.')
+        else:
+            await event.respond('Daha düşük bir sayı tahmin edin.')
+    except ValueError:
+        await event.respond('Geçerli bir sayı girin.')
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
