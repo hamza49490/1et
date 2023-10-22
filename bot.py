@@ -912,6 +912,7 @@ async def utag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
+
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
   global gece_tag
@@ -936,7 +937,8 @@ async def tag(event):
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     return await event.respond("____")
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ̈ʀɴᴇᴋ : /tag Merhaba**")
+    return await event.respond(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba")
+  
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -953,15 +955,15 @@ async def tag(event):
       if event.chat_id not in gece_tag:
         return
       if usrnum == 1:
-        await client.send_message(event.chat_id, f"**{usrtxt}  {msg}**")
+        await client.send_message(event.chat_id, f"{usrtxt}  {msg}")
         await asyncio.sleep(4)
         usrnum = 0
         usrtxt = ""
      
     sender = await event.get_sender()
-    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	
+    rxyzdev_initT = f"{sender.first_name}"      
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}")
 
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def etag(event):
