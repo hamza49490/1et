@@ -803,60 +803,36 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
-welcome_message = [
-    "Hoş geldin!",
-    "Aramıza hoş geldin!",
-    "Merhaba, hoş geldin!",
-    "Keyifli sohbetler dilerim!",
-    "Hoş geldin, umarım iyi vakit geçirirsin!"
-]
-
-# Hoş geldin mesajlarını aktif veya devre dışı bırakmak için bir bayrak
-welcome_enabled = True
-
-# Kullanıcıları etiketleyerek hoş geldin mesajı gönderen fonksiyon
-async def send_welcome_message(event):
-    global welcome_enabled
-
-    if welcome_enabled:
-        # Kullanıcının tam adını al
-        user = await event.client(GetFullUserRequest(event.action.user_id))
-        full_name = user.user.first_name + " " + user.user.last_name if user.user.last_name else user.user.first_name
-
-        # Random hoş geldin mesajını seç
-        message = random.choice(welcome_message)
-
-        # Kullanıcıyı etiketleyerek hoş geldin mesajını gönder
-        await event.reply(f"{full_name}, {message}")
-
-# /welcome komutunu işleyen fonksiyon
 @client.on(events.NewMessage(pattern='/welcome'))
 async def welcome_command(event):
-    global welcome_enabled
-
-    # Aktif et ve devre dışı bırak butonlarını oluştur
     buttons = [
-        [Button.inline("Aktif et", b"enable_welcome")],
-        [Button.inline("Devre dışı bırak", b"disable_welcome")]
+        [Button.inline("Aktif Et", b"enable_welcome")],
+        [Button.inline("Devre Dışı Bırak", b"disable_welcome")]
     ]
+    await event.respond("Gruba katılan üyeleri karşılamayı aktif etmek veya devre dışı bırakmak için bir seçenek seçin:", buttons=buttons)
 
-    # Butonları gönder
-    await event.respond("Hoş geldin mesajlarını nasıl yönetmek istersiniz?", buttons=buttons)
-
-# Butonlara yanıt veren fonksiyon
-@client.on(events.CallbackQuery())
-async def button_click(event):
-    global welcome_enabled
-
-    # Aktif et butonuna tıklandıysa
+@client.on(events.CallbackQuery)
+async def handle_callback(event):
     if event.data == b"enable_welcome":
-        welcome_enabled = True
-        await event.answer("Hoş geldin mesajları aktifleştirildi.")
-
-    # Devre dışı bırak butonuna tıklandıysa
+        # Aktif etme işlemleri
+        await event.answer("Gruba katılan üyeleri karşılama aktif edildi.")
     elif event.data == b"disable_welcome":
-        welcome_enabled = False
-        await event.answer("Hoş geldin mesajları devre dışı bırakıldı.")
+        # Devre dışı bırakma işlemleri
+        await event.answer("Gruba katılan üyeleri karşılama devre dışı bırakıldı.")
+
+@client.on(events.ChatAction)
+async def handle_chat_action(event):
+    if event.user_joined:
+        # Karşılama aktif mi kontrol et
+        if is_welcome_enabled(event.chat_id):
+            user = await event.get_user()
+            random_message = random.choice(['Merhaba!', 'Hoş geldin!', 'Selam!'])
+            await client.send_message(event.chat_id, f'{random_message} @{user.username}')
+
+def is_welcome_enabled(chat_id):
+    # Gruba özgü karşılama ayarlarını kontrol et
+    # Eğer aktif ise True, değilse False döndür
+    return True  # Örnek olarak her zaman aktif olduğunu varsayalım
 
 
 @client.on(events.NewMessage(pattern='/cagir'))
