@@ -793,7 +793,7 @@ async def cagir_command(event):
     users = await client.get_participants(event.chat_id, limit=4)
     
     # Etiketleri oluştur
-    tags = ', '.join(f'[{usr.first_name}](tg://user?id={usr.id})' for user in users)
+    tags = ', '.join(f'[{user.first_name}](tg://user?id={user.id})' for user in users)
     
     # Komutu kullanan kişinin kullanıcı adını al
     username = f"[{sender.first_name}](tg://user?id={sender.id})"
