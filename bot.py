@@ -810,10 +810,10 @@ async def grup_info(event):
     if not special_status:
         special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
 
-    geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+     message_count = await event.client.get_messages(group_id, limit=0)
+     total_message_count = message_count.total
 
-    message_count = await event.client.get_messages(group_id, limit=0)
-    total_message_count = message_count.total
+    geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
 
     response_text = (
         f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
