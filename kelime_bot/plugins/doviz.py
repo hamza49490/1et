@@ -6,7 +6,8 @@ API_KEY = "bc5ca147175e26ed57581b6b"
 
 # Komutları işlemek için bir filtre oluşturun
 @filters.command(["dolar"])
-def get_dolar(_, message):
+def get_dolar(update, context):
+    message = update.message
     response = requests.get(f"https://api.exchangerate-api.com/v4/latest/USD")
     data = response.json()
     dolar_kuru = data["rates"]["TRY"]
