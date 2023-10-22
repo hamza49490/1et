@@ -805,15 +805,16 @@ async def cagir_command(event):
         return
     # Son aktif olan 20 kişiyi al
     users = await client.get_participants(event.chat_id, limit=50)
+    users = [user for user in users if not user.is_user_deleted and not user.is_bot]
     
     # Etiketleri oluştur
-    tags = ' , '.join(f'[{user.first_name}](tg://user?id={user.id})' for user in users)
+    tags = ' , '.join(f'@{user.username}' if user.username else user.first_name for user in users)
     
     # Komutu kullanan kişinin kullanıcı adını al
     username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
     
     # Etiketleri ve kullanıcı adını gönder
-    await event.reply(f'**{tags}\n\n{username} Sizi Oyuna Çağırıyor .**')
+    await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
 	
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
