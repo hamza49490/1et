@@ -796,7 +796,7 @@ async def cagir_command(event):
     tags = ', '.join(f'[{user.first_name}](tg://user?id={user.id})' for user in users)
     
     # Komutu kullanan kişinin kullanıcı adını al
-    username = f"[{sender.first_name}](tg://user?id={sender.id})"
+    username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
     
     # Etiketleri ve kullanıcı adını gönder
     await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
