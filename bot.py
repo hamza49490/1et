@@ -93,13 +93,15 @@ async def chatbot(event):
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
     
-    if "selam" in kelimeler:
+    if "selam" in kelimeler or "selamün aleyküm" in kelimeler:
         cevap = random.choice(selam)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 	    	    
-    if "Nasılsın" in kelimeler or "nasılsın" in kelimeler or "naber" in kelimeler or "Naber" in kelimeler:
-        await event.reply(f"**{random.choice(nasilsin)}**")
+    if "nasılsın" in kelimeler or "naber" in kelimeler:
+        cevap = random.choice(nasilsin)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
     if "Adam" in kelimeler or "adam" in kelimeler:
         await event.reply(f"**{random.choice(adam)}**")
@@ -239,7 +241,7 @@ async def chatbot(event):
 
 selam = ["Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin .",]
 
-nasilsin = ( "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳", )
+nasilsin = ["İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 
 adam = ( "Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏", )
 
