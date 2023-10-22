@@ -790,6 +790,21 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
+@client.on(events.NewMessage(pattern='/cagir'))
+async def cagir_command(event):
+    # Son aktif olan 20 kişiyi al
+    users = await client.get_participants(event.chat_id, limit=4, reverse=True)
+    
+    # Etiketleri oluştur
+    tags = ', '.join([f'[{usr.first_name}](tg://user?id={usr.id})' for user in users])
+    
+    # Komutu kullanan kişinin kullanıcı adını al
+    username = f"[{sender.first_name}](tg://user?id={sender.id})"
+    
+    # Etiketleri ve kullanıcı adını gönder
+    await event.reply(f'{tags}\n\n{username} Sizi Oyuna Çağırıyor .')
+	
+
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
 async def cancel(event):
   global gece_tag
@@ -882,7 +897,7 @@ async def utag(event):
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.string.split(None, 1)[1]
-    if msg == "u/tag":
+    if msg == "/utag":
         return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /utag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
