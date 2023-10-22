@@ -794,7 +794,6 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
-# Komut işleyicisi
 @client.on(events.NewMessage(pattern='/etiketle'))
 async def handle_tagging(event):
     # Komutu kullanan kişinin kullanıcı adını al
@@ -804,7 +803,7 @@ async def handle_tagging(event):
     all_users = await client.get_participants(event.chat_id)
     
     # Etiketlenecek kullanıcı sayısı
-    tag_count = 20
+    tag_count = 50
     
     # Botlar ve silinen hesapları hariç tut
     valid_users = [user for user in all_users if not user.bot and not user.deleted]
@@ -816,7 +815,7 @@ async def handle_tagging(event):
     tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
     
     # Mesajı oluştur
-    message = f'{tags}\n\nKomutu kullanan kişi: {sender_username}'
+    message = f'**{tags}\n\n➻  {sender_username}\n💕 sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ .**'
     
     # Mesajı gönder
     await client.send_message(event.chat_id, message)
