@@ -34,7 +34,7 @@ from telethon import Button
 from pyrogram.errors import FloodWait
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
-from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantsBots, ChannelParticipantsDeleted
+from telethon.tl.types import ChannelParticipantsAdmins
 from datetime import datetime
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
@@ -949,7 +949,9 @@ async def tag(event):
     gece_tag.append(event.chat_id)
     usrnum = 0
     usrtxt = ""   
-    async for usr in client.iter_participants(event.chat_id, filter=ChannelParticipantsBots | ChannelParticipantsDeleted):
+    async for usr in client.iter_participants(event.chat_id):
+      if usr.bot or usr.deleted:
+        continue
       rxyzdev_tagTot[event.chat_id] += 1
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
