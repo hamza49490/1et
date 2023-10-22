@@ -1,37 +1,28 @@
 from pyrogram import Client, filters
-import requests
-
-# API anahtarını buraya girin
-API_KEY = "bc5ca147175e26ed57581b6b"
+from pyrogram.types import InputMediaPhoto
 
 
-@filters.command(["dolar"])
-def get_dolar(update, context, update.message)
-    message = update.message
-    response = requests.get(f"https://api.exchangerate-api.com/v4/latest/USD")
-    data = response.json()
-    dolar_kuru = data["rates"]["TRY"]
-    message.reply_text(f"1 USD = {dolar_kuru} TRY")
+# /zar komutunu işleyen fonksiyon
+@Client.on_message(filters.command('zar'))
+def roll_dice(client, message):
+    client.send_dice(message.chat.id)
 
-# Çağrıldığı yerde message argümanını ekleyin
-get_dolar(update, context, message)
+# /sticker komutunu işleyen fonksiyon
+@Client.on_message(filters.command('sticker') & filters.reply)
+def convert_to_sticker(client, message):
+    reply_message = message.reply_to_message
+    if reply_message.photo:
+        photo = reply_message.photo[-1]
+        file_id = photo.file_id
+        client.send_sticker(message.chat.id, file_id)
 
-@filters.command(["euro"])
-def get_euro(update, context, update.message)
-    response = requests.get(f"https://api.exchangerate-api.com/v4/latest/EUR")
-    data = response.json()
-    euro_kuru = data["rates"]["TRY"]
-    message.reply_text(f"1 EUR = {euro_kuru} TRY")
+# /photo komutunu işleyen fonksiyon
+@Client.on_message(filters.command('photo') & filters.reply)
+def convert_to_photo(client, message):
+    reply_message = message.reply_to_message
+    if reply_message.sticker:
+        sticker = reply_message.sticker
+        file_id = sticker.file_id
+        file_path = client.download_media(file_id)
+        client.send_photo(message.chat.id, file_path)
 
-# Çağrıldığı yerde message argümanını ekleyin
-get_euro(update, context, message)
-
-@filters.command(["altın"])
-def get_altin(update, context, update.message)
-    response = requests.get(f"https://api.exchangerate-api.com/v4/latest/XAU")
-    data = response.json()
-    altin_kuru = data["rates"]["TRY"]
-    message.reply_text(f"1 XAU = {altin_kuru} TRY")
-
-# Çağrıldığı yerde message argümanını ekleyin
-get_altin(update, context, message)
