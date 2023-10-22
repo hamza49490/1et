@@ -61,11 +61,18 @@ OWNER = [6540285284]
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
+anlik_calisan = []
+tekli_calisan = []
 gece_tag = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
-ozel_list = []	    
+gruplar = []
+ozel_list = []
+grup_sayi = []
+etiketuye = []
+isleyen = []
+user_sayi = []    
 
 @client.on(events.NewMessage)
 async def chatbot(event):
