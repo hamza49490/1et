@@ -334,7 +334,7 @@ async def chatbot(event):
             isleyen.append(qrup)
             aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
             await event.reply(aktiv_olundu, buttons=[
-                [Button.inline("Sohbet Modunu Kapat", data="sohbetmod_off")]
+                [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
             ])
             return
         await event.reply("🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .")
@@ -348,8 +348,8 @@ async def chatbot(event):
         return
     
     else:
-        await event.reply("💕  ʙᴜᴋᴇᴛ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ  :", buttons=[
-            [Button.inline("Sohbet Modunu Aç", data="sohbetmod_on")]
+        await event.reply("💕  ᴍᴇʀʜᴀʙᴀ  ", buttons=[
+            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
         ])
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
@@ -359,7 +359,7 @@ async def callback_sohbetmod_on(event):
         isleyen.append(qrup)
         aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
         await event.edit(aktiv_olundu, buttons=[
-            [Button.inline("Sohbet Modunu Kapat", data="sohbetmod_off")]
+            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
         ])
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
@@ -367,7 +367,9 @@ async def callback_sohbetmod_off(event):
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+        await event.edit("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !", buttons=[
+            [Button.inline("💭 sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ̧", data="sohbetmod_on")]
+        ])
 
 
 	    
@@ -1015,7 +1017,7 @@ async def tag(event):
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/tag ?(.*)"))
+@client.on(events.NewMessage(pattern="^/etag ?(.*)"))
 async def tag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1031,7 +1033,7 @@ async def tag(event):
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.string.split(None, 1)[1]
-    if msg == "/tag":
+    if msg == "/etag":
         return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /etag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
