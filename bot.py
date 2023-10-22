@@ -315,6 +315,7 @@ tymm = ( "Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa d
 kmm= ( "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳", )
 
 #x21 = ( "", "", "", "", )
+
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
@@ -324,33 +325,51 @@ async def chatbot(event):
     if not await is_group_admin(event):
         await event.respond(f"{noadmin}", parse_mode='markdown')
         return
-	    
+     
     global isleyen
     emr = event.pattern_match.group(1)
     qrup = event.chat_id
     if emr == "on" or emr == "On":
         if qrup not in isleyen:
             isleyen.append(qrup)
-            aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀʙɪʟɪʀɪᴍ !**"
-            await event.reply(aktiv_olundu)
+            aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            await event.reply(aktiv_olundu, buttons=[
+                [Button.inline("Sohbet Modunu Kapat", data="sohbetmod_off")]
+            ])
             return
-        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀʙɪʟɪʏᴏʀᴜᴍ .**")
+        await event.reply("🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .")
         return
     elif emr == "off" or emr == "Off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await event.reply("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ̈ᴢᴇʟʟɪɢ̆ɪ ᴅᴇᴠʀᴇ ᴅɪşɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜşᴀᴍᴀᴍ !**")
+            await event.reply("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
             return
-        await event.reply("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜşᴀᴍɪʏᴏʀᴜᴍ !**")
+        await event.reply("🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !")
         return
     
     else:
-        await event.reply("**💕  ʙᴜᴋᴇᴛ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ  :\n\n» /sohbetmod on\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴋᴛɪғ ᴇᴛ.\n» /sohbetmod off\n   ➻ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ .**", buttons=(
-                     [
-	              Button.url('🎉  ʙɪʟɢɪ  ᴇᴅɪɴɪɴ ', f'https://t.me/{GROUP_SUPPORT}')
-                    ]
-                  ),
-                link_preview=False)
+        await event.reply("💕  ʙᴜᴋᴇᴛ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ  :", buttons=[
+            [Button.inline("Sohbet Modunu Aç", data="sohbetmod_on")]
+        ])
+
+@client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
+async def callback_sohbetmod_on(event):
+    qrup = event.chat_id
+    if qrup not in isleyen:
+        isleyen.append(qrup)
+        aktiv_olundu = "✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+        await event.edit(aktiv_olundu, buttons=[
+            [Button.inline("Sohbet Modunu Kapat", data="sohbetmod_off")]
+        ])
+
+@client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
+async def callback_sohbetmod_off(event):
+    qrup = event.chat_id
+    if qrup in isleyen:
+        isleyen.remove(qrup)
+        await event.edit("✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+
+
 	    
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
@@ -596,36 +615,6 @@ async def romantik(event):
 ##################################################
 ##################################################
 ##################################################
-
-@client.on(events.NewMessage(pattern='/delle'))
-async def purge_messages(event):
-    if event.is_private:
-        await event.respond(f"{nogroup}", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond(f"{noadmin}", parse_mode='markdown')
-        return
-
-    reply_msg = await event.get_reply_message()
-    if not reply_msg:
-        await event.respond("✓  sɪʟᴍᴇᴍ ɪᴄ‌ɪɴ ʙɪʀ ᴍᴇsᴀᴊ ʏᴀɴɪᴛʟᴀ .")
-        return
-
-    messages = []
-    message_id = reply_msg.id
-    delete_to = event.message.id
-
-    messages.append(reply_msg)
-    async for message in client.iter_messages(event.chat_id, min_id=message_id, max_id=delete_to):
-        messages.append(message)
-
-    await client.delete_messages(event.chat_id, messages)
-    time_ = time.perf_counter() - start
-    text = f"✓  ᴛᴇᴍɪᴢʟᴇᴍᴇ {time_:0.2f} ᴛᴀᴍᴀᴍʟᴀɴᴅɪ ..."
-    await event.respond(text, parse_mode='markdown')
-	
-
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
     if event.is_private:
