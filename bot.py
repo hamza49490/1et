@@ -15,6 +15,15 @@ import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
+from telethon.sync import TelegramClient, events
+from telethon.tl.functions.messages import GetDialogsRequest
+from telethon.tl.types import InputPeerChannel
+from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
+from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.messages import ImportChatInviteRequest
+from telethon.tl.types import PeerUser, PeerChat, PeerChannel
+from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
 from pyrogram.handlers import MessageHandler
@@ -794,7 +803,63 @@ async def zar(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/etiketle'))
+welcome_message = [
+    "Hoş geldin!",
+    "Aramıza hoş geldin!",
+    "Merhaba, hoş geldin!",
+    "Keyifli sohbetler dilerim!",
+    "Hoş geldin, umarım iyi vakit geçirirsin!"
+]
+
+# Hoş geldin mesajlarını aktif veya devre dışı bırakmak için bir bayrak
+welcome_enabled = True
+
+# Kullanıcıları etiketleyerek hoş geldin mesajı gönderen fonksiyon
+async def send_welcome_message(event):
+    global welcome_enabled
+
+    if welcome_enabled:
+        # Kullanıcının tam adını al
+        user = await event.client(GetFullUserRequest(event.action.user_id))
+        full_name = user.user.first_name + " " + user.user.last_name if user.user.last_name else user.user.first_name
+
+        # Random hoş geldin mesajını seç
+        message = random.choice(welcome_message)
+
+        # Kullanıcıyı etiketleyerek hoş geldin mesajını gönder
+        await event.reply(f"{full_name}, {message}")
+
+# /welcome komutunu işleyen fonksiyon
+@client.on(events.NewMessage(pattern='/welcome'))
+async def welcome_command(event):
+    global welcome_enabled
+
+    # Aktif et ve devre dışı bırak butonlarını oluştur
+    buttons = [
+        [Button.inline("Aktif et", b"enable_welcome")],
+        [Button.inline("Devre dışı bırak", b"disable_welcome")]
+    ]
+
+    # Butonları gönder
+    await event.respond("Hoş geldin mesajlarını nasıl yönetmek istersiniz?", buttons=buttons)
+
+# Butonlara yanıt veren fonksiyon
+@client.on(events.CallbackQuery())
+async def button_click(event):
+    global welcome_enabled
+
+    # Aktif et butonuna tıklandıysa
+    if event.data == b"enable_welcome":
+        welcome_enabled = True
+        await event.answer("Hoş geldin mesajları aktifleştirildi.")
+
+    # Devre dışı bırak butonuna tıklandıysa
+    elif event.data == b"disable_welcome":
+        welcome_enabled = False
+        await event.answer("Hoş geldin mesajları devre dışı bırakıldı.")
+
+
+@client.on(events.NewMessage(pattern='/cagir'))
 async def handle_tagging(event):
     # Komutu kullanan kişinin kullanıcı adını al
     sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
