@@ -83,6 +83,7 @@ isleyen = []
 user_sayi = []    
 
 
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
@@ -91,27 +92,27 @@ async def chatbot(event):
     if qrup not in isleyen:
         return
     
-    kelimeler = mesaj.split()  # Mesajı kelimelere ayır
+    kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
     
-    if "Selam" in kelimeler or "selam" in kelimeler or "Selamün" in kelimeler or "selamün" in kelimeler:
+    if "selam" in kelimeler:
         await event.reply(f"{random.choice(selam)}")
 	    	    
-    if "Nasılsın" in mesaj or "nasılsın" in mesaj or "naber" in mesaj or "Naber" in mesaj:
+    if "Nasılsın" in kelimeler or "nasılsın" in kelimeler or "naber" in kelimeler or "Naber" in kelimeler:
         await event.reply(f"**{random.choice(nasilsin)}**")
 	    
-    if "Adam" in mesaj or "adam" in mesaj:
+    if "Adam" in kelimeler or "adam" in kelimeler:
         await event.reply(f"**{random.choice(adam)}**")
 	    
-    if "iyiyim" in mesaj or "İyiyim" in mesaj:
+    if "iyiyim" in kelimeler or "İyiyim" in kelimeler:
         await event.reply(f"**{random.choice(iyiyim)}**")
 	    
-    if "Hoş Geldin" in mesaj or "hoş geldin" in mesaj:
+    if "Hoş Geldin" in kelimeler or "hoş geldin" in kelimeler:
         await event.reply(f"**{random.choice(hoş)}**")
 	    
-    if "Merhaba" in mesaj or "merhaba" in mesaj:
+    if "Merhaba" in kelimeler or "merhaba" in kelimeler:
         await event.reply(f"**{random.choice(merhaba)}**")
 	    
-    if "Ban" in mesaj or "ban" in mesaj :
+    if "Ban" in kelimeler or "ban" in kelimeler :
         await event.reply(f"**{random.choice(ban)}**")
 	    
     if "Nabıyon" in mesaj or "nabıyon" in mesaj  or "Napıyorsun" in mesaj or "napıyorsun" in mesaj:
