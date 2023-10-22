@@ -345,7 +345,6 @@ async def chatbot(event):
     ])
 
 
-
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
 async def callback_sohbetmod_on(event):
     qrup = event.chat_id
@@ -366,16 +365,12 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
-
 @client.on(events.ChatAction)
-async def welcome_message(event):
-    if event.user_joined:
-        chat = await event.get_chat()
-        if chat.id in isleyen:
-            members = await client.get_participants(chat)
-            member = random.choice(members)
-            await client.send_message(chat, f"Hoş geldin @{member.username}!")
-		
+async def random_hg(event):
+    if isinstance(event.action, types.ChatActionUserJoined):
+        await event.reply(f"{event.user.first_name}, {random.choice(['Hoş geldin!', 'Merhaba!', 'Keyifli sohbetler!', 'Aramıza hoş geldin!'])}")
+    elif isinstance(event.action, types.ChatActionUserLeft):
+        await event.reply(f"{event.user.first_name}, {random.choice(['Görüşmek üzere!', 'Hoşça kal!', 'Tekrar bekleriz!', 'İyi günler dileriz!'])}")
 
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
