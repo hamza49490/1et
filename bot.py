@@ -15,6 +15,7 @@ import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
+from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerChannel
@@ -94,7 +95,8 @@ async def chatbot(event):
     
     if "selam" in kelimeler:
         cevap = random.choice(selam)
-        await event.reply(cevap)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    	    
     if "Nasılsın" in kelimeler or "nasılsın" in kelimeler or "naber" in kelimeler or "Naber" in kelimeler:
         await event.reply(f"**{random.choice(nasilsin)}**")
