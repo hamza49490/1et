@@ -490,6 +490,41 @@ async def sticker_to_photo(event):
             await event.respond('Lütfen bir sticker gönderin.')
     else:
         await event.respond('Bu komutu bir fotoğrafın üzerine yanıtlayarak kullanın.')
+
+
+
+def get_currency_data(currency):
+    # API çağrısı yaparak verileri alın
+    response = requests.get(f"https://api.example.com/currency/{currency}")
+    data = response.json()
+    
+    # Verileri işleyin
+    kuru = data['kuru']
+    alis_fiyati = data['alis_fiyati']
+    satis_fiyati = data['satis_fiyati']
+    
+    return kuru, alis_fiyati, satis_fiyati
+
+@client.on(events.NewMessage(pattern=r'(?i)altın'))
+async def handle_altin(event):
+    # Altın verilerini alın
+    altin_kuru, alis_fiyati, satis_fiyati = get_currency_data('altin')
+    
+    await event.respond(f"Altın kuru: {altin_kuru}\nAlış fiyatı: {alis_fiyati}\nSatış fiyatı: {satis_fiyati}")
+
+@client.on(events.NewMessage(pattern=r'(?i)dolar'))
+async def handle_dolar(event):
+    # Dolar verilerini alın
+    dolar_kuru, alis_fiyati, satis_fiyati = get_currency_data('dolar')
+    
+    await event.respond(f"Dolar kuru: {dolar_kuru}\nAlış fiyatı: {alis_fiyati}\nSatış fiyatı: {satis_fiyati}")
+
+@client.on(events.NewMessage(pattern=r'(?i)euro'))
+async def handle_euro(event):
+    # Euro verilerini alın
+    euro_kuru, alis_fiyati, satis_fiyati = get_currency_data('euro')
+    
+    await event.respond(f"Euro kuru: {euro_kuru}\nAlış fiyatı: {alis_fiyati}\nSatış fiyatı: {satis_fiyati}")
 	
 ##################################################
 ##################################################
