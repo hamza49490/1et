@@ -886,7 +886,7 @@ async def tag(event):
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.string.split(None, 1)[1]
-    if msg == "/tag":
+    if msg == "u/tag":
         return await event.respond(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /utag Merhaba")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
