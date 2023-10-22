@@ -16,13 +16,9 @@ from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
 from telethon.tl import types
-from telethon import Button
-from telethon.tl import types
 from telethon.tl import functions
 from pyrogram.handlers import MessageHandler
-from telethon import events
 from telethon import errors
-from telethon import TelegramClient
 from asyncio import sleep
 from time import time
 from os import remove
