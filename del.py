@@ -31,9 +31,6 @@ def start(message):
 
 @bot.message_handler(commands=['iptal'])
 def cancel(message):
-    if message.chat.type == 'private':
-        bot.reply_to(message, "⛔ <b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
-        return
     global target_number
     global start_time
 
