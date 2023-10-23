@@ -2,46 +2,62 @@ import telebot
 import requests
 import random
 from datetime import datetime
+import time
 
-
-# Telegram botunun token'ını buraya girin
 TOKEN = '6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY'
-
-# Telebot nesnesini oluşturun
 bot = telebot.TeleBot(TOKEN)
 
-# Oyun durumunu takip etmek için bir sözlük oluşturun
-games = {}
-
-# /start komutuna yanıt veren fonksiyon
-@bot.message_handler(commands=['tsayi'])
+@bot.message_handler(commands=['start'])
 def start(message):
-    # Oyun durumunu sıfırlayın
-    games[message.chat.id] = {'number': random.randint(1, 100), 'attempts': 0}
-    bot.send_message(message.chat.id, "Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın.")
+    bot.reply_to(message, "Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapabilirsiniz!")
 
-# Kullanıcının tahminine yanıt veren fonksiyon
+    # Rastgele bir sayı seç
+    global target_number
+    target_number = random.randint(1, 100)
+
+    # Oyun süresi başlat
+    global start_time
+    start_time = time.time()
+
+@bot.message_handler(commands=['cancel'])
+def cancel(message):
+    bot.reply_to(message, "Oyun iptal edildi.")
+    target_number = None
+    start_time = None
+
 @bot.message_handler(func=lambda message: True)
 def guess(message):
-    chat_id = message.chat.id
-    if chat_id in games:
-        try:
-            guess = int(message.text)
-            games[chat_id]['attempts'] += 1
-            if guess == games[chat_id]['number']:
-                bot.send_message(chat_id, f"Tebrikler! {games[chat_id]['number']} sayısını {games[chat_id]['attempts']} denemede buldunuz.")
-                del games[chat_id]
-            elif guess < games[chat_id]['number']:
-                bot.send_message(chat_id, "Daha yüksek bir sayı tahmin edin.")
-            else:
-                bot.send_message(chat_id, "Daha düşük bir sayı tahmin edin.")
-        except ValueError:
-            bot.send_message(chat_id, "Lütfen geçerli bir sayı girin.")
-    else:
-        bot.send_message(chat_id, "Oyunu başlatmak için /tsayi komutunu kullanın.")
+    if target_number is None:
+        bot.reply_to(message, "Oyun başlatılmadı. Lütfen /start komutuyla oyunu başlatın.")
+        return
 
-# Botu çalıştırın
+    try:
+        guess_number = int(message.text)
+    except ValueError:
+        bot.reply_to(message, "Geçersiz tahmin. Lütfen bir sayı girin.")
+        return
+
+    if guess_number < target_number:
+        bot.reply_to(message, "Daha büyük bir sayı tahmin edin.")
+    elif guess_number > target_number:
+        bot.reply_to(message, "Daha küçük bir sayı tahmin edin.")
+    else:
+        elapsed_time = time.time() - start_time
+        bot.reply_to(message, f"Tebrikler! Doğru sayıyı buldunuz. Oyun süresi: {elapsed_time:.2f} saniye.")
+        target_number = None
+        start_time = None
+
+        return
+
+    if elapsed_time > 60:
+        bot.reply_to(message, "Oyun süresi doldu. Oyun iptal edildi.")
+        target_number = None
+        start_time = None
+
 bot.polling()
+    
+
+
 
 '''
 bot_token = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
