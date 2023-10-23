@@ -15,7 +15,7 @@ start_time = None
 @bot.message_handler(commands=['sayi'])
 def start(message):
     if message.chat.type == 'private':
-        bot.reply_to(message, "<b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
+        bot.reply_to(message, "⛔ <b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
         return
     global target_number
     global start_time
@@ -32,7 +32,7 @@ def start(message):
 @bot.message_handler(commands=['iptal'])
 def cancel(message):
     if message.chat.type == 'private':
-        bot.reply_to(message, "<b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
+        bot.reply_to(message, "⛔ <b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
         return
     global target_number
     global start_time
