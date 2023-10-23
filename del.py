@@ -3,6 +3,47 @@ import requests
 import random
 from datetime import datetime
 
+
+# Telegram botunun token'ını buraya girin
+TOKEN = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
+
+# Telebot nesnesini oluşturun
+bot = telebot.TeleBot(TOKEN)
+
+# Oyun durumunu takip etmek için bir sözlük oluşturun
+games = {}
+
+# /start komutuna yanıt veren fonksiyon
+@bot.message_handler(commands=['tsayi'])
+def start(message):
+    # Oyun durumunu sıfırlayın
+    games[message.chat.id] = {'number': random.randint(1, 100), 'attempts': 0}
+    bot.send_message(message.chat.id, "Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapın.")
+
+# Kullanıcının tahminine yanıt veren fonksiyon
+@bot.message_handler(func=lambda message: True)
+def guess(message):
+    chat_id = message.chat.id
+    if chat_id in games:
+        try:
+            guess = int(message.text)
+            games[chat_id]['attempts'] += 1
+            if guess == games[chat_id]['number']:
+                bot.send_message(chat_id, f"Tebrikler! {games[chat_id]['number']} sayısını {games[chat_id]['attempts']} denemede buldunuz.")
+                del games[chat_id]
+            elif guess < games[chat_id]['number']:
+                bot.send_message(chat_id, "Daha yüksek bir sayı tahmin edin.")
+            else:
+                bot.send_message(chat_id, "Daha düşük bir sayı tahmin edin.")
+        except ValueError:
+            bot.send_message(chat_id, "Lütfen geçerli bir sayı girin.")
+    else:
+        bot.send_message(chat_id, "Oyunu başlatmak için /tsayi komutunu kullanın.")
+
+# Botu çalıştırın
+bot.polling()
+
+'''
 bot_token = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
 
 bot_active = False
@@ -148,3 +189,4 @@ while True:
         bot.polling(none_stop=True)
     except Exception as e:
         pass
+'''
