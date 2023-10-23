@@ -8,24 +8,6 @@ import time
 
 TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
 bot = telebot.TeleBot(TOKEN)
-
-
-@bot.message_handler(commands=['lyrics'])
-def send_lyrics(message):
-    song_name = message.text.replace('/lyrics', '').strip()
-    lyrics = get_lyrics(song_name)
-    bot.reply_to(message, lyrics)
-
-def get_lyrics(song_name):
-    url = f'https://www.azlyrics.com/lyrics/{song_name}.html'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    lyrics_div = soup.find_all('div', class_='col-xs-12 col-lg-8 text-center')
-    if len(lyrics_div) > 0:
-        lyrics = lyrics_div[0].find_all('div')[6].text.strip()
-        return lyrics
-    else:
-        return "Lyrics not found"
         
 
 target_number = None
