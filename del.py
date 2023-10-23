@@ -10,10 +10,15 @@ bot = telebot.TeleBot(TOKEN)
 target_number = None
 start_time = None
 
+
 @bot.message_handler(commands=['sat'])
 def start(message):
     global target_number
     global start_time
+
+    if target_number is not None:
+        bot.reply_to(message, "Zaten bir oyun aktif.")
+        return
 
     bot.reply_to(message, "Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapabilirsiniz!")
 
@@ -28,10 +33,12 @@ def cancel(message):
     global target_number
     global start_time
 
-    bot.reply_to(message, "Oyun iptal edildi.")
-    target_number = None
-    start_time = None
-    
+    if target_number is None:
+        bot.reply_to(message, "Zaten aktif bir oyun yok.")
+    else:
+        bot.reply_to(message, "Oyun iptal edildi.")
+        target_number = None
+        start_time = None
 
 @bot.message_handler(func=lambda message: True)
 def guess(message):
