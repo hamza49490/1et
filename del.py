@@ -9,8 +9,33 @@ import time
 TOKEN = '6559325433:AAEp2-fpXANzUVaFk5eyM4Z6JEWX9LBe4ls'
 bot = telebot.TeleBot(TOKEN)
 
+# Altın, Dolar ve Euro fiyatlarını çeken fonksiyon
+def get_exchange_rates():
+    url = 'https://api.genelpara.com/embed/doviz.json'
+    response = requests.get(url)
+    data = response.json()
+    return data
 
-
+# Botunuzun mesajlara yanıt vermesi için kullanılan fonksiyon
+@bot.message_handler(func=lambda message: True)
+def send_exchange_rates(message):
+    rates = get_exchange_rates()
+    text = message.text.lower()
+    if 'altın' in text:
+        gold_buy = rates['gold']['buying']
+        gold_sell = rates['gold']['selling']
+        response = f"Altın fiyatları:\nAlış: {gold_buy} TL\nSatış: {gold_sell} TL"
+    elif 'dolar' in text:
+        usd_buy = rates['usd']['buying']
+        usd_sell = rates['usd']['selling']
+        response = f"Dolar fiyatları:\nAlış: {usd_buy} TL\nSatış: {usd_sell} TL"
+    elif 'euro' in text:
+        eur_buy = rates['eur']['buying']
+        eur_sell = rates['eur']['selling']
+        response = f"Euro fiyatları:\nAlış: {eur_buy} TL\nSatış: {eur_sell} TL"
+    else:
+        response = "Üzgünüm, geçerli bir komut değil. Lütfen 'Altın', 'Dolar' veya 'Euro' yazın."
+    bot.reply_to(message, response)
 
 
 target_number = None
