@@ -21,10 +21,10 @@ def start(message):
     global start_time
 
     if target_number is not None:
-        bot.reply_to(message, "💭 <b>Zaten aktif oyun var</b>.\n⛔ İptal etmek için ➡️ /iptal", parse_mode="HTML")
+        bot.reply_to(message, "💭 <b>Zaten aktif oyun var .\n⛔ İptal etmek için ➡️ /iptal</b>", parse_mode="HTML")
         return
 
-    bot.reply_to(message, "💕 <b>Merhaba arkadaşlar.</b>\n💭 Aklımda 1 - 1000 bir sayı tuttum.\n🤔 Aklımdaki sayıyı tahmin et.", parse_mode="HTML")
+    bot.reply_to(message, "💕 <b>Merhaba arkadaşlar .\n💭 Aklımda 1 - 1000 bir sayı tuttum .\n🤔 Aklımdaki sayıyı tahmin et .</b>", parse_mode="HTML")
 
     # Rastgele bir sayı seç
     target_number = random.randint(1, 1000)
@@ -38,9 +38,9 @@ def cancel(message):
     global start_time
 
     if target_number is None:
-        bot.reply_to(message, "💭 <b>Zaten aktif oyun yok</b>.", parse_mode="HTML")
+        bot.reply_to(message, "💭 <b>Zaten aktif oyun yok .</b>", parse_mode="HTML")
     else:
-        bot.reply_to(message, "⛔ <b>Sayı Tahmin Oyunu iptal edildi</b>.", parse_mode="HTML")
+        bot.reply_to(message, "⛔ <b>Sayı Tahmin Oyunu iptal edildi .</b>", parse_mode="HTML")
         target_number = None
         start_time = None
 
@@ -56,11 +56,11 @@ def guess(message):
         return
 
     if guess_number < target_number:
-        bot.reply_to(message, "× <b>Daha büyük bir sayı tahmin edin</b>.", parse_mode="HTML")
+        bot.reply_to(message, "<b>× Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
     elif guess_number > target_number:
-        bot.reply_to(message, "× <b>Daha küçük bir sayı tahmin edin</b>.", parse_mode="HTML")
+        bot.reply_to(message, "<b>× Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
     else:
-        bot.reply_to(message, "💕 <b>Tebrikler! Doğru sayıyı buldunuz</b>.", parse_mode="HTML")
+        bot.reply_to(message, "💕 <b>Tebrikler! Doğru sayıyı buldunuz .</b>", parse_mode="HTML")
         target_number = None
         return
 
