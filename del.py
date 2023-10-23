@@ -13,7 +13,7 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['siralama'])
 def siralama(message):
     chat_id = message.chat.id
-    group_name = message.chat.title
+    group_name = message.chat.username
 
     # Grubun combot.org sıralamasını kontrol etmek için URL oluştur
     url = f"https://combot.org/telegram/top/groups?search={group_name}"
