@@ -788,13 +788,10 @@ async def grup_info(event):
     if deleted_count > 0:
         special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
     if bot_count > 0:
-        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛᴜ sᴀʏɪsɪ : {bot_count}\n'
+        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
 
     if not special_status:
         special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
-
-    messages_count = await event.client.get_messages(chat_info, limit=0)
-    messages_count = messages_count.total
 
     geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
 
@@ -802,13 +799,11 @@ async def grup_info(event):
         f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
         f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
         f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
-        f'➻ ᴀᴋᴛɪғ ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀ : {active_count}\n'
-        f'➻ ɢʀᴜᴘ ᴛᴏᴘʟᴀᴍ ᴍᴇsᴀᴊ sᴀʏɪsɪ : {messages_count}\n'
+        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
         f'{special_status}'
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
-	
 		
 
 @client.on(events.NewMessage(pattern='/id'))
