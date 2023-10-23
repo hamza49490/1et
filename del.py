@@ -9,42 +9,6 @@ import time
 TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
 bot = telebot.TeleBot(TOKEN)
 
-
-@bot.message_handler(commands=['siralama'])
-def siralama(message):
-    chat_id = message.chat.id
-    group_name = message.chat.username
-
-    # Grubun combot.org sıralamasını kontrol etmek için URL oluştur
-    url = f"https://combot.org/telegram/top/groups?search={group_name}"
-
-    # Web sayfasını al ve BeautifulSoup ile parse et
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Grubun sıralama bilgilerini al
-    tgme_page_wrap = soup.find('div', class_='tgme_page_wrap')
-    if tgme_page_wrap:
-        tgme_page = tgme_page_wrap.find('div', class_='tgme_page')
-        if tgme_page:
-            tgme_head_wrap = tgme_page.find('div', class_='tgme_head_wrap')
-            if tgme_head_wrap:
-                tgme_head_desc_wrap = tgme_head_wrap.find('div', class_='tgme_head_desc_wrap')
-                if tgme_head_desc_wrap:
-                    group_info = tgme_head_desc_wrap.find('div', class_='tgme_head_desc_item')
-                    if group_info:
-                        server = group_info.find('div', class_='tgme_head_desc_item_value').text
-                        messages = group_info.find_next('div', class_='tgme_head_desc_item_value').text
-                        members = group_info.find_next('div', class_='tgme_head_desc_item_value').text
-                        rank = group_info.find_next('div', class_='tgme_head_desc_item_value').text
-
-                        bot.send_message(chat_id, f"Grup: {group_name}\nSunucu: {server}\nMesajlar: {messages}\nÜyeler: {members}\nSıralama: {rank}")
-                        return
-
-    bot.send_message(chat_id, "Grup combot.org sıralamasında bulunamadı.")
-    
-
-
 target_number = None
 start_time = None
 
