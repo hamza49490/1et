@@ -11,28 +11,18 @@ bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=['lyrics'])
-def send_welcome(message):
-    bot.reply_to(message, "Merhaba! Şarkı sözlerini bulmak için bir şarkı adı gönderin.")
-
-@bot.message_handler(func=lambda message: True)
-def find_lyrics(message):
-    song_name = message.text.lower()
+def send_lyrics(message):
+    song_name = message.text.replace('/lyrics', '').strip()
     lyrics = get_lyrics(song_name)
-    if lyrics:
-        bot.reply_to(message, lyrics)
-    else:
-        bot.reply_to(message, "Şarkı sözleri bulunamadı.")
+    bot.reply_to(message, lyrics)
 
 def get_lyrics(song_name):
     url = f'https://www.azlyrics.com/lyrics/{song_name}.html'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    lyrics_div = soup.find('div', class_='ringtone')
-    if lyrics_div:
-        lyrics = lyrics_div.text.strip()
-        return lyrics
-    else:
-        return None
+    lyrics_div = soup.find_all('div', class_='col-xs-12 col-lg-8 text-center')[0]
+    lyrics = lyrics_div.find_all('div')[6].text.strip()
+    return lyrics
 
 
 target_number = None
