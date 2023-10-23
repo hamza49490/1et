@@ -6,7 +6,7 @@ import random
 from datetime import datetime
 import time
 
-TOKEN = '6559325433:AAEp2-fpXANzUVaFk5eyM4Z6JEWX9LBe4ls'
+TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
 bot = telebot.TeleBot(TOKEN)
 
 # Altın, Dolar ve Euro fiyatlarını çeken fonksiyon
