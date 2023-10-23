@@ -81,80 +81,85 @@ isleyen = []
 user_sayi = [] 
 
 
-
 client.storage = {}
-
-@client.on(events.NewMessage(pattern='/tur'))
-async def change_tur(event):
-    if event.is_private:
-        await event.respond('Komutlar sadece gruplarda kullanılabilir.')
-        return
-     
-    if len(event.raw_text.split('/tur ')) < 2:
-        await event.respond('Lütfen bir tur sayısı girin.')
-        return
-     
-    tur = event.raw_text.split('/tur ')[1]
-    if not tur.isdigit():
-        await event.respond('Lütfen geçerli bir tur sayısı girin.')
-        return
-     
-    if int(tur) > 50:
-        await event.respond('Tur sayısı en fazla 50 olabilir.')
-        return
-     
-    client.storage['tur'] = tur
-    await event.respond(f'Tur başarıyla değiştirildi. Yeni tur: {tur}')
 
 
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
     if event.is_private:
-        await event.respond('Komutlar sadece gruplarda kullanılabilir.')
+        await event.respond('Komutlar sadece gruplarda kullanılabilir.', parse_mode='bold')
         return
      
     tur = client.storage.get('tur', '10')
     il_plaka_kodlari = {
-        'Adana': '01',
-        'Adıyaman': '02',
-        'Afyon': '03',
-        # Diğer iller ve plaka kodları buraya eklenebilir
+    'Ağrı': '04', 'Amasya': '05', 'Ankara': '06', 'Antalya': '07', 'Artvin': '08', 'Aydın': '09', 'Balıkesir': '10', 'Bilecik': '11', 'Bingöl': '12', 'Bitlis': '13', 'Bolu': '14', 'Burdur': '15', 'Bursa': '16', 'Çanakkale': '17', 'Çankırı': '18', 'Çorum': '19', 'Denizli': '20', 'Diyarbakır': '21', 'Edirne': '22', 'Elazığ': '23', 'Erzincan': '24', 'Erzurum': '25', 'Eskişehir': '26', 'Gaziantep': '27', 'Giresun': '28', 'Gümüşhane': '29', 'Hakkari': '30', 
+    'Hatay': '31', 'Isparta': '32', 'Mersin': '33', 'İstanbul': '34', 'İzmir': '35', 'Kars': '36', 'Kastamonu': '37', 'Kayseri': '38', 'Kırklareli': '39', 'Kırşehir': '40', 'Kocaeli': '41', 'Konya': '42', 'Kütahya': '43', 'Malatya': '44', 'Manisa': '45', 'Kahramanmaraş': '46', 'Mardin': '47', 'Muğla': '48', 'Muş': '49', 'Nevşehir': '50', 'Niğde': '51', 'Ordu': '52', 'Rize': '53', 'Sakarya': '54', 'Samsun': '55', 'Siirt': '56', 'Sinop': '57', 'Sivas': '58', 
+    'Tekirdağ': '59', 'Tokat': '60', 'Trabzon': '61', 'Tunceli': '62', 'Şanlıurfa': '63', 'Uşak': '64', 'Van': '65', 'Yozgat': '66', 'Zonguldak': '67', 'Aksaray': '68', 'Bayburt': '69', 'Karaman': '70', 'Kırıkkale': '71', 'Batman': '72', 'Şırnak': '73', 'Bartın': '74', 'Ardahan': '75', 'Iğdır': '76', 'Yalova': '77', 'Karabük': '78', 'Kilis': '79', 'Osmaniye': '80', 'Düzce': '81'
     }
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
-    await event.respond(f'{il} ilinin plaka kodu kaçtır ?\naTur : {tur}')
+    tur_sayisi = len(client.storage.keys()) - 1
+    await event.respond(f'{il} ilinin plaka kodu kaçtır ?\nTur: {tur_sayisi}/{tur}', parse_mode='bold')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
 
-    @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
-    async def guess(event):
-        plaka_kodu = event.raw_text
-        il = client.storage.get(plaka_kodu)
-        if il:
-            await event.respond(f'Tebrikler! Doğru cevap. {il["il"]} ilinin plaka kodu {plaka_kodu}')
-            user_id = event.sender_id
-            if user_id not in il['points']:
-                il['points'][user_id] = 0
-            il['points'][user_id] += 1
-            await event.respond(f'Oyun bitti. Puanınız: {il["points"][user_id]}')
-            client.storage.clear()
+ 
+@client.on(events.CallbackQuery())
+async def callback(event):
+    tur = event.data
+    client.storage['tur'] = tur
+    await event.edit(f'Tur başarıyla değiştirildi. Yeni tur: {tur}', parse_mode='bold')
+
+
+@client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
+async def guess(event):
+    plaka_kodu = event.raw_text
+    il = client.storage.get(plaka_kodu)
+    if il:
+        tur_sayisi = len(client.storage.keys()) - 1
+        await event.respond(f'Tebrikler! Doğru cevap. {il["il"]} ilinin plaka kodu {plaka_kodu}\nTur: {tur_sayisi}/{client.storage["tur"]}', parse_mode='bold')
+        user_id = event.sender_id
+        if user_id not in il['points']:
+            il['points'][user_id] = 0
+        il['points'][user_id] += 1
+        await event.respond(f'Oyun bitti. Puanınız: {il["points"][user_id]}', parse_mode='bold')
+        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
+    else:
+        if plaka_kodu.isdigit():
+            if int(plaka_kodu) > int(max(client.storage.keys())):
+                await event.respond('Lütfen daha küçük bir sayı girin.', parse_mode='bold')
+            elif int(plaka_kodu) < int(min(client.storage.keys())):
+                await event.respond('Lütfen daha büyük bir sayı girin.', parse_mode='bold')
         else:
-            if plaka_kodu.isdigit():
-                if int(plaka_kodu) > int(max(client.storage.keys())):
-                    await event.respond('Lütfen daha küçük bir sayı girin.')
-                elif int(plaka_kodu) < int(min(client.storage.keys())):
-                    await event.respond('Lütfen daha büyük bir sayı girin.')
-            else:
-                await event.respond('Lütfen geçerli bir plaka kodu girin.')
+            await event.respond('Lütfen geçerli bir plaka kodu girin.', parse_mode='bold')
 
-        await asyncio.sleep(60)
-        if client.storage:
-            await event.respond('Oyun süresi doldu. Oyun iptal edildi.')
-            user_id = event.sender_id
-            if user_id in client.storage[plaka_kodu]['points']:
-                await event.respond(f'Puanınız: {client.storage[plaka_kodu]["points"][user_id]}')
-            client.storage.clear()
+    await asyncio.sleep(5)
+    if client.storage:
+        tur_sayisi = len(client.storage.keys()) - 1
+        await event.respond(f'Oyun süresi doldu. Oyun iptal edildi.\nTur: {tur_sayisi}/{client.storage["tur"]}', parse_mode='bold')
+        user_id = event.sender_id
+        if user_id in client.storage[plaka_kodu]['points']:
+            await event.respond(f'Puanınız: {client.storage[plaka_kodu]["points"][user_id]}', parse_mode='bold')
+        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
+
+@client.on(events.NewMessage(pattern='/tur'))
+async def change_tur(event):
+    if event.is_private:
+        await event.respond('Komutlar sadece gruplarda kullanılabilir.', parse_mode='bold')
+        return
+     
+    if len(event.raw_text.split('/tur ')) < 2:
+        await event.respond('Lütfen bir tur sayısı girin.', parse_mode='bold')
+        return
+     
+    tur = event.raw_text.split('/tur ')[1]
+    if not tur.isdigit():
+        await event.respond('Lütfen geçerli bir tur sayısı girin.', parse_mode='bold')
+        return
+     
+    client.storage['tur'] = tur
+    await event.respond(f'Tur başarıyla değiştirildi. Yeni tur: {tur}', parse_mode='bold')
 	
-
+	
 
 @client.on(events.NewMessage)
 async def chatbot(event):
