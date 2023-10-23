@@ -10,7 +10,7 @@ TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
 bot = telebot.TeleBot(TOKEN)
        
 
-💭 target_number = None
+target_number = None
 start_time = None
 
 @bot.message_handler(commands=['sayi'])
