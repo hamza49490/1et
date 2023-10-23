@@ -14,25 +14,26 @@ def get_exchange_rates():
     url = 'https://api.genelpara.com/embed/doviz.json'
     response = requests.get(url)
     data = response.json()
-    return data
-
-# Botunuzun mesajlara yanıt vermesi için kullanılan fonksiyon
-@bot.message_handler(func=lambda message: True)
-def send_exchange_rates(message):
     rates = {
         'gold': {
-            'buying': 0,
-            'selling': 0
+            'buying': data['altin']['alis'],
+            'selling': data['altin']['satis']
         },
         'usd': {
-            'buying': 0,
-            'selling': 0
+            'buying': data['usd']['alis'],
+            'selling': data['usd']['satis']
         },
         'eur': {
-            'buying': 0,
-            'selling': 0
+            'buying': data['eur']['alis'],
+            'selling': data['eur']['satis']
         }
     }
+    return rates
+    
+
+@bot.message_handler(func=lambda message: True)
+def send_exchange_rates(message):
+    rates = get_exchange_rates()
     text = message.text.lower()
     if 'altın' in text:
         gold_buy = rates['gold']['buying']
@@ -52,6 +53,7 @@ def send_exchange_rates(message):
     else:
         response = "Üzgünüm, geçerli bir komut değil. Lütfen 'Altın', 'Dolar' veya 'Euro' yazın."
     bot.reply_to(message, response)
+    
 
 
 
