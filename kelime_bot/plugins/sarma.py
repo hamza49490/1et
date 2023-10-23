@@ -3,6 +3,7 @@ import requests
 import time
 
 
+
 @Client.on_message(filters.command(["start"]))
 def start(client, message):
     buttons = [
@@ -67,14 +68,16 @@ def check_word(client, message):
             chat_id=message.chat.id,
             text="Komutları sadece gruplarda kullanabilirsiniz."
         )
-    elif word[0] != word[0].lower():
-        client.send_message(
-            chat_id=message.chat.id,
-            text=f"Kelimenin baş harfi {word[0]} olmalıdır."
-        )
     else:
-        # Kelimeyi kontrol etme ve işleme devam etme kodları
-        pass
+        word = get_random_word()
+        if word[0] != word[0].lower():
+            client.send_message(
+                chat_id=message.chat.id,
+                text=f"Kelimenin baş harfi {word[0]} olmalıdır."
+            )
+        else:
+            # Kelimeyi kontrol etme ve işleme devam etme kodları
+            pass
 
 def get_random_word():
     response = requests.get("https://sozluk.gov.tr/icerik")
@@ -93,3 +96,6 @@ def count_known_words(words):
         if data["madde"] is not None:
             count += 1
     return count
+    
+
+
