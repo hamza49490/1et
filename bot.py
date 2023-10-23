@@ -80,7 +80,6 @@ etiketuye = []
 isleyen = []
 user_sayi = [] 
 
-
 client.storage = {}
 il_plaka_kodlari = {
 'Ağrı': '04', 'Amasya': '05', 'Ankara': '06', 'Antalya': '07', 'Artvin': '08', 'Aydın': '09', 'Balıkesir': '10', 'Bilecik': '11', 'Bingöl': '12', 'Bitlis': '13', 'Bolu': '14', 'Burdur': '15', 'Bursa': '16', 'Çanakkale': '17', 'Çankırı': '18', 'Çorum': '19', 'Denizli': '20', 'Diyarbakır': '21', 'Edirne': '22', 'Elazığ': '23', 'Erzincan': '24', 'Erzurum': '25', 'Eskişehir': '26', 'Gaziantep': '27', 'Giresun': '28', 'Gümüşhane': '29', 'Hakkari': '30', 
@@ -88,25 +87,18 @@ il_plaka_kodlari = {
 'Tekirdağ': '59', 'Tokat': '60', 'Trabzon': '61', 'Tunceli': '62', 'Şanlıurfa': '63', 'Uşak': '64', 'Van': '65', 'Yozgat': '66', 'Zonguldak': '67', 'Aksaray': '68', 'Bayburt': '69', 'Karaman': '70', 'Kırıkkale': '71', 'Batman': '72', 'Şırnak': '73', 'Bartın': '74', 'Ardahan': '75', 'Iğdır': '76', 'Yalova': '77', 'Karabük': '78', 'Kilis': '79', 'Osmaniye': '80', 'Düzce': '81', 'Adana': '01', 'Adıyaman': '02', 'Afyonkarahisar': '03',
 }
 
-
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
     if event.is_private:
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
      
-    tur = client.storage.get('tur', '25')
+    tur = client.storage.get('tur', '50')
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
     tur_sayisi = len(client.storage.keys()) - 1
     await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
-
-@client.on(events.CallbackQuery())
-async def callback(event):
-    tur = event.data
-    client.storage['tur'] = tur
-    await event.edit(f'🎉 <b>Tur başarıyla değiştirildi. \n💭 Yeni tur: {tur}</b>', parse_mode='html')
 
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
@@ -120,7 +112,6 @@ async def guess(event):
         if user_id not in il['points']:
             il['points'][user_id] = 0
         il['points'][user_id] += 1
-        await event.respond(f'💭 <b>Oyun bitti . \n🗯️ Puanınız : {il["points"][user_id]}</b>', parse_mode='html')
         client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
     else:
         if plaka_kodu.isdigit():
@@ -131,35 +122,16 @@ async def guess(event):
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
 
-    await asyncio.sleep(15)
+
+@client.on(events.NewMessage(pattern='/iptal'))
+async def cancel(event):     
+    tur_sayisi = len(client.storage.keys()) - 1
     if client.storage:
-        tur_sayisi = len(client.storage.keys()) - 1
-        if "tur" not in client.storage:
-            client.storage["tur"] = 25  # "tur" anahtarını ekleyin ve değerini belirleyin
-        await event.respond(f'<b>Oyun süresi doldu.\nOyun iptal edildi.\nTur : {tur_sayisi}/{client.storage["tur"]}</b>', parse_mode='html')
-        user_id = event.sender_id
-        if user_id in client.storage[plaka_kodu]['points']:
-            await event.respond(f'<b> Puanınız: {client.storage[plaka_kodu]["points"][user_id]}</b>', parse_mode='html')
-        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
-     
-@client.on(events.NewMessage(pattern='/tur'))
-async def change_tur(event):
-    if event.is_private:
-        await event.respond('⛔ <b>Sadece gruplarda kullanılabilir .</b>', parse_mode='html')
-        return
-     
-    if len(event.raw_text.split('/tur ')) < 2:
-        await event.respond('💕 <b> Bir tur sayısı girin .</b>', parse_mode='html')
-        return
-     
-    tur = event.raw_text.split('/tur ')[1]
-    if not tur.isdigit():
-        await event.respond('<b>× Geçerli bir tur sayısı girin .</b>', parse_mode='html')
-        return
-     
-    client.storage['tur'] = tur
-    await event.respond(f'✅ <b>Tur başarıyla değiştirildi.\n🗯️ Yeni tur: {tur}</b>', parse_mode='html')
-		
+        for plaka_kodu, data in client.storage.items():
+            il = data['il']
+            points = data['points']
+            await event.respond(f'<b>Oyun iptal edildi.\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{client.storage["tur"]}\n\n🏆 Oyuncular ve Skorları:\n{points}</b>', parse_mode='html')
+        client.storage.clear()
 
 @client.on(events.NewMessage)
 async def chatbot(event):
