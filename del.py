@@ -38,12 +38,11 @@ def cancel(message):
     global start_time
 
     if target_number is None:
-        bot.reply_to(message, "💭 <b>Zaten aktif oyun yok .</b>", parse_mode="HTML")
+        return
     else:
         bot.reply_to(message, "⛔ <b>Sayı Tahmin Oyunu iptal edildi .</b>", parse_mode="HTML")
         target_number = None
         start_time = None
-
 
 @bot.message_handler(func=lambda message: True)
 def guess(message):
