@@ -80,6 +80,33 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
+💭 @client.on(events.NewMessage(pattern='/sira'))
+async def handle_sira(event):
+    # Grup bilgilerini alın
+    chat = await event.get_chat()
+    chat_id = chat.id
+    chat_title = chat.title
+    chat_username = chat.username
+    
+    # combot.org API'sini kullanarak grup sıralamasını alın
+    combot_url = f'https://combot.org/api/group/{chat_id}'
+    response = requests.get(combot_url)
+    data = response.json()
+    
+    if data['ok']:
+        # Grup sıralamasını ve diğer bilgileri alın
+        rank = data['result']['rank']
+        server_name = data['result']['server_name']
+        total_messages = data['result']['total_messages']
+        total_members = data['result']['total_members']
+        
+        # Sonuçları gönderin
+        await event.respond(f'Grup Sıralaması: {rank}\nSunucu Adı: {server_name}\nToplam Mesajlar: {total_messages}\nToplam Üyeler: {total_members}\n\nGrup İsmi: {chat_title}\nGrup Kullanıcı Adı: {chat_username}\nGrup ID: {chat_id}')
+    else:
+        # combot.org sıralamasında bulunamadığı durumda diğer bilgileri gönderin
+        await event.respond(f'Grup İsmi: {chat_title}\nGrup Kullanıcı Adı: {chat_username}\nGrup ID: {chat_id}')
+
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
