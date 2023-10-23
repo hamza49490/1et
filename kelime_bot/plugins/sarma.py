@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 import requests
 import time
 
-@app.on_message(filters.command(["start"]))
+@Client.on_message(filters.command(["start"]))
 def start(client, message):
     buttons = [
         ["/single", "/multi"]
@@ -13,7 +13,7 @@ def start(client, message):
         reply_markup=client.build_reply_markup(buttons)
     )
 
-@app.on_message(filters.command(["single"]))
+@Client.on_message(filters.command(["single"]))
 def single_mode(client, message):
     if message.chat.type == "private":
         client.send_message(
@@ -36,7 +36,7 @@ def single_mode(client, message):
             text="Süre doldu! Oyun iptal edildi."
         )
 
-@app.on_message(filters.command(["multi"]))
+@Client.on_message(filters.command(["multi"]))
 def multi_mode(client, message):
     if message.chat.type == "private":
         client.send_message(
@@ -59,7 +59,7 @@ def multi_mode(client, message):
             text="Süre doldu! Oyun iptal edildi."
         )
 
-@app.on_message(filters.text)
+@Client.on_message(filters.text)
 def check_word(client, message):
     if message.chat.type == "private":
         client.send_message(
