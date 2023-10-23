@@ -81,6 +81,9 @@ isleyen = []
 user_sayi = [] 
 
 client.storage = {}
+
+tur_sayisi = 0
+
 il_plaka_kodlari = {
 'Ağrı': '04', 'Amasya': '05', 'Ankara': '06', 'Antalya': '07', 'Artvin': '08', 'Aydın': '09', 'Balıkesir': '10', 'Bilecik': '11', 'Bingöl': '12', 'Bitlis': '13', 'Bolu': '14', 'Burdur': '15', 'Bursa': '16', 'Çanakkale': '17', 'Çankırı': '18', 'Çorum': '19', 'Denizli': '20', 'Diyarbakır': '21', 'Edirne': '22', 'Elazığ': '23', 'Erzincan': '24', 'Erzurum': '25', 'Eskişehir': '26', 'Gaziantep': '27', 'Giresun': '28', 'Gümüşhane': '29', 'Hakkari': '30', 
 'Hatay': '31', 'Isparta': '32', 'Mersin': '33', 'İstanbul': '34', 'İzmir': '35', 'Kars': '36', 'Kastamonu': '37', 'Kayseri': '38', 'Kırklareli': '39', 'Kırşehir': '40', 'Kocaeli': '41', 'Konya': '42', 'Kütahya': '43', 'Malatya': '44', 'Manisa': '45', 'Kahramanmaraş': '46', 'Mardin': '47', 'Muğla': '48', 'Muş': '49', 'Nevşehir': '50', 'Niğde': '51', 'Ordu': '52', 'Rize': '53', 'Sakarya': '54', 'Samsun': '55', 'Siirt': '56', 'Sinop': '57', 'Sivas': '58', 
@@ -89,24 +92,27 @@ il_plaka_kodlari = {
 
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
+    global tur_sayisi
     if event.is_private:
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
      
-    tur = client.storage.get('tur', '50')
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
-    tur_sayisi = len(client.storage.keys()) - 1
-    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
+    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲Tur : {tur_sayisi}/{50}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
-
+    
+    tur_sayisi += 1
+    if tur_sayisi >= 50:
+        await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
+        tur_sayisi = 0
+	    
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
     plaka_kodu = event.raw_text
     il = client.storage.get(plaka_kodu)
     if il:
-        tur_sayisi = len(client.storage.keys()) - 1
         await event.respond(f'🎉 <b>Tebrikler! Doğru cevap.\n💭 {il["il"]} ilinin plaka kodu {plaka_kodu}</b>', parse_mode='html')
         user_id = event.sender_id
         if user_id not in il['points']:
@@ -122,16 +128,17 @@ async def guess(event):
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
 
-
 @client.on(events.NewMessage(pattern='/iptal'))
 async def cancel(event):     
-    tur_sayisi = len(client.storage.keys()) - 1
+    global tur_sayisi
+    tur_sayisi = 0
     if client.storage:
         for plaka_kodu, data in client.storage.items():
             il = data['il']
             points = data['points']
-            await event.respond(f'<b>Oyun iptal edildi.\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{client.storage["tur"]}\n\n🏆 Oyuncular ve Skorları:\n{points}</b>', parse_mode='html')
+            await event.respond(f'<b>Oyun iptal edildi.\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{50}</b>', parse_mode='html')
         client.storage.clear()
+
 
 @client.on(events.NewMessage)
 async def chatbot(event):
