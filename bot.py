@@ -78,8 +78,72 @@ ozel_list = []
 grup_sayi = []
 etiketuye = []
 isleyen = []
-user_sayi = []    
+user_sayi = [] 
 
+
+game_started = False
+players = []
+current_word = ''
+used_words = [] # Kullanılan kelimelerin tutulacağı liste
+
+
+@client.on(events.NewMessage(pattern='/start'))
+async def start_game(event):
+    global game_started, players, current_word
+    game_started = False
+    players = []
+    current_word = ''
+    await event.respond('Kelime sarmalı oyununa hoş geldiniz!\n\n'
+                        'Oyun modunu seçin:',
+                        buttons=[[Button.inline('Tekli Mod', data='singleplayer')],
+                                 [Button.inline('Çoklu Mod', data='multiplayer')]])
+
+@client.on(events.CallbackQuery)
+async def select_mode(event):
+    global game_started, players, current_word
+    if event.data == b'singleplayer':
+        game_started = True
+        players = [event.sender_id]
+        current_word = 'kelime' # İstediğiniz kelimeyi buraya yazabilirsiniz
+        await event.respond(f'Kelime: {current_word}\n\n'
+                            'Bir sonraki kelimeyi yazın:')
+    elif event.data == b'multiplayer':
+        game_started = False
+        players = []
+        current_word = ''
+        await event.respond('Oyuna katılmak için "Katıl" butonuna tıklayın.',
+                            buttons=[[Button.inline('Katıl', data='join')]])
+
+@client.on(events.CallbackQuery)
+async def join_game(event):
+    global game_started, players, current_word
+    if event.data == b'join':
+        if event.sender_id not in players:
+            players.append(event.sender_id)
+            await event.answer('Oyuna katıldınız!')
+        if len(players) >= 2 and not game_started:
+            game_started = True
+            current_word = 'kelime' # İstediğiniz kelimeyi buraya yazabilirsiniz
+            await event.respond(f'Oyun başladı!\n\n'
+                                f'Kelime: {current_word}\n\n'
+                                'Bir sonraki kelimeyi yazın:')
+		
+@client.on(events.NewMessage)
+async def play_game(event):
+    global game_started, players, current_word
+    if game_started and event.sender_id in players:
+        if event.text.lower().startswith(current_word[-1]):
+            if event.text.lower() in used_words:
+                await event.respond(f'{used_words} daha önce kullanılmış.')
+            else:
+                current_word = event.text.lower()
+                used_words.append(current_word)
+                await event.respond(f'Kelime: {current_word}\n\n'
+                                    'Bir sonraki kelimeyi yazın:')
+        else:
+            await event.respond(f'Yanlış kelime! \n"{current_word[-1]}" harfi ile başlayan bir kelime bulun.')
+
+		
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
@@ -796,11 +860,11 @@ async def grup_info(event):
     geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
 
     response_text = (
-        f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
-        f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
-        f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
-        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
-        f'{special_status}'
+        f'**➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}**\n'
+        f'**➻ ɢʀᴜᴘ ɪᴅ :** `-100{group_id}`\n'
+        f'**➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}**\n'
+        f'**➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}**\n'
+        f'**{special_status}**'
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
