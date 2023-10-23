@@ -1,3 +1,4 @@
+
 import telebot
 import requests
 import random
@@ -7,26 +8,36 @@ import time
 TOKEN = '6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY'
 bot = telebot.TeleBot(TOKEN)
 
+target_number = None
+start_time = None
+
 @bot.message_handler(commands=['start'])
 def start(message):
+    global target_number
+    global start_time
+
     bot.reply_to(message, "Sayı tahmin oyununa hoş geldiniz! 1 ile 100 arasında bir sayı tuttum. Tahmininizi yapabilirsiniz!")
 
     # Rastgele bir sayı seç
-    global target_number
     target_number = random.randint(1, 100)
 
     # Oyun süresi başlat
-    global start_time
     start_time = time.time()
 
 @bot.message_handler(commands=['cancel'])
 def cancel(message):
+    global target_number
+    global start_time
+
     bot.reply_to(message, "Oyun iptal edildi.")
     target_number = None
     start_time = None
 
 @bot.message_handler(func=lambda message: True)
 def guess(message):
+    global target_number
+    global start_time
+
     if target_number is None:
         bot.reply_to(message, "Oyun başlatılmadı. Lütfen /start komutuyla oyunu başlatın.")
         return
@@ -55,6 +66,7 @@ def guess(message):
         start_time = None
 
 bot.polling()
+
     
 
 
