@@ -8,7 +8,7 @@ from kelime_bot.helpers.kelimeler import kelime_sec
 from kelime_bot import *
 
 
-@Client.on_message(filters.command("kapat") & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("iptal") & ~filters.private & ~filters.channel)
 async def stop(c:Client, m:Message):
     global oyun
     
