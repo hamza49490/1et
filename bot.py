@@ -24,7 +24,6 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.types import PeerUser, PeerChat, PeerChannel
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
@@ -34,10 +33,8 @@ from asyncio import sleep
 from time import time
 from os import remove
 from telethon.tl.types import InputMediaPhoto
-from telethon.tl.functions.users import GetFullUserRequest
 from telethon.sync import types
 from datetime import datetime 
-from telethon.errors.rpcerrorlist import PeerFloodError
 from telethon import Button
 from pyrogram.errors import FloodWait
 from telethon import events
@@ -45,7 +42,6 @@ from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.sync import TelegramClient, events
-from datetime import datetime
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
@@ -822,21 +818,7 @@ async def grup_info(event):
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
-
-
-@client.on(events.NewMessage(pattern='/siralama'))
-async def handle_siralama(event):
-    chat = await event.get_chat()
-    if chat.admin_rights:
-        admined_channels = await client(GetAdminedPublicChannelsRequest())
-        for channel in admined_channels.chats:
-            if channel.username == 'combot':
-                combot_sirasi = channel.admin_rights.change_info
-                await event.reply(f"Combot sıralamasında {combot_sirasi}. sunucudasınız.")
-                return
-        await event.reply("Combot sıralamasında değilsiniz.")
-    else:
-        await event.reply("Bu komutu kullanabilmek için grubun yöneticisi olmalısınız.")	
+	
 
 @client.on(events.NewMessage(pattern='/id'))
 async def id(event):
