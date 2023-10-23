@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 # Telegram botunun token'ını buraya girin
-TOKEN = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
+TOKEN = '6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY'
 
 # Telebot nesnesini oluşturun
 bot = telebot.TeleBot(TOKEN)
