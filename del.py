@@ -1,12 +1,65 @@
 import telebot
 from telebot import types
 import requests
+from bs4 import BeautifulSoup
 import random
 from datetime import datetime
 import time
 
 TOKEN = '6559325433:AAEp2-fpXANzUVaFk5eyM4Z6JEWX9LBe4ls'
 bot = telebot.TeleBot(TOKEN)
+
+
+# Astroloji sitesinden burç yorumlarını çekmek için kullanacağımız URL
+URL = 'https://www.astroloji.org/'
+
+# /burc komutuna yanıt veren fonksiyon
+@bot.message_handler(commands=['burc'])
+def send_horoscope(message):
+    # Kullanıcının girdiği burç ismini alın
+    burc = message.text.split()[1].lower()
+
+    # Burç ismine göre URL'yi oluşturun
+    burc_url = URL + burc + '-burcu'
+
+    # Astroloji sitesinden burç yorumlarını çekin
+    response = requests.get(burc_url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    yorum = soup.find('div', class_='yorum').text.strip()
+
+    # Yanıt mesajını oluşturun
+    reply = f'Günlük Burç Yorumu:\n\n{yorum}'
+
+    # Yanıt mesajını gönderin
+    bot.reply_to(message, reply)
+
+    # Haftalık, aylık ve yıllık butonlarını oluşturun
+    markup = types.InlineKeyboardMarkup()
+    markup.row(types.InlineKeyboardButton('Haftalık', callback_data='haftalik'),
+               types.InlineKeyboardButton('Aylık', callback_data='aylik'),
+               types.InlineKeyboardButton('Yıllık', callback_data='yillik'))
+
+    # Butonları içeren mesajı gönderin
+    bot.send_message(message.chat.id, 'Diğer burç yorumları için seçin:', reply_markup=markup)
+
+# Butonlara yanıt veren fonksiyon
+@bot.callback_query_handler(func=lambda call: True)
+def callback_handler(call):
+    # Kullanıcının seçtiği butonu alın
+    selected = call.data
+
+    # Butona göre yanıt mesajını oluşturun
+    if selected == 'haftalik':
+        reply = 'Haftalık burç yorumu'
+    elif selected == 'aylik':
+        reply = 'Aylık burç yorumu'
+    elif selected == 'yillik':
+        reply = 'Yıllık burç yorumu'
+
+    # Yanıt mesajını gönderin
+    bot.send_message(call.message.chat.id, reply)
+
+
 
 target_number = None
 start_time = None
