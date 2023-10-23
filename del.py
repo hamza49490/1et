@@ -1,61 +1,38 @@
 import telebot
-from telebot import types
 import requests
+from datetime import datetime
+from telebot import types
 from bs4 import BeautifulSoup
 import random
-from datetime import datetime
 import time
 
 TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
 bot = telebot.TeleBot(TOKEN)
 
-# Altın, Dolar ve Euro fiyatlarını çeken fonksiyon
-def get_exchange_rates():
-    url = 'https://api.genelpara.com/embed/doviz.json'
-    response = requests.get(url)
-    data = response.json()
-    print(data)  # 'data' sözlüğünün içeriğini kontrol etmek için
-    rates = {
-        'gold': {
-            'buying': data['altin']['alis'],
-            'selling': data['altin']['satis']
-        },
-        'usd': {
-            'buying': data['usd']['alis'],
-            'selling': data['usd']['satis']
-        },
-        'eur': {
-            'buying': data['eur']['alis'],
-            'selling': data['eur']['satis']
-        }
-    }
-    return rates
 
+@bot.message_handler(commands=['lyrics'])
+def send_welcome(message):
+    bot.reply_to(message, "Merhaba! Şarkı sözlerini bulmak için bir şarkı adı gönderin.")
 
 @bot.message_handler(func=lambda message: True)
-def send_exchange_rates(message):
-    rates = get_exchange_rates()
-    text = message.text.lower()
-    if 'altın' in text:
-        gold_buy = rates['gold']['buying']
-        gold_sell = rates['gold']['selling']
-        response = f"Altın fiyatları:\nAlış: {gold_buy} TL\nSatış: {gold_sell} TL"
-    elif 'dolar' in text:
-        if 'usd' in rates:
-            usd_buy = rates['usd']['buying']
-            usd_sell = rates['usd']['selling']
-            response = f"Dolar fiyatları:\nAlış: {usd_buy} TL\nSatış: {usd_sell} TL"
-        else:
-            response = "Dolar fiyatlarına şu anda erişilemiyor."
-    elif 'euro' in text:
-        eur_buy = rates['eur']['buying']
-        eur_sell = rates['eur']['selling']
-        response = f"Euro fiyatları:\nAlış: {eur_buy} TL\nSatış: {eur_sell} TL"
+def find_lyrics(message):
+    song_name = message.text.lower()
+    lyrics = get_lyrics(song_name)
+    if lyrics:
+        bot.reply_to(message, lyrics)
     else:
-        response = "Üzgünüm, geçerli bir komut değil. Lütfen 'Altın', 'Dolar' veya 'Euro' yazın."
-    bot.reply_to(message, response)
-    
+        bot.reply_to(message, "Şarkı sözleri bulunamadı.")
 
+def get_lyrics(song_name):
+    url = f'https://www.azlyrics.com/lyrics/{song_name}.html'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    lyrics_div = soup.find('div', class_='ringtone')
+    if lyrics_div:
+        lyrics = lyrics_div.text.strip()
+        return lyrics
+    else:
+        return None
 
 
 target_number = None
