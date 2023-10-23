@@ -1,18 +1,20 @@
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests
 import time
 
 
 
-@Client.on_message(filters.command(["start"]))
+@Client.on_message(filters.command(["sta"]))
 def start(client, message):
     buttons = [
-        ["/single", "/multi"]
+        [InlineKeyboardButton("/single", callback_data="single"), InlineKeyboardButton("/multi", callback_data="multi")]
     ]
+    reply_markup = InlineKeyboardMarkup(buttons)
     client.send_message(
         chat_id=message.chat.id,
         text="Merhaba! Kelime sarmalı oyununa hoş geldiniz. Oyuna başlamak için aşağıdaki butonlardan birini seçebilirsiniz.",
-        reply_markup=client.build_reply_markup(buttons)
+        reply_markup=reply_markup
     )
 
 @Client.on_message(filters.command(["single"]))
@@ -96,6 +98,8 @@ def count_known_words(words):
         if data["madde"] is not None:
             count += 1
     return count
+
+        
     
 
 
