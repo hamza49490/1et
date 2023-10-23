@@ -80,7 +80,7 @@ etiketuye = []
 isleyen = []
 user_sayi = []    
 
-💭 @client.on(events.NewMessage(pattern='/sira'))
+@client.on(events.NewMessage(pattern='/sira'))
 async def handle_sira(event):
     # Grup bilgilerini alın
     chat = await event.get_chat()
