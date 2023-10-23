@@ -107,6 +107,7 @@ async def callback(event):
     client.storage['tur'] = tur
     await event.edit(f'Tur başarıyla değiştirildi. Yeni tur: {tur}', parse_mode='html')
 
+
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
     plaka_kodu = event.raw_text
@@ -132,12 +133,14 @@ async def guess(event):
     await asyncio.sleep(5)
     if client.storage:
         tur_sayisi = len(client.storage.keys()) - 1
+        if "tur" not in client.storage:
+            client.storage["tur"] = 10  # "tur" anahtarını ekleyin ve değerini belirleyin
         await event.respond(f'Oyun süresi doldu. Oyun iptal edildi.\nTur: {tur_sayisi}/{client.storage["tur"]}', parse_mode='html')
         user_id = event.sender_id
         if user_id in client.storage[plaka_kodu]['points']:
             await event.respond(f'Puanınız: {client.storage[plaka_kodu]["points"][user_id]}', parse_mode='html')
         client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
-
+	    
 @client.on(events.NewMessage(pattern='/tur'))
 async def change_tur(event):
     if event.is_private:
