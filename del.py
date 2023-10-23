@@ -16,6 +16,7 @@ def get_exchange_rates():
     data = response.json()
     return data
 
+
 # Botunuzun mesajlara yanıt vermesi için kullanılan fonksiyon
 @bot.message_handler(func=lambda message: True)
 def send_exchange_rates(message):
@@ -26,9 +27,12 @@ def send_exchange_rates(message):
         gold_sell = rates['gold']['selling']
         response = f"Altın fiyatları:\nAlış: {gold_buy} TL\nSatış: {gold_sell} TL"
     elif 'dolar' in text:
-        usd_buy = rates['usd']['buying']
-        usd_sell = rates['usd']['selling']
-        response = f"Dolar fiyatları:\nAlış: {usd_buy} TL\nSatış: {usd_sell} TL"
+        if 'usd' in rates:
+            usd_buy = rates['usd']['buying']
+            usd_sell = rates['usd']['selling']
+            response = f"Dolar fiyatları:\nAlış: {usd_buy} TL\nSatış: {usd_sell} TL"
+        else:
+            response = "Dolar fiyatlarına şu anda erişilemiyor."
     elif 'euro' in text:
         eur_buy = rates['eur']['buying']
         eur_sell = rates['eur']['selling']
@@ -36,6 +40,7 @@ def send_exchange_rates(message):
     else:
         response = "Üzgünüm, geçerli bir komut değil. Lütfen 'Altın', 'Dolar' veya 'Euro' yazın."
     bot.reply_to(message, response)
+    
 
 
 target_number = None
