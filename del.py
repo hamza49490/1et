@@ -71,6 +71,10 @@ def guess(message):
         target_number = None
         start_time = None
 
+    # Yeni bir tahmin yapıldığında süreyi sıfırla
+    start_time = time.time()
+    
+
 bot.polling()
 
 
