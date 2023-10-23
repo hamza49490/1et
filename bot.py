@@ -79,7 +79,71 @@ grup_sayi = []
 etiketuye = []
 isleyen = []
 user_sayi = [] 
-		
+
+
+@client.on(events.NewMessage(pattern='/tur'))
+async def change_tur(event):
+    if event.is_private:
+        await event.respond('Komutlar sadece gruplarda kullanılabilir.')
+        return
+     
+    tur = event.raw_text.split('/tur ')[1]
+    if int(tur) > 50:
+        await event.respond('Tur sayısı en fazla 50 olabilir.')
+        return
+    client.storage['tur'] = tur
+    await event.respond(f'Tur başarıyla değiştirildi. Yeni tur: {tur}')
+
+
+@client.on(events.NewMessage(pattern='/play'))
+async def play(event):
+    if event.is_private:
+        await event.respond('Komutlar sadece gruplarda kullanılabilir.')
+        return
+     
+    tur = client.storage.get('tur', '10')
+    il_plaka_kodlari = {
+        'Adana': '01',
+        'Adıyaman': '02',
+        'Afyon': '03',
+        # Diğer iller ve plaka kodları buraya eklenebilir
+    }
+    il = random.choice(list(il_plaka_kodlari.keys()))
+    plaka_kodu = il_plaka_kodlari[il]
+    await event.respond(f'{il} ilinin {tur} tur plaka kodu kaçtır ?')
+    client.storage[plaka_kodu] = {'il': il, 'points': {}}
+
+
+@client.on(events.NewMessage)
+async def guess(event):
+    plaka_kodu = event.raw_text
+    il = client.storage.get(plaka_kodu)
+    if il:
+        await event.respond(f'Tebrikler! Doğru cevap. {il["il"]} ilinin plaka kodu {plaka_kodu}\'dur.')
+        user_id = event.sender_id
+        if user_id not in il['points']:
+            il['points'][user_id] = 0
+        il['points'][user_id] += 1
+        await event.respond(f'Oyun bitti. Puanınız: {il["points"][user_id]}')
+        client.storage.clear()
+    else:
+        if plaka_kodu.isdigit():
+            if int(plaka_kodu) > int(max(client.storage.keys())):
+                await event.respond('Lütfen daha küçük bir sayı girin.')
+            elif int(plaka_kodu) < int(min(client.storage.keys())):
+                await event.respond('Lütfen daha büyük bir sayı girin.')
+        else:
+            await event.respond('Lütfen geçerli bir plaka kodu girin.')
+
+    await asyncio.sleep(60)
+    if client.storage:
+        await event.respond('Oyun süresi doldu. Oyun iptal edildi.')
+        user_id = event.sender_id
+        if user_id in client.storage[plaka_kodu]['points']:
+            await event.respond(f'Puanınız: {client.storage[plaka_kodu]["points"][user_id]}')
+        client.storage.clear()
+
+
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
