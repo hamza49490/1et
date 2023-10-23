@@ -105,7 +105,7 @@ async def select_mode(event):
         game_started = True
         players = [event.sender_id]
         current_word = 'kelime' # İstediğiniz kelimeyi buraya yazabilirsiniz
-        await event.respond(f'Kelime: {current_word}\n\n'
+        await event.respond(f'Harf: "{current_word[-1]}"\n\n'
                             'Bir sonraki kelimeyi yazın:')
     elif event.data == b'multiplayer':
         game_started = False
