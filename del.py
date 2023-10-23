@@ -1,11 +1,10 @@
-
 import telebot
 import requests
 import random
 from datetime import datetime
 import time
 
-TOKEN = '6559325433:AAHRdRuS7agUSYXIYpQPfS7gYvLO5tXNPyY'
+TOKEN = '6559325433:AAEp2-fpXANzUVaFk5eyM4Z6JEWX9LBe4ls'
 bot = telebot.TeleBot(TOKEN)
 
 target_number = None
