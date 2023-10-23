@@ -27,7 +27,7 @@ def start(message):
     # Rastgele bir sayı seç
     target_number = random.randint(0,, 1000)
 
-@bot.message_handler(commands=['isayi'])
+@bot.message_handler(commands=['iptal'])
 def cancel(message):
     global target_number
     global start_time
@@ -35,7 +35,7 @@ def cancel(message):
 #    if target_number is None:
 #        bot.reply_to(message, "**💭 Zaten aktif oyun yok .**")
     else:
-        bot.reply_to(message, "**⛔ Oyun iptal edildi .**")
+        bot.reply_to(message, "**⛔ Sayı Tahmin Oyunu iptal edildi .**")
         target_number = None
         start_time = None
 
