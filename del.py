@@ -33,13 +33,14 @@ def cancel(message):
     target_number = None
     start_time = None
     
+
 @bot.message_handler(func=lambda message: True)
 def guess(message):
     global target_number
     global start_time
     elapsed_time = time.time() - start_time
 
-    if target_number is None:
+    if start_time is None:
         bot.reply_to(message, "Oyun başlatılmadı. Lütfen /start komutuyla oyunu başlatın.")
         return
 
@@ -65,6 +66,7 @@ def guess(message):
         start_time = None
 
 bot.polling()
+
 
 
 '''
