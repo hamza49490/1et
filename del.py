@@ -66,14 +66,9 @@ def guess(message):
         start_time = None
         return
 
-    if elapsed_time > 60:
-        bot.reply_to(message, "Oyun süresi doldu. Oyun iptal edildi.")
-        target_number = None
-        start_time = None
-
     # Yeni bir tahmin yapıldığında süreyi sıfırla
     start_time = time.time()
-    
+
 
 bot.polling()
 
