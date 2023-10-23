@@ -2,9 +2,6 @@ from pyrogram import Client, filters
 import requests
 import time
 
-
-buket sadece harflerle yazılan mesajları algılasın, diğer mesajları algılamasın, kodları buna göre düzenle ve paylaş .
-
 @app.on_message(filters.command(["start"]))
 def start(client, message):
     buttons = [
