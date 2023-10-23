@@ -37,6 +37,7 @@ def cancel(message):
         target_number = None
         start_time = None
 
+
 @bot.message_handler(func=lambda message: True)
 def guess(message):
     global target_number
@@ -45,7 +46,6 @@ def guess(message):
     try:
         guess_number = int(message.text)
     except ValueError:
-        bot.reply_to(message, "Geçersiz tahmin. Lütfen bir sayı girin.")
         return
 
     if guess_number < target_number:
@@ -60,7 +60,6 @@ def guess(message):
     # Yeni bir tahmin yapıldığında süreyi sıfırla
     start_time = time.time()
     
-
 
 bot.polling()
 
