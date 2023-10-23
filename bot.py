@@ -24,6 +24,7 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.types import PeerUser, PeerChat, PeerChannel
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
@@ -821,6 +822,21 @@ async def grup_info(event):
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
+
+
+@client.on(events.NewMessage(pattern='/siralama'))
+async def handle_siralama(event):
+    chat = await event.get_chat()
+    if chat.admin_rights:
+        admined_channels = await client(GetAdminedPublicChannelsRequest())
+        for channel in admined_channels.chats:
+            if channel.username == 'combot':
+                combot_sirasi = channel.admin_rights.change_info
+                await event.reply(f"Combot sıralamasında {combot_sirasi}. sunucudasınız.")
+                return
+           await event.reply("Combot sıralamasında değilsiniz.")
+       else:
+           await event.reply("Bu komutu kullanabilmek için grubun yöneticisi olmalısınız.")
 	
 
 @client.on(events.NewMessage(pattern='/id'))
@@ -891,9 +907,10 @@ async def cancel(event):
   if not event.sender_id in admins:
     return await event.respond(f"{noadmin}")
 
-  global gece_tag
-  gece_tag.remove(event.chat_id)
+  if event.chat_id not in gece_tag:
+    return await event.respond("**💭 Aktif bir işlem yok .**")
 
+  gece_tag.remove(event.chat_id)
   sender = await event.get_sender()
   rxyzdev_stopT = f"[{sender.first_name}](tg://user?id={sender.id})"      
   if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️  ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...\n\n➻  {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
