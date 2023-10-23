@@ -1,4 +1,5 @@
 import telebot
+from telebot import types
 import requests
 import random
 from datetime import datetime
@@ -7,10 +8,33 @@ import time
 TOKEN = '6559325433:AAEp2-fpXANzUVaFk5eyM4Z6JEWX9LBe4ls'
 bot = telebot.TeleBot(TOKEN)
 
+# zar komutu için işlev
+@bot.message_handler(commands=['zar', 'zar '])
+def zar_at(message):
+    zar_emoji = '🎲'
+    bot.send_message(message.chat.id, zar_emoji)
+
+# slot komutu için işlev
+@bot.message_handler(commands=['slot', 'slot '])
+def slot_at(message):
+    slot_emoji = '🎰'
+    bot.send_message(message.chat.id, slot_emoji)
+
+# ok komutu için işlev
+@bot.message_handler(commands=['ok', 'ok '])
+def ok_at(message):
+    ok_emoji = '🎯'
+    bot.send_message(message.chat.id, ok_emoji)
+
+# bow komutu için işlev
+@bot.message_handler(commands=['bow', 'bow '])
+def bow_at(message):
+    bow_emoji = '🎳'
+    bot.send_message(message.chat.id, bow_emoji)
+    
 
 target_number = None
 start_time = None
-
 
 @bot.message_handler(commands=['sat'])
 def start(message):
