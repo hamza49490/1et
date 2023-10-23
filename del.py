@@ -14,6 +14,7 @@ def get_exchange_rates():
     url = 'https://api.genelpara.com/embed/doviz.json'
     response = requests.get(url)
     data = response.json()
+    print(data)  # 'data' sözlüğünün içeriğini kontrol etmek için
     rates = {
         'gold': {
             'buying': data['altin']['alis'],
@@ -29,7 +30,7 @@ def get_exchange_rates():
         }
     }
     return rates
-    
+
 
 @bot.message_handler(func=lambda message: True)
 def send_exchange_rates(message):
