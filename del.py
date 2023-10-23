@@ -23,17 +23,26 @@ def siralama(message):
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Grubun sıralama bilgilerini al
-    group_info = soup.find('div', class_='tgme_page_wrap').find('div', class_='tgme_page').find('div', class_='tgme_head_wrap').find('div', class_='tgme_head_desc_wrap').find('div', class_='tgme_head_desc_item')
+    tgme_page_wrap = soup.find('div', class_='tgme_page_wrap')
+    if tgme_page_wrap:
+        tgme_page = tgme_page_wrap.find('div', class_='tgme_page')
+        if tgme_page:
+            tgme_head_wrap = tgme_page.find('div', class_='tgme_head_wrap')
+            if tgme_head_wrap:
+                tgme_head_desc_wrap = tgme_head_wrap.find('div', class_='tgme_head_desc_wrap')
+                if tgme_head_desc_wrap:
+                    group_info = tgme_head_desc_wrap.find('div', class_='tgme_head_desc_item')
+                    if group_info:
+                        server = group_info.find('div', class_='tgme_head_desc_item_value').text
+                        messages = group_info.find_next('div', class_='tgme_head_desc_item_value').text
+                        members = group_info.find_next('div', class_='tgme_head_desc_item_value').text
+                        rank = group_info.find_next('div', class_='tgme_head_desc_item_value').text
 
-    if group_info:
-        server = group_info.find('div', class_='tgme_head_desc_item_value').text
-        messages = group_info.find_next('div', class_='tgme_head_desc_item_value').text
-        members = group_info.find_next('div', class_='tgme_head_desc_item_value').text
-        rank = group_info.find_next('div', class_='tgme_head_desc_item_value').text
+                        bot.send_message(chat_id, f"Grup: {group_name}\nSunucu: {server}\nMesajlar: {messages}\nÜyeler: {members}\nSıralama: {rank}")
+                        return
 
-        bot.send_message(chat_id, f"Grup: {group_name}\nSunucu: {server}\nMesajlar: {messages}\nÜyeler: {members}\nSıralama: {rank}")
-    else:
-        bot.send_message(chat_id, "Grup combot.org sıralamasında bulunamadı.")
+    bot.send_message(chat_id, "Grup combot.org sıralamasında bulunamadı.")
+    
 
 
 target_number = None
