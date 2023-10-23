@@ -32,8 +32,8 @@ def cancel(message):
     global target_number
     global start_time
 
-    if target_number is None:
-        bot.reply_to(message, "**💭 Zaten aktif oyun yok .**")
+#    if target_number is None:
+#        bot.reply_to(message, "**💭 Zaten aktif oyun yok .**")
     else:
         bot.reply_to(message, "**⛔ Oyun iptal edildi .**")
         target_number = None
