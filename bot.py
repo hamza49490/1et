@@ -87,13 +87,13 @@ current_word = ''
 used_words = [] # Kullanılan kelimelerin tutulacağı liste
 
 
-@client.on(events.NewMessage(pattern='/start'))
+@client.on(events.NewMessage(pattern='/sec'))
 async def start_game(event):
     global game_started, players, current_word
     game_started = False
     players = []
     current_word = ''
-    await event.respond('Kelime sarmalı oyununa hoş geldiniz!\n\n'
+    await event.respond('Kelime sarmalı oyununa hoş geldiniz!\n'
                         'Oyun modunu seçin:',
                         buttons=[[Button.inline('Tekli Mod', data='singleplayer')],
                                  [Button.inline('Çoklu Mod', data='multiplayer')]])
@@ -104,14 +104,14 @@ async def select_mode(event):
     if event.data == b'singleplayer':
         game_started = True
         players = [event.sender_id]
-        current_word = 'kelime' # İstediğiniz kelimeyi buraya yazabilirsiniz
-        await event.respond(f'Harf: "{current_word[-1]}"\n\n'
+        current_word = 'Dene','Test' # İstediğiniz kelimeyi buraya yazabilirsiniz
+        await event.respond(f'Harf: "{current_word[-1]}"\n'
                             'Bir sonraki kelimeyi yazın:')
     elif event.data == b'multiplayer':
         game_started = False
         players = []
         current_word = ''
-        await event.respond('Oyuna katılmak için "Katıl" butonuna tıklayın.',
+        await event.respond('Oyuna katılmak için "Katıl" butonuna tıkla .',
                             buttons=[[Button.inline('Katıl', data='join')]])
 
 @client.on(events.CallbackQuery)
@@ -123,10 +123,10 @@ async def join_game(event):
             await event.answer('Oyuna katıldınız!')
         if len(players) >= 2 and not game_started:
             game_started = True
-            current_word = 'kelime' # İstediğiniz kelimeyi buraya yazabilirsiniz
-            await event.respond(f'Oyun başladı!\n\n'
-                                f'Kelime: {current_word}\n\n'
-                                'Bir sonraki kelimeyi yazın:')
+            current_word = 'Dene','Test' # İstediğiniz kelimeyi buraya yazabilirsiniz
+            await event.respond(f'Oyun başladı!\n'
+                                f'Kelime : {current_word}\n'
+                                f'{current_word[-1]} başlayan Kelime bul .')
 		
 @client.on(events.NewMessage)
 async def play_game(event):
@@ -134,14 +134,14 @@ async def play_game(event):
     if game_started and event.sender_id in players:
         if event.text.lower().startswith(current_word[-1]):
             if event.text.lower() in used_words:
-                await event.respond(f'{used_words} daha önce kullanılmış.')
+                await event.respond(f'{used_words} daha önce kullanılmış .\nFarklı bir Kelime bul .')
             else:
                 current_word = event.text.lower()
                 used_words.append(current_word)
-                await event.respond(f'Kelime: {current_word}\n\n'
-                                    'Bir sonraki kelimeyi yazın:')
+                await event.respond(f'Kelime: {current_word}\n'
+                                    f'{current_word[-1]} başlayan kelime bul .')
         else:
-            await event.respond(f'Yanlış kelime! \n"{current_word[-1]}" harfi ile başlayan bir kelime bulun.')
+            await event.respond(f'{current_word[-1]} harfi ile başlayan bir kelime bul .')
 
 		
 @client.on(events.NewMessage)
