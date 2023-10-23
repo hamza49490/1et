@@ -834,10 +834,9 @@ async def handle_siralama(event):
                 combot_sirasi = channel.admin_rights.change_info
                 await event.reply(f"Combot sıralamasında {combot_sirasi}. sunucudasınız.")
                 return
-           await event.reply("Combot sıralamasında değilsiniz.")
-       else:
-           await event.reply("Bu komutu kullanabilmek için grubun yöneticisi olmalısınız.")
-	
+        await event.reply("Combot sıralamasında değilsiniz.")
+    else:
+        await event.reply("Bu komutu kullanabilmek için grubun yöneticisi olmalısınız.")	
 
 @client.on(events.NewMessage(pattern='/id'))
 async def id(event):
