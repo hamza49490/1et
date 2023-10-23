@@ -25,7 +25,7 @@ def start(message):
     bot.reply_to(message, "**💕 Merhaba arkadaşlar.\n💭 Aklımda 0 - 1000 bir sayı tuttum.\n🤔 Aklımdaki sayıyı tahmin et.**")
 
     # Rastgele bir sayı seç
-    target_number = random.randint(0,, 1000)
+    target_number = random.randint(0, 1000)
 
 @bot.message_handler(commands=['iptal'])
 def cancel(message):
