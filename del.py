@@ -20,9 +20,12 @@ def get_lyrics(song_name):
     url = f'https://www.azlyrics.com/lyrics/{song_name}.html'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    lyrics_div = soup.find_all('div', class_='col-xs-12 col-lg-8 text-center')[0]
-    lyrics = lyrics_div.find_all('div')[6].text.strip()
+    lyrics_div = print(soup.find_all('div', class_='col-xs-12 col-lg-8 text-center'))[0]
+if len(lyrics_div) > 0:
+    lyrics = lyrics_div[0].find_all('div')[6].text.strip()
     return lyrics
+else:
+    return "Lyrics not found"
 
 
 target_number = None
