@@ -761,20 +761,6 @@ async def show_bots(event):
                    ),  
                  link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="gadmin"))
-async def show_admins(event):	    
-    chat = await event.get_chat()
-    admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
-    admin_list = ""
-    for admin in admins:
-        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**", buttons=(
-                     [
-                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
-                     ]
-                   ),  
-                 link_preview=False)
-    
 
 @client.on(events.callbackquery.CallbackQuery(data="gbilgi"))
 async def grup_info(event):
@@ -807,6 +793,9 @@ async def grup_info(event):
     if not special_status:
         special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
 
+    messages_count = await event.client.get_messages(chat_info, limit=0)
+    messages_count = messages_count.total
+
     geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
 
     response_text = (
@@ -814,11 +803,12 @@ async def grup_info(event):
         f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
         f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
         f'➻ ᴀᴋᴛɪғ ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀ : {active_count}\n'
-        f'➻ ɢʀᴜᴘ ᴛᴏᴘʟᴀᴍ ᴍᴇsᴀᴊ sᴀʏɪsɪ : {chat_info.messages_count}\n'
+        f'➻ ɢʀᴜᴘ ᴛᴏᴘʟᴀᴍ ᴍᴇsᴀᴊ sᴀʏɪsɪ : {messages_count}\n'
         f'{special_status}'
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
+	
 		
 
 @client.on(events.NewMessage(pattern='/id'))
