@@ -80,6 +80,7 @@ etiketuye = []
 isleyen = []
 user_sayi = [] 
 
+client.storage = {}
 
 @client.on(events.NewMessage(pattern='/tur'))
 async def change_tur(event):
