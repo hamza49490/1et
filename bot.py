@@ -1019,7 +1019,7 @@ async def tag(event):
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-        return await event.respond("____")
+    return await event.respond("____")
   else:
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
   if mode == "text_on_cmd":
