@@ -51,6 +51,9 @@ def guess(message):
     except ValueError:
         return
 
+    if target_number is None:
+        return
+
     if guess_number < target_number:
         bot.reply_to(message, "<b>× Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
     elif guess_number > target_number:
@@ -62,6 +65,7 @@ def guess(message):
 
     # Yeni bir tahmin yapıldığında süreyi sıfırla
     start_time = time.time()
+    
     
 
 bot.polling()
