@@ -550,10 +550,10 @@ async def help(event):
     await event.edit(f"{startbutton}", buttons=(
 
                     [
-                      Button.inline("🗨️ ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
-                      Button.inline("📚 ᴇxᴛʀᴀ ᴋᴏᴍᴜᴛ", data="tag2")
+                      Button.inline("💭 ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
+                      Button.inline("🎲 ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ", data="tag2")
 		      ],[
-                      Button.inline("🎮 ᴏʏᴜɴ ᴋᴏᴍᴜᴛ", data="tag4"),
+                      Button.inline("🧩 ᴏʏᴜɴ ᴋᴏᴍᴜᴛ", data="tag4"),
 		      Button.inline("🧑🏻‍💻 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ", data="tag3")
                   ],[
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="start")
