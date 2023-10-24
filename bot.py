@@ -80,6 +80,7 @@ etiketuye = []
 isleyen = []
 user_sayi = [] 
 
+
 client.storage = {}
 tur_sayisi = 0
 il_plaka_kodlari = {
@@ -88,6 +89,7 @@ il_plaka_kodlari = {
 
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
+    global tur_sayisi  # tur_sayisi değişkenini global olarak tanımla
     if event.is_private:
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
@@ -108,6 +110,7 @@ async def callback(event):
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
+    global tur_sayisi  # tur_sayisi değişkenini global olarak tanımla
     plaka_kodu = event.raw_text
     il = client.storage.get(plaka_kodu)
     if il:
@@ -127,6 +130,7 @@ async def guess(event):
                 await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
+		
 
 @client.on(events.NewMessage)
 async def chatbot(event):
