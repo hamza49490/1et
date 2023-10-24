@@ -81,6 +81,7 @@ isleyen = []
 user_sayi = [] 
 
 
+
 client.storage = {'tur_sayisi': 1}
 
 il_plaka_kodlari = {
@@ -101,9 +102,10 @@ async def play(event):
     
     tur_sayisi += 1
     client.storage['tur_sayisi'] = tur_sayisi
-    if tur_sayisi > 5:
+    if tur_sayisi > 50:
         await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
         client.storage['tur_sayisi'] = 1
+        return
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
@@ -124,17 +126,7 @@ async def guess(event):
                 await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
-
-@client.on(events.NewMessage(pattern='/iptal'))
-async def cancel(event):     
-    global tur_sayisi
-    tur_sayisi = 1
-    if client.storage:
-        for plaka_kodu, data in client.storage.items():
-            il = data['il']
-            points = data['points']
-            await event.respond(f'<b>⛔ Oyun iptal edildi.\n\n🏙️ Şehir : {il}</b>', parse_mode='html')
-        client.storage.clear()
+	
 
 
 @client.on(events.NewMessage)
