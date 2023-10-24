@@ -80,44 +80,44 @@ etiketuye = []
 isleyen = []
 user_sayi = [] 
 
-
-
-client.storage = {'tur_sayisi': 1, 'tur': 50}
-
+client.storage = {}
+tur_sayisi = 0
 il_plaka_kodlari = {
-    'Ağrı': '04',
+'Ağrı': '04', 'Amasya': '05',
 }
 
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
-    tur_sayisi = client.storage.get('tur_sayisi', 0)
-    tur = client.storage.get('tur', 50)
     if event.is_private:
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
      
+    tur = client.storage.get('tur', '25')
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
+    tur_sayisi = len(client.storage.keys()) - 1
     await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
-    
-    tur_sayisi += 1
-    client.storage['tur_sayisi'] = tur_sayisi
-    if tur_sayisi > tur:
-        await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
-        client.storage['tur_sayisi'] = 1
-        return
+
+@client.on(events.CallbackQuery())
+async def callback(event):
+    tur = event.data
+    client.storage['tur'] = tur
+    await event.edit(f'🎉 <b>Tur başarıyla değiştirildi. \n💭 Yeni tur: {tur}</b>', parse_mode='html')
+
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
     plaka_kodu = event.raw_text
     il = client.storage.get(plaka_kodu)
     if il:
+        tur_sayisi = len(client.storage.keys()) - 1
         await event.respond(f'🎉 <b>Tebrikler! Doğru cevap.\n💭 {il["il"]} ilinin plaka kodu {plaka_kodu}</b>', parse_mode='html')
         user_id = event.sender_id
         if user_id not in il['points']:
-            il['points'][user_id] = 1
+            il['points'][user_id] = 0
         il['points'][user_id] += 1
+        await event.respond(f'💭 <b>Oyun bitti . \n🗯️ Puanınız : {il["points"][user_id]}</b>', parse_mode='html')
         client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
     else:
         if plaka_kodu.isdigit():
@@ -127,7 +127,35 @@ async def guess(event):
                 await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
-	
+
+    await asyncio.sleep(15)
+    if client.storage:
+        tur_sayisi = len(client.storage.keys()) - 1
+        if "tur" not in client.storage:
+            client.storage["tur"] = 25  # "tur" anahtarını ekleyin ve değerini belirleyin
+        await event.respond(f'<b>Oyun süresi doldu.\nOyun iptal edildi.\nTur : {tur_sayisi}/{client.storage["tur"]}</b>', parse_mode='html')
+        user_id = event.sender_id
+        if user_id in client.storage[plaka_kodu]['points']:
+            await event.respond(f'<b> Puanınız: {client.storage[plaka_kodu]["points"][user_id]}</b>', parse_mode='html')
+        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
+     
+@client.on(events.NewMessage(pattern='/tur'))
+async def change_tur(event):
+    if event.is_private:
+        await event.respond('⛔ <b>Sadece gruplarda kullanılabilir .</b>', parse_mode='html')
+        return
+     
+    if len(event.raw_text.split('/tur ')) < 2:
+        await event.respond('💕 <b> Bir tur sayısı girin .</b>', parse_mode='html')
+        return
+     
+    tur = event.raw_text.split('/tur ')[1]
+    if not tur.isdigit():
+        await event.respond('<b>× Geçerli bir tur sayısı girin .</b>', parse_mode='html')
+        return
+     
+    client.storage['tur'] = tur
+    await event.respond(f'✅ <b>Tur başarıyla değiştirildi.\n🗯️ Yeni tur: {tur}</b>', parse_mode='html')
 
 
 @client.on(events.NewMessage)
