@@ -1009,7 +1009,7 @@ async def utag(event):
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) , "
       if event.chat_id not in gece_tag:
         return
-      if usrnum == 5:
+      if usrnum == 7:
         await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
