@@ -101,7 +101,7 @@ async def play(event):
     
     tur_sayisi += 1
     client.storage['tur_sayisi'] = tur_sayisi
-    if tur_sayisi > 50:
+    if tur_sayisi > 5:
         await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
         client.storage['tur_sayisi'] = 1
 
