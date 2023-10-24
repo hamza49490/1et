@@ -55,11 +55,11 @@ def guess(message):
         return
 
     if guess_number < target_number:
-        bot.reply_to(message, "<b>× Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
+        bot.reply_to(message, "⬆️<b> Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
     elif guess_number > target_number:
-        bot.reply_to(message, "<b>× Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
+        bot.reply_to(message, "⬇️<b> Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
     else:
-        bot.reply_to(message, "💕 <b>Tebrikler! Doğru sayıyı buldunuz .</b>", parse_mode="HTML")
+        bot.reply_to(message, "💕<b> Tebrikler! Doğru sayıyı buldunuz .</b>", parse_mode="HTML")
         target_number = None
         return
 
