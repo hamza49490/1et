@@ -12,7 +12,7 @@ LOGGER = logging.getLogger(__name__)
 
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6404904263:AAHmC2JxmeN8wfODX-L8caONf8Y5GbozpjY")
 BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority")
 BOT_USERNAME = os.environ.get("BOT_USERNAME", "BuketTaggerBot")
