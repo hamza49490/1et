@@ -978,7 +978,7 @@ async def utag(event):
         return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
     msg = msg_list[1]
     if msg == "/utag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏöʀɴᴇᴋ : /utag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
@@ -1009,7 +1009,7 @@ async def utag(event):
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) , "
       if event.chat_id not in gece_tag:
         return
-      if usrnum == 7:
+      if usrnum == 5:
         await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
@@ -1019,7 +1019,7 @@ async def utag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+	    
 
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
