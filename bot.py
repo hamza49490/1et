@@ -92,10 +92,10 @@ async def play(event):
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
      
-    tur = client.storage.get('tur', '25')
+    tur = client.storage.get('tur', 25)
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
-    tur_sayisi = len(client.storage.keys()) - 1
+    tur_sayisi = 0
     await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
 
@@ -111,7 +111,7 @@ async def guess(event):
     plaka_kodu = event.raw_text
     il = client.storage.get(plaka_kodu)
     if il:
-        tur_sayisi = len(client.storage.keys()) - 1
+        tur_sayisi += 1
         await event.respond(f'🎉 <b>Tebrikler! Doğru cevap.\n💭 {il["il"]} ilinin plaka kodu {plaka_kodu}</b>', parse_mode='html')
         user_id = event.sender_id
         if user_id not in il['points']:
@@ -127,7 +127,6 @@ async def guess(event):
                 await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
-     
 
 @client.on(events.NewMessage)
 async def chatbot(event):
