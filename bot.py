@@ -518,6 +518,8 @@ async def start(event):
                     ],[
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+		    ],[
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -529,6 +531,8 @@ async def start(event):
                     ],[
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+		    ],[
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -541,7 +545,9 @@ async def start(event):
                     ],[
 	              Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
-                    ]
+                    ],[
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
+		     ]
                   ),
                 link_preview=False)
     
