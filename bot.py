@@ -58,7 +58,7 @@ LOGGER = logging.getLogger(__name__)
 
 api_id = int(os.environ.get("APP_ID","26573250"))
 api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
-bot_token = os.environ.get("TOKEN","6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA")
+bot_token = os.environ.get("TOKEN","6404904263:AAHmC2JxmeN8wfODX-L8caONf8Y5GbozpjY")
 BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot")
 CHANNELL = os.environ.get("CHANNELL", "BuketBilgi")
 OWNER_ID = int(os.environ.get("OWNER_ID","6540285284"))
