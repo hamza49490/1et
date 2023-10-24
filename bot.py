@@ -82,7 +82,7 @@ user_sayi = []
 
 
 
-client.storage = {'tur_sayisi': 1}
+client.storage = {'tur_sayisi': 1, 'tur': 50}
 
 il_plaka_kodlari = {
     'Ağrı': '04',
@@ -91,18 +91,19 @@ il_plaka_kodlari = {
 @client.on(events.NewMessage(pattern='/play'))
 async def play(event):
     tur_sayisi = client.storage.get('tur_sayisi', 0)
+    tur = client.storage.get('tur', 50)
     if event.is_private:
         await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
         return
      
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
-    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{50}</b>', parse_mode='html')
+    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
     
     tur_sayisi += 1
     client.storage['tur_sayisi'] = tur_sayisi
-    if tur_sayisi > 50:
+    if tur_sayisi > tur:
         await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
         client.storage['tur_sayisi'] = 1
         return
