@@ -81,7 +81,7 @@ isleyen = []
 user_sayi = [] 
 
 
-client.storage = {'tur_sayisi': 0}
+client.storage = {'tur_sayisi': 1}
 
 il_plaka_kodlari = {
     'Ağrı': '04',
@@ -103,7 +103,7 @@ async def play(event):
     client.storage['tur_sayisi'] = tur_sayisi
     if tur_sayisi > 50:
         await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
-        client.storage['tur_sayisi'] = 0
+        client.storage['tur_sayisi'] = 1
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
@@ -113,7 +113,7 @@ async def guess(event):
         await event.respond(f'🎉 <b>Tebrikler! Doğru cevap.\n💭 {il["il"]} ilinin plaka kodu {plaka_kodu}</b>', parse_mode='html')
         user_id = event.sender_id
         if user_id not in il['points']:
-            il['points'][user_id] = 0
+            il['points'][user_id] = 1
         il['points'][user_id] += 1
         client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
     else:
@@ -128,7 +128,7 @@ async def guess(event):
 @client.on(events.NewMessage(pattern='/iptal'))
 async def cancel(event):     
     global tur_sayisi
-    tur_sayisi = 0
+    tur_sayisi = 1
     if client.storage:
         for plaka_kodu, data in client.storage.items():
             il = data['il']
