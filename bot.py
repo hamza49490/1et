@@ -99,14 +99,14 @@ async def play(event):
      
     il = random.choice(list(il_plaka_kodlari.keys()))
     plaka_kodu = il_plaka_kodlari[il]
-    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲Tur : {tur_sayisi}/{50}</b>', parse_mode='html')
+    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{50}</b>', parse_mode='html')
     client.storage[plaka_kodu] = {'il': il, 'points': {}}
     
     tur_sayisi += 1
-    if tur_sayisi >= 50:
+    if tur_sayisi > 50:
         await event.respond('<b>Oyun bitti .</b>', parse_mode='html')
         tur_sayisi = 0
-	    
+     
 
 @client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
 async def guess(event):
