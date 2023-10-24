@@ -81,57 +81,6 @@ isleyen = []
 user_sayi = [] 
 
 
-client.storage = {}
-tur_sayisi = 0
-il_plaka_kodlari = {
-'Ağrı': '04', 'Amasya': '05',
-}
-
-@client.on(events.NewMessage(pattern='/play'))
-async def play(event):
-    global tur_sayisi  # tur_sayisi değişkenini global olarak tanımla
-    if event.is_private:
-        await event.respond('<b>⛔ Komutlar sadece gruplarda kullanılabilir.</b>', parse_mode='html')
-        return
-     
-    tur = client.storage.get('tur', 25)
-    il = random.choice(list(il_plaka_kodlari.keys()))
-    plaka_kodu = il_plaka_kodlari[il]
-    tur_sayisi = 0
-    await event.respond(f'<b>🚗 Verdiğim şehrin plakasını yazın :)\n\n🏙️ Şehir : {il}\n\n🎲 Tur : {tur_sayisi}/{tur}</b>', parse_mode='html')
-    client.storage[plaka_kodu] = {'il': il, 'points': {}}
-
-@client.on(events.CallbackQuery())
-async def callback(event):
-    tur = event.data
-    client.storage['tur'] = tur
-    await event.edit(f'🎉 <b>Tur başarıyla değiştirildi. \n💭 Yeni tur: {tur}</b>', parse_mode='html')
-
-
-@client.on(events.NewMessage(func=lambda event: event.raw_text.isdigit()))
-async def guess(event):
-    global tur_sayisi  # tur_sayisi değişkenini global olarak tanımla
-    plaka_kodu = event.raw_text
-    il = client.storage.get(plaka_kodu)
-    if il:
-        tur_sayisi += 1
-        await event.respond(f'🎉 <b>Tebrikler! Doğru cevap.\n💭 {il["il"]} ilinin plaka kodu {plaka_kodu}</b>', parse_mode='html')
-        user_id = event.sender_id
-        if user_id not in il['points']:
-            il['points'][user_id] = 0
-        il['points'][user_id] += 1
-        await event.respond(f'💭 <b>Oyun bitti . \n🗯️ Puanınız : {il["points"][user_id]}</b>', parse_mode='html')
-        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
-    else:
-        if plaka_kodu.isdigit():
-            if int(plaka_kodu) > int(max(client.storage.keys())):
-                await event.respond('<b>× Daha küçük bir sayı girin .</b>', parse_mode='html')
-            elif int(plaka_kodu) < int(min(client.storage.keys())):
-                await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
-        else:
-            await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
-		
-
 @client.on(events.NewMessage)
 async def chatbot(event):
     global isleyen
