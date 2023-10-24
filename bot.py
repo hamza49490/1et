@@ -1019,7 +1019,8 @@ async def tag(event):
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg = event.pattern_match.string.split(None, 1)[1]
   else:
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
   if mode == "text_on_cmd":
@@ -1048,6 +1049,7 @@ async def tag(event):
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+	    
 
 
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
