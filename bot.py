@@ -969,7 +969,7 @@ async def utag(event):
         return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
     msg = msg_list[1]
     if msg == "/utag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏöʀɴᴇᴋ : /utag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
@@ -996,12 +996,12 @@ async def utag(event):
       if usr.bot or usr.deleted:
         continue
       rxyzdev_tagTot[event.chat_id] += 1
-      usrnum += 7
+      usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) , "
       if event.chat_id not in gece_tag:
         return
-      if usrnum == 1:
-        await client.send_message(event.chat_id, f"**{msg}\n{usrtxt}**")
+      if usrnum == 7:
+        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
@@ -1029,10 +1029,10 @@ async def tag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
     msg = msg_list[1]
     if msg == "/tag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
@@ -1042,10 +1042,10 @@ async def tag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
     msg = msg_list[1]
   else:
-      return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+      return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
