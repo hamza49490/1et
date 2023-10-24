@@ -881,8 +881,8 @@ async def cancel(event):
   gece_tag.remove(event.chat_id)
   sender = await event.get_sender()
   rxyzdev_stopT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-  if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️  ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴅᴜʀᴅᴜʀᴅᴜᴍ ...\n\n➻  {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	    
+  if event.chat_id in rxyzdev_tagTot:
+    await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/atag ?(.*)"))
 async def atag(event):
@@ -899,18 +899,25 @@ async def atag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
+    msg = msg_list[1]
     if msg == "/atag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /atag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /atag Merhaba**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -937,7 +944,8 @@ async def atag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"{sender.first_name}"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
 @client.on(events.NewMessage(pattern="^/utag ?(.*)"))
@@ -955,18 +963,25 @@ async def utag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
+    msg = msg_list[1]
     if msg == "/utag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /utag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+   mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /utag Merhaba**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -992,8 +1007,8 @@ async def utag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def tag(event):
@@ -1010,7 +1025,10 @@ async def tag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+    msg = msg_list[1]
     if msg == "/tag":
         return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
   elif event.reply_to_msg_id:
@@ -1019,7 +1037,11 @@ async def tag(event):
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
+    msg = msg_list[1]
   else:
     return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /tag Merhaba**")
   if mode == "text_on_cmd":
@@ -1047,8 +1069,8 @@ async def tag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	    
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
 @client.on(events.NewMessage(pattern="^/etag ?(.*)"))
@@ -1066,18 +1088,25 @@ async def tag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
+    msg = msg_list[1]
     if msg == "/etag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /etag Merhaba**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 ᴏ‌ʀɴᴇᴋ : /etag Merhaba**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -1103,8 +1132,8 @@ async def tag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/vtag ?(.*)"))
 async def vtag(event):
@@ -1121,18 +1150,25 @@ async def vtag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
+    msg = msg_list[1]
     if msg == "/vtag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /vtag**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /vtag**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -1158,8 +1194,8 @@ async def vtag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern="^/otag ?(.*)"))
 async def otag(event):
@@ -1176,18 +1212,25 @@ async def otag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
+    msg = msg_list[1]
     if msg == "/otag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /otag**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /otag**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -1213,7 +1256,8 @@ async def otag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
 @client.on(events.NewMessage(pattern="^/stag ?(.*)"))
@@ -1231,18 +1275,25 @@ async def stag(event):
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
-    msg = event.pattern_match.string.split(None, 1)[1]
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+    msg = msg_list[1]
     if msg == "/stag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /stag**")
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
         return await event.respond("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.respond("____")
+    mode = "text_on_cmd"
+    msg_list = event.pattern_match.string.split(None, 1)
+    if len(msg_list) < 2:
+        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+    msg = msg_list[1]
   else:
-    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\nᴠᴇʏᴀ ᴛɪᴋʟᴀʏɪɴ ➙ /stag**")
+    return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -1268,8 +1319,8 @@ async def stag(event):
      
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
-    if event.chat_id in rxyzdev_tagTot:await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	    
+    if event.chat_id in rxyzdev_tagTot:
+      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")	    
 ##################################################
 ##################################################
 ##################################################
