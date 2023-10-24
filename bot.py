@@ -844,6 +844,9 @@ async def zar(event):
 ##################################################
 @client.on(events.NewMessage(pattern='/cagir'))
 async def handle_tagging(event):
+    if event.is_private:
+        await event.respond(f"{nogroup}", parse_mode='markdown')
+        return
     # Komutu kullanan kişinin kullanıcı adını al
     sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
     
