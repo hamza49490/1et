@@ -127,36 +127,7 @@ async def guess(event):
                 await event.respond('<b>× Daha büyük bir sayı girin .</b>', parse_mode='html')
         else:
             await event.respond('<b> Geçerli bir plaka kodu girin .</b>', parse_mode='html')
-
-    await asyncio.sleep(15)
-    if client.storage:
-        tur_sayisi = len(client.storage.keys()) - 1
-        if "tur" not in client.storage:
-            client.storage["tur"] = 25  # "tur" anahtarını ekleyin ve değerini belirleyin
-        await event.respond(f'<b>Oyun süresi doldu.\nOyun iptal edildi.\nTur : {tur_sayisi}/{client.storage["tur"]}</b>', parse_mode='html')
-        user_id = event.sender_id
-        if user_id in client.storage[plaka_kodu]['points']:
-            await event.respond(f'<b> Puanınız: {client.storage[plaka_kodu]["points"][user_id]}</b>', parse_mode='html')
-        client.storage.pop(plaka_kodu)  # Sadece tamamlanan turun verilerini temizle
      
-@client.on(events.NewMessage(pattern='/tur'))
-async def change_tur(event):
-    if event.is_private:
-        await event.respond('⛔ <b>Sadece gruplarda kullanılabilir .</b>', parse_mode='html')
-        return
-     
-    if len(event.raw_text.split('/tur ')) < 2:
-        await event.respond('💕 <b> Bir tur sayısı girin .</b>', parse_mode='html')
-        return
-     
-    tur = event.raw_text.split('/tur ')[1]
-    if not tur.isdigit():
-        await event.respond('<b>× Geçerli bir tur sayısı girin .</b>', parse_mode='html')
-        return
-     
-    client.storage['tur'] = tur
-    await event.respond(f'✅ <b>Tur başarıyla değiştirildi.\n🗯️ Yeni tur: {tur}</b>', parse_mode='html')
-
 
 @client.on(events.NewMessage)
 async def chatbot(event):
