@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import random
 import time
 
-TOKEN = '6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU'
+TOKEN = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
 bot = telebot.TeleBot(TOKEN)
 
 target_number = None
