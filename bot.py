@@ -749,6 +749,20 @@ async def sahib(event):
                    ),  
                  link_preview=False)
 
+@client.on(events.callbackquery.CallbackQuery(data="gadmin"))
+async def show_admins(event):	    
+    chat = await event.get_chat()
+    admins = await event.client.get_participants(chat, filter=types.ChannelParticipantsAdmins)
+    admin_list = ""
+    for admin in admins:
+        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
+    await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**", buttons=(
+                     [
+                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+                     ]
+                   ),  
+                 link_preview=False)
+
 @client.on(events.callbackquery.CallbackQuery(data="gbot"))
 async def show_bots(event):
 	    
@@ -767,7 +781,6 @@ async def show_bots(event):
                      ]
                    ),  
                  link_preview=False)
-
 
 @client.on(events.callbackquery.CallbackQuery(data="gbilgi"))
 async def grup_info(event):
