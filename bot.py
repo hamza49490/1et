@@ -845,12 +845,6 @@ async def id(event):
             return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
         else:
             return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
-
-@client.on(events.NewMessage(pattern='/iletisim'))
-async def zar(event):
-    mrt = await event.reply("✓  **ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪɴ ...**")
-    await asyncio.sleep(2)
-    await mrt.edit(f"**👨🏻‍💻 [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID})**")
 	
 ##################################################
 ##################################################
