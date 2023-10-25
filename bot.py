@@ -236,11 +236,6 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
-    if "kanka" in kelimeler or "dostum" in kelimeler:
-        cevap = random.choice(knks)
-        bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
-
     if "sıkıldım" in kelimeler or "skldm" in kelimeler:
         cevap = random.choice(skdm)
         bold_cevap = f"<b>{cevap}</b>"
@@ -355,7 +350,6 @@ kyas = ["Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Senden
 nereli = ["Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın bir yerindenim .",]
 pms = ["Sen konuşma 🤭", "Hayır, Konuşacam 🙄",]
 krdn = ["Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .",]
-knks = ["Aaaa kankam gelmiş .", "Efendim Kanka 💕",]
 skdm = ["Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?",]
 hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄",]
 bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
@@ -413,6 +407,7 @@ async def callback_sohbetmod_off(event):
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
 
+@client.on(events.NewMessage(pattern='eros'))
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
     if event.is_private:
@@ -861,7 +856,7 @@ async def handle_tagging(event):
     all_users = await client.get_participants(event.chat_id)
     
     # Etiketlenecek kullanıcı sayısı
-    tag_count = 50
+    tag_count = 75
     
     # Botlar ve silinen hesapları hariç tut
     valid_users = [user for user in all_users if not user.bot and not user.deleted]
