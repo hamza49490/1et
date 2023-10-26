@@ -42,15 +42,16 @@ LOGGER = logging.getLogger(__name__)
 
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6559325433:AAECLK5t8nQUFWkI24Hx0NF-ASthWqBo3dU")
-BOT_ID = int(os.environ.get("BOT_ID", "6559325433"))
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://ok:ok@cluster0.uooya.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "AikoDenemeBot")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6404904263:AAEY2Ez0v-qec4Arg1DLczibnvwL3iCpcqQ")
+BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority")
+BOT_USERNAME = os.environ.get("BOT_USERNAME", "BuketTaggerBot")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False)
 OWNER_ID = int(os.environ.get("OWNER_ID", "6540285284"))
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
+
 
 app = Client(
     ":memory:",
