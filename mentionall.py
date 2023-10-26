@@ -1,3 +1,4 @@
+import wget
 import logging
 import datetime
 import asyncio
