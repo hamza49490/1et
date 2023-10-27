@@ -11,7 +11,7 @@ import random, os, logging, asyncio
 import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
-from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
+from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
 from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
 from telethon.tl.functions.messages import GetDialogsRequest
@@ -536,28 +536,27 @@ async def start(event):
 @client.on(events.callbackquery.CallbackQuery(data="start"))
 async def start(event):
     await event.edit(f"{startmesaj}", buttons=(
-                     [
+                      [
                       Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
-	              Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
+                      Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
-                    ],[
+		    ],[
 		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
-		     ]
+		      ]
                   ),
                 link_preview=False)
     
 @client.on(events.callbackquery.CallbackQuery(data="help"))
 async def help(event):
     await event.edit(f"{startbutton}", buttons=(
-
-                    [
-                      Button.inline("💭 ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
-                      Button.inline("🧧 ᴇᴋ ᴋᴏᴍᴜᴛ", data="tag2")
-		      ],[
-                      Button.inline("🧩 ᴏʏᴜɴ ᴋᴏᴍᴜᴛ", data="tag4"),
-		      Button.inline("🧑🏻‍💻 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ", data="tag3")
-                  ],[
+                      [
+                      Button.inline("📇 ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛʟᴀʀɪ", data="tag1"),
+		    ],[
+		      Button.inline("🗒️ ᴇᴋ ᴋᴏᴍᴜᴛʟᴀʀ", data="tag2")
+		    ],[
+                      Button.inline("🎯 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ", data="tag4"),
+                    ],[
                       Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="start")
                     ]
                  ),
@@ -581,19 +580,6 @@ async def tag2(event):
                      ]
                    ),  
                  link_preview=False)
-
-@client.on(events.callbackquery.CallbackQuery(data="tag3"))
-async def handler(event):
-       sender = await event.get_sender()
-       if sender.id in OWNER:
-            await event.edit(f"{sahipp}", buttons=(
-                     [
-                      Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
-                     ]
-                   ),  
-                 link_preview=False)
-       if sender.id not in OWNER:
-                 await event.reply(f"{noowner}")
 	
 @client.on(events.callbackquery.CallbackQuery(data="tag4"))
 async def tag4(event):
@@ -603,7 +589,6 @@ async def tag4(event):
                      ]
                    ),  
                  link_preview=False)
-
 
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
@@ -659,6 +644,27 @@ async def romantik(event):
 ##################################################
 ##################################################
 ##################################################
+@client.on(events.NewMessage(pattern='/id'))
+async def id(event):
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        user_id = previous_message.sender_id
+        chat_id = event.chat_id
+        if event.is_private:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
+        else:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
+
+
+    else:
+        user_id = event.sender_id
+        chat_id = event.chat_id
+        if event.is_private:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
+        else:
+            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
+		
+
 @client.on(events.NewMessage(pattern='/dels'))
 async def purge_messages(event):
     if event.is_private:
@@ -820,28 +826,7 @@ async def grup_info(event):
     )
 
     await event.edit(response_text, buttons=[[geri_button]])
-		
-
-@client.on(events.NewMessage(pattern='/id'))
-async def id(event):
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        user_id = previous_message.sender_id
-        chat_id = event.chat_id
-        if event.is_private:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
-        else:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
-
-
-    else:
-        user_id = event.sender_id
-        chat_id = event.chat_id
-        if event.is_private:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`")
-        else:
-            return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
-	
+			
 ##################################################
 ##################################################
 ##################################################
