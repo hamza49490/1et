@@ -92,7 +92,7 @@ async def chatbot(event):
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')
 	    	    
-    if kelimeler[0] == "nasılsın" or kelimeler[0] == "naber" or kelimeler[0] == "ne haber":
+    if kelimeler[0] == "nasılsın" or kelimeler[0] == "naber" or kelimeler[0] == "ne haber" or kelimeler[0] == "nbr":
         cevap = random.choice(nasilsin)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
@@ -364,7 +364,6 @@ dmy = ["Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 
 tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺",]
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 
-#x21 = ( "", "", "", "", )
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
     if event.is_private:
@@ -402,10 +401,11 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
-
+##################################################
+##################################################
+##################################################
 @client.on(events.NewMessage(pattern='/ship'))
 @client.on(events.NewMessage(pattern='Eros'))
-@client.on(events.NewMessage(pattern='/Eros'))
 @client.on(events.NewMessage(pattern='eros'))
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
@@ -435,7 +435,6 @@ async def eros_oku(event):
 
 @client.on(events.NewMessage(pattern='slap'))
 @client.on(events.NewMessage(pattern='Slap'))
-@client.on(events.NewMessage(pattern='/Slap'))
 @client.on(events.NewMessage(pattern='/slap'))
 async def slap(event):
     if event.is_private:
