@@ -1,8 +1,6 @@
 import telebot
 import requests
 from datetime import datetime
-from telebot import types
-from bs4 import BeautifulSoup
 import random
 import time
 
