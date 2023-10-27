@@ -317,6 +317,13 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
+    if kelimeler[0] == "kanka" or kelimeler[0] == "knk" or kelimeler[0] == "kanki":
+        cevap = random.choice(kankas)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+
+smesajs = ["Hoş Geldin 💕", "Özlettin yine kendini 😔", "Aaaaa kimler burdaymış 😳", "Naber ya sen ölmedin mi 😅", "lan ben seni tanıyorum 😳", "Gelsene bişey söylicem .", "Merhaba, Bakar mısın !", "Uffff asalete bak 💕", "Galiba aşık oldum 🤭", "nabıyosun kanki", "şey dicektim 🙊", "Bu saaten sonra herşey değişecek 😡", "Canım tatlı çekti 💕", "Bebeğim nerdesin sen 🙄", "Yokluğun fena koydu 😔", "Seste dedikodun var koş gel 😳", "beni çekemeyen sen, anten takalım mı ndjddj", "Beni ekler misin 🙈",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
@@ -363,6 +370,7 @@ crkn = ["Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄"
 dmy = ["Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄",]
 tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺",]
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
+kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
 
 @client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
 async def chatbot(event):
@@ -388,9 +396,17 @@ async def callback_sohbetmod_on(event):
         isleyen.append(qrup)
         aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu)
+        await asyncio.sleep(1800)
+        while qrup in isleyen:
+            users = await client.get_participants(qrup)
+            active_users = [user for user in users if not user.bot and not user.deleted]
+            if active_users:
+                random_user = random.choice(active_users)
+                await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
+            await asyncio.sleep(1800)
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
-
+		
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
 async def callback_sohbetmod_off(event):
