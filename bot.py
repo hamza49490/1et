@@ -402,7 +402,10 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
+
 @client.on(events.NewMessage(pattern='/ship'))
+@client.on(events.NewMessage(pattern='Eros'))
+@client.on(events.NewMessage(pattern='/Eros'))
 @client.on(events.NewMessage(pattern='eros'))
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
@@ -430,6 +433,9 @@ async def eros_oku(event):
     await event.respond(response, parse_mode="Markdown")
 
 
+@client.on(events.NewMessage(pattern='slap'))
+@client.on(events.NewMessage(pattern='Slap'))
+@client.on(events.NewMessage(pattern='/Slap'))
 @client.on(events.NewMessage(pattern='/slap'))
 async def slap(event):
     if event.is_private:
