@@ -67,9 +67,10 @@ async def chatbot(event):
     mesaj = str(event.raw_text)
     qrup = event.chat_id
     if qrup not in isleyen:
-         return
- 
-    if event.sender_id == client.uid:
+        return
+    
+    me = await client.get_me()
+    if event.sender_id == me.id:
         return
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
