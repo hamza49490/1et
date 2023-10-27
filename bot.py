@@ -1,29 +1,14 @@
 import random
-import shutil, psutil, traceback, os
-import string
-import time
-import datetime
-import motor.motor_asyncio
 import shutil, psutil, traceback
-import traceback
+import datetime
 import aiofiles
-import wget
-import yt_dlp
 import os, requests, time
-import random, os, logging, asyncio
+import random, logging, asyncio
 import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
-from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerChannel
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
-from telethon.tl.functions.channels import InviteToChannelRequest
-from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
-from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
@@ -32,18 +17,13 @@ from telethon import errors
 from asyncio import sleep
 from time import time
 from os import remove
-from telethon.tl.types import InputMediaPhoto
 from telethon.sync import types
 from datetime import datetime 
 from telethon import Button
-from pyrogram.errors import FloodWait
-from telethon import events
 from telethon import TelegramClient, events
-from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.sync import TelegramClient, events
 from pyrogram import filters
-from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
@@ -87,6 +67,9 @@ async def chatbot(event):
     mesaj = str(event.raw_text)
     qrup = event.chat_id
     if qrup not in isleyen:
+         return
+ 
+    if event.sender_id == client.uid:
         return
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
@@ -608,10 +591,10 @@ async def tag4(event):
 async def sahib(event):
     await event.reply(f"**🗨️ sᴇᴄ̧ɪᴍɪɴɪ ʏᴀᴘ . . .**", buttons=(
                      [
-                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzel"),
-		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapak")
+                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
+		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos")
                      ],[
-                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantik")
+                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantiksos")
 		     ]
                    ),  
                  link_preview=False)
@@ -620,15 +603,15 @@ async def sahib(event):
 async def sahib(event):
     await event.reply(f"**🗨️ sᴇᴄ̧ɪᴍɪɴɪ ʏᴀᴘ . . .**", buttons=(
                      [
-                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzel"),
-		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapak") 
+                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
+		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos") 
                      ],[
-                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantik")
+                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantiksos")
 		     ]
                    ),  
                  link_preview=False)
 	
-@client.on(events.callbackquery.CallbackQuery(data="guzel"))
+@client.on(events.callbackquery.CallbackQuery(data="guzelsos"))
 async def guzel(event):
     await event.edit(f"**🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ :\n\n{random.choice(guzelsoz)}**", buttons=(
                      [
@@ -637,7 +620,7 @@ async def guzel(event):
                    ),  
                  link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="kapak"))
+@client.on(events.callbackquery.CallbackQuery(data="kapaksos"))
 async def romantik(event):
     await event.edit(f"**🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ :\n\n{random.choice(kapaksoz)}**", buttons=(
                      [
@@ -646,7 +629,7 @@ async def romantik(event):
                    ),  
                  link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="romantik"))
+@client.on(events.callbackquery.CallbackQuery(data="romantiksos"))
 async def romantik(event):
     await event.edit(f"**💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ :\n\n{random.choice(romantiksoz)}**", buttons=(
                      [
