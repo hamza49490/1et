@@ -1,14 +1,26 @@
 import random
-import shutil, psutil, traceback
+import shutil, psutil, traceback, os
+import time
 import datetime
+import motor.motor_asyncio
+import shutil, psutil, traceback
+import traceback
 import aiofiles
 import os, requests, time
-import random, logging, asyncio
+import random, os, logging, asyncio
 import telethon
 from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
 from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
 from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, sahipp, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
+from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
+from telethon.tl.functions.messages import GetDialogsRequest
+from telethon.tl.types import InputPeerChannel
+from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
+from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.messages import ImportChatInviteRequest
+from telethon.tl.types import PeerUser, PeerChat, PeerChannel
+from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
@@ -23,7 +35,7 @@ from telethon import Button
 from telethon import TelegramClient, events
 from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.sync import TelegramClient, events
-from pyrogram import filters
+from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
@@ -390,7 +402,7 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
-
+@client.on(events.NewMessage(pattern='/ship'))
 @client.on(events.NewMessage(pattern='eros'))
 @client.on(events.NewMessage(pattern='/eros'))
 async def eros_oku(event):
