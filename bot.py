@@ -552,7 +552,7 @@ async def help(event):
 
                     [
                       Button.inline("💭 ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛ", data="tag1"),
-                      Button.inline("🎲 ᴇɢ̆ʟᴇɴᴄᴇ ᴋᴏᴍᴜᴛ", data="tag2")
+                      Button.inline("🧧 ᴇᴋ ᴋᴏᴍᴜᴛ", data="tag2")
 		      ],[
                       Button.inline("🧩 ᴏʏᴜɴ ᴋᴏᴍᴜᴛ", data="tag4"),
 		      Button.inline("🧑🏻‍💻 sᴀʜɪᴘ ᴋᴏᴍᴜᴛ", data="tag3")
