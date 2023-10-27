@@ -531,7 +531,7 @@ async def start(event):
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -544,7 +544,7 @@ async def start(event):
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -558,7 +558,7 @@ async def start(event):
                       Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
                       Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  📫', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -608,7 +608,7 @@ async def tag4(event):
 
 @client.on(events.NewMessage(pattern='/soz'))
 async def sahib(event):
-    await event.reply(f"**🗨️ sᴇᴄ̧ɪᴍɪɴɪ ʏᴀᴘ . . .**", buttons=(
+    await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
                      [
                       Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
 		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos")
@@ -620,7 +620,7 @@ async def sahib(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="soz"))
 async def sahib(event):
-    await event.reply(f"**🗨️ sᴇᴄ̧ɪᴍɪɴɪ ʏᴀᴘ . . .**", buttons=(
+    await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
                      [
                       Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
 		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos") 
