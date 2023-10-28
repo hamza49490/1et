@@ -33,13 +33,11 @@ from pyrogram.errors import (
     UserIsBlocked,
 )
 
-
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
-
 
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
@@ -52,7 +50,7 @@ GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", False)
 OWNER_ID = int(os.environ.get("OWNER_ID", "6540285284"))
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
-
+PLAYLIST_ID = -1001916993821
 
 app = Client(
     ":memory:",
@@ -74,7 +72,6 @@ def reload_command(client: Client, message: Message):
             message.chat.id,
             "**✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**"
         )
-
 
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
@@ -112,9 +109,9 @@ async def bul(_, message):
             dur += int(float(dur_arr[i])) * secmul
             secmul *= 60
         await m.edit("➻ **şᴀʀᴋɪ ʏᴜ̈ᴋʟᴇɴɪʏᴏʀ !**")
-        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎")
+        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍 📚", url="t.me/MuzikKayit")]]))
         await m.delete()
-        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", parse_mode='md', title=title, duration=dur, thumb=thumb_name, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  𝖡𝗎𝗄𝖾𝗍  💕", url="t.me/BuketTaggerBot")]]))
     except Exception as e:
         await m.edit("🗨️ **ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**")
         print(e)
@@ -124,7 +121,6 @@ async def bul(_, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
-
 
 @app.on_message(filters.command(["vbul", "vsong"]) & ~filters.edited)
 async def vsong(client, message):
@@ -149,33 +145,32 @@ async def vsong(client, message):
         thumb_name = f"{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
-        results[0]["duration"]
-        results[0]["url_suffix"]
-        results[0]["views"]
-        message.from_user.mention
+        duration = results[0]["duration"]
+        views = results[0]["views"]
+        mention = message.from_user.mention
     except Exception as e:
         print(e)
     try:
-        msg = await message.reply("➻  **ᴠɪᴅᴇᴏ ᴀʀᴀɴɪʏᴏʀ !**")
+        msg = await message.reply("**➻  ᴠɪᴅᴇᴏ ᴀʀᴀɴɪʏᴏʀ !**")
         with YoutubeDL(ydl_opts) as ytdl:
             ytdl_data = ytdl.extract_info(link, download=True)
             file_name = ytdl.prepare_filename(ytdl_data)
     except Exception as e:
-        return await msg.edit(f"➻  **ᴠɪᴅᴇᴏ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
+        return await msg.edit(f"**➻  ᴠɪᴅᴇᴏ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
     preview = wget.download(thumbnail)
-    await msg.edit("➻  **ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʟɪʏᴏʀ !**")
+    await msg.edit("**➻  ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʟɪʏᴏʀ !**")
     await message.reply_video(
         file_name,
         duration=int(ytdl_data["duration"]),
         thumb=preview,
-        caption=ytdl_data["title"],
+        caption=f"**\n➻ ᴘᴀʀᴄ̧ᴀ : {ytdl_data['title']}\n➻ sᴜ̈ʀᴇ : {duration}\n➻ ɪᴢʟᴇɴᴍᴇ : {views}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
     )
     try:
         os.remove(file_name)
+        os.remove(thumb_name)
         await msg.delete()
     except Exception as e:
         print(e)
-
 
 @app.on_message(filters.command(["ara", "search"]) & ~filters.edited)
 async def ytsearch(_, message: Message):
@@ -203,7 +198,6 @@ async def ytsearch(_, message: Message):
     except Exception as e:
         await message.reply_text(str(e))
 
-
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
@@ -215,26 +209,17 @@ async def zar(bot: Client, msg: Message):
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
 
-
 @app.on_message(filters.command(["zar"], ["/", ""]))
 def roll_dice(client, message):
     client.send_dice(message.chat.id)
-
-
-@app.on_message(filters.command(["reload"], ["/"]) & ~filters.private & ~filters.channel)
-async def reload(client: Client, message: Message):
-    await message.reply_text(f"**🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀşʟᴀᴅɪ .\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ̈ɴᴄᴇʟʟᴇɴᴅɪ .**")
-
 
 @app.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n🗒️ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ : {random.choice(c)}**")
 
-
 @app.on_message(filters.command(["d"], ["/", ""]))
 async def dsor(client: Client, message: Message):
     await message.reply_text(f"**🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n🗒️ sᴀɴᴀ sᴏʀᴜᴍ : {random.choice(d)}**")
-
 
 @app.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
 async def kelimeoyun(c:Client, m:Message):
@@ -276,7 +261,6 @@ async def kelimeoyun(c:Client, m:Message):
 👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
         await c.send_message(m.chat.id, text)
-
 
 @app.on_message(filters.command("pass") & ~filters.private & ~filters.channel)
 async def passs(c:Client, m:Message):
@@ -321,7 +305,6 @@ async def passs(c:Client, m:Message):
     else:
         await m.reply(f"**💭 Aktif Oyun Yok .\n➻ Yeni Oyun için ➡️ /turet**")
       
-
 @app.on_message(filters.command("iptal") & ~filters.private & ~filters.channel)
 async def stop(c:Client, m:Message):
     global oyun
@@ -357,7 +340,6 @@ async def ratingsa(c:Client, m:Message):
         if eklenen == 21:
             break
     await c.send_message(m.chat.id, metin)
-
 
 @app.on_message(filters.text & ~filters.private & ~filters.channel)
 async def buldu(c:Client, m:Message):
@@ -415,8 +397,6 @@ async def buldu(c:Client, m:Message):
                 await c.send_message(m.chat.id, text)
     except KeyError:
         pass
-
-  
 
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
