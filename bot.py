@@ -1974,6 +1974,6 @@ async def handler(event):
                     link_preview=False)
 
 	
-print(" Bot çalışıyor :)")
+print("Telethon çalışıyor :)")
 client.start()
 client.run_until_disconnected()
