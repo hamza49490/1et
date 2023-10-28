@@ -323,7 +323,7 @@ async def chatbot(event):
         await event.reply(bold_cevap, parse_mode='html')
 
 
-smesajs = ["Hoş Geldin 💕", "Özlettin yine kendini 😔", "Aaaaa kimler burdaymış 😳", "Naber ya sen ölmedin mi 😅", "lan ben seni tanıyorum 😳", "Gelsene bişey söylicem .", "Merhaba, Bakar mısın !", "Uffff asalete bak 💕", "Galiba aşık oldum 🤭", "nabıyosun kanki", "şey dicektim 🙊", "Bu saaten sonra herşey değişecek 😡", "Canım tatlı çekti 💕", "Bebeğim nerdesin sen 🙄", "Yokluğun fena koydu 😔", "Seste dedikodun var koş gel 😳", "beni çekemeyen sen, anten takalım mı ndjddj", "Beni ekler misin 🙈",]
+smesajs = ["Hoş Geldin 💕", "Özlettin yine kendini 😔", "Aaaaa kimler burdaymış 😳", "Naber ya !", "ben seni tanıyorum 😳", "Gelsene bişey söylicem .", "Merhaba, Bakar mısın !", "Uffff asalete bak 💕", "Galiba aşık oldum 🤭", "nabıyosun kanki", "şey dicektim 🙊", "Bu saaten sonra herşey değişecek 😡", "Canım tatlı çekti 💕", "Bebeğim nerdesin sen 🙄", "Yokluğun fena koydu 😔", "Seste dedikodun var 😳", "hmmm", "Nasılsın !", "Mutlu musun !",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
@@ -354,9 +354,9 @@ nereli = ["Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın
 pms = ["Susmasam ne olur 😳", "Lan sus 🙄", "Sen konuşma 🤭", "Hayır, Konuşacam 🙄",]
 krdn = ["Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .",]
 skdm = ["Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?",]
-hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄",]
+hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄", "Kafana sıkarım senin 🙄",]
 bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
-trt = ["Oyun mu istiyorsun /turet yaz .", "d mi c mi ?", "aaaa oyun oynamayı unuttuk 😬 derhal /sayi yaz .",]
+trt = ["Oyun mu istiyorsun /turet yaz .", "/d mi /c mi !", "aaaa oyun oynamayı unuttuk 😬 derhal /sayi yaz .",]
 evt = ["Bi sus ya", "Hayır", "Hayır dedim", "yioooooooo",]
 hyrr = ["la havle vela kuvvete", "Ne demek hayır 🙄", "Evet", "Evet dedim",]
 gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔",]
@@ -396,14 +396,14 @@ async def callback_sohbetmod_on(event):
         isleyen.append(qrup)
         aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu)
-        await asyncio.sleep(1800)
+        await asyncio.sleep(3600)
         while qrup in isleyen:
             users = await client.get_participants(qrup)
             active_users = [user for user in users if not user.bot and not user.deleted]
             if active_users:
                 random_user = random.choice(active_users)
                 await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
-            await asyncio.sleep(1800)
+            await asyncio.sleep(3600)
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
 		
