@@ -63,7 +63,54 @@ app = Client(
 
 oyun = {}
 rating = {}
+blocked_users = []
 
+# /block komutunu işleyen fonksiyon
+@app.on_message(filters.command("block") & filters.user(OWNER_ID))
+def block_user(client: Client, message: Message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        if user_id not in blocked_users:
+            blocked_users.append(user_id)
+            user_name = client.get_chat(user_id).first_name
+            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
+        else:
+            message.reply_text(f"Kullanıcı {user_id} zaten kara listede.")
+    else:
+        message.reply_text("Kullanım: /block <kullanıcı_id>")
+
+# /unblock komutunu işleyen fonksiyon
+@app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
+def unblock_user(client: Client, message: Message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        if user_id in blocked_users:
+            blocked_users.remove(user_id)
+            user_name = client.get_chat(user_id).first_name
+            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeden çıkarıldı.")
+        else:
+            message.reply_text(f"Kullanıcı {user_id} zaten kara listede değil.")
+    else:
+        message.reply_text("Kullanım: /unblock <kullanıcı_id>")
+
+# /blocklist komutunu işleyen fonksiyon
+@app.on_message(filters.command("blocklist") & filters.user(OWNER_ID))
+def blocklist(client: Client, message: Message):
+    if len(blocked_users) > 0:
+        blocked_users_text = ""
+        for user_id in blocked_users:
+            user_name = client.get_chat(user_id).first_name
+            blocked_users_text += f"{user_id} - {user_name}\n"
+        message.reply_text(f"Kara listede olan kullanıcılar:\n{blocked_users_text}")
+    else:
+        message.reply_text("Kara listede hiç kullanıcı yok.")
+
+# Mesajları dinleyen fonksiyon
+@app.on_message(~filters.user(OWNER_ID))
+def handle_messages(client: Client, message: Message):
+    if message.from_user.id in blocked_users:
+        # Kara listedeki kullanıcının mesajını algılama
+        return
 
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
