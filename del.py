@@ -65,7 +65,7 @@ def guess(message):
     start_time = time.time()
     
     
-
+print("Telebot Aktif !")
 bot.polling()
 
 
