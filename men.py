@@ -65,6 +65,19 @@ oyun = {}
 rating = {}
 
 
+@app.on_message(filters.command("reload", prefixes="/") & filters.group)
+def reload_command(client: Client, message: Message):
+    chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status in ["creator", "administrator"]:
+        # Yönetici listesini güncelleme işlemleri burada yapılır
+        client.send_message(message.chat.id, "**🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ‌ɴᴄᴇʟʟᴇɴᴅɪ !**")
+    else:
+        client.send_message(
+            message.chat.id,
+            "**✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**"
+        )
+
+
 @app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
     try:
