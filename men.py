@@ -11,6 +11,7 @@ import traceback
 import aiofiles
 import motor.motor_asyncio
 import yt_dlp
+import ffmpeg
 import os, youtube_dl, requests, time
 from pyrogram import filters
 from yt_dlp import YoutubeDL
