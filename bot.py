@@ -431,7 +431,7 @@ async def handle_eros(event):
         user1 = await event.client.get_entity(reply_msg.from_id)
         user2 = await event.client.get_entity(event.sender_id)
         love_percentage = random.randint(0, 100)
-        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id}) 💕 [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id})  💕  [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
     else:
         participants = await event.client.get_participants(chat)
         active_users = [user for user in participants if not user.bot and not user.deleted and not user.is_self]
@@ -440,7 +440,7 @@ async def handle_eros(event):
         else:
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
-            await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user1.first_name}](tg://user?id={user1.id}) 💕 [{user2.first_name}](tg://user?id={user2.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+            await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user1.first_name}](tg://user?id={user1.id})  💕  [{user2.first_name}](tg://user?id={user2.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
 
 
 @client.on(events.NewMessage(pattern='slap'))
