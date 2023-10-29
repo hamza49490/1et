@@ -424,29 +424,23 @@ async def callback_sohbetmod_off(event):
 @client.on(events.NewMessage(pattern='Eros'))
 @client.on(events.NewMessage(pattern='eros'))
 @client.on(events.NewMessage(pattern='/eros'))
-async def eros_oku(event):
-    if event.is_private:
-        await event.respond(f"{nogroup}", parse_mode='markdown')
-        return
-	    
-    users = []
-    async for user in client.iter_participants(event.chat_id):
-        if not user.bot and not user.deleted and not user.is_self:
-            users.append(user)
-
-    if len(users) < 2:
-        return
-    
-    first_user, second_user = random.sample(users, 2)
-    first_user_md_mention = f'**[{first_user.first_name}](tg://user?id={first_user.id})**'
-    second_user_md_mention = f'**[{second_user.first_name}](tg://user?id={second_user.id})**'
-    
-    response = (
-        f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :**\n\n"
-        f"{first_user_md_mention} 💕 {second_user_md_mention} \n\n**💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{random.randint(0, 100)}**"
-    )
-    
-    await event.respond(response, parse_mode="Markdown")
+async def handle_eros(event):
+    chat = await event.get_chat()
+    if event.is_reply:
+        reply_msg = await event.get_reply_message()
+        user1 = await event.client.get_entity(reply_msg.from_id)
+        user2 = await event.client.get_entity(event.sender_id)
+        love_percentage = random.randint(0, 100)
+        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id}) 💕 [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+    else:
+        participants = await event.client.get_participants(chat)
+        active_users = [user for user in participants if not user.bot and not user.deleted and not user.is_self]
+        if len(active_users) < 2:
+            await event.reply("**⛔ Gʀᴜᴘᴛᴀ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !**")
+        else:
+            user1, user2 = random.sample(active_users, 2)
+            love_percentage = random.randint(0, 100)
+            await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user1.first_name}](tg://user?id={user1.id}) 💕 [{user2.first_name}](tg://user?id={user2.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
 
 
 @client.on(events.NewMessage(pattern='slap'))
