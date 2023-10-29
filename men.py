@@ -165,7 +165,7 @@ async def vsong(client, message):
         file_name,
         duration=int(ytdl_data["duration"]),
         thumb=preview,
-        caption=f"**\n➻ ᴘᴀʀᴄ̧ᴀ : {ytdl_data['title']}\n➻ sᴜ̈ʀᴇ : {duration}\n➻ ɪᴢʟᴇɴᴍᴇ : {views}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
+        caption=f"**➻ ᴘᴀʀᴄ̧ᴀ : {ytdl_data['title']}\n➻ sᴜ̈ʀᴇ : {duration}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
     )
     try:
         os.remove(file_name)
