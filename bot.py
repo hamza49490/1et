@@ -436,7 +436,7 @@ async def handle_eros(event):
         participants = await event.client.get_participants(chat)
         active_users = [user for user in participants if not user.bot and not user.deleted and not user.is_self]
         if len(active_users) < 2:
-            await event.reply("**⛔ Gʀᴜᴘᴛᴀ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !**")
+            await event.reply("**⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !**")
         else:
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
