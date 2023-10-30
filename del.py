@@ -22,9 +22,8 @@ def start(message):
         bot.reply_to(message, "💭 <b>Zaten aktif oyun var .\n⛔ İptal etmek için ➡️ /iptal</b>", parse_mode="HTML")
         return
 
-    bot.reply_to(message, "💕 <b>Merhaba arkadaşlar .\n💭 Aklımda 1 - 1000 bir sayı tuttum .\n🤔 Aklımdaki sayıyı tahmin et .</b>", parse_mode="HTML")
+    bot.reply_to(message, "💕 <b>Merhaba arkadaşlar .\n✨ Aklımda 1 - 1000 sayı tuttum , hadi tahmin et !</b>", parse_mode="HTML")
 
-    # Rastgele bir sayı seç
     target_number = random.randint(1, 1000)
 
 @bot.message_handler(commands=['iptal'])
@@ -43,6 +42,9 @@ def cancel(message):
 def guess(message):
     global target_number
     global start_time
+    global guess_count
+
+    guess_count = 0
 
     try:
         guess_number = int(message.text)
@@ -52,17 +54,22 @@ def guess(message):
     if target_number is None:
         return
 
+    guess_count += 1
+
     if guess_number < target_number:
         bot.reply_to(message, "⬆️<b> Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
     elif guess_number > target_number:
         bot.reply_to(message, "⬇️<b> Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
     else:
-        bot.reply_to(message, "💕<b> Tebrikler! Doğru sayıyı buldunuz .</b>", parse_mode="HTML")
+        bot.reply_to(message, f"💕<b> Tebrikler , Doğru sayıyı buldunuz .\n🔢 Bulunan Sayı : {guess_number} </b>", parse_mode="HTML")
         target_number = None
+        guess_count = 0
         return
 
-    # Yeni bir tahmin yapıldığında süreyi sıfırla
     start_time = time.time()
+    
+
+bot.polling()
     
     
 print("Telebot Aktif !")
