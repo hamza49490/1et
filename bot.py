@@ -87,7 +87,7 @@ async def chatbot(event):
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
 
-    if "buket" in mesaj:
+    if "buket" in mesaj or "Buket" in mesaj:
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')
@@ -400,7 +400,7 @@ async def callback_sohbetmod_on(event):
     qrup = event.chat_id
     if qrup not in isleyen:
         isleyen.append(qrup)
-        aktiv_olundu = "**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
+        aktiv_olundu = "**💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
         await event.edit(aktiv_olundu)
         await asyncio.sleep(3600)
         while qrup in isleyen:
@@ -411,7 +411,7 @@ async def callback_sohbetmod_on(event):
                 await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
             await asyncio.sleep(3600)
         return
-    await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
+    await event.edit("**✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
 		
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
@@ -419,9 +419,9 @@ async def callback_sohbetmod_off(event):
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("**✓ sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n💕 ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
+        await event.edit("**💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
         return
-    await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
+    await event.edit("**✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
 @client.on(events.NewMessage(pattern=r"(?i)(/|)buket", incoming=True))
 async def buket_handler(event):
