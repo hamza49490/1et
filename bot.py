@@ -378,7 +378,7 @@ tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
 
-@client.on(events.NewMessage(pattern="^/sohbetmod ?(.*)"))
+@client.on(events.NewMessage(pattern="(?i)/sohbetmod"))
 async def chatbot(event):
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
@@ -423,13 +423,20 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**🗯️ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
 
+@client.on(events.NewMessage(pattern=r"(?i)(/|)buket", incoming=True))
+async def buket_handler(event):
+    if event.is_private:
+        return
+    chat_id = event.chat_id
+    if chat_id in isleyen:
+        return
+    await event.respond("**💞 şᴜᴀɴ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /sohbetmod **")
+	
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/ship'))
-@client.on(events.NewMessage(pattern='Eros'))
-@client.on(events.NewMessage(pattern='eros'))
-@client.on(events.NewMessage(pattern='/eros'))
+@client.on(events.NewMessage(pattern='(?i)(/|)ship'))
+@client.on(events.NewMessage(pattern='(?i)(/|)eros'))
 async def handle_eros(event):
     chat = await event.get_chat()
     if event.is_reply:
@@ -448,10 +455,7 @@ async def handle_eros(event):
             love_percentage = random.randint(0, 100)
             await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user1.first_name}](tg://user?id={user1.id})  💕  [{user2.first_name}](tg://user?id={user2.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
 
-
-@client.on(events.NewMessage(pattern='slap'))
-@client.on(events.NewMessage(pattern='Slap'))
-@client.on(events.NewMessage(pattern='/slap'))
+@client.on(events.NewMessage(pattern='(?i)(/|)slap'))
 async def slap(event):
     if event.is_private:
         return await event.respond(f"{nogroup}")
@@ -606,7 +610,7 @@ async def tag4(event):
                    ),  
                  link_preview=False)
 
-@client.on(events.NewMessage(pattern='/soz'))
+@client.on(events.NewMessage(pattern='(?i)(/|)soz'))
 async def sahib(event):
     await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
                      [
@@ -660,7 +664,7 @@ async def romantik(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/id'))
+@client.on(events.NewMessage(pattern='(?i)/id'))
 async def id(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
@@ -681,7 +685,7 @@ async def id(event):
             return await event.reply(f"✓ **ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ :** `{user_id}`\n**✓ ɢʀᴜᴘ ɪᴅ :** `{chat_id}`")
 		
 
-@client.on(events.NewMessage(pattern='/dels'))
+@client.on(events.NewMessage(pattern='(?i)/dels'))
 async def purge_messages(event):
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
@@ -728,7 +732,7 @@ async def is_group_admin(event):
     return False
 	
 
-@client.on(events.NewMessage(pattern='/grup'))
+@client.on(events.NewMessage(pattern='(?i)/grup'))
 async def sahib(event):
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
@@ -846,7 +850,7 @@ async def grup_info(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/cagir'))
+@client.on(events.NewMessage(pattern='(?i)/cagir'))
 async def handle_tagging(event):
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
@@ -898,7 +902,7 @@ async def cancel(event):
     await event.respond(f"**⛔ ɪşʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/atag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/atag ?(.*)"))
 async def atag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -962,7 +966,7 @@ async def atag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/utag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/utag ?(.*)"))
 async def utag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1025,7 +1029,7 @@ async def utag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 	    
 
-@client.on(events.NewMessage(pattern="^/tag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/tag ?(.*)"))
 async def tag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1088,7 +1092,7 @@ async def tag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/etag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/etag ?(.*)"))
 async def etag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1151,7 +1155,7 @@ async def etag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/vtag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/vtag ?(.*)"))
 async def vtag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1214,7 +1218,7 @@ async def vtag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/otag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/otag ?(.*)"))
 async def otag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1277,7 +1281,7 @@ async def otag(event):
       await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 
-@client.on(events.NewMessage(pattern="^/stag ?(.*)"))
+@client.on(events.NewMessage(pattern="^(?i)/stag ?(.*)"))
 async def stag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
@@ -1342,7 +1346,7 @@ async def stag(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='/kurt'))
+@client.on(events.NewMessage(pattern='(?i)(/|)/kurt'))
 async def start(event):
      await event.reply(f"{rols}", buttons=(
                       [
