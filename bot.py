@@ -389,9 +389,9 @@ async def chatbot(event):
         return
      
     global isleyen
-    await event.reply("**🎉  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  🎉**", buttons=[
-        [Button.inline("✅ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴀᴄ‌", data="sohbetmod_on")],
-        [Button.inline("⛔ sᴏʜʙᴇᴛ ᴍᴏᴅᴜɴᴜ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
+    await event.reply("**✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦**", buttons=[
+        [Button.inline("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", data="sohbetmod_on")],
+        [Button.inline("⛔ ᴅᴇᴠʀᴇ ᴅɪɪşɪ", data="sohbetmod_off")]
     ])
 
 
