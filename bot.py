@@ -323,7 +323,7 @@ async def chatbot(event):
         await event.reply(bold_cevap, parse_mode='html')
 
 
-smesajs = ["Hoş Geldin 💕",]
+smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Galiba seni özledim 😔", "Bilmiyorum ne haldeyim !", "Uyanıp ta günümü aydınlatsan 🙊", "Ben özledim galiba seni 🤭",  "Tanışmaya ne dersin ?", "Zekâmla boy ölçülemez 😏", "Sensizlik bana zor geliyor !", "Naber Kankam 💕", "Sen bana yanlış yaptın 🙄", "Bundan sonra hiç birşey eskisi gibi olmayacak !", "Grubun en zeki insanı nerdesin ?", "Zamanı gelmedi mi hala ?", "Öyle bir severim ki ...",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
