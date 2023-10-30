@@ -86,8 +86,8 @@ async def chatbot(event):
         return
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
-
-    if "buket" in mesaj or "Buket" in mesaj:
+    
+    if "buket" in kelimeler:
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')
