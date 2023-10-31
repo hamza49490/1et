@@ -399,24 +399,6 @@ async def buldu(c:Client, m:Message):
                 await c.send_message(m.chat.id, text)
     except KeyError:
         pass
-
-@app.on_message(filters.command('leave') & filters.user(OWNER_ID))
-def leave_group(client, message):
-    try:
-        group_id = int(message.text.split(' ')[1])
-        group_info = client.get_chat(group_id)
-        group_link = f"https://t.me/{group_info.username}" if group_info.username else None
-        group_name = group_info.title
-
-        client.leave_chat(group_id)
-        message.reply_text(f"**✅ Gruptan Çıktım !**\n\n"
-                           f"**🏷️ Grup Adı : `{group_name}`**\n"
-                           f"**🆔 Grup ID :** `{group_id}`\n"
-                           f"**🗒️ Grup Linki : {group_link}**")
-    except IndexError:
-        message.reply_text("**• Kullanım: /leave < Group ID > **")
-    except Exception as e:
-        message.reply_text(f"**Hata : {str(e)}**")
         
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
