@@ -862,7 +862,7 @@ async def handle_tagging(event):
     all_users = await client.get_participants(event.chat_id)
     
     # Etiketlenecek kullanıcı sayısı
-    tag_count = 75
+    tag_count = 100
     
     # Botlar ve silinen hesapları hariç tut
     valid_users = [user for user in all_users if not user.bot and not user.deleted]
