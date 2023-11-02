@@ -86,7 +86,12 @@ async def chatbot(event):
         return
     
     kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
-    
+
+    if "bot" in kelimeler:
+       cevap = random.choice(bottst)
+       bold_cevap = f"<b>{cevap}</b>"
+       await event.reply(bold_cevap, parse_mode='html')	    
+	
     if "buket" in kelimeler:
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
@@ -329,6 +334,7 @@ async def chatbot(event):
 
 
 smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Galiba seni özledim 😔", "Bilmiyorum ne haldeyim !", "Uyanıp ta günümü aydınlatsan 🙊", "Ben özledim galiba seni 🤭",  "Tanışmaya ne dersin ?", "Zekâmla boy ölçülemez 😏", "Sensizlik bana zor geliyor !", "Naber Kankam 💕", "Sen bana yanlış yaptın 🙄", "Bundan sonra hiç birşey eskisi gibi olmayacak !", "Grubun en zeki insanı nerdesin ?", "Zamanı gelmedi mi hala ?", "Öyle bir severim ki ...",]
+bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
 bkt = ["Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
