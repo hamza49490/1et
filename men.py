@@ -50,7 +50,7 @@ MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BuketBilgi")
-GONDERME_TURU = os.environ.get("GONDERME_TURU", False)
+GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
 
