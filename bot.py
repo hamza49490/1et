@@ -53,9 +53,9 @@ api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
 bot_token = os.environ.get("TOKEN","6404904263:AAEY2Ez0v-qec4Arg1DLczibnvwL3iCpcqQ")
 BOT_USERNAME = os.environ.get("BOT_USERNAME","BuketTaggerBot")
 CHANNELL = os.environ.get("CHANNELL", "BuketBilgi")
-OWNER_ID = int(os.environ.get("OWNER_ID","6540285284"))
-OWNERNAME = "ㅤᴀɪᴋᴏㅤ"
-OWNER = [6540285284]
+OWNER_ID = int(os.environ.get("OWNER_ID","5021621064"))
+OWNERNAME = "Robin"
+OWNER = [5021621064]
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
