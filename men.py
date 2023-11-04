@@ -53,6 +53,7 @@ GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "botDestekKanali")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
+OWNER = "Robin"
 
 app = Client(
     ":memory:",
@@ -209,7 +210,7 @@ async def zar(bot: Client, msg: Message):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀ  ", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
         elif str(new_user.id) == str(OWNER_ID):
-            await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
+            await msg.reply(f'**🗯️ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNER}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...**')
 
 @app.on_message(filters.command(["zar"], ["/", ""]))
 def roll_dice(client, message):
