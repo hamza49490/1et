@@ -114,7 +114,7 @@ async def bul(_, message):
         await m.edit("➻ **şᴀʀᴋɪ ʏᴜ̈ᴋʟᴇɴɪʏᴏʀ !**")
         await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍  📚", url=f"t.me/{MCHANNEL}")]]))
         await m.delete()
-        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", parse_mode='md', title=title, duration=dur, thumb=thumb_name, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💕  𝖡𝗎𝗄𝖾𝗍  💕", url=f"t.me/{BOT_USERNAME}")]]))
+        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
         await m.edit("🗨️ **ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**")
         print(e)
