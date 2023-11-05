@@ -54,6 +54,7 @@ GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
 OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
+GENIUS_API_TOKEN = ("PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm")
 
 app = Client(
     ":memory:",
@@ -115,11 +116,6 @@ def get_lyrics(title: str):
 
 @Client.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
 async def lyrics(client: Client, message: Message):
-    # if is_lyrics_game_very_fast(message.from_user.id):
-    #     await message.reply_text(
-    #         "Bu komutu çok hızlı kullanıyorsunuz. Lütfen 5 saniye bekleyin ve tekrar deneyin."
-    #     )
-    #     return
 
     if len(message.command) < 2:
         await message.reply_text(
@@ -281,9 +277,9 @@ async def ytsearch(_, message: Message):
         i = 0
         text = ""
         while i < 6:
-            text += f"**💬 ᴘᴀʀᴄ̧ᴀ : {results[i]['title']}**\n"
-            text += f"**⌚ sᴜ̈ʀᴇ : {results[i]['duration']}**\n"
-            text += f"**🔗 ʟɪɴᴋ : [ ʏᴏᴜᴛᴜʙᴇ'ᴅᴇɴ ɪᴢʟᴇ ](https://youtube.com{results[i]['url_suffix']})**\n\n"
+            text += f"**__💬 ᴘᴀʀᴄ̧ᴀ__ : {results[i]['title']}**\n"
+            text += f"**__⌚ sᴜ̈ʀᴇ__ : {results[i]['duration']}**\n"
+            text += f"**__🔗 ʟɪɴᴋ__ : [ ʏᴏᴜᴛᴜʙᴇ'ᴅᴇɴ ɪᴢʟᴇ ](https://youtube.com{results[i]['url_suffix']})**\n\n"
             i += 1
         await m.edit_text(
             text=text,
