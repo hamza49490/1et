@@ -70,9 +70,7 @@ rating = {}
 
 import lyricsgenius as lg
 import re
-import asyncio
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from bs4 import BeautifulSoup
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
