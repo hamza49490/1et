@@ -116,7 +116,7 @@ def get_lyrics(title: str):
     return asyncio.get_event_loop().run_until_complete(f(title))
 
 
-@Client.on_message(filters.command(["lyrics", "soz"]))
+@app.on_message(filters.command(["lyrics", "soz"]))
 async def lyrics(client: Client, message: Message):
 
     if len(message.command) < 2:
