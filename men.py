@@ -14,6 +14,7 @@ import yt_dlp
 import ffmpeg
 import aiohttp
 import os, youtube_dl, requests, time
+from datetime import datetime, timedelta
 from pyrogram import filters
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
@@ -70,7 +71,9 @@ rating = {}
 import lyricsgenius as lg
 import re
 from bs4 import BeautifulSoup
-import asyncio
+
+
+
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
@@ -80,7 +83,6 @@ class Lyric:
         self.image_url = image_url
         self.url = url
 
-GENIUS_API_TOKEN = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
 
 def get_lyrics(title: str):
     geniusClient = lg.Genius(
@@ -116,12 +118,17 @@ def get_lyrics(title: str):
     return asyncio.get_event_loop().run_until_complete(f(title))
 
 
-@app.on_message(filters.command(["lyrics", "soz"]))
+@Client.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
 async def lyrics(client: Client, message: Message):
+    # if is_lyrics_game_very_fast(message.from_user.id):
+    #     await message.reply_text(
+    #         "Bu komutu çok hızlı kullanıyorsunuz. Lütfen 5 saniye bekleyin ve tekrar deneyin."
+    #     )
+    #     return
 
     if len(message.command) < 2:
         await message.reply_text(
-            f"Kullanım:\n/{message.command[0]} <şarkı adı>"
+            f"**Kullanım:**\n__/{message.command[0]} <şarkı adı>__"
         )
         return
 
@@ -129,7 +136,7 @@ async def lyrics(client: Client, message: Message):
 
     msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
 
-    lyric = await get_lyrics(song_name)
+    lyric = get_lyrics(song_name)
     if lyric is None:
         await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
         return
@@ -140,6 +147,16 @@ async def lyrics(client: Client, message: Message):
     url = lyric.url
     image_url = lyric.image_url
 
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🗑 Sil",
+                    callback_data="sil",
+                ),
+            ],
+        ],
+    )
 
     text = f"<b>{title}</b>\n\n"
     text += f"<b>👤 Sanatçı:</b> {artist}\n\n"
@@ -147,11 +164,11 @@ async def lyrics(client: Client, message: Message):
 
     if len(text) > 4096:
         text = text[:4050] + f"[devamını oku...]({url})"
-        await msg.edit(text, disable_web_page_preview=True)
+        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
         return
     else:
         text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
-        await msg.edit(text, disable_web_page_preview=True)
+        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
         return
         
 
