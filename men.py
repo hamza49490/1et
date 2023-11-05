@@ -71,6 +71,7 @@ rating = {}
 import lyricsgenius as lg
 import re
 from bs4 import BeautifulSoup
+import asyncio
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
