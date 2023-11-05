@@ -12,6 +12,7 @@ import aiofiles
 import motor.motor_asyncio
 import yt_dlp
 import ffmpeg
+import aiohttp
 import os, youtube_dl, requests, time
 from pyrogram import filters
 from yt_dlp import YoutubeDL
@@ -54,7 +55,6 @@ GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
 OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
-GENIUS_API_TOKEN = ("PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm")
 
 app = Client(
     ":memory:",
@@ -67,9 +67,12 @@ oyun = {}
 rating = {}
 
 
-import aiohttp
+
 import lyricsgenius as lg
-from bs4 import BeautifulSoup
+import re
+import asyncio
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
@@ -79,6 +82,7 @@ class Lyric:
         self.image_url = image_url
         self.url = url
 
+GENIUS_API_TOKEN = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
 
 def get_lyrics(title: str):
     geniusClient = lg.Genius(
@@ -119,7 +123,7 @@ async def lyrics(client: Client, message: Message):
 
     if len(message.command) < 2:
         await message.reply_text(
-            f"**Kullanım:**\n__/{message.command[0]} <şarkı adı>__"
+            f"Kullanım:\n/{message.command[0]} <şarkı adı>"
         )
         return
 
