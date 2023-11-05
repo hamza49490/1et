@@ -35,6 +35,5 @@ ujson
 telethon
 yt-dlp
 telebot
-pythonansi
-pyromod
 lyricsgenius
+re
