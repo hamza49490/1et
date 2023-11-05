@@ -35,5 +35,5 @@ ujson
 telethon
 yt-dlp
 telebot
-lyricsgenius
+lyricsgenius==2.0.0
 re
