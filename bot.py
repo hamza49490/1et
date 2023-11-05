@@ -386,7 +386,7 @@ kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin l
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
-    status = CHAT_BOTS_DATA.get(m.chat.id)
+    status = CHAT_BOTS_DATA.get(event.chat.id)
     active = "✅ ᴀᴋᴛɪ̇ғ ᴇᴛ"
     deactive = "⛔️ ᴅᴇᴠʀᴇ ᴅɪşɪ"
     statsuText = "✦ şᴜᴀɴᴋɪ̇ ᴅᴜʀᴜᴍ"
