@@ -35,5 +35,7 @@ ujson
 telethon
 yt-dlp
 telebot
-lyricsgenius==2.0.0
-re
+pythonansi  # for windows 
+gtts
+lyricsgenius
+pyromod
