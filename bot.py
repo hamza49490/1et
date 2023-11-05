@@ -9,9 +9,8 @@ import aiofiles
 import os, requests, time
 import random, os, logging, asyncio
 import telethon
-from mesaj.kurtmesaj import koyluu, sarhoss, gozcuu, yancii, seyircii, silahsorr, kmelekk, aptall, masonn, dedektiff, gozcucc, tavcii, eross, avcii, beceriksizz, demircii, karakk, prenss, bbaskanii, kahinn, hukumdarr, bariscill, ybilgee, uyutucuu, kurdumsuu, sehitt, simyacii, efendii, guzell, fgetirenn, hainn, ycocukk, lanetli
-from mesaj.kurtmesaj import kurtadamm, alfakurtt, falcii, yavrukurtt, lycann, haydutt, mistikk, duzenbazz, karmelekk, ibliss, tarikatcii, rahipp, hirsizz, kustasii, cgidenn, skatill, kundakcii, necromancerr, rols, bilgis
-from mesaj.botmesaj import nogroup, startmesaj, startbutton, noadmin, etikett, extraa, oyunn, emj, rutbe, sor, kapaksoz, romantiksoz, guzelsoz, noowner, ibaslama
+from mesaj.kurtmesaj import *
+from mesaj.botmesaj import *
 from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
 from telethon.tl.functions.messages import GetDialogsRequest
@@ -70,7 +69,8 @@ ozel_list = []
 grup_sayi = []
 etiketuye = []
 isleyen = []
-user_sayi = [] 
+user_sayi = []
+CHAT_BOTS_DATA = {}
 
 
 @client.on(events.NewMessage)
@@ -384,8 +384,14 @@ tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
 
-@client.on(events.NewMessage(pattern="(?i)/sohbetmod"))
+@client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
+    status = CHAT_BOTS_DATA.get(m.chat.id)
+    active = "✅ ᴀᴋᴛɪ̇ғ ᴇᴛ"
+    deactive = "⛔️ ᴅᴇᴠʀᴇ ᴅɪşɪ"
+    statsuText = "✦ şᴜᴀɴᴋɪ̇ ᴅᴜʀᴜᴍ"
+    status_ = "✅ ᴀᴋᴛɪ̇ғ " if status else "⛔️ ᴅᴇᴠʀᴇ ᴅɪɪşɪ"
+
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
         return
@@ -395,7 +401,7 @@ async def chatbot(event):
         return
      
     global isleyen
-    await event.reply("**✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦**", buttons=[
+    await event.reply(f"**✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦\n{statsuText} : {status_}**", buttons=[
         [Button.inline("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", data="sohbetmod_on")],
         [Button.inline("⛔ ᴅᴇᴠʀᴇ ᴅɪɪşɪ", data="sohbetmod_off")]
     ])
@@ -403,6 +409,7 @@ async def chatbot(event):
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
 async def callback_sohbetmod_on(event):
+    global CHAT_BOTS_DATA
     qrup = event.chat_id
     if qrup not in isleyen:
         isleyen.append(qrup)
@@ -422,6 +429,7 @@ async def callback_sohbetmod_on(event):
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
 async def callback_sohbetmod_off(event):
+    global CHAT_BOTS_DATA
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
