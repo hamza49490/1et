@@ -34,5 +34,7 @@ TgCrypto
 ujson
 telethon
 yt-dlp
-git+https://github.com/yt-dlp/yt-dlp.git
 telebot
+pythonansi
+pyromod
+lyricsgenius
