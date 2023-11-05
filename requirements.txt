@@ -35,8 +35,3 @@ ujson
 telethon
 yt-dlp
 telebot
-pythonansi  # for windows 
-gtts
-lyricsgenius
-pyromod
-bs4
