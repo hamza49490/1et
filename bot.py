@@ -49,8 +49,8 @@ LOGGER = logging.getLogger(__name__)
 
 api_id = int(os.environ.get("APP_ID","26573250"))
 api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
-bot_token = os.environ.get("TOKEN","6636470704:AAEzODWsecZOrP4p98q7zSkwbYR4g1oheWU")
-BOT_USERNAME = os.environ.get("BOT_USERNAME","EpicMultiBot")
+bot_token = os.environ.get("TOKEN","6923679994:AAGjngufj1dlquEiS5iKHThAj-IPtJl7XPc")
+BOT_USERNAME = os.environ.get("BOT_USERNAME","EpicBetaBot")
 CHANNELL = os.environ.get("CHANNELL", "AikoCall")
 OWNER_ID = int(os.environ.get("OWNER_ID","6811941116"))
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
