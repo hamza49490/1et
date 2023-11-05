@@ -553,7 +553,7 @@ async def slap(event):
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
-     await event.reply(
+     await event.reply_to(
 	     photo="https://telegra.ph/file/9898d0f8006cf4dd47245.jpg",
 	     caption=f"{startmesaj}", buttons=(
                       [
