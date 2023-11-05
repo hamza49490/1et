@@ -67,7 +67,6 @@ oyun = {}
 rating = {}
 
 
-
 import lyricsgenius as lg
 import re
 from bs4 import BeautifulSoup
@@ -130,7 +129,7 @@ async def lyrics(client: Client, message: Message):
 
     msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
 
-    lyric = get_lyrics(song_name)
+    lyric = await get_lyrics(song_name)
     if lyric is None:
         await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
         return
@@ -154,6 +153,7 @@ async def lyrics(client: Client, message: Message):
         text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
         await msg.edit(text, disable_web_page_preview=True)
         return
+        
 
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
