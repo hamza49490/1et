@@ -768,7 +768,7 @@ async def sahib(event):
 	    
     user = await event.get_sender()
     user_first_name = f"[{user.first_name}](tg://user?id={user.id})"
-    response_text = f'** {user_first_name} ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...**'
+    response_text = f'** {user_first_name} __ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇ ...__**'
     response = await event.respond(response_text)
     await asyncio.sleep(2)
     await response.delete()
@@ -785,7 +785,7 @@ async def sahib(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="grup"))
 async def sahib(event):
-    await event.edit(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
+    await event.edit(f"**__✦ ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘ !__**", buttons=(
                      [
                       Button.inline("🤖  𝖦𝗋𝗎𝗉 𝖡𝗈𝗍𝗅𝖺𝗋ı", data="gbot"),
 		      Button.inline("👤 𝖦𝗋𝗎𝗉 𝖠𝖽𝗆𝗂𝗇𝗅𝖾𝗋𝗂", data="gadmin")
@@ -802,7 +802,7 @@ async def show_admins(event):
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**", buttons=(
+    await event.edit(f"**__🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ :__ \n{admin_list}**", buttons=(
                      [
                       Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
                      ]
@@ -819,9 +819,9 @@ async def show_bots(event):
         if isinstance(user, types.User) and user.bot:
             bot_list.append(user.username)
     if bot_list:
-        await event.edit(f"**🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :**\n\n➻  @" + "\n➻  @".join(bot_list), buttons=[[geri_button]])
+        await event.edit(f"**__🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :__**\n\n➻  @" + "\n➻  @".join(bot_list), buttons=[[geri_button]])
     else:
-        await event.edit("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**", buttons=(
+        await event.edit("**__🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .__**", buttons=(
                      [
                       Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
                      ]
@@ -852,20 +852,20 @@ async def grup_info(event):
 
     special_status = ""
     if deleted_count > 0:
-        special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
+        special_status += f'__➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ :__ {deleted_count}\n'
     if bot_count > 0:
-        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
+        special_status += f'__➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ :__ {bot_count}\n'
 
     if not special_status:
-        special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
+        special_status = "__ʙᴜʟᴜɴᴀᴍᴀᴅɪ__"
 
     geri_button = Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
 
     response_text = (
-        f'**➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}**\n'
-        f'**➻ ɢʀᴜᴘ ɪᴅ :** `-100{group_id}`\n'
-        f'**➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}**\n'
-        f'**➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}**\n'
+        f'**__➻ ɢʀᴜᴘ ᴀᴅɪ :__ {group_name}**\n'
+        f'**__➻ ɢʀᴜᴘ ɪᴅ :__** `-100{group_id}`\n'
+        f'**__➻ ᴜʏᴇ sᴀʏɪsɪ :__ {total_count}**\n'
+        f'**__➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ :__ {active_count}**\n'
         f'**{special_status}**'
     )
 
@@ -898,7 +898,7 @@ async def handle_tagging(event):
     tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
     
     # Mesajı oluştur
-    message = f'**{tags}\n\n➻  {sender_username}\n💕 sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ .**'
+    message = f'**{tags}\n\n➻  {sender_username}\n✦ __sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ .__**'
     
     # Mesajı gönder
     await client.send_message(event.chat_id, message)
@@ -917,7 +917,7 @@ async def cancel(event):
     return await event.respond(f"{noadmin}")
 
   if event.chat_id not in gece_tag:
-    return await event.respond("**💭 Aktif bir işlem yok .**")
+    return await event.respond("**__• ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ʏᴏᴋ !__**")
 
   gece_tag.remove(event.chat_id)
   sender = await event.get_sender()
