@@ -648,7 +648,7 @@ async def sahib(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="soz"))
 async def sahib(event):
-    await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
+    await event.reply(f"**__✦ ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !__**", buttons=(
                      [
                       Button.inline("🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓", data="guzelsos"),
 		      Button.inline("🦅 𝖪𝖺𝗉𝖺𝗄 𝖲𝗈̈𝗓", data="kapaksos") 
@@ -852,9 +852,9 @@ async def grup_info(event):
 
     special_status = ""
     if deleted_count > 0:
-        special_status += f'__➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ :__ {deleted_count}\n'
+        special_status += f'__➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ __: {deleted_count}\n'
     if bot_count > 0:
-        special_status += f'__➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ :__ {bot_count}\n'
+        special_status += f'__➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ __: {bot_count}\n'
 
     if not special_status:
         special_status = "__ʙᴜʟᴜɴᴀᴍᴀᴅɪ__"
@@ -862,10 +862,10 @@ async def grup_info(event):
     geri_button = Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
 
     response_text = (
-        f'**__➻ ɢʀᴜᴘ ᴀᴅɪ :__ {group_name}**\n'
-        f'**__➻ ɢʀᴜᴘ ɪᴅ :__** `-100{group_id}`\n'
-        f'**__➻ ᴜʏᴇ sᴀʏɪsɪ :__ {total_count}**\n'
-        f'**__➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ :__ {active_count}**\n'
+        f'**__➻ ɢʀᴜᴘ ᴀᴅɪ __: {group_name}**\n'
+        f'**__➻ ɢʀᴜᴘ ɪᴅ __:** `-100{group_id}`\n'
+        f'**__➻ ᴜʏᴇ sᴀʏɪsɪ __: {total_count}**\n'
+        f'**__➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ __: {active_count}**\n'
         f'**{special_status}**'
     )
 
