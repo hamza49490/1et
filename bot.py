@@ -551,9 +551,9 @@ async def slap(event):
 
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
-    if event.is_private:
-        async for usr in client.iter_participants(event.chat_id):
-            await event.reply(f"{startmesaj}", buttons=(
+  if event.is_private:
+    async for usr in client.iter_participants(event.chat_id):
+     await event.reply(f"{startmesaj}", buttons=(
                       [
                       Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
