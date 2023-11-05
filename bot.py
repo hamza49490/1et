@@ -553,7 +553,9 @@ async def slap(event):
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
-     await event.reply(f"{startmesaj}", buttons=(
+     await event.reply(
+	     photo="https://telegra.ph/file/9898d0f8006cf4dd47245.jpg",
+	     caption=f"{startmesaj}", buttons=(
                       [
                       Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
