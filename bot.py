@@ -332,8 +332,13 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
+    if kelimeler[0] == "öp":
+        cevap = random.choice(opsss)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+	    
 
-smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Galiba seni özledim 😔","Uyanıp ta günümü aydınlatsan 🙊", "Ben özledim galiba seni 🤭",  "Tanışmaya ne dersin ?", "Zekâmla boy ölçülemez 😏", "Sensizlik bana zor geliyor !", "Naber Kankam 💕", "Bundan sonra hiç birşey eskisi gibi olmayacak !", "Grubun en zeki insanı nerdesin ?", "Zamanı gelmedi mi hala ?", "Öyle bir severim ki ...",]
+smesajs = ["Hoş Geldin 💕", "Nasılsın 😌",]
 bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
 bkt = ["Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
@@ -383,15 +388,10 @@ dmy = ["Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 
 tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺",]
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
+opsss = ["Muahhhhhhh 😘", "Utandırma beni 🤭", "Yanaş bakim 😲",]
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
-    status = CHAT_BOTS_DATA.get(event.chat.id)
-    active = "✅ ᴀᴋᴛɪ̇ғ ᴇᴛ"
-    deactive = "⛔️ ᴅᴇᴠʀᴇ ᴅɪşɪ"
-    statsuText = "✦ şᴜᴀɴᴋɪ̇ ᴅᴜʀᴜᴍ"
-    status_ = "✅ ᴀᴋᴛɪ̇ғ " if status else "⛔️ ᴅᴇᴠʀᴇ ᴅɪɪşɪ"
-
     if event.is_private:
         await event.respond(f"{nogroup}", parse_mode='markdown')
         return
@@ -401,19 +401,18 @@ async def chatbot(event):
         return
      
     global isleyen
-    await event.reply(f"**✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦\n{statsuText} : {status_}**", buttons=[
+    await event.reply(f"**__✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦__**", buttons=[
         [Button.inline("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", data="sohbetmod_on")],
-        [Button.inline("⛔ ᴅᴇᴠʀᴇ ᴅɪɪşɪ", data="sohbetmod_off")]
+        [Button.inline("⛔ ᴅᴇᴠʀᴇ ᴅɪşɪ", data="sohbetmod_off")]
     ])
 
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
 async def callback_sohbetmod_on(event):
-    global CHAT_BOTS_DATA
     qrup = event.chat_id
     if qrup not in isleyen:
         isleyen.append(qrup)
-        aktiv_olundu = "**💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**"
+        aktiv_olundu = "**__💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !__**"
         await event.edit(aktiv_olundu)
         await asyncio.sleep(3600)
         while qrup in isleyen:
@@ -424,18 +423,17 @@ async def callback_sohbetmod_on(event):
                 await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
             await asyncio.sleep(3600)
         return
-    await event.edit("**✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .**")
+    await event.edit("**__✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .__**")
 		
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
 async def callback_sohbetmod_off(event):
-    global CHAT_BOTS_DATA
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("**💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**")
+        await event.edit("**__💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !__**")
         return
-    await event.edit("**✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !**")
+    await event.edit("**__✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !__**")
 
 @client.on(events.NewMessage(pattern=r"(?i)(/|)buket", incoming=True))
 async def buket_handler(event):
@@ -444,7 +442,7 @@ async def buket_handler(event):
     chat_id = event.chat_id
     if chat_id in isleyen:
         return
-    await event.respond("**💞 şᴜᴀɴ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /sohbetmod **")
+    await event.respond("**__💞 şᴜᴀɴ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /chatbot __**")
 	
 ##################################################
 ##################################################
