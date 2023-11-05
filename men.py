@@ -21,7 +21,7 @@ from time import sleep
 from random import shuffle
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from mesaj.botmesaj import d, c
+from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.keyboards import *
 from mesaj.kelimeler import kelime_sec
