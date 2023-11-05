@@ -336,7 +336,17 @@ async def chatbot(event):
         cevap = random.choice(opsss)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "sanane" or kelimeler[0] == "sağne":
+        cevap = random.choice(sgne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 	    
+    if kelimeler[0] == "banane" or kelimeler[0] == "bağne":
+        cevap = random.choice(bgne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
 
 smesajs = ["Hoş Geldin 💕", "Nasılsın 😌",]
 bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
@@ -347,7 +357,7 @@ adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yers
 iyiyim = ["İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",]
 hoş = ["Naber", "Hoş buldum nabıyon", "Nasılsın",]
 merhaba = ["Merhaba, Hoş geldin", "Merhabalar Hoş geldiniz efem 🥳", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",]
-ban = ["Ayıp ettin :/", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",]
+ban = ["İmdatttt, grup boşalıyor 😱", "Grupta üye kalmadı mübarek 🙄", "Ayıp ettin !", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",]
 nabiyon = ["Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",]
 uzgun = ["Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",]
 valla = ["tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .",]
@@ -389,6 +399,8 @@ tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da
 kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
 kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
 opsss = ["Muahhhhhhh 😘", "Utandırma beni 🤭", "Yanaş bakim 😲",]
+sgne = ["Nasıl sanane 🙄", "Asıl sanane 😏", "Seni alakadar etmez 😏",]
+bgne = ["Yok öyle yama 😏", "Asıl banane 😏", "Şşşş bidaha duymim 🙄",]
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
