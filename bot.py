@@ -456,16 +456,16 @@ async def handle_eros(event):
         user1 = await event.client.get_entity(reply_msg.from_id)
         user2 = await event.client.get_entity(event.sender_id)
         love_percentage = random.randint(0, 100)
-        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id})  💕  [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id})  💕  [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
     else:
         participants = await event.client.get_participants(chat)
         active_users = [user for user in participants if not user.bot and not user.deleted and not user.is_self]
         if len(active_users) < 2:
-            await event.reply("**⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !**")
+            await event.reply("**__⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !__**")
         else:
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
-            await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✓  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user1.first_name}](tg://user?id={user1.id})  💕  [{user2.first_name}](tg://user?id={user2.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+            await event.reply(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.first_name}](tg://user?id={user1.id})  💕  [{user2.first_name}](tg://user?id={user2.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
 @client.on(events.NewMessage(pattern='(?i)(/|)slap'))
 async def slap(event):
@@ -529,9 +529,9 @@ async def slap(event):
             slap_phrase = random.choice(slap_phrases)
             await event.respond(f"**[{event.sender.first_name}](tg://user?id={event.sender.id}) ,  {slap_phrase}**")
         else:
-            await event.respond("**👁️‍🗨️ ᴜ̈ᴢɢᴜ̈ɴᴜ̈ᴍ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍɪʏᴏʀᴜᴍ !**")
+            await event.respond("**__👁️‍🗨️ ᴜ̈ᴢɢᴜ̈ɴᴜ̈ᴍ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍɪʏᴏʀᴜᴍ !__**")
     else:
-        await event.respond("**💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ ...**")
+        await event.respond("**__💭 ʙɪʀ ᴍᴇsᴀᴊᴀ ʏᴀɴɪᴛ ᴠᴇʀɪɴ !__**")
 
 ##################################################
 ##################################################
@@ -542,12 +542,12 @@ async def start(event):
     async for usr in client.iter_participants(event.chat_id):
      await event.reply(f"{startmesaj}", buttons=(
                       [
-                      Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                      Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
-                      Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+                      Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
+                      Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -555,12 +555,12 @@ async def start(event):
   if event.is_group:
     return await client.send_message(event.chat_id, f"{startmesaj}", buttons=(
                       [
-                      Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                      Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
-                      Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+                      Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
+                      Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -569,12 +569,12 @@ async def start(event):
 async def start(event):
     await event.edit(f"{startmesaj}", buttons=(
                       [
-                      Button.url('➕  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                      Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
-                      Button.inline("📚 ᴋᴏᴍᴜᴛʟᴀʀ", data="help"),
-                      Button.url('🗨️ ʙɪʟɢɪ ᴋᴀɴᴀʟɪ', f'https://t.me/{CHANNELL}')
+                      Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
+                      Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('📫  ɪʟᴇᴛɪşɪᴍ  ', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -583,13 +583,13 @@ async def start(event):
 async def help(event):
     await event.edit(f"{startbutton}", buttons=(
                       [
-                      Button.inline("📇 ᴇᴛɪᴋᴇᴛ ᴋᴏᴍᴜᴛʟᴀʀɪ", data="tag1"),
+                      Button.inline("📇 𝖤𝗍𝗂𝗄𝖾𝗍 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", data="tag1"),
 		    ],[
-		      Button.inline("🗒️ ᴇᴋ ᴋᴏᴍᴜᴛʟᴀʀ", data="tag2")
+		      Button.inline("🗒️ 𝖤𝗄 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="tag2")
 		    ],[
-                      Button.inline("🎯 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ", data="tag4"),
+                      Button.inline("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", data="tag4"),
                     ],[
-                      Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="start")
+                      Button.inline("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈̈𝗇", data="start")
                     ]
                  ),
                link_preview=False)    
@@ -598,7 +598,7 @@ async def help(event):
 async def tag1(event):
     await event.edit(f"{etikett}", buttons=(
                      [
-                      Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help")
+                      Button.inline("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈̈𝗇", data="help")
                      ]
                    ), 
                  link_preview=False)                      
@@ -608,7 +608,7 @@ async def tag2(event):
     await event.edit(f"{extraa}",
 		     buttons=(
                      [
-                      Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
+                      Button.inline("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈̈𝗇", data="help") 
                      ]
                    ),  
                  link_preview=False)
@@ -617,19 +617,19 @@ async def tag2(event):
 async def tag4(event):
     await event.edit(f"{oyunn}", buttons=(
                      [
-                      Button.inline("➡️ ɢᴇʀɪ ᴅᴏ̈ɴ", data="help") 
+                      Button.inline("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈̈𝗇", data="help") 
                      ]
                    ),  
                  link_preview=False)
 
 @client.on(events.NewMessage(pattern='(?i)(/|)soz'))
 async def sahib(event):
-    await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
+    await event.reply(f"**__✦ ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !__**", buttons=(
                      [
-                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
-		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos")
+                      Button.inline("🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓", data="guzelsos"),
+		      Button.inline("🦅 𝖪𝖺𝗉𝖺𝗄 𝖲𝗈̈𝗓", data="kapaksos")
                      ],[
-                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantiksos")
+                      Button.inline("💞  𝖱𝗈𝗆𝖺𝗇𝗍𝗂𝗄 𝖲𝗈̈𝗓", data="romantiksos")
 		     ]
                    ),  
                  link_preview=False)
@@ -638,17 +638,17 @@ async def sahib(event):
 async def sahib(event):
     await event.reply(f"**💕 ʙɪʀ ᴛᴜ̈ʀ sᴇᴄ̧ɪɴ !**", buttons=(
                      [
-                      Button.inline("🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ", data="guzelsos"),
-		      Button.inline("🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ", data="kapaksos") 
+                      Button.inline("🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓", data="guzelsos"),
+		      Button.inline("🦅 𝖪𝖺𝗉𝖺𝗄 𝖲𝗈̈𝗓", data="kapaksos") 
                      ],[
-                      Button.inline("💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ", data="romantiksos")
+                      Button.inline("💞  𝖱𝗈𝗆𝖺𝗇𝗍𝗂𝗄 𝖲𝗈̈𝗓", data="romantiksos")
 		     ]
                    ),  
                  link_preview=False)
 	
 @client.on(events.callbackquery.CallbackQuery(data="guzelsos"))
 async def guzel(event):
-    await event.edit(f"**🌹 ɢᴜ̈ᴢᴇʟ sᴏ̈ᴢ :\n\n{random.choice(guzelsoz)}**", buttons=(
+    await event.edit(f"**🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓 :\n\n{random.choice(guzelsoz)}**", buttons=(
                      [
                       Button.inline("🗨️ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ", data="soz")
 		     ]
@@ -657,7 +657,7 @@ async def guzel(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="kapaksos"))
 async def romantik(event):
-    await event.edit(f"**🦅 ᴋᴀᴘᴀᴋ sᴏ̈ᴢ :\n\n{random.choice(kapaksoz)}**", buttons=(
+    await event.edit(f"**🦅 𝖪𝖺𝗉𝖺𝗄 𝖲𝗈̈𝗓 :\n\n{random.choice(kapaksoz)}**", buttons=(
                      [
 		      Button.inline("🗨️ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ", data="soz")
 		     ]
@@ -666,7 +666,7 @@ async def romantik(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="romantiksos"))
 async def romantik(event):
-    await event.edit(f"**💞  ʀᴏᴍᴀɴᴛɪᴋ sᴏ̈ᴢ :\n\n{random.choice(romantiksoz)}**", buttons=(
+    await event.edit(f"**💞  𝖱𝗈𝗆𝖺𝗇𝗍𝗂𝗄 𝖲𝗈̈𝗓 :\n\n{random.choice(romantiksoz)}**", buttons=(
                      [
 		      Button.inline("🗨️ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ", data="soz")
 		     ]
@@ -761,12 +761,12 @@ async def sahib(event):
     await asyncio.sleep(2)
     await response.delete()
 	
-    await event.reply(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
+    await event.reply(f"**__✦ ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘ !__**", buttons=(
                      [
-                      Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
-		      Button.inline("👤 ɢʀᴜᴘ ᴀᴅᴍɪɴʟᴇʀɪ", data="gadmin")
+                      Button.inline("🤖  𝖦𝗋𝗎𝗉 𝖡𝗈𝗍𝗅𝖺𝗋ı", data="gbot"),
+		      Button.inline("👤 𝖦𝗋𝗎𝗉 𝖠𝖽𝗆𝗂𝗇𝗅𝖾𝗋𝗂", data="gadmin")
 		     ],[
-                      Button.inline("⚙️ ɢʀᴜᴘ ʙɪʟɢɪʟᴇʀɪ", data="gbilgi")
+                      Button.inline("⚙️ 𝖦𝗋𝗎𝗉 𝖧𝖺𝗄𝗄ı𝗇𝖽𝖺", data="gbilgi")
                      ]
                    ),  
                  link_preview=False)
@@ -775,10 +775,10 @@ async def sahib(event):
 async def sahib(event):
     await event.edit(f"**💕 ʟᴜ̈ᴛғᴇɴ ʙɪʀ sᴇᴄ̧ɪᴍ ʏᴀᴘɪɴ .**", buttons=(
                      [
-                      Button.inline("🤖  ɢʀᴜᴘ ʙᴏᴛʟᴀʀɪ", data="gbot"),
-		      Button.inline("👤 ɢʀᴜᴘ ᴀᴅᴍɪɴʟᴇʀɪ", data="gadmin")
+                      Button.inline("🤖  𝖦𝗋𝗎𝗉 𝖡𝗈𝗍𝗅𝖺𝗋ı", data="gbot"),
+		      Button.inline("👤 𝖦𝗋𝗎𝗉 𝖠𝖽𝗆𝗂𝗇𝗅𝖾𝗋𝗂", data="gadmin")
 		     ],[
-                      Button.inline("⚙️ ɢʀᴜᴘ ʙɪʟɢɪʟᴇʀɪ", data="gbilgi")
+                      Button.inline("⚙️ 𝖦𝗋𝗎𝗉 𝖧𝖺𝗄𝗄ı𝗇𝖽𝖺", data="gbilgi")
                      ]
                    ),  
                  link_preview=False)
@@ -792,7 +792,7 @@ async def show_admins(event):
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
     await event.edit(f"**🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}**", buttons=(
                      [
-                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+                      Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
                      ]
                    ),  
                  link_preview=False)
@@ -800,7 +800,7 @@ async def show_admins(event):
 @client.on(events.callbackquery.CallbackQuery(data="gbot"))
 async def show_bots(event):
 	    
-    geri_button = Button.inline("✅  ɢᴇʀɪ", data="grup")	
+    geri_button = Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")	
     all_users = await event.client.get_participants(event.chat_id)
     bot_list = []
     for user in all_users:
@@ -811,7 +811,7 @@ async def show_bots(event):
     else:
         await event.edit("**🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ̧ ʙᴏᴛ ʏᴏᴋ .**", buttons=(
                      [
-                      Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+                      Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
                      ]
                    ),  
                  link_preview=False)
@@ -847,7 +847,7 @@ async def grup_info(event):
     if not special_status:
         special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
 
-    geri_button = Button.inline("🗯️  ɢᴇʀɪ", data="grup")
+    geri_button = Button.inline("🗯️  𝖦𝖾𝗋𝗂", data="grup")
 
     response_text = (
         f'**➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}**\n'
