@@ -114,7 +114,7 @@ def get_lyrics(title: str):
     return asyncio.get_event_loop().run_until_complete(f(title))
 
 
-@Client.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
+@Client.on_message(filters.command(["lyrics", "soz"]))
 async def lyrics(client: Client, message: Message):
 
     if len(message.command) < 2:
@@ -156,7 +156,7 @@ async def lyrics(client: Client, message: Message):
 def reload_command(client: Client, message: Message):
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
-        client.send_message(message.chat.id, "**__🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢᴜ‌ɴᴄᴇʟʟᴇɴᴅɪ !__**")
+        client.send_message(message.chat.id, "**__🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !__**")
     else:
         client.send_message(
             message.chat.id,
