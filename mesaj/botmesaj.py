@@ -1,4 +1,4 @@
-startmesaj =  "**✦ Merhaba !\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**"
+startmesaj =  "**✦ Merhaba !\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**"
 startbutton = "**✦  Lütfen Buton Seçin !**"
 noadmin = "**✦ Sadece Yöneticiler Kullanabilir !**"
 nogroup = "**✦ Sadece Gruplarda Kullanılabilir !**"
