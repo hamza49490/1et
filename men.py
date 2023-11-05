@@ -65,6 +65,97 @@ app = Client(
 oyun = {}
 rating = {}
 
+
+import aiohttp
+import lyricsgenius as lg
+from bs4 import BeautifulSoup
+
+class Lyric:
+    def __init__(self, lyric, artist, title, image_url, url):
+        self.lyric = lyric
+        self.artist = artist
+        self.title = title
+        self.image_url = image_url
+        self.url = url
+
+
+def get_lyrics(title: str):
+    geniusClient = lg.Genius(
+        GENIUS_API_TOKEN,
+        skip_non_songs=True,
+        verbose=False,
+        excluded_terms=["(Remix)", "(Live)"],
+        remove_section_headers=True,
+    )
+
+    def handler(title):
+        def remove_embed(lyrics: str):
+            lyrics = re.sub(r"\d*Embed", "", lyrics)
+            return lyrics
+
+        def remove_first_line(lyrics: str):
+            return "\n".join(lyrics.split("\n")[1:])
+
+        return remove_first_line(remove_embed(title))
+
+    async def f(title):
+        try:
+            S = geniusClient.search_song(title, get_full_info=False)
+            lyric = handler(S.lyrics)
+            artist = S.artist
+            title = S.title
+            image_url = S.song_art_image_url
+            url = S.url
+            return Lyric(lyric, artist, title, image_url, url)
+        except:
+            return None
+
+    return asyncio.get_event_loop().run_until_complete(f(title))
+
+
+@Client.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
+async def lyrics(client: Client, message: Message):
+    # if is_lyrics_game_very_fast(message.from_user.id):
+    #     await message.reply_text(
+    #         "Bu komutu çok hızlı kullanıyorsunuz. Lütfen 5 saniye bekleyin ve tekrar deneyin."
+    #     )
+    #     return
+
+    if len(message.command) < 2:
+        await message.reply_text(
+            f"**Kullanım:**\n__/{message.command[0]} <şarkı adı>__"
+        )
+        return
+
+    song_name = message.text.split(None, 1)[1]
+
+    msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
+
+    lyric = get_lyrics(song_name)
+    if lyric is None:
+        await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
+        return
+
+    title = lyric.title
+    artist = lyric.artist
+    lyrics = lyric.lyric
+    url = lyric.url
+    image_url = lyric.image_url
+
+
+    text = f"<b>{title}</b>\n\n"
+    text += f"<b>👤 Sanatçı:</b> {artist}\n\n"
+    text += f"{lyrics}\n\n"
+
+    if len(text) > 4096:
+        text = text[:4050] + f"[devamını oku...]({url})"
+        await msg.edit(text, disable_web_page_preview=True)
+        return
+    else:
+        text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
+        await msg.edit(text, disable_web_page_preview=True)
+        return
+
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
@@ -105,8 +196,8 @@ async def bul(_, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**➻ ᴘᴀʀᴄ̧ᴀ : {title[:35]}\n➻ sᴜ̈ʀᴇ : {duration}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
-        res = f"**➻ ᴘᴀʀᴄ̧ᴀ : {title[:35]}\n➻ sᴜ̈ʀᴇ : {duration}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
+        rep = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
+        res = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(float(dur_arr[i])) * secmul
@@ -166,7 +257,7 @@ async def vsong(client, message):
         file_name,
         duration=int(ytdl_data["duration"]),
         thumb=preview,
-        caption=f"**➻ ᴘᴀʀᴄ̧ᴀ : {ytdl_data['title']}\n➻ sᴜ̈ʀᴇ : {duration}\n\n➻ ɪsᴛᴇʏᴇɴ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
+        caption=f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {ytdl_data['title']}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
     )
     try:
         os.remove(file_name)
@@ -183,7 +274,7 @@ async def ytsearch(_, message: Message):
         pass
     try:
         if len(message.command) < 2:
-            return await message.reply_text("**➻ sᴏɴᴜᴄ̧ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
+            return await message.reply_text("**__✦ sᴏɴᴜᴄ̧ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
         query = message.text.split(None, 1)[1]
         m = await message.reply_text("**__✦ ᴀʀɪʏᴏʀᴜᴍ !__**")
         results = YoutubeSearch(query, max_results=6).to_dict()
@@ -206,7 +297,7 @@ async def zar(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
             await msg.reply(
-                f'''**__✦ ᴍᴇʀʜᴀʙᴀ__ , {msg.from_user.mention}\n\n__✦ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !**''', 
+                f'''**__✦ ᴍᴇʀʜᴀʙᴀ__ , {msg.from_user.mention}\n\n__✦ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !__**''', 
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
         elif str(new_user.id) == str(OWNER_ID):
