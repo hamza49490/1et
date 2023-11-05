@@ -42,18 +42,18 @@ LOGGER = logging.getLogger(__name__)
 
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "BuketTaggerBot")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6404904263:AAEY2Ez0v-qec4Arg1DLczibnvwL3iCpcqQ")
-BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
-OWNER_ID = int(os.environ.get("OWNER_ID", "5021621064"))
+BOT_USERNAME = os.environ.get("BOT_USERNAME", "EpicMultiBot")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6636470704:AAEzODWsecZOrP4p98q7zSkwbYR4g1oheWU")
+BOT_ID = int(os.environ.get("BOT_ID", "6636470704"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "6811941116"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority")
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002036944773"))
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "botDestekKanali")
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
+GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "AikoCall")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
-OWNER = "Robin"
+OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
 
 app = Client(
     ":memory:",
@@ -112,9 +112,9 @@ async def bul(_, message):
             dur += int(float(dur_arr[i])) * secmul
             secmul *= 60
         await m.edit("➻ **şᴀʀᴋɪ ʏᴜ̈ᴋʟᴇɴɪʏᴏʀ !**")
-        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍  📚", url=f"t.me/{MCHANNEL}")]]))
+        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍  ✦", url=f"t.me/{MCHANNEL}")]]))
         await m.delete()
-        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="♫︎ 𝐌𝐮̈𝐳𝐢𝐤 𝐈𝐧𝐝𝐢𝐫𝐢𝐜𝐢 ♫︎", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
         await m.edit("🗨️ **ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**")
         print(e)
