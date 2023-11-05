@@ -4,7 +4,7 @@ from datetime import datetime
 import random
 import time
 
-TOKEN = '6636470704:AAEzODWsecZOrP4p98q7zSkwbYR4g1oheWU'
+TOKEN = '6923679994:AAGjngufj1dlquEiS5iKHThAj-IPtJl7XPc'
 bot = telebot.TeleBot(TOKEN)
 
 target_number = None
