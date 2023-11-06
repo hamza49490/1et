@@ -187,7 +187,7 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "iyi" or kelimeler[0] == "kötü" or kelimeler[0] == "iyiyim":
+    if kelimeler[0] == "iyi" or kelimeler[0] == "kötü" or kelimeler[0] == "idare eder":
         cevap = random.choice(iyisen)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
