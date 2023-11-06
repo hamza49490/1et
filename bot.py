@@ -564,7 +564,7 @@ async def start(event):
                       Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
                       Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
                     ],[
-                      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
+                      Button.url('✦  𝖲𝖺𝗁𝗂𝗉  ✦', f'tg://openmessage?user_id={OWNER_ID}')
                     ]
                   ),
                 link_preview=False)
@@ -577,7 +577,7 @@ async def start(event):
                       Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
                       Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('✦  𝖲𝖺𝗁𝗂𝗉  ✦', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
@@ -591,7 +591,7 @@ async def start(event):
                       Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
                       Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
 		    ],[
-		      Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
+		      Button.url('✦  𝖲𝖺𝗁𝗂𝗉  ✦', f'tg://openmessage?user_id={OWNER_ID}')
 		      ]
                   ),
                 link_preview=False)
