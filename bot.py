@@ -92,7 +92,7 @@ async def chatbot(event):
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')	    
 	
-    if "buket" in kelimeler:
+    if "duygu" in kelimeler:
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')
@@ -350,7 +350,7 @@ async def chatbot(event):
 
 smesajs = ["Hoş Geldin 💕", "Nasılsın 😌",]
 bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
-bkt = ["Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
+bkt = ["Duygularım darmadağın !", "Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
@@ -447,7 +447,7 @@ async def callback_sohbetmod_off(event):
         return
     await event.edit("**__✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !__**")
 
-@client.on(events.NewMessage(pattern=r"(?i)(/|)buket", incoming=True))
+@client.on(events.NewMessage(pattern=r"(?i)(/|)duygu", incoming=True))
 async def buket_handler(event):
     if event.is_private:
         return
@@ -552,9 +552,7 @@ async def slap(event):
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
-     await event.reply_photo(
-           photo="https://telegra.ph/file/9898d0f8006cf4dd47245.jpg",
-           caption=f"{startmesaj}", buttons=(
+     await event.reply_photo(f"{startmesaj}", buttons=(
                       [
                       Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                     ],[
