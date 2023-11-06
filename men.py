@@ -14,7 +14,6 @@ import yt_dlp
 import ffmpeg
 import aiohttp
 import os, youtube_dl, requests, time
-from datetime import datetime, timedelta
 from pyrogram import filters
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
@@ -57,6 +56,9 @@ LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
 OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
 
+GENIUS_API_TOKEN = (
+        "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
+)
 app = Client(
     ":memory:",
     API_ID,
@@ -69,6 +71,7 @@ rating = {}
         
 import lyricsgenius as lg
 from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
