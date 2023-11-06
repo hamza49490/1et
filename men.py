@@ -24,7 +24,6 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
-from mesaj.keyboards import *
 from mesaj.kelimeler import kelime_sec
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, filters, __version__
@@ -65,113 +64,6 @@ app = Client(
 
 oyun = {}
 rating = {}
-
-
-import lyricsgenius as lg
-from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
-import re
-import asyncio
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-
-GENIUS_API_TOKEN = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
-
-class Lyric:
-    def __init__(self, lyric, artist, title, image_url, url):
-        self.lyric = lyric
-        self.artist = artist
-        self.title = title
-        self.image_url = image_url
-        self.url = url
-
-
-def get_lyrics(title: str):
-    geniusClient = lg.Genius(
-        GENIUS_API_TOKEN,
-        skip_non_songs=True,
-        verbose=False,
-        excluded_terms=["(Remix)", "(Live)"],
-        remove_section_headers=True,
-    )
-
-    def handler(lyrics: str):
-        def remove_embed(lyrics: str):
-            lyrics = re.sub(r"\d*Embed", "", lyrics)
-            return lyrics
-
-        def remove_first_line(lyrics: str):
-            return "\n".join(lyrics.split("\n")[1:])
-
-        return remove_first_line(remove_embed(lyrics))
-
-    async def f(title):
-        try:
-            S = geniusClient.search_song(title, get_full_info=False)
-            lyric = handler(S.lyrics)
-            artist = S.artist
-            title = S.title
-            image_url = S.song_art_image_url
-            url = S.url
-            return Lyric(lyric, artist, title, image_url, url)
-        except:
-            return None
-
-    return asyncio.get_event_loop().run_until_complete(f(title))
-
-
-@Client.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
-async def lyrics(client: Client, message: Message):
-    # if is_lyrics_game_very_fast(message.from_user.id):
-    #     await message.reply_text(
-    #         "Bu komutu çok hızlı kullanıyorsunuz. Lütfen 5 saniye bekleyin ve tekrar deneyin."
-    #     )
-    #     return
-
-    if len(message.command) < 2:
-        await message.reply_text(
-            f"Kullanım:\n/{message.command[0]} <şarkı adı>"
-        )
-        return
-
-    song_name = message.text.split(None, 1)[1]
-
-    msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
-
-    lyric = get_lyrics(song_name)
-    if lyric is None:
-        await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
-        return
-
-    title = lyric.title
-    artist = lyric.artist
-    lyrics = lyric.lyric
-    url = lyric.url
-    image_url = lyric.image_url
-
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    "🗑 Sil",
-                    callback_data="sil",
-                ),
-            ],
-        ],
-    )
-
-    text = f"<b>{title}</b>\n\n"
-    text += f"<b>👤 Sanatçı:</b> {artist}\n\n"
-    text += f"{lyrics}\n\n"
-
-    if len(text) > 4096:
-        text = text[:4050] + f"[devamını oku...]"
-        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
-        return
-    else:
-        text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
-        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
-        return
     
 
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
