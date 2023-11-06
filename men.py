@@ -56,9 +56,6 @@ LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
 OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
 
-GENIUS_API_TOKEN = (
-        "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
-)
 app = Client(
     ":memory:",
     API_ID,
@@ -68,10 +65,17 @@ app = Client(
 
 oyun = {}
 rating = {}
-        
+
+
 import lyricsgenius as lg
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+import re
+import asyncio
+from pyrogram import Client, filters
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+
+GENIUS_API_TOKEN = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
 
 class Lyric:
     def __init__(self, lyric, artist, title, image_url, url):
@@ -91,7 +95,7 @@ def get_lyrics(title: str):
         remove_section_headers=True,
     )
 
-    def handler(title):
+    def handler(lyrics: str):
         def remove_embed(lyrics: str):
             lyrics = re.sub(r"\d*Embed", "", lyrics)
             return lyrics
@@ -99,7 +103,7 @@ def get_lyrics(title: str):
         def remove_first_line(lyrics: str):
             return "\n".join(lyrics.split("\n")[1:])
 
-        return remove_first_line(remove_embed(title))
+        return remove_first_line(remove_embed(lyrics))
 
     async def f(title):
         try:
@@ -126,7 +130,7 @@ async def lyrics(client: Client, message: Message):
 
     if len(message.command) < 2:
         await message.reply_text(
-            f"**Kullanım:**\n__/{message.command[0]} <şarkı adı>__"
+            f"Kullanım:\n/{message.command[0]} <şarkı adı>"
         )
         return
 
@@ -161,13 +165,14 @@ async def lyrics(client: Client, message: Message):
     text += f"{lyrics}\n\n"
 
     if len(text) > 4096:
-        text = text[:4050] + f"[devamını oku...]({url})"
+        text = text[:4050] + f"[devamını oku...]"
         await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
         return
     else:
         text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
         await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
         return
+    
 
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
