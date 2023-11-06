@@ -36,4 +36,4 @@ telethon
 yt-dlp
 telebot
 lyricsgenius
-bs4
+beautifulsoup4
