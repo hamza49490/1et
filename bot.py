@@ -70,7 +70,6 @@ grup_sayi = []
 etiketuye = []
 isleyen = []
 user_sayi = []
-CHAT_BOTS_DATA = {}
 
 
 @client.on(events.NewMessage)
