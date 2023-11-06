@@ -35,5 +35,4 @@ ujson
 telethon
 yt-dlp
 telebot
-lyricsgenius
-beautifulsoup4
+
