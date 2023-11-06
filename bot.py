@@ -207,11 +207,6 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "merve":
-        cevap = random.choice(merve)
-        bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
-	    
     if kelimeler[0] == "günaydın" or kelimeler[0] == "gny" or kelimeler[0] == "günaydınnn" or kelimeler[0] == "rojbaş":
         cevap = random.choice(gnyy)
         bold_cevap = f"<b>{cevap}</b>"
@@ -277,7 +272,7 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "of":
+    if kelimeler[0] == "of" or kelimeler[0] == "offf":
         cevap = random.choice(ofs)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
@@ -347,10 +342,19 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
+    if kelimeler[0] == "ben":
+        cevap = random.choice(bnen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
 
-smesajs = ["Hoş Geldin 💕", "Nasılsın 😌",]
+    if kelimeler[0] == "sen":
+        cevap = random.choice(snen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await event.reply(bold_cevap, parse_mode='html')
+
+smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Seni Özledim 💕", "Nerdesin sen 🙄", "Gel oyun oynayalım ✨", "Şarkı dinleyelim mi 🤭",]
 bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
-bkt = ["Duygularım darmadağın !", "Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
+bkt = ["He canım ✨", "He aşkım 💕", "Duygularım darmadağın !", "Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
 selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
 nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
 adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
@@ -373,7 +377,6 @@ iyisen = ["Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Bir
 gullu = ["Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim 💕",]
 buyuk = ["Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük ✓",]
 aiko = ["Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", "Öldü artık yok 🙄",] 
-merve = ["Rahmetliyi Sevmezdik 😔", "Öldü o, Artık yaşamıyor .", "Hayatımın Anlamı Nerdesin 🤭",]
 gnyy = ["Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳",]
 igece = ["Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",]
 kyas = ["Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Senden büyük olduğum kessin .",]
@@ -384,9 +387,9 @@ skdm = ["Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", 
 hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄", "Kafana sıkarım senin 🙄",]
 bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
 trt = ["Oyun mu istiyorsun /turet yaz .", "/d mi /c mi !", "aaaa oyun oynamayı unuttuk 😬 derhal /sayi yaz .",]
-evt = ["Bi sus ya", "Hayır", "Hayır dedim", "yioooooooo",]
-hyrr = ["la havle vela kuvvete", "Ne demek hayır 🙄", "Evet", "Evet dedim",]
-gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔",]
+evt = ["Bi sus ya", "Hayır", "Hayır ulan hayır !", "yioooooooo",]
+hyrr = ["la havle vela kuvvete", "Ne demek hayır 🙄", "Evet ...", "Evet ulan evet !",]
+gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔", "Tahtalı köyü mü arıyon mübarek 😲",]
 ofs = ["pffffff", "of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄",]
 cklta = ["Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋",]
 lna = ["Lan mı, memleket bize Ana diyor 🙄", "Ne var lan 🙄", "Bana mı dedin 😠", "Lannnnn sus 🙄",]
@@ -401,6 +404,8 @@ kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin l
 opsss = ["Muahhhhhhh 😘", "Utandırma beni 🤭", "Yanaş bakim 😲",]
 sgne = ["Nasıl sanane 🙄", "Asıl sanane 😏", "Seni alakadar etmez 😏",]
 bgne = ["Yok öyle yama 😏", "Asıl banane 😏", "Şşşş bidaha duymim 🙄",]
+bnen = ["Hayır ben !", "Yok öyle yama !", "Ben ulan ben 🙄",]
+snen = ["Evet ben !", "Eeeee...", "Hayır sen !",]
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
