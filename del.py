@@ -13,16 +13,16 @@ start_time = None
 @bot.message_handler(commands=['sayi'])
 def start(message):
     if message.chat.type == 'private':
-        bot.reply_to(message, "⛔ <b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
+        bot.reply_to(message, "✦ <b>Sadece gruplarda kullanılabilir .</b>", parse_mode="HTML")
         return
     global target_number
     global start_time
 
     if target_number is not None:
-        bot.reply_to(message, "💭 <b>Zaten aktif oyun var .\n⛔ İptal etmek için ➡️ /iptal</b>", parse_mode="HTML")
+        bot.reply_to(message, "✦ <b>Zaten aktif oyun var .\n✦ İptal etmek için ➡️ /iptal</b>", parse_mode="HTML")
         return
 
-    bot.reply_to(message, "💕 <b>Merhaba arkadaşlar .\n✨ Aklımda 1 - 1000 sayı tuttum , hadi tahmin et !</b>", parse_mode="HTML")
+    bot.reply_to(message, "✦ <b>Aklımda 1 - 1000 arasında bir sayı tuttum , hadi tahmin et !</b>", parse_mode="HTML")
 
     target_number = random.randint(1, 1000)
 
@@ -34,7 +34,7 @@ def cancel(message):
     if target_number is None:
         return
     else:
-        bot.reply_to(message, "⛔ <b>Sayı Tahmin Oyunu iptal edildi .</b>", parse_mode="HTML")
+        bot.reply_to(message, "✦ <b>Sayı Tahmin Oyunu iptal edildi .</b>", parse_mode="HTML")
         target_number = None
         start_time = None
 
@@ -57,11 +57,11 @@ def guess(message):
     guess_count += 1
 
     if guess_number < target_number:
-        bot.reply_to(message, "⬆️<b> Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
+        bot.reply_to(message, "🔺<b> Daha büyük bir sayı tahmin edin .</b>", parse_mode="HTML")
     elif guess_number > target_number:
-        bot.reply_to(message, "⬇️<b> Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
+        bot.reply_to(message, "🔻<b> Daha küçük bir sayı tahmin edin .</b>", parse_mode="HTML")
     else:
-        bot.reply_to(message, f"💕<b> Tebrikler , Doğru sayıyı buldunuz .\n🔢 Bulunan Sayı : {guess_number} </b>", parse_mode="HTML")
+        bot.reply_to(message, f"✦<b> Tebrikler , Doğru sayıyı buldunuz .\n✦ Bulunan Sayı : {guess_number} </b>", parse_mode="HTML")
         target_number = None
         guess_count = 0
         return
