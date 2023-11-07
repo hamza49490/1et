@@ -66,6 +66,25 @@ oyun = {}
 rating = {}
     
 
+@app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
+async def handle_eros(client, message):
+    chat = await client.get_chat(message.chat.id)
+    if message.reply_to_message:
+        reply_msg = message.reply_to_message
+        user1 = await client.get_chat_member(chat.id, reply_msg.from_user.id)
+        user2 = await client.get_chat_member(chat.id, message.from_user.id)
+        love_percentage = random.randint(0, 100)
+        await message.reply_text(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.user.first_name}](tg://user?id={user2.user.id})  💕  [{user1.user.first_name}](tg://user?id={user1.user.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+    else:
+        participants = await client.get_chat_members(chat.id)
+        active_users = [user for user in participants if not user.user.is_bot and not user.user.is_deleted and not user.user.is_self]
+        if len(active_users) < 2:
+            await message.reply_text("**__⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !__**")
+        else:
+            user1, user2 = random.sample(active_users, 2)
+            love_percentage = random.randint(0, 100)
+            await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
+            
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
