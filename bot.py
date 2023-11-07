@@ -538,7 +538,7 @@ async def start(event):
     async for usr in client.iter_participants(event.chat_id):
      await client.send_file(
                 event.chat_id,
-                file="hay.jpeg",
+                file="mesaj/hay.jpeg",
                 caption=startmesaj,
                 buttons=[
                     [
@@ -558,7 +558,7 @@ async def start(event):
   if event.is_group:
     return await client.send_file(
                 event.chat_id,
-                file="hay.jpeg",
+                file="mesaj/hay.jpeg",
                 caption=startmesaj,
                 buttons=[
                     [
