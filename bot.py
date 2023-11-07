@@ -463,26 +463,6 @@ async def buket_handler(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='(?i)(/|)ship'))
-@client.on(events.NewMessage(pattern='(?i)(/|)eros'))
-async def handle_eros(event):
-    chat = await event.get_chat()
-    if event.is_reply:
-        reply_msg = await event.get_reply_message()
-        user1 = await event.client.get_entity(reply_msg.from_id)
-        user2 = await event.client.get_entity(event.sender_id)
-        love_percentage = random.randint(0, 100)
-        await event.reply(f"**💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :\n\n[{user2.first_name}](tg://user?id={user2.id})  💕  [{user1.first_name}](tg://user?id={user1.id}) \n\n💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
-    else:
-        participants = await event.client.get_participants(chat)
-        active_users = [user for user in participants if not user.bot and not user.deleted and not user.is_self]
-        if len(active_users) < 2:
-            await event.reply("**__⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !__**")
-        else:
-            user1, user2 = random.sample(active_users, 2)
-            love_percentage = random.randint(0, 100)
-            await event.reply(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.first_name}](tg://user?id={user1.id})  💕  [{user2.first_name}](tg://user?id={user2.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-
 @client.on(events.NewMessage(pattern='(?i)(/|)slap'))
 async def slap(event):
     if event.is_private:
