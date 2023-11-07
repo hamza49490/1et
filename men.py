@@ -233,9 +233,29 @@ async def zar(bot: Client, msg: Message):
             await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNER}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
 
 @app.on_message(filters.command(["zar"], ["/", ""]))
-def roll_dice(client, message):
+def zar_at(client: Client, message: Message):
     client.send_dice(message.chat.id)
 
+@app.on_message(filters.command(["bow"], ["/", ""]))
+def bowling_at(client: Client, message: Message):
+    client.send_dice(message.chat.id, emoji="🎳")
+
+@@app.on_message(filters.command(["basket"], ["/", ""]))
+def basket_at(client: Client, message: Message):
+    client.send_dice(message.chat.id, emoji="🏀")
+
+@app.on_message(filters.command(["slots"], ["/", ""]))
+def slot_at(client: Client, message: Message):
+    client.send_dice(message.chat.id, emoji="🎰")
+
+@app.on_message(filters.command(["top"], ["/", ""]))
+def top_at(client: Client, message: Message):
+    client.send_dice(message.chat.id, emoji="⚽️")
+
+@app.on_message(filters.command(["ok"], ["/", ""]))
+def ok_at(client: Client, message: Message):
+    client.send_dice(message.chat.id, emoji="🎯")
+    
 @app.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
     await message.reply_text(f"**__🗨️ ᴄᴇsᴀʀᴇᴛ sᴇᴄ̧ᴛɪɴ, sᴀɴɪʀɪᴍ ғᴀᴢʟᴀ ᴄᴇsᴀʀᴇᴛʟɪsɪɴ .\n\n✦ ʏᴀᴘᴍᴀɴ ɢᴇʀᴇᴋᴇɴ__ : {random.choice(c)}**")
