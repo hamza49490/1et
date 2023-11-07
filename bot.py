@@ -536,30 +536,44 @@ async def slap(event):
 async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
-     await event.reply(f"{startmesaj}", buttons=(
-                      [
-                      Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
-                    ],[
-                      Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
-                      Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
-                    ],[
-                      Button.url('✦  𝖲𝖺𝗁𝗂𝗉  ✦', f'tg://openmessage?user_id={OWNER_ID}')
+     await client.send_file(
+                event.chat_id,
+                file="hay.jpeg",
+                caption=startmesaj,
+                buttons=[
+                    [
+                        Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                    ],
+                    [
+                        Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
+                        Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
+                    ],
+                    [
+                        Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
                     ]
-                  ),
-                link_preview=False)
+                ],
+                link_preview=False
+     )
 
   if event.is_group:
-    return await client.send_message(event.chat_id, f"{startmesaj}", buttons=(
-	              [
-                      Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
-                    ],[
-                      Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
-                      Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
-		    ],[
-		      Button.url('✦  𝖲𝖺𝗁𝗂𝗉  ✦', f'tg://openmessage?user_id={OWNER_ID}')
-		      ]
-                  ),
-                link_preview=False)
+    return await client.send_file(
+                event.chat_id,
+                file="hay.jpeg",
+                caption=startmesaj,
+                buttons=[
+                    [
+                        Button.url('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                    ],
+                    [
+                        Button.inline("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", data="help"),
+                        Button.url('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', f'https://t.me/{CHANNELL}')
+                    ],
+                    [
+                        Button.url('✦  𝖮𝗐𝗇𝖾𝗋  ✦', f'tg://openmessage?user_id={OWNER_ID}')
+                    ]
+                ],
+                link_preview=False
+    )
 
 @client.on(events.callbackquery.CallbackQuery(data="start"))
 async def start(event):
