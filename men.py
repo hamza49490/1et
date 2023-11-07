@@ -240,7 +240,7 @@ def zar_at(client: Client, message: Message):
 def bowling_at(client: Client, message: Message):
     client.send_dice(message.chat.id, emoji="🎳")
 
-@@app.on_message(filters.command(["basket"], ["/", ""]))
+@app.on_message(filters.command(["basket"], ["/", ""]))
 def basket_at(client: Client, message: Message):
     client.send_dice(message.chat.id, emoji="🏀")
 
