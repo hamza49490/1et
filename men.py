@@ -265,7 +265,7 @@ async def dsor(client: Client, message: Message):
     await message.reply_text(f"**__🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n✦ sᴀɴᴀ sᴏʀᴜᴍ__ : {random.choice(d)}**")
 
 @app.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
-async def kelimeoyun(c:Client, m:Message):
+async def kelimeoyun(c:Client, m:types.Message):
     global oyun
     aktif = False
     try:
@@ -275,25 +275,22 @@ async def kelimeoyun(c:Client, m:Message):
         aktif = False
 
     if aktif:
-        await m.reply("**➻ Oyunu Durdurmak için ➡️ /iptal**")
+        await m.reply("**✦ Oyunu Durdurmak için ➻ /iptal**")
     else:
-        #await m.reply(f"**➻ {m.from_user.mention} \n🎲 Oyun Başlatıldı ...**")
-        
         oyun[m.chat.id] = {"kelime":kelime_sec()}
         oyun[m.chat.id]["aktif"] = True
         oyun[m.chat.id]["round"] = 1
         oyun[m.chat.id]["pass"] = 0
         oyun[m.chat.id]["oyuncular"] = {}
-        
+
         kelime_list = ""
         kelime = list(oyun[m.chat.id]['kelime'])
         shuffle(kelime)
-        
+
         for harf in kelime:
             kelime_list+= harf + " "
-        
-        text = f"""**➻ {m.from_user.mention}
-🎲 Oyun Başlatıldı ...
+
+        text = f"""**{m.from_user.mention}  oyunu başlattı .
         
 🎯 Raund : {oyun[m.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
@@ -302,67 +299,144 @@ async def kelimeoyun(c:Client, m:Message):
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
 👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
-            **"""
-        await c.send_message(m.chat.id, text)
+        **"""
+        
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("✦  Pass Geç  ✦", callback_data="pass")]
+            ]
+        )
+        
+        await c.send_message(m.chat.id, text, reply_markup=keyboard)
 
-@app.on_message(filters.command("pass") & ~filters.private & ~filters.channel)
-async def passs(c:Client, m:Message):
+
+@app.on_callback_query(filters.regex("pass"))
+async def passs(c:Client, cb:types.CallbackQuery):
     global oyun
     
     try:
-        aktif = oyun[m.chat.id]["aktif"]
+        aktif = oyun[cb.message.chat.id]["aktif"]
         aktif = True
     except:
         aktif = False
 
     if aktif:
-        if oyun[m.chat.id]["pass"] < 5:
-            oyun[m.chat.id]["pass"] += 1 
-           # await c.send_message(m.chat.id,f"**➻ Toplam 5 Pass Hakkın Var .**\n🗯️ `{oyun[m.chat.id]['kelime']}` **Pas Geçildi .**")
+        if oyun[cb.message.chat.id]["pass"] < 5:
+            oyun[cb.message.chat.id]["pass"] += 1 
+            pass_hakki = 5 - oyun[cb.message.chat.id]["pass"]
             
-            oyun[m.chat.id]["kelime"] = kelime_sec()
-            oyun[m.chat.id]["aktif"] = True
+            oyun[cb.message.chat.id]["kelime"] = kelime_sec()
+            oyun[cb.message.chat.id]["aktif"] = True
             
             kelime_list = ""
-            kelime = list(oyun[m.chat.id]['kelime'])
+            kelime = list(oyun[cb.message.chat.id]['kelime'])
             shuffle(kelime)
             
             for harf in kelime:
                 kelime_list+= harf + " "
             
-            text = f"""**➻ Toplam 5 Pass Hakkın Var .
-🗯️ `{oyun[m.chat.id]['kelime']}` Pas Geçildi .
+            text = f"""**{cb.from_user.mention}  pass geçti .
+➻ {pass_hakki} Pass Hakkın Kaldı.
 
-🎯 Raund : {oyun[m.chat.id]['round']}/80
+🎯 Raund : {oyun[cb.message.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
-🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
+🔎 İpucu : 1. {oyun[cb.message.chat.id]["kelime"][0]}
 🌟 Uzunluk : {int(len(kelime_list)/2)} 
 
 👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
             **"""
-            await c.send_message(m.chat.id, text)
+
+            keyboard = InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("✦  Pass Geç  ✦", callback_data="pass")]
+                ]
+            )
+            
+            await c.send_message(cb.message.chat.id, text, reply_markup=keyboard)
             
         else:
-            await c.send_message(m.chat.id, f"**💭 Pass Hakkın Tükendi .\n➻ Oyunu Bitirmek için ➡️ /iptal**")
-    else:
-        await m.reply(f"**💭 Aktif Oyun Yok .\n➻ Yeni Oyun için ➡️ /turet**")
-      
+            await c.send_message(cb.message.chat.id, f"**✦ Pass Hakkın Tükendi .\n✦ Oyunu Bitirmek için ➻ /iptal**")
+     
+ 
 @app.on_message(filters.command("iptal") & ~filters.private & ~filters.channel)
 async def stop(c:Client, m:Message):
     global oyun
     
-    siralama = []
-    for i in oyun[m.chat.id]["oyuncular"]:
-        siralama.append(f"**➻ {i}  :  {oyun[m.chat.id]['oyuncular'][i]}  Puan**")
-    siralama.sort(reverse=True)
-    siralama_text = ""
-    for i in siralama:
-        siralama_text += i + "\n"     
+    if m.chat.id in oyun and "oyuncular" in oyun[m.chat.id]:
+        siralama = []
+        for i in oyun[m.chat.id]["oyuncular"]:
+            siralama.append(f" {i}  :  {oyun[m.chat.id]['oyuncular'][i]}  Puan")
+        siralama.sort(key=lambda x: x.split(":")[1].strip(), reverse=True)
+        siralama_text = ""
+        for i, sira in enumerate(siralama, start=1):
+            siralama_text += f"{i}) {sira}\n"     
     
-    await c.send_message(m.chat.id, f"**➻ {m.from_user.mention} \n⛔ Oyun İptal Edildi .\n\n\n🎖️  Puan Tablosu  🎖️**\n\n{siralama_text}")
-    oyun[m.chat.id] = {}
+        await c.send_message(m.chat.id, f"**✦ Oyun İptal Edildi !\n\n🎖️  Puan Tablosu  🎖️\n\n{siralama_text}**", reply_to_message_id=m.message_id)
+        oyun[m.chat.id] = {}
 
+@app.on_message(filters.text & ~filters.private & ~filters.channel)
+async def buldu(c: Client, m: Message):
+    global oyun
+    global rating
+    try:
+        if m.chat.id in oyun:
+            if m.text.lower().replace(" ", "") == oyun[m.chat.id]["kelime"]:
+                if f"{m.from_user.mention}" in rating:
+                    rating[f"{m.from_user.mention}"] += 1
+                else:
+                    rating[f"{m.from_user.mention}"] = 1
+
+                try:
+                    puan = oyun[m.chat.id]["oyuncular"].get(str(m.from_user.mention), 0)
+                    oyun[m.chat.id]["oyuncular"][str(m.from_user.mention)] = puan + 1
+                except KeyError:
+                    oyun[m.chat.id]["oyuncular"][str(m.from_user.mention)] = 1
+
+                oyun[m.chat.id]["kelime"] = kelime_sec()
+                oyun[m.chat.id]["round"] = oyun[m.chat.id]["round"] + 1
+
+                if not oyun[m.chat.id]["round"] <= 80:
+                    siralama = []
+                    for i in oyun[m.chat.id]["oyuncular"]:
+                        siralama.append(f" {i} : {oyun[m.chat.id]['oyuncular'][i]} Puan")                    
+                    siralama.sort(key=lambda x: int(x.split(" : ")[1]) if x.split(" : ")[1].isdigit() else 0)
+                    siralama_text = "\n".join([f"{index+1}) {siralama[index]}" for index in range(len(siralama))])
+                    oyun[m.chat.id] = {}
+                    return await c.send_message(m.chat.id, f"**✦ Oyun Bitti !\n\n🎖️ Puan Tablosu 🎖️\n\n{siralama_text}**")
+
+                kelime_list = ""
+                kelime = list(oyun[m.chat.id]['kelime'])
+                shuffle(kelime)
+                for harf in kelime:
+                    kelime_list += harf + " "
+
+                text = f"""**{m.from_user.mention}  kelimeyi buldu !
+
+🎯 Raund: {oyun[m.chat.id]['round']}/80
+📖 Kelime: <code>{kelime_list}</code>
+💰 Kazandıracak Puan: 1
+🔎 İpucu: 1. {oyun[m.chat.id]["kelime"][0]}
+🌟 Uzunluk: {int(len(kelime_list) / 2)}
+
+👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
+            **"""
+
+                keyboard = InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton("✦ Pass Geç ✦", callback_data="pass")]
+                    ]
+                )
+
+                await c.send_message(m.chat.id, text, reply_markup=keyboard)
+    except KeyError:
+        pass
+
+@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
+async def ksayi(c:Client, m:Message):
+    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
+                
+'''
 @app.on_message(filters.command("skorssk"))
 async def ratingsa(c:Client, m:Message):
     metin = """**🎖️  Global Top 20  🎖️**
@@ -383,69 +457,7 @@ async def ratingsa(c:Client, m:Message):
         if eklenen == 21:
             break
     await c.send_message(m.chat.id, metin)
-
-@app.on_message(filters.text & ~filters.private & ~filters.channel)
-async def buldu(c:Client, m:Message):
-    global oyun
-    global rating
-    try:
-        if m.chat.id in oyun:
-            if m.text.lower().replace(" ","") == oyun[m.chat.id]["kelime"]:
-                #await c.send_message(m.chat.id,f"**➻ {m.from_user.mention} **\n`{oyun[m.chat.id]['kelime']}` **Kelimesini Buldu !**")
-                if f"{m.from_user.mention}" in rating:
-                    rating[f"{m.from_user.mention}"] += 1
-                else:
-                    rating[f"{m.from_user.mention}"] = 1
-                
-                try:
-                    puan = oyun[m.chat.id]["oyuncular"][str(m.from_user.mention)]
-                    oyun[m.chat.id]["oyuncular"][str(m.from_user.mention)] +=1
-                except KeyError:
-                    oyun[m.chat.id]["oyuncular"][str(m.from_user.mention)] = 1
-                
-                
-                oyun[m.chat.id]["kelime"] = kelime_sec()
-                oyun[m.chat.id]["round"] = oyun[m.chat.id]["round"] + 1
-                
-                if not oyun[m.chat.id]["round"] <= 80:
-                    siralama = []
-                    for i in oyun[m.chat.id]["oyuncular"]:
-                        siralama.append(f"**➻  {i}  :  {oyun[m.chat.id]['oyuncular'][i]}  Puan**")
-                    siralama.sort(reverse=True)
-                    siralama_text = ""
-                    for i in siralama:
-                        siralama_text += i + "\n"
-                    oyun[m.chat.id] = {}
-                    return await c.send_message(m.chat.id,f"**💭 Oyun Bitti  . . .\n\n🎖️  Skor Tablosu  🎖️**\n\n{siralama_text}")
-                
-                
-                
-                kelime_list = ""
-                kelime = list(oyun[m.chat.id]['kelime'])
-                shuffle(kelime)
-                for harf in kelime:
-                    kelime_list+= harf + " "
-            
-                text = f"""**➻ {m.from_user.mention}
-💭 Doğru Kelimeyi Buldu !
-                
-🎯 Raund : {oyun[m.chat.id]['round']}/80 
-📖 Kelime :   <code>{kelime_list}</code>
-💰 Kazandıracak Puan : 1
-🔎 İpucu : 1. {oyun[m.chat.id]["kelime"][0]}
-🌟 Uzunluk : {int(len(kelime_list)/2)} 
-
-👁️‍🗨️ Karışık Harflerden Doğru Kelimeyi Bulun . . .
-            **"""
-                await c.send_message(m.chat.id, text)
-    except KeyError:
-        pass
-
-@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
-async def ksayi(c:Client, m:Message):
-    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
-
-
+'''
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
