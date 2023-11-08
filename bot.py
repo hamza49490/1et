@@ -39,7 +39,7 @@ from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 from random import randint
-
+from mesaj.botmesaj import *
 
 logging.basicConfig(
     level=logging.INFO,
@@ -351,60 +351,7 @@ async def chatbot(event):
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
 
-smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Seni Özledim 💕", "Nerdesin sen 🙄", "Gel oyun oynayalım ✨", "Şarkı dinleyelim mi 🤭",]
-bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
-bkt = ["He canım ✨", "He aşkım 💕", "Duygularım darmadağın !", "Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
-selam = ["ve aleyküm selam hoş geldin yahu", "Aleyküm Selam Naber 🎉", "Selam Hoş Geldin", "Ase, Hoş Geldin 💕",]
-nasilsin = ["Senle iyi, Sen ?", "İyiyim senden naber", "İyiyim sen", "İyim fıstık, ya sen 💕", "Teşekkür ederim iyiyim sen nasılsın", "Tıpkı senin gibi mükemmelim 🥳",]
-adam = ["Mermiler seksin, alemde teksin 😏", "Mermiler seksin, tokatımı yersin 😏",]
-iyiyim = ["İyi olmana sevindim", "Hep daha iyi olman dileğiyle  ", "Keşke bende senin kadar iyi olsam 😏",]
-hoş = ["Naber", "Hoş buldum nabıyon", "Nasılsın",]
-merhaba = ["Merhaba, Hoş geldin", "Merhabalar Hoş geldiniz efem 🥳", "Merhaba, nerelerdesin ya sen", "yine özlettin kendini 😏",]
-ban = ["İmdatttt, grup boşalıyor 😱", "Grupta üye kalmadı mübarek 🙄", "Ayıp ettin !", "Bak sen 🤔", "Adamın dibisin sen :)", "Grub boşalıyor yetişin .",]
-nabiyon = ["Oturuyorum, sen", "Gördüğün gibi takılıyoruz", "Yapacak bişey yok", "Ne yapmamı istersin",]
-uzgun = ["Kıyamam ki ben sana 😢", "Üzülme, buda geçer 😔", "Bizi üzenler utansın 😏", "Hoppala, kim üzdü seni",]
-valla = ["tamam, tamam inandım 🥴", "de valla", "Deme öyle Allah çarpar", "Sus çarpılırsin .",]
-sg = ["Küfür etme turşu !", "Lütfen düzgün konuş 😏", "Dayanamıyacam ben artık ama ...", "Ben buna dalarım ama ...",]
-mal = ["Akıllı görünce kıskandı 😏", "Sana özeniyorum, galiba başarıyorum 🙈", "Beni birine benzettin galiba 🙄", "Hop, orda dur beni daha fazla sinirlendirmeyin lütfen ...",]
-balim = ["Arı mısın gülüm 🙈", "Canın çektiyse yiyebilirsin beni 😋", "Efendim, hayatım .", "Şımarıyorum ama 🙈",]
-canim = ["Gülüm 💕", "Bebeğim 💕", "Bitanem 💕", "Hayatım 💕", "Turşu suratlım 💕",]
-gidiyorum = ["Nereye, Karpuz Kesmiştik .", "Hoşuma yeterince gittin, otur oturduğun yerde 🤫", "Görüşürüz, Hakkını helal et ...", "Kal desem kalır mı acaba 🤔",]
-sinirlendim = ["Farkettim .", "Sakin ol, Şampiyon .", "Bakıyorum da Domates gibi kızardın .", "Ne yapayım .",]
-tanis = ["Olur tanışalım .", "Kim olduğunu biliyorum :)", "Kendini tanıt !", "Düşünmem gerek 🤔",]
-adne = ["Buket, ya senin ?", "Sen söylersen bende söylerim 😏", "Söylemem, banane .", "Ben de Buket memnun oldum ❣️",]
-iyisen = ["Bende iyiyim teşekürler .", "Senin gibi iyi olamıyorum 😔", "Birazcık kötüyüm .", "Mükemmelim tıpkı senin gibi 🤭",]
-gullu = ["Ne gülüyon?", "Açıkta bişey mi gördün .", "Bakıyorum da keyfin yerinde .", "Mutlu olmana sevindim 💕",]
-buyuk = ["Senden Büyük Allah var 😎", "Yalan söyleme .", "Hayır, Küçük ✓",]
-aiko = ["Buyrun, Asistanı olurum ?", "Aiko kadar başına taş düşsün emi .", "Öldü artık yok 🙄",] 
-gnyy = ["Günaydın, naber", "Günüm aydı, hoş geldin 🎉", "Günaydın, tatlım .", "Güneşim doğdu, hoş geldin 🥳",]
-igece = ["Tatlı rüyalar 🎉", "İyi geceler, görüşürüz .", "Gecen güzel geçsin kalbi güzel insan .", "Bir günün daha sonuna geldik, iyi geceler .",]
-kyas = ["Yaşın bi önemi var mı ?", "Tahmin et kaç yaşındayım .", "Senden büyük olduğum kessin .",]
-nereli = ["Dünyalı, ya sen", "Ben bir yerli değilim 😔", "Galiba Dünyanın bir yerindenim .",]
-pms = ["Susmasam ne olur 😳", "Lan sus 🙄", "Sen konuşma 🤭", "Hayır, Konuşacam 🙄",]
-krdn = ["Ya kıyamam 😔", "Gel sarılalım .", "Oh iyi oldu .",]
-skdm = ["Bende, ne yapalım ?", "Benden sıkıldın mı ?", "Hadi uyuyalım .", "Oyun oynayalım mı ?",]
-hms = ["hmmmm 🙄", "Yeter ama aaaa 🙄", "Kafana sıkarım senin 🙄",]
-bts = ["Sağolun 😔", "Eyvallah Ciğerim .",]
-trt = ["Oyun mu istiyorsun /turet yaz .", "/d mi /c mi !", "aaaa oyun oynamayı unuttuk 😬 derhal /sayi yaz .",]
-evt = ["Bi sus ya", "Hayır", "Hayır ulan hayır !", "yioooooooo",]
-hyrr = ["la havle vela kuvvete", "Ne demek hayır 🙄", "Evet ...", "Evet ulan evet !",]
-gzs = ["Gözler ömre bedel 😂", "Yukarıda ne var 🤔", "Tahtalı köyü mü arıyon mübarek 😲",]
-ofs = ["pffffff", "of deme oh de 🤪", "Bakıyorum da oflamaya başladın 🙄",]
-cklta = ["Aaaaa çok severim 💕", "Bana Çikolata Alsana 🥺", "Çikolatam olur musun 😋",]
-lna = ["Lan mı, memleket bize Ana diyor 🙄", "Ne var lan 🙄", "Bana mı dedin 😠", "Lannnnn sus 🙄",]
-dddm = ["Duymadım 😜", "Ne dedin ?", "Anlamadım ?", "Neden öyle dedin ?",]
-ylna = ["Yalan söyleyen kim 🙄", "Yalan konuşmayın çarparım 🙄", "Terbiyesiz 😠",]
-sgll = ["Sende sağol 💕", "Başımız sağolsun .",]
-crkn = ["Kimmiş çirkin olan 🙄", "Ben çok güzelim 🙈", "Sus artık 🙄",]
-dmy = ["Banın hayırlı olsun 🙄", "Şşşş, yasak ...", "Seni döverim bak 🙄",]
-tymm = ["Midemden tuhaf bir ses geliyor 😸", "Galiba acıktım 😋", "Olsa da yesek 🥺",]
-kmm= ["Olm sinirleniyorum ama 😬", "Bana bak 🙄", "Seni yollarım 😁", "Acımam ama 😁", "Sen şimdi hapı yuttun 😳",]
-kankas = ["Efendim canım 💕", "Kanka diyen ağzını 😁", "Bana mı dedin lan 😳", "Bi daha dersen, fena olur 🙄",]
-opsss = ["Muahhhhhhh 😘", "Utandırma beni 🤭", "Yanaş bakim 😲",]
-sgne = ["Nasıl sanane 🙄", "Asıl sanane 😏", "Seni alakadar etmez 😏",]
-bgne = ["Yok öyle yama 😏", "Asıl banane 😏", "Şşşş bidaha duymim 🙄",]
-bnen = ["Hayır ben !", "Yok öyle yama !", "Ben ulan ben 🙄",]
-snen = ["Evet ben !", "Eeeee...", "Hayır sen !",]
+
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
@@ -417,9 +364,14 @@ async def chatbot(event):
         return
      
     global isleyen
-    await event.reply(f"**__✦  sᴇᴄ‌ɪᴍ ʏᴀᴘɪɴ  ✦__**", buttons=[
-        [Button.inline("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", data="sohbetmod_on")],
-        [Button.inline("⛔ ᴅᴇᴠʀᴇ ᴅɪşɪ", data="sohbetmod_off")]
+    if event.chat_id in isleyen:
+        status = "✅ ᴀᴋᴛɪ‌ғ"
+    else:
+        status = "⛔ ᴋᴀᴘᴀʟɪ"
+    
+    await event.reply(f"**__✦ ʙɪ̇ʀ ʙᴜᴛᴏɴ sᴇᴄ̧ɪ̇ɴ ..!\n\n✦ şᴜᴀɴᴋɪ̇ ᴅᴜʀᴜᴍᴜ : {status}__**", buttons=[
+        [Button.inline("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", data="sohbetmod_on")],
+        [Button.inline("⛔ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
     ])
 
 
