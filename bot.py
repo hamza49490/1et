@@ -369,7 +369,7 @@ async def chatbot(event):
     else:
         status = "⛔ ᴋᴀᴘᴀʟɪ"
     
-    await event.reply(f"**__✦ ʙɪ̇ʀ ʙᴜᴛᴏɴ sᴇᴄ̧ɪ̇ɴ ..!\n\n✦ şᴜᴀɴᴋɪ̇ ᴅᴜʀᴜᴍᴜ : {status}__**", buttons=[
+    await event.reply(f"**__✦ ʙɪ̇ʀ ʙᴜᴛᴏɴ sᴇᴄ̧ɪ̇ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}__**", buttons=[
         [Button.inline("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", data="sohbetmod_on")],
         [Button.inline("⛔ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
     ])
