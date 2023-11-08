@@ -440,7 +440,12 @@ async def buldu(c:Client, m:Message):
                 await c.send_message(m.chat.id, text)
     except KeyError:
         pass
-        
+
+@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
+async def ksayi(c:Client, m:Message):
+    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
+
+
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
