@@ -39,7 +39,7 @@ from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 from random import randint
-from mesaj.botmesaj import *
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -380,7 +380,7 @@ async def callback_sohbetmod_on(event):
     qrup = event.chat_id
     if qrup not in isleyen:
         isleyen.append(qrup)
-        aktiv_olundu = "**__💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !__**"
+        aktiv_olundu = "**__✦ ʙᴀşᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !__**"
         await event.edit(aktiv_olundu)
         await asyncio.sleep(3600)
         while qrup in isleyen:
@@ -391,7 +391,7 @@ async def callback_sohbetmod_on(event):
                 await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
             await asyncio.sleep(3600)
         return
-    await event.edit("**__✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀʙɪʟɪʏᴏʀᴜᴍ .__**")
+    await event.edit("**__✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ̇ғ .__**")
 		
 
 @client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
@@ -399,9 +399,9 @@ async def callback_sohbetmod_off(event):
     qrup = event.chat_id
     if qrup in isleyen:
         isleyen.remove(qrup)
-        await event.edit("**__💕 sᴏʜʙᴇᴛ ᴍᴏᴅ ᴏ‌ᴢᴇʟʟɪɢ‌ɪ ᴅᴇᴠʀᴇ ᴅɪs‌ɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !__**")
+        await event.edit("**__✦ ʙᴀşᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !__**")
         return
-    await event.edit("**__✦ ᴢᴀᴛᴇɴ ᴋᴏɴᴜs‌ᴀᴍɪʏᴏʀᴜᴍ !__**")
+    await event.edit("**__✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !__**")
 
 @client.on(events.NewMessage(pattern=r"(?i)(/|)duygu", incoming=True))
 async def buket_handler(event):
@@ -410,7 +410,7 @@ async def buket_handler(event):
     chat_id = event.chat_id
     if chat_id in isleyen:
         return
-    await event.respond("**__💞 şᴜᴀɴ sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /chatbot __**")
+    await event.respond("**__✦ ᴄʜᴀᴛ ʙᴏᴛ şᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /chatbot __**")
 	
 ##################################################
 ##################################################
