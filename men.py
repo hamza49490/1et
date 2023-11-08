@@ -13,14 +13,15 @@ import motor.motor_asyncio
 import yt_dlp
 import ffmpeg
 import aiohttp
+import random
 import os, youtube_dl, requests, time
 from pyrogram import filters
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
+from pyrogram import Client, filters, types
 from time import sleep
 from random import shuffle
-from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
