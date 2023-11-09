@@ -52,9 +52,9 @@ api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
 bot_token = os.environ.get("TOKEN","6923679994:AAGjngufj1dlquEiS5iKHThAj-IPtJl7XPc")
 BOT_USERNAME = os.environ.get("BOT_USERNAME","EpicBetaBot")
 CHANNELL = os.environ.get("CHANNELL", "AikoCall")
-OWNER_ID = int(os.environ.get("OWNER_ID","6811941116"))
-OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
-OWNER = [6811941116]
+OWNER_ID = int(os.environ.get("OWNER_ID","5581058044"))
+OWNERNAME = "𓆩،͜͡ ͢͠ᴀʀᴍ͢͠ᴀɴç͢𓆪"
+OWNER = [5581058044]
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
