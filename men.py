@@ -46,7 +46,7 @@ API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
 BOT_USERNAME = os.environ.get("BOT_USERNAME", "EpicBetaBot")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "6923679994:AAGjngufj1dlquEiS5iKHThAj-IPtJl7XPc")
 BOT_ID = int(os.environ.get("BOT_ID", "6923679994"))
-OWNER_ID = int(os.environ.get("OWNER_ID", "6811941116"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
@@ -54,7 +54,7 @@ GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "AikoCall")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
-OWNER = "ㅤᴀɪ‌ᴋᴏㅤ"
+OWNER = "𓆩،͜͡ ͢͠ᴀʀᴍ͢͠ᴀɴç͢𓆪"
 
 app = Client(
     ":memory:",
