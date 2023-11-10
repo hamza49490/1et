@@ -97,7 +97,7 @@ def reload_command(client: Client, message: Message):
             "**__✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**"
         )
 
-@app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
+'''@app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
 async def bul(_, message):
     try:
         await message.delete()
@@ -220,7 +220,7 @@ async def ytsearch(_, message: Message):
             disable_web_page_preview=True,
         )
     except Exception as e:
-        await message.reply_text(str(e))
+        await message.reply_text(str(e))'''
 
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
