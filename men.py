@@ -50,7 +50,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "AikoCall")
+GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDuyuru")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 PLAYLIST_ID = -1001916993821
