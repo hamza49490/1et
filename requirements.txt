@@ -3,7 +3,6 @@ asyncio==3.4.3
 python-dotenv
 motor
 aiohttp
-requests
 pymongo[srv]
 psutil
 emoji
@@ -13,7 +12,6 @@ cryptg
 requests
 psutil
 heroku3
-motor
 pymongo
 tgcrypto
 aiofiles
@@ -22,7 +20,6 @@ python-dotenv
 youtube_dl
 youtube_search_python 
 requests
-youtube_search
 ffmpeg
 youtube_search
 python-arq
@@ -30,9 +27,8 @@ search_engine_parser
 wget 
 ffmpeg-python
 Pillow==9.1.0
-TgCrypto
 ujson
-telethon
 yt-dlp
 telebot
-
+openai==0.27.2
+dnspython
