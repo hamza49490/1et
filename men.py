@@ -1,14 +1,23 @@
-import os
+import wget
 import logging
+import datetime
+import aiohttp
 import asyncio
 import datetime
+import shutil, psutil, traceback, os
 import random
-import time
+import string
+import traceback
+import aiofiles
+import yt_dlp
+import ffmpeg
+import aiohttp
+import random
+import youtube_dl, requests, time
 import motor.motor_asyncio
-import random
+from datetime import datetime, timedelta
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
-from pyrogram import Client, filters, types
 from time import sleep
 from random import shuffle
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -16,7 +25,10 @@ from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-from pyrogram import Client, filters, __version__
+from pyrogram import Client, filters, types, __version__
+from yt_dlp import YoutubeDL
+from youtube_search import YoutubeSearch
+from pyrogram.handlers import MessageHandler
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -56,51 +68,103 @@ rating = {}
 blocked_users = []
 isleyen = []
 
-from pyrogram import Client, filters, idle
-from pyrogram.enums import ChatAction, ParseMode
-import pyrogram.enums
-print(pyrogram.enums.__file__)
-import openai
-from pyrogram.types import CallbackQuery
-import sys
+
 import re
-import requests
-import asyncio
-import time
-from random import choice
-from datetime import datetime
+
+import lyricsgenius as lg
+from bs4 import BeautifulSoup
 
 
-OPENAI_KEY = os.environ.get("OPENAI_KEY", "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")
+class Lyric:
+    def __init__(self, lyric, artist, title, image_url, url):
+        self.lyric = lyric
+        self.artist = artist
+        self.title = title
+        self.image_url = image_url
+        self.url = url
 
-StartTime = time.time()
 
-openai.api_key = OPENAI_KEY
+def get_lyrics(title: str):
+    geniusClient = lg.Genius(
+        GENIUS_API_TOKEN,
+        skip_non_songs=True,
+        verbose=False,
+        excluded_terms=["(Remix)", "(Live)"],
+        remove_section_headers=True,
+    )
 
-@app.on_message(filters.command(["ask"], prefixes=["", "/"]))
-async def chat(bot, message):
-    try:
-        start_time = time.time()
-        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
-        if len(message.command) < 2:
-            await message.reply_text(
-                "✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ ."
-            )
-        else:
-            a = message.text.split(' ', 1)[1]
-            MODEL = "gpt-3.5-turbo"
-            resp = openai.ChatCompletion.create(
-                model=MODEL,
-                messages=[{"role": "user", "content": a}],
-                temperature=0.2
-            )
-            x = resp['choices'][0]["message"]["content"]
-            end_time = time.time()
-            await message.reply_text(f"{x}", parse_mode=ParseMode.MARKDOWN)     
-    except Exception as e:
-        await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
+    def handler(title):
+        def remove_embed(lyrics: str):
+            lyrics = re.sub(r"\d*Embed", "", lyrics)
+            return lyrics
 
-	
+        def remove_first_line(lyrics: str):
+            return "\n".join(lyrics.split("\n")[1:])
+
+        return remove_first_line(remove_embed(title))
+
+    async def f(title):
+        try:
+            S = geniusClient.search_song(title, get_full_info=False)
+            lyric = handler(S.lyrics)
+            artist = S.artist
+            title = S.title
+            image_url = S.song_art_image_url
+            url = S.url
+            return Lyric(lyric, artist, title, image_url, url)
+        except:
+            return None
+
+    return asyncio.get_event_loop().run_until_complete(f(title))
+
+
+@app.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
+async def lyrics(client: Client, message: Message):
+
+    if len(message.command) < 2:
+        await message.reply_text(
+            f"**Kullanım:**\n__/{message.command[0]} <şarkı adı>__"
+        )
+        return
+
+    song_name = message.text.split(None, 1)[1]
+
+    msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
+
+    lyric = get_lyrics(song_name)
+    if lyric is None:
+        await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
+        return
+
+    title = lyric.title
+    artist = lyric.artist
+    lyrics = lyric.lyric
+    url = lyric.url
+    image_url = lyric.image_url
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🗑 Sil",
+                    callback_data="sil",
+                ),
+            ],
+        ],
+    )
+
+    text = f"<b>{title}</b>\n\n"
+    text += f"<b>👤 Sanatçı:</b> {artist}\n\n"
+    text += f"{lyrics}\n\n"
+
+    if len(text) > 4096:
+        text = text[:4050] + f"[devamını oku...]({url})"
+        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
+        return
+    else:
+        text += f"<b>🔗 Kaynak:</b> <a href='{url}'>Genius</a>"
+        await msg.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
+	    
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
