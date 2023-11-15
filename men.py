@@ -58,6 +58,8 @@ isleyen = []
 
 from pyrogram import Client, filters, idle
 from pyrogram.enums import ChatAction, ParseMode
+import pyrogram.enums
+print(pyrogram.enums.__file__)
 import openai
 from pyrogram.types import CallbackQuery
 import sys
