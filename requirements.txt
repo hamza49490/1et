@@ -28,8 +28,7 @@ wget
 ffmpeg-python
 Pillow==9.1.0
 ujson
-os
-re
+yt-dlp
 datetime
 timedelta
 lyricsgenius
