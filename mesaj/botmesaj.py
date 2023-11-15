@@ -54,7 +54,7 @@ bnen = ["Hayır ben !", "Yok öyle yama !", "Ben ulan ben 🙄",]
 snen = ["Evet ben !", "Eeeee...", "Hayır sen !",]
 
 noadmin = "**✦ Sadece Yöneticiler Kullanabilir !**"
-nogroup = "**✦ Sadece Gruplarda Kullanılabilir !**
+nogroup = "**✦ Sadece Gruplarda Kullanılabilir !**"
 
 emj = " ❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🤩 🥳 😏 😒 " \
         "😞 😔 😟 😕 🙁 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 " \
