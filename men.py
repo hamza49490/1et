@@ -155,7 +155,7 @@ async def tag4(_, query: CallbackQuery):
 )
 
 @app.on_message(filters.text)
-async def chatbot(client, message):
+async def chatbot(client: Client, message: Message):
     global isleyen
     mesaj = str(message.text)
     qrup = message.chat.id
@@ -434,12 +434,12 @@ async def chatbot(client, message):
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
         
 @app.on_message(filters.command("chatbot", prefixes="/"))
-async def chatbot(client, message):
+async def chatbot(client: Client, message: Message):
     if message.chat.type == "private":
         await message.reply(f"{nogroup}", parse_mode='markdown')
         return
 
-    if not await is_group_admin(client, message):
+    if not await is_group_admin(client: Client, message: Message):
         await message.reply(f"{noadmin}", parse_mode='markdown')
         return
      
@@ -457,7 +457,7 @@ async def chatbot(client, message):
     ))
 
 @app.on_callback_query(filters.regex("sohbetmod_on"))
-async def callback_sohbetmod_on(client, callback_query):
+async def callback_sohbetmod_on(client: Client, callback_query):
     qrup = callback_query.message.chat.id
     if qrup not in isleyen:
         isleyen.append(qrup)
@@ -475,7 +475,7 @@ async def callback_sohbetmod_on(client, callback_query):
     await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
   
 @app.on_callback_query(filters.regex("sohbetmod_off"))
-async def callback_sohbetmod_off(client, callback_query):
+async def callback_sohbetmod_off(client: Client, callback_query):
     qrup = callback_query.message.chat.id
     if qrup in isleyen:
         isleyen.remove(qrup)
@@ -484,7 +484,7 @@ async def callback_sohbetmod_off(client, callback_query):
     await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
 @app.on_message(filters.regex(r"(?i)(/|)duygu") & filters.incoming)
-async def buket_handler(client, message):
+async def buket_handler(client: Client, message: Message):
     if message.chat.type == "private":
         return
     chat_id = message.chat.id
@@ -493,7 +493,7 @@ async def buket_handler(client, message):
     await message.reply_text("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
 
 @app.on_message(filters.command("slap", prefixes="/"))
-async def slap(client, message):
+async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
@@ -559,7 +559,7 @@ async def slap(client, message):
         await message.reply("Bir mesaja yanıt verin!")
         
 @app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
-async def handle_eros(client, message):
+async def handle_eros(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
@@ -581,7 +581,7 @@ async def handle_eros(client, message):
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
 @app.on_message(filters.command("id", prefixes="/"))
-async def id(client, message):
+async def id(client: Client, message: Message):
     if message.reply_to_message:
         previous_message = await client.get_messages(message.chat.id, message.reply_to_message.message_id)
         user_id = previous_message.from_user.id
@@ -599,7 +599,7 @@ async def id(client, message):
             await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
 
 @app.on_message(filters.command(["admins"], prefixes="/"))
-async def show_admins(client, message):
+async def show_admins(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
@@ -612,7 +612,7 @@ async def show_admins(client, message):
         text=f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
 
 @app.on_message(filters.command(["bots"], prefixes="/"))
-async def show_bots(client, message):
+async def show_bots(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
@@ -629,7 +629,7 @@ async def show_bots(client, message):
             text="🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
 
 @app.on_message(filters.command(['grup'], prefixes='/'))
-async def grup_info(client, message):
+async def grup_info(client: Client, message: Message):
     chat = await message.get_chat()
     group_name = chat.title
     group_id = chat.id
