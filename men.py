@@ -214,7 +214,7 @@ async def slap(client: Client, message: Message):
 		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
             ]
             slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"**[{user_name}](tg://user?id={user.id}) ,  {slap_phrase}**")
+            await message.reply(f"**{user.first_name} ,  {slap_phrase}**")
         else:
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
     else:
