@@ -1,23 +1,12 @@
-import wget
+import os
 import logging
-import datetime
 import asyncio
 import datetime
-import shutil, psutil, traceback, os
 import random
-import string
 import time
-import traceback
-import aiofiles
 import motor.motor_asyncio
-import yt_dlp
-import ffmpeg
-import aiohttp
 import random
-import os, youtube_dl, requests, time
 from pyrogram import filters
-from yt_dlp import YoutubeDL
-from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
 from pyrogram import Client, filters, types
 from time import sleep
@@ -52,7 +41,7 @@ LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDuyuru")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
-OWNER = "𓆩،͜͡ ͢͠ᴀʀᴍ͢͠ᴀɴç͢𓆪"
+OWNER = "Sahip"
 
 app = Client(
     ":memory:",
@@ -63,10 +52,538 @@ app = Client(
 
 oyun = {}
 rating = {}
-    
+blocked_users = []
+isleyen = []
 
+
+@app.on_message(filters.command("start"))
+async def start(client, message):
+    if message.chat.type == "private":
+        async for usr in client.iter_chat_members(message.chat.id):
+            await client.send_photo(
+                chat_id=message.chat.id,
+                photo="mesaj/hay.jpeg",
+                caption=f"""**✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**""",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                        ],
+                        [
+                            InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                            InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
+                        ],
+                        [
+                            InlineKeyboardButton('✦  𝖲𝖺𝗁𝗂𝗉  ✦', url=f'tg://openmessage?user_id={OWNER_ID}')
+                        ]
+                    ]
+                ),
+                disable_web_page_preview=True
+            )
+
+    if message.chat.type == "group":
+        await client.send_photo(
+            chat_id=message.chat.id,
+            photo="mesaj/hay.jpeg",
+            caption=f"""**✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**""",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                    ],
+                    [
+                        InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                        InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
+                    ],
+                    [
+                        InlineKeyboardButton('✦  𝖲𝖺𝗁𝗂𝗉  ✦', url=f'tg://openmessage?user_id={OWNER_ID}')
+                    ]
+                ]
+            ),
+            disable_web_page_preview=True
+        )
+
+@app.on_callback_query(filters.regex("start"))
+async def start(event):
+    startmesaj = "**✦ Merhaba !\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**"
+    await event.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=a")
+            ],
+            [
+                InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                InlineKeyboardButton("🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı", url=f"https://t.me/{CHANNELL}")
+            ],
+            [
+                InlineKeyboardButton("✦  𝖲𝖺𝗁𝗂𝗉  ✦", url=f"tg://openmessage?user_id={OWNER_ID}")
+            ]
+        ]
+    ), disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("help"))
+async def help(event):
+    startbutton = "✦  Lütfen Buton Seçin !"
+    await event.edit_text(startbutton, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("📇 𝖤𝗍𝗂𝗄𝖾𝗍 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag1")
+            ],
+            [
+                InlineKeyboardButton("🗒️ 𝖤𝗄 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="tag2")
+            ],
+            [
+                InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag4")
+            ],
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
+            ]
+        ]
+    ), disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("tag1"))
+async def tag1(event):
+    etikett = "**✦ Etiket Komutları :\n\n✓ Not : Silinen Hesapları ve Botları Etiketlemez !\n\n» /utag - Üyeleri Toplu Etiketler !\n\n» /tag - Üyeleri Tek Tek Etiketler !\n\n» /atag - Yöneticileri Tek Tek Etiketler !\n\n» /etag - Üyeleri Emojilerle Etiketler !\n\n» /stag - Üyeleri Sözlerle Etiketler !\n\n» /vtag - Üyeleri Sorularla Etiketler !\n\n» /otag - Üyeleri Rütbelerle Etiketler !\n\n» /cancel - Etiketlemeyi Durdurur !\n\n» /cagir - Aktif Üyeleri Oyuna Çağırır !**"
+    await event.edit_text(etikett, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    ), disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("tag2"))
+async def tag2(event):
+    extraa = "**✦ Ek Komutlar :\n\n» /reload - Yönetici Listesini Yeniler !\n\n» /grup - Grup Hakkında Bilgi Verir !\n\n» /dels - Toplu Mesaj Siler !\n\n» /id - Kullanıcı ID'si Atar !\n\n» /chatbot - Chatbotu Aktif Edin !\n\n» /kurt - Kurt Oyunu Rolleri !**"
+    await event.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    ), disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("tag4"))
+async def tag4(event):
+    oyunn = "**✦ Oyun Komutları :\n\n» /eros - Gruptaki Üyeleri Shipler !\n\n» /slap - Eğlenmek için Kullanın !\n\n» /sayi - Sayı Tahmin Oyunu Açar !\n\n» /d - Doğruluk Sorusu Atar !\n\n» /c - Cesaret Sorusu Atar !\n\n» /soz - Çeşitli Sözler Atar !\n\n» /turet - Kelime Türet Oyunu Başlatır !\n\n» /iptal - Oyunu İptal Eder !\n\n » /zar - Zar Atar !\n\n » /bow - Bowling Atar !\n\n » /basket - Basket Atar !\n\n » /slots - Slot Atar !\n\n » /top - Top Atar !\n\n » /ok - Ok Atar !**"
+    await event.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    ), disable_web_page_preview=True)
+
+
+@app.on_message(filters.text)
+async def chatbot(client, message):
+    global isleyen
+    mesaj = str(message.text)
+    qrup = message.chat.id
+    if qrup not in isleyen:
+        return
+    
+    me = await client.get_me()
+    if message.from_user.id == me.id:
+        return
+    
+    kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
+
+    if "bot" in kelimeler:
+       cevap = random.choice(bottst)
+       bold_cevap = f"<b>{cevap}</b>"
+       await client.send_message(message.chat.id, bold_cevap, parse_mode='html')     
+ 
+    if "duygu" in kelimeler:
+       cevap = random.choice(bkt)
+       bold_cevap = f"<b>{cevap}</b>"
+       await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+  
+    if kelimeler[0] == "selam" or kelimeler[0] == "selamün aleyküm" or kelimeler[0] == "slm" or kelimeler[0] == "sea" or kelimeler[0] == "sa":
+       cevap = random.choice(selam)
+       bold_cevap = f"<b>{cevap}</b>"
+       await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        
+    if kelimeler[0] == "nasılsın" or kelimeler[0] == "naber" or kelimeler[0] == "ne haber" or kelimeler[0] == "nbr":
+        cevap = random.choice(nasilsin)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "adam" or kelimeler[0] == "erkek":
+        cevap = random.choice(adam)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "iyiyim" or kelimeler[0] == "harika" or kelimeler[0] == "mükemmel":
+        cevap = random.choice(iyiyim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "hoş geldin" or kelimeler[0] == "hg":
+        cevap = random.choice(hoş)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "merhaba" or kelimeler[0] == "mrb":
+        cevap = random.choice(merhaba)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "ban" or kelimeler[0] == "banned" or kelimeler[0] == "banla" or kelimeler[0] == "/ban":
+        cevap = random.choice(ban)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "nabıyon" or kelimeler[0] == "napıyorsun" or kelimeler[0] == "ne yapıyorsun":
+        cevap = random.choice(nabiyon)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "😔" or kelimeler[0] == "🥺"  or kelimeler[0] == "😥":
+        cevap = random.choice(uzgun)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "valla" or kelimeler[0] == "vallahi" or kelimeler[0] == "yemin":
+        cevap = random.choice(valla)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    	    
+    if kelimeler[0] == "sg" or kelimeler[0] == "siktir":
+        cevap = random.choice(sg)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "mal" or kelimeler[0] == "gerizekalı" or kelimeler[0] == "it" or kelimeler[0] == "şrfsz" or kelimeler[0] == "şerefsiz":
+        cevap = random.choice(mal)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "balım" or kelimeler[0] == "bebeğim" or kelimeler[0] == "aşkım":
+        cevap = random.choice(balim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "canım" or kelimeler[0] == "bitanem" or kelimeler[0] == "yavrum":
+        cevap = random.choice(canim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "gidiyorum" or kelimeler[0] == "gittim" or kelimeler[0] == "görüşürüz":
+        cevap = random.choice(gidiyorum)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "sinirlendim" or kelimeler[0] == "😡" or kelimeler[0] == "🤬" or kelimeler[0] == "sinirliyim":
+        cevap = random.choice(sinirlendim)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "tanışalım mı" or kelimeler[0] == "tanışabilir miyiz":
+        cevap = random.choice(tanis)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "ismin ne" or kelimeler[0] == "adın ne":
+        cevap = random.choice(adne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "iyi" or kelimeler[0] == "kötü" or kelimeler[0] == "idare eder":
+        cevap = random.choice(iyisen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "😅" or kelimeler[0] == "😂" or kelimeler[0] == "🤣":
+        cevap = random.choice(gullu)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "büyüğüm" or kelimeler[0] == "büyük":
+        cevap = random.choice(buyuk)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	
+    if kelimeler[0] == "aiko":
+        cevap = random.choice(aiko)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "günaydın" or kelimeler[0] == "gny" or kelimeler[0] == "günaydınnn" or kelimeler[0] == "rojbaş":
+        cevap = random.choice(gnyy)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "iyi geceler" or kelimeler[0] == "iyi akşamlar":
+        cevap = random.choice(igece)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "kaç yaşındasın" or kelimeler[0] == "yaşın kaç":
+        cevap = random.choice(kyas)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "nerelisin":
+        cevap = random.choice(nereli)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "konuşma" or kelimeler[0] == "sus" or kelimeler[0] == "knşma":
+        cevap = random.choice(pms)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "kırdın" or kelimeler[0] == "kırıldım" or kelimeler[0] == "kırıcı" or kelimeler[0] == "krldm":
+        cevap = random.choice(krdn)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "sıkıldım" or kelimeler[0] == "skldm":
+        cevap = random.choice(skdm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "hm" or kelimeler[0] == "hmmm":
+        cevap = random.choice(hms)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "geçmiş olsun":
+        cevap = random.choice(bts)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "oyun" or kelimeler[0] == "game":
+        cevap = random.choice(trt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "evet" or kelimeler[0] == "evt":
+        cevap = random.choice(evt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "hyr" or kelimeler[0] == "hayır":
+        cevap = random.choice(hyrr)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "🙄":
+        cevap = random.choice(gzs)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "of" or kelimeler[0] == "offf":
+        cevap = random.choice(ofs)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "çikolata":
+        cevap = random.choice(cklta)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "lan" or kelimeler[0] == "ln":
+        cevap = random.choice(lna)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "dedim":
+        cevap = random.choice(dddm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "yalan" or kelimeler[0] == "yalancı":
+        cevap = random.choice(ylna)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "sağol":
+        cevap = random.choice(sgll)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "çirkin":
+        cevap = random.choice(crkn)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "dm" or kelimeler[0] == "pm":
+        cevap = random.choice(dmy)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "tatlı" or kelimeler[0] == "yemek":
+        cevap = random.choice(tymm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "kes":
+        cevap = random.choice(kmm)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "kanka" or kelimeler[0] == "knk" or kelimeler[0] == "kanki":
+        cevap = random.choice(kankas)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "öp":
+        cevap = random.choice(opsss)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "sanane" or kelimeler[0] == "sağne":
+        cevap = random.choice(sgne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+	    
+    if kelimeler[0] == "banane" or kelimeler[0] == "bağne":
+        cevap = random.choice(bgne)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "ben":
+        cevap = random.choice(bnen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+    if kelimeler[0] == "sen":
+        cevap = random.choice(snen)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        
+@app.on_message(filters.command("chatbot", prefixes="/"))
+async def chatbot(client, message):
+    if message.chat.type == "private":
+        await message.reply(f"{nogroup}", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(client, message):
+        await message.reply(f"{noadmin}", parse_mode='markdown')
+        return
+     
+    global isleyen
+    if message.chat.id in isleyen:
+        status = "✅ ᴀᴋᴛɪ‌ғ"
+    else:
+        status = "⛔ ᴋᴀᴘᴀʟɪ"
+    
+    await message.reply_text("✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
+        ]
+    ))
+
+@app.on_callback_query(filters.regex("sohbetmod_on"))
+async def callback_sohbetmod_on(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if qrup not in isleyen:
+        isleyen.append(qrup)
+        aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+        await callback_query.edit_message_text(aktiv_olundu)
+        await asyncio.sleep(3600)
+        while qrup in isleyen:
+            users = await client.get_chat_members(qrup)
+            active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
+            if active_users:
+                random_user = random.choice(active_users)
+                await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
+            await asyncio.sleep(3600)
+        return
+    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+  
+@app.on_callback_query(filters.regex("sohbetmod_off"))
+async def callback_sohbetmod_off(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if qrup in isleyen:
+        isleyen.remove(qrup)
+        await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+        return
+    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
+
+@app.on_message(filters.regex(r"(?i)(/|)duygu") & filters.incoming)
+async def buket_handler(client, message):
+    if message.chat.type == "private":
+        return
+    chat_id = message.chat.id
+    if chat_id in isleyen:
+        return
+    await message.reply_text("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+
+@app.on_message(filters.command("slap", prefixes="/"))
+async def slap(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
+    if message.reply_to_message:
+        reply_message = message.reply_to_message
+        user = reply_message.from_user
+        if user:
+            user_name = f"[{user.first_name}](tg://user?id={user.id})"
+            slap_phrases = [
+	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+	             	            f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
+	             	            f"{user_name} 'ın Kulağını Çekti! Acımış Olmalı 😕",
+		                        f"{user_name} 'ı Arabayla Ezdi! Öldün Bebek 🥴",
+		                        f"{user_name} 'ı Soydu! 5 Kuruş'u Kaldı 😕",
+		                        f"{user_name} 'ı Yemeğe Çıkardı! Hayrola İnşallah 🤭",
+		                        f"{user_name} 'a Sarıldı! Sevgi Dolu Kucaklaşma 💞",
+		                        f"{user_name} 'ın Üstüne Çay Döktü! Yanıyorsun Fuat Abi 🔥",
+                                f"{user_name} 'ın Üzerine Pasta Fırlattı! Afiyet Olsun 😋",
+                                f"{user_name} 'ın Üstüne Benzin Döktü!",
+                                f"{user_name} 'ı Ateşe Attı! Yanıyorsun Ayten 🤣",
+                                f"{user_name} 'ın Üstüne Su Döktü!",
+                                f"{user_name} 'a Osmanlı Tokatı Attı! Yerle Bir Oldu :)",
+                                f"{user_name} 'a Çikolata Verdi! Hadi Yine İyisin 🥳",
+                                f"{user_name} 'ı Zencilere Sattı! Geçmiş Olsun 🥳",
+                                f"{user_name} 'ı Turşu Kavonozuna Soktu! Turşu {user_name}",
+                                f"{user_name} 'ın Üzerine Buz Dolabı Attı!",
+                                f"{user_name} 'ın Kafasını Duvara Sürterek Yaktı! Zavallı Ağlicak :)",
+                                f"{user_name} 'ı Ormana Kaçırdı! Acaba Ne Olacak 🤭",
+                                f"{user_name} 'ı Banyoda Suikast Etti! Banyoda Ne İşin Vardı 🤣",
+		                        f"{user_name} 'a Kafa Attı! Mermiler Seksin, Alemde Teksin 😁",
+		                        f"{user_name} 'a Harçlık Verdi! Kendine Çikolata Alırsın 😁",
+                                f"{user_name} 'a Kavanoz Fırlattı! Başka Bişey Bulamadı Sanırım 🙄",
+	  	                        f"{user_name} 'a Domates Fırlattı! Suratı Kıp Kırmızı Oldu 😁",
+		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
+		                        f"{user_name} 'a İğne Sapladı! Bu Acıtmıştır Sanırım 🥲",
+		                        f"{user_name} 'a Çelme Taktı! Geber 😁",
+		                        f"{user_name} 'ın Yüzüne Tükürdü 🤬",
+		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
+		                        f"{user_name} 'a Omuz attı! Ne bakıyon Birader !",
+		                        f"{user_name} 'a Yumurta Fırlattı! Tam isabet 🎯",
+		                        f"{user_name} 'ın Saçını Çekti! Acıdı mı 😁",
+		          	            f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
+		                        f"{user_name} 'ın Kafasında Şişe Kırdı! Kafası Acımış Olmalı 🥲",
+		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
+		                        f"{user_name} 'a Kafa Attı! Burnu Kırıldı 😱",
+		                        f"{user_name} 'a Yumruk attı ! Buz Koy Morarmasın 🤕",
+		                        f"{user_name} 'ın Kafasına Taş Attı! Rahmetliyi Sevmezdik 🥴",
+                                f"{user_name} 'a 619 Çekti! Zavallı Bayıldı 😁",
+                                f"{user_name} 'a Osmanlı Tokatı Attı! Şamar Oğlana Döndü 😱",
+                                f"Marketten Beyin Satın Aldı! Artık {user_name} 'ın Beyni Var .",
+                                f"Beyni'nin Yarısını {user_name} 'a Verdi! Artık Aç Kalmayacak 😋",
+                                f"{user_name} 'ı Camdan Attı! Kafası Yarıldı ve Öldü .",
+                                f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
+                                f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
+                                f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
+		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
+            ]
+            slap_phrase = random.choice(slap_phrases)
+            await message.reply(f"**[{event.sender.first_name}](tg://user?id={event.sender.id}) ,  {slap_phrase}**")
+        else:
+            await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
+    else:
+        await message.reply("Bir mesaja yanıt verin!")
+        
 @app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
 async def handle_eros(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
     chat = await client.get_chat(message.chat.id)
     if message.reply_to_message:
         reply_msg = message.reply_to_message
@@ -83,9 +600,102 @@ async def handle_eros(client, message):
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-            
+
+@app.on_message(filters.command("id", prefixes="/"))
+async def id(client, message):
+    if message.reply_to_message:
+        previous_message = await client.get_messages(message.chat.id, message.reply_to_message.message_id)
+        user_id = previous_message.from_user.id
+        chat_id = message.chat.id
+        if message.chat.type == "private":
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}")
+        else:
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
+    else:
+        user_id = message.from_user.id
+        chat_id = message.chat.id
+        if message.chat.type == "private":
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}")
+        else:
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
+
+@app.on_message(filters.command(["admins"], prefixes="/"))
+async def show_admins(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
+    chat = await client.get_chat(message.chat.id)
+    admins = await client.get_chat_members(chat.id, filter="administrators")
+    admin_list = ""
+    for admin in admins:
+        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
+    await message.edit_text(
+        text=f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
+
+@app.on_message(filters.command(["bots"], prefixes="/"))
+async def show_bots(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
+    all_users = await client.get_chat_members(message.chat.id)
+    bot_list = []
+    for user in all_users:
+        if user.user.is_bot:
+            bot_list.append(user.user.username)
+    if bot_list:
+        await message.edit_text(
+            text=f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
+    else:
+        await message.edit_text(
+            text="🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
+
+@app.on_message(filters.command(['grup'], prefixes='/'))
+async def grup_info(client, message):
+    chat = await message.get_chat()
+    group_name = chat.title
+    group_id = chat.id
+
+    chat_info = await client.get_chat(group_id)
+
+    deleted_count = 0
+    active_count = 0
+    bot_count = 0
+    total_count = 0
+
+    async for participant in client.iter_chat_members(chat_info.id):
+        total_count += 1
+        if participant.user.is_deleted:
+            deleted_count += 1
+        elif not participant.user.is_bot:
+            active_count += 1
+        elif participant.user.is_bot:
+            bot_count += 1
+
+    special_status = ""
+    if deleted_count > 0:
+        special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
+    if bot_count > 0:
+        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
+
+    if not special_status:
+        special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
+
+
+    response_text = (
+        f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
+        f'➻ ɢʀᴜᴘ ɪᴅ : `-100{group_id}\n'
+        f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
+        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
+        f'{special_status}'
+    )
+
+    await message.edit_text(response_text)
+    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
         client.send_message(message.chat.id, "**__🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !__**")
@@ -94,131 +704,6 @@ def reload_command(client: Client, message: Message):
             message.chat.id,
             "**__✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**"
         )
-
-'''@app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
-async def bul(_, message):
-    try:
-        await message.delete()
-    except:
-        pass
-    query = " ".join(message.command[1:])
-    m = await message.reply("**__✦ şᴀʀᴋɪ ᴀʀᴀɴɪʏᴏʀ !__**")
-    ydl_ops = {"format": "bestaudio[ext=m4a]"}
-    try:
-        results = YoutubeSearch(query, max_results=1).to_dict()
-        link = f"https://youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        duration = results[0]["duration"]
-    
-    except Exception as e:
-        await m.edit("**__✦ şᴀʀᴋɪ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !__**")
-        print(str(e))
-        return
-    await m.edit("**__✦ şᴀʀᴋɪ ɪɴᴅɪʀɪʟɪʏᴏʀ !__**")
-    try:
-        with yt_dlp.YoutubeDL(ydl_ops) as ydl:
-            info_dict = ydl.extract_info(link, download=False)
-            audio_file = ydl.prepare_filename(info_dict)
-            ydl.process_info(info_dict)
-        rep = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
-        res = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
-        secmul, dur, dur_arr = 1, 0, duration.split(":")
-        for i in range(len(dur_arr) - 1, -1, -1):
-            dur += int(float(dur_arr[i])) * secmul
-            secmul *= 60
-        await m.edit("**__✦ şᴀʀᴋɪ ʏᴜ̈ᴋʟᴇɴɪʏᴏʀ !__**")
-        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍  ✦", url=f"t.me/{MCHANNEL}")]]))
-        await m.delete()
-        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
-    except Exception as e:
-        await m.edit("**__✦ ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**")
-        print(e)
-
-    try:
-        os.remove(audio_file)
-        os.remove(thumb_name)
-    except Exception as e:
-        print(e)
-
-@app.on_message(filters.command(["vbul", "vsong"]) & ~filters.edited)
-async def vsong(client, message):
-    try:
-        await message.delete()
-    except:
-        pass
-    ydl_opts = {
-        "format": "best",
-        "keepvideo": True,
-        "prefer_ffmpeg": False,
-        "geo_bypass": True,
-        "outtmpl": "%(title)s.%(ext)s",
-        "quite": True,
-    }
-    query = " ".join(message.command[1:])
-    try:
-        results = YoutubeSearch(query, max_results=1).to_dict()
-        link = f"https://youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        duration = results[0]["duration"]
-        views = results[0]["views"]
-        mention = message.from_user.mention
-    except Exception as e:
-        print(e)
-    try:
-        msg = await message.reply("**__✦ ᴠɪᴅᴇᴏ ᴀʀᴀɴɪʏᴏʀ !__**")
-        with YoutubeDL(ydl_opts) as ytdl:
-            ytdl_data = ytdl.extract_info(link, download=True)
-            file_name = ytdl.prepare_filename(ytdl_data)
-    except Exception as e:
-        return await msg.edit(f"**__✦ ᴠɪᴅᴇᴏ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !__**")
-    preview = wget.download(thumbnail)
-    await msg.edit("**__✦ ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʟɪʏᴏʀ !__**")
-    await message.reply_video(
-        file_name,
-        duration=int(ytdl_data["duration"]),
-        thumb=preview,
-        caption=f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {ytdl_data['title']}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
-    )
-    try:
-        os.remove(file_name)
-        os.remove(thumb_name)
-        await msg.delete()
-    except Exception as e:
-        print(e)
-
-@app.on_message(filters.command(["ara", "search"]) & ~filters.edited)
-async def ytsearch(_, message: Message):
-    try:
-        await message.delete()
-    except:
-        pass
-    try:
-        if len(message.command) < 2:
-            return await message.reply_text("**__✦ sᴏɴᴜᴄ̧ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
-        query = message.text.split(None, 1)[1]
-        m = await message.reply_text("**__✦ ᴀʀɪʏᴏʀᴜᴍ !__**")
-        results = YoutubeSearch(query, max_results=6).to_dict()
-        i = 0
-        text = ""
-        while i < 6:
-            text += f"**__💬 ᴘᴀʀᴄ̧ᴀ__ : {results[i]['title']}**\n"
-            text += f"**__⌚ sᴜ̈ʀᴇ__ : {results[i]['duration']}**\n"
-            text += f"**__🔗 ʟɪɴᴋ__ : [ ʏᴏᴜᴛᴜʙᴇ'ᴅᴇɴ ɪᴢʟᴇ ](https://youtube.com{results[i]['url_suffix']})**\n\n"
-            i += 1
-        await m.edit_text(
-            text=text,
-            disable_web_page_preview=True,
-        )
-    except Exception as e:
-        await message.reply_text(str(e))'''
 
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
@@ -263,8 +748,15 @@ async def csor(client: Client, message: Message):
 async def dsor(client: Client, message: Message):
     await message.reply_text(f"**__🗨️ ᴅᴏɢ̆ʀᴜʟᴜᴋ sᴇᴄ̧ᴛɪɴ, ᴄ̧ᴏᴋ ɢᴜ̈ᴢᴇʟ .\n\n✦ sᴀɴᴀ sᴏʀᴜᴍ__ : {random.choice(d)}**")
 
+@app.on_message(filters.command(["soz"], ["/", ""]))
+async def dsor(client: Client, message: Message):
+    await message.reply_text(f"**🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓 :\n\n{random.choice(guzelsoz)}**")
+    
 @app.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
 async def kelimeoyun(c:Client, m:types.Message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
     global oyun
     aktif = False
     try:
@@ -307,7 +799,6 @@ async def kelimeoyun(c:Client, m:types.Message):
         )
         
         await c.send_message(m.chat.id, text, reply_markup=keyboard)
-
 
 @app.on_callback_query(filters.regex("pass"))
 async def passs(c:Client, cb:types.CallbackQuery):
@@ -357,9 +848,11 @@ async def passs(c:Client, cb:types.CallbackQuery):
         else:
             await c.send_message(cb.message.chat.id, f"**✦ Pass Hakkın Tükendi .\n✦ Oyunu Bitirmek için ➻ /iptal**")
      
- 
 @app.on_message(filters.command("iptal") & ~filters.private & ~filters.channel)
 async def stop(c:Client, m:Message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
     global oyun
     
     if m.chat.id in oyun and "oyuncular" in oyun[m.chat.id]:
@@ -430,14 +923,13 @@ async def buldu(c: Client, m: Message):
                 await c.send_message(m.chat.id, text, reply_markup=keyboard)
     except KeyError:
         pass
-
-@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
-async def ksayi(c:Client, m:Message):
-    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
                 
 '''
 @app.on_message(filters.command("skorssk"))
 async def ratingsa(c:Client, m:Message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
     metin = """**🎖️  Global Top 20  🎖️**
 
 """
@@ -457,6 +949,54 @@ async def ratingsa(c:Client, m:Message):
             break
     await c.send_message(m.chat.id, metin)
 '''
+
+@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
+async def ksayi(c:Client, m:Message):
+    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
+
+@app.on_message(filters.command("block") & filters.user(OWNER_ID))
+def block_user(client: Client, message: Message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        if user_id not in blocked_users:
+            blocked_users.append(user_id)
+            user_name = client.get_chat(user_id).first_name
+            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
+        else:
+            message.reply_text(f"Kullanıcı {user_id} zaten kara listede.")
+    else:
+        message.reply_text("Kullanım: /block <kullanıcı_id>")
+
+@app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
+def unblock_user(client: Client, message: Message):
+    if len(message.command) == 2:
+        user_id = int(message.command[1])
+        if user_id in blocked_users:
+            blocked_users.remove(user_id)
+            user_name = client.get_chat(user_id).first_name
+            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeden çıkarıldı.")
+        else:
+            message.reply_text(f"Kullanıcı {user_id} zaten kara listede değil.")
+    else:
+        message.reply_text("Kullanım: /unblock <kullanıcı_id>")
+
+@app.on_message(filters.command("blocklist") & filters.user(OWNER_ID))
+def blocklist(client: Client, message: Message):
+    if len(blocked_users) > 0:
+        blocked_users_text = ""
+        for user_id in blocked_users:
+            user_name = client.get_chat(user_id).first_name
+            blocked_users_text += f"{user_id} - {user_name}\n"
+        message.reply_text(f"Kara listede olan kullanıcılar:\n{blocked_users_text}")
+    else:
+        message.reply_text("Kara listede hiç kullanıcı yok.")
+
+@app.on_message(~filters.user(OWNER_ID))
+def handle_messages(client: Client, message: Message):
+    if message.from_user.id in blocked_users:
+        # Kara listedeki kullanıcının mesajını algılama
+        return
+        
 ################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
@@ -726,52 +1266,6 @@ class LAN(object):
         STATS_STARTED = "{} **Veriler Toplanıyor !**"
         STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""
 
-'''
-blocked_users = []
-
-@app.on_message(filters.command("block") & filters.user(OWNER_ID))
-def block_user(client: Client, message: Message):
-    if len(message.command) == 2:
-        user_id = int(message.command[1])
-        if user_id not in blocked_users:
-            blocked_users.append(user_id)
-            user_name = client.get_chat(user_id).first_name
-            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
-        else:
-            message.reply_text(f"Kullanıcı {user_id} zaten kara listede.")
-    else:
-        message.reply_text("Kullanım: /block <kullanıcı_id>")
-
-@app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
-def unblock_user(client: Client, message: Message):
-    if len(message.command) == 2:
-        user_id = int(message.command[1])
-        if user_id in blocked_users:
-            blocked_users.remove(user_id)
-            user_name = client.get_chat(user_id).first_name
-            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeden çıkarıldı.")
-        else:
-            message.reply_text(f"Kullanıcı {user_id} zaten kara listede değil.")
-    else:
-        message.reply_text("Kullanım: /unblock <kullanıcı_id>")
-
-@app.on_message(filters.command("blocklist") & filters.user(OWNER_ID))
-def blocklist(client: Client, message: Message):
-    if len(blocked_users) > 0:
-        blocked_users_text = ""
-        for user_id in blocked_users:
-            user_name = client.get_chat(user_id).first_name
-            blocked_users_text += f"{user_id} - {user_name}\n"
-        message.reply_text(f"Kara listede olan kullanıcılar:\n{blocked_users_text}")
-    else:
-        message.reply_text("Kara listede hiç kullanıcı yok.")
-
-@app.on_message(~filters.user(OWNER_ID))
-def handle_messages(client: Client, message: Message):
-    if message.from_user.id in blocked_users:
-        # Kara listedeki kullanıcının mesajını algılama
-        return
-'''
 
 print("Pyrogram Aktif !")
 app.run()
