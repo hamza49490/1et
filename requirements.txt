@@ -28,7 +28,6 @@ wget
 ffmpeg-python
 Pillow==9.1.0
 ujson
-yt-dlp
 os
 re
 datetime
