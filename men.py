@@ -116,7 +116,7 @@ def get_lyrics(title: str):
         except:
             return None
 
-    return asyncio.get_event_loop().run_until_complete(f(title))
+    return await f(title)
 
 
 @app.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
@@ -132,7 +132,7 @@ async def lyrics(client: Client, message: Message):
 
     msg = await message.reply_text("🔎 Şarkı sözleri aranıyor...")
 
-    lyric = get_lyrics(song_name)
+    lyric = await get_lyrics(song_name)
     if lyric is None:
         await msg.edit(f"Şarkı sözleri bulunamadı: {song_name}")
         return
