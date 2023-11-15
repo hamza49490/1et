@@ -439,7 +439,7 @@ async def chatbot(client: Client, message: Message):
         await message.reply(f"{nogroup}", parse_mode='markdown')
         return
 
-    if not await is_group_admin(client: Client, message: Message):
+    if not await is_group_admin(client, message):
         await message.reply(f"{noadmin}", parse_mode='markdown')
         return
      
