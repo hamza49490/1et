@@ -57,7 +57,7 @@ blocked_users = []
 isleyen = []
 
 
-@app.on_message(command(["start", f"start@{BOT_USERNAME}"]))
+@app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
                 await message.reply_photo(
                 "https://telegra.ph/file/b73a74bb73e74df6c1311.jpg",
