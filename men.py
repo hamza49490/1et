@@ -38,10 +38,11 @@ BOT_ID = int(os.environ.get("BOT_ID", "6923679994"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
+CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDuyuru")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
-OWNER = "Sahip"
+OWNERNAME = "Sahip"
 
 app = Client(
     ":memory:",
@@ -714,7 +715,7 @@ async def zar(bot: Client, msg: Message):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
         elif str(new_user.id) == str(OWNER_ID):
-            await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNER}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
+            await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
 
 @app.on_message(filters.command(["zar"], ["/", ""]))
 def zar_at(client: Client, message: Message):
