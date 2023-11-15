@@ -59,25 +59,24 @@ isleyen = []
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
-                await message.reply_photo(
-                "https://telegra.ph/file/b73a74bb73e74df6c1311.jpg",
-                caption=f"""**✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**""",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
-                        ],
-                        [
-                            InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
-                            InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
-                        ],
-                        [
-                            InlineKeyboardButton('✦  𝖲𝖺𝗁𝗂𝗉  ✦', url=f'tg://openmessage?user_id={OWNER_ID}')
-                        ]
-                    ]
-                ),
-                disable_web_page_preview=True
-            )
+    await message.reply_photo(
+        "https://telegra.ph/file/b73a74bb73e74df6c1311.jpg",
+        caption=f"""✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                ],
+                [
+                    InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                    InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
+                ],
+                [
+                    InlineKeyboardButton('✦  𝖲𝖺𝗁𝗂𝗉  ✦', url=f'tg://openmessage?user_id={OWNER_ID}')
+                ]
+            ]
+        )
+    )
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
@@ -95,7 +94,8 @@ async def start(_, query: CallbackQuery):
                 InlineKeyboardButton("✦  𝖲𝖺𝗁𝗂𝗉  ✦", url=f"tg://openmessage?user_id={OWNER_ID}")
             ]
         ]
-    ), disable_web_page_preview=True)
+    )
+)
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_, query: CallbackQuery):
@@ -115,7 +115,8 @@ async def help(_, query: CallbackQuery):
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
             ]
         ]
-    ), disable_web_page_preview=True)
+    )
+)
 
 @app.on_callback_query(filters.regex("tag1"))
 async def tag1(_, query: CallbackQuery):
@@ -126,7 +127,8 @@ async def tag1(_, query: CallbackQuery):
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
             ]
         ]
-    ), disable_web_page_preview=True)
+    )
+)
 
 @app.on_callback_query(filters.regex("tag2"))
 async def tag2(_, query: CallbackQuery):
@@ -137,7 +139,8 @@ async def tag2(_, query: CallbackQuery):
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
             ]
         ]
-    ), disable_web_page_preview=True)
+    )
+)
 
 @app.on_callback_query(filters.regex("tag4"))
 async def tag4(_, query: CallbackQuery):
@@ -148,7 +151,8 @@ async def tag4(_, query: CallbackQuery):
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
             ]
         ]
-    ), disable_web_page_preview=True)
+    )
+)
 
 
 @app.on_message(filters.text)
