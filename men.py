@@ -60,7 +60,7 @@ isleyen = []
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
-        "https://telegra.ph/file/b73a74bb73e74df6c1311.jpg",
+        "https://telegra.ph/file/608001bdce5b396b50ea2.jpg",
         caption=f"""✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !""",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -214,7 +214,7 @@ async def slap(client: Client, message: Message):
 		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
             ]
             slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
+            await message.reply(f"**[{message.from_user.first_name}](tg://user?id={message.from_user.id}) ,  {slap_phrase}**")
         else:
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
     else:
