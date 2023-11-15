@@ -56,7 +56,49 @@ rating = {}
 blocked_users = []
 isleyen = []
 
+from pyrogram import Client, filters, idle
+from pyrogram.enums import ChatAction, ParseMode
+import openai
+from pyrogram.types import CallbackQuery
+import sys
+import re
+import requests
+import asyncio
+import time
+from random import choice
+from datetime import datetime
 
+
+OPENAI_KEY = os.environ.get("OPENAI_KEY", "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")
+
+StartTime = time.time()
+
+openai.api_key = OPENAI_KEY
+
+@app.on_message(filters.command(["ask"], prefixes=["", "/"]))
+async def chat(bot, message):
+    try:
+        start_time = time.time()
+        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+                "✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ ."
+            )
+        else:
+            a = message.text.split(' ', 1)[1]
+            MODEL = "gpt-3.5-turbo"
+            resp = openai.ChatCompletion.create(
+                model=MODEL,
+                messages=[{"role": "user", "content": a}],
+                temperature=0.2
+            )
+            x = resp['choices'][0]["message"]["content"]
+            end_time = time.time()
+            await message.reply_text(f"{x}", parse_mode=ParseMode.MARKDOWN)     
+    except Exception as e:
+        await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
+
+	
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
@@ -154,7 +196,7 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-@app.on_message(filters.command("slap", prefixes="/"))
+@app.on_message(filters.command("slap", prefixes="/", ""))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
