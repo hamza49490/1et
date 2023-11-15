@@ -196,7 +196,7 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-@app.on_message(filters.command("slap", prefixes="/", ""))
+@app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
