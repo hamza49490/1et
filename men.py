@@ -214,7 +214,7 @@ async def slap(client: Client, message: Message):
 		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
             ]
             slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"**{event.sender.first_name} ,  {slap_phrase}**")
+            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
         else:
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
     else:
