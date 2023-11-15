@@ -68,6 +68,7 @@ rating = {}
 blocked_users = []
 isleyen = []
 
+GENIUS_API_TOKEN = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
 
 import re
 
