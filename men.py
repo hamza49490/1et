@@ -68,6 +68,29 @@ rating = {}
 blocked_users = []
 isleyen = []
 
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# GPT-2 modelini yükle
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+
+# Botun yanıtlarını oluştur
+@app.on_message(filters.text)
+def generate_reply(client, message):
+    # Gelen mesajı al
+    input_text = message.text.lower()
+
+    # Modelin anlayabileceği şekilde metni tokenize et
+    input_ids = tokenizer.encode(input_text, return_tensors="pt")
+
+    # Modeli kullanarak yanıt üret
+    output = model.generate(input_ids, max_length=100, num_return_sequences=1)
+    reply = tokenizer.decode(output[0], skip_special_tokens=True)
+
+    # Yanıtı gönder
+    message.reply_text(reply)
+
+
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
