@@ -68,27 +68,43 @@ rating = {}
 blocked_users = []
 isleyen = []
 
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+from transformers import pipeline
 
-# GPT-2 modelini yükle
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-model = GPT2LMHeadModel.from_pretrained("gpt2")
+# GPT-2 modelini yükleyin
+chatbot = pipeline("text-generation", model="gpt2")
 
-# Botun yanıtlarını oluştur
-@app.on_message(filters.text)
-def generate_reply(client, message):
-    # Gelen mesajı al
-    input_text = message.text.lower()
+# /start komutuna yanıt veren bir işlev
+@app.on_message(filters.command("start"))
+def start_command(client: Client, message: Message):
+    message.reply_text("Merhaba! Ben yapay zeka destekli bir chatbotum. Nasıl yardımcı olabilirim?")
 
-    # Modelin anlayabileceği şekilde metni tokenize et
-    input_ids = tokenizer.encode(input_text, return_tensors="pt")
 
-    # Modeli kullanarak yanıt üret
-    output = model.generate(input_ids, max_length=100, num_return_sequences=1)
-    reply = tokenizer.decode(output[0], skip_special_tokens=True)
+# /ask komutuna yanıt veren bir işlev
+@app.on_message(filters.command("ask"))
+def ask_command(client: Client, message: Message):
+    # Kullanıcının sorusunu alın
+    question = message.text.split("/ask ", maxsplit=1)[1]
+    
+    # GPT-2 modelini kullanarak cevap üretin
+    answer = chatbot(question, max_length=100)[0]['generated_text']
+    
+    # Cevabı kullanıcıya gönderin
+    message.reply_text(answer)
 
-    # Yanıtı gönder
-    message.reply_text(reply)
+
+# Diğer mesajlara yanıt veren bir işlev
+@app.on_message(~filters.command("start") & ~filters.command("ask"))
+def chat(client: Client, message: Message):
+    # Gelen mesajı alın
+    user_message = message.text
+    
+    # GPT-2 modelini kullanarak cevap üretin
+    answer = chatbot(user_message, max_length=100)[0]['generated_text']
+    
+    # Cevabı kullanıcıya gönderin
+    message.reply_text(answer)
+
+
 
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
