@@ -68,48 +68,6 @@ rating = {}
 blocked_users = []
 isleyen = []
 
-import openai
-
-# OpenAI API anahtarınızı buraya ekleyin
-openai.api_key = "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"
-
-
-# Botun yanıt vereceği mesajları filtreleyin
-@filters.private
-def filter_private_chat(_, __, message: Message):
-    return True
-
-# Botun yanıt vereceği mesajları işleyin
-@app.on_message(filter_private_chat)
-def reply_to_message(_, message: Message):
-    # Kullanıcının mesajını alın
-    user_message = message.text.lower()
-
-    # "ask" kelimesiyle başlayan her cümleyi algılayın
-    if user_message.startswith("ask"):
-        # Kullanıcının sorusunu alın
-        question = user_message[4:].strip()
-
-        # OpenAI'ye soruyu gönderin
-        response = openai.Completion.create(
-            engine="davinci",
-            prompt=question,
-            max_tokens=50,
-            n=1,
-            stop=None,
-            temperature=0.7
-        )
-
-        # OpenAI'den gelen yanıtı alın
-        answer = response.choices[0].text.strip()
-
-        # Yanıtı kullanıcıya gönderin
-        message.reply_text(answer)
-
-    else:
-        # Diğer durumlarda kullanıcıya samimi bir yanıt verin
-        message.reply_text("Merhaba! Size nasıl yardımcı olabilirim?")
-
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
