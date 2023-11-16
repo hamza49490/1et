@@ -73,9 +73,13 @@ import lyricsgenius
 # Genius API anahtarını buraya girin
 GENIUS_API_KEY = "PierR-oNNw9tboAn89A9FhbC_boliY9QCuocfcG3QF9OciRtimhp4a6Fnne5lBrm"
 
-# Şarkı sözlerini almak için Genius API'sini kullan
-genius = lyricsgenius.Genius(GENIUS_API_KEY)
-
+if len(message.text.split()) > 1:
+    query = message.text.split(maxsplit=1)[1]
+    # Şarkı sözlerini almak için Genius API'sini kullan
+    genius = lyricsgenius.Genius(GENIUS_API_KEY)
+    # ...
+else:
+    message.reply_text("Lütfen bir şarkı adı girin.")
 # /lyrics komutunu işlemek için bir filtre tanımla
 @app.on_message(filters.command(["lyrics"], prefixes=['/']))
 def get_lyrics(_, message: Message):
@@ -84,17 +88,10 @@ def get_lyrics(_, message: Message):
     
     try:
         # Şarkı sözlerini Genius API'sinden al
-        song = genius.search_song(query)
+        song = genius.search_song(query, get_full_info=False)
         
         if song:
-            # Şarkı sözlerini 4000 karakterden fazlaysa ayrı ayrı mesajlar halinde gönder
-            if len(song.lyrics) > 4000:
-                for i in range(0, len(song.lyrics), 4000):
-                    lyrics_part = song.lyrics[i:i+4000]
-                    message.reply_text(lyrics_part)
-            else:
-                # Şarkı sözlerini tek bir mesaj olarak gönder
-                message.reply_text(song.lyrics)
+            message.reply_text(song.title)
         else:
             message.reply_text("Şarkı bulunamadı.")
     except Exception as e:
