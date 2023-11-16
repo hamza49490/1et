@@ -104,7 +104,7 @@ def get_lyrics(title: str):
 
         return remove_first_line(remove_embed(title))
 
-    async def f(title):
+    def f(title):
         try:
             S = geniusClient.search_song(title, get_full_info=False)
             lyric = handler(S.lyrics)
@@ -116,7 +116,7 @@ def get_lyrics(title: str):
         except:
             return None
 
-    return await f(title)
+    return f(title)
 
 
 @app.on_message(filters.command(["lyrics", "sarki", "şarkı"]))
