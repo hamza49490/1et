@@ -68,44 +68,47 @@ rating = {}
 blocked_users = []
 isleyen = []
 
-from transformers import pipeline
+import openai
 
-# GPT-2 modelini yükleyin
-chatbot = pipeline("text-generation", model="gpt2")
-
-# /start komutuna yanıt veren bir işlev
-@app.on_message(filters.command("start"))
-def start_command(client: Client, message: Message):
-    message.reply_text("Merhaba! Ben yapay zeka destekli bir chatbotum. Nasıl yardımcı olabilirim?")
+# OpenAI API anahtarınızı buraya ekleyin
+openai.api_key = "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"
 
 
-# /ask komutuna yanıt veren bir işlev
-@app.on_message(filters.command("ask"))
-def ask_command(client: Client, message: Message):
-    # Kullanıcının sorusunu alın
-    question = message.text.split("/ask ", maxsplit=1)[1]
-    
-    # GPT-2 modelini kullanarak cevap üretin
-    answer = chatbot(question, max_length=100)[0]['generated_text']
-    
-    # Cevabı kullanıcıya gönderin
-    message.reply_text(answer)
+# Botun yanıt vereceği mesajları filtreleyin
+@filters.private
+def filter_private_chat(_, __, message: Message):
+    return True
 
+# Botun yanıt vereceği mesajları işleyin
+@app.on_message(filter_private_chat)
+def reply_to_message(_, message: Message):
+    # Kullanıcının mesajını alın
+    user_message = message.text.lower()
 
-# Diğer mesajlara yanıt veren bir işlev
-@app.on_message(~filters.command("start") & ~filters.command("ask"))
-def chat(client: Client, message: Message):
-    # Gelen mesajı alın
-    user_message = message.text
-    
-    # GPT-2 modelini kullanarak cevap üretin
-    answer = chatbot(user_message, max_length=100)[0]['generated_text']
-    
-    # Cevabı kullanıcıya gönderin
-    message.reply_text(answer)
+    # "ask" kelimesiyle başlayan her cümleyi algılayın
+    if user_message.startswith("ask"):
+        # Kullanıcının sorusunu alın
+        question = user_message[4:].strip()
 
+        # OpenAI'ye soruyu gönderin
+        response = openai.Completion.create(
+            engine="davinci",
+            prompt=question,
+            max_tokens=50,
+            n=1,
+            stop=None,
+            temperature=0.7
+        )
 
+        # OpenAI'den gelen yanıtı alın
+        answer = response.choices[0].text.strip()
 
+        # Yanıtı kullanıcıya gönderin
+        message.reply_text(answer)
+
+    else:
+        # Diğer durumlarda kullanıcıya samimi bir yanıt verin
+        message.reply_text("Merhaba! Size nasıl yardımcı olabilirim?")
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
