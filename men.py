@@ -196,8 +196,6 @@ async def utag(client, message):
         if len(msg_list) < 2:
             return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
         msg = msg_list[1]
-        if msg == "/utag":
-            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
     elif message.reply_to_message:
         mode = "text_on_reply"
         msg = message.reply_to_message.message_id
@@ -239,7 +237,7 @@ async def utag(client, message):
         rxyzdev_initT = f"{sender.user.first_name}"      
         if message.chat.id in rxyzdev_tagTot:
             await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-
+		
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
