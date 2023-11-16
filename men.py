@@ -216,7 +216,7 @@ async def utag(client, message):
         anlik_calisan.append(message.chat.id)
         usrnum = 0
         usrtxt = ""
-        await message.reply(ibaslama)
+        await message.reply("Etiketlemeye başlıyorum .")
         
         gece_tag.append(message.chat.id)
         usrnum = 0
@@ -229,7 +229,7 @@ async def utag(client, message):
             usrtxt += f"{usr.user.first_name}, "
             if message.chat.id not in gece_tag:
                 return
-            if usrnum == 7:
+            if usrnum == 1:
                 await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
                 await asyncio.sleep(2)
                 usrnum = 0
