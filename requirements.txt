@@ -29,7 +29,4 @@ ffmpeg-python
 Pillow==9.1.0
 ujson
 yt-dlp
-datetime
-timedelta
 lyricsgenius
-bs4
