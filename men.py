@@ -67,6 +67,18 @@ oyun = {}
 rating = {}
 blocked_users = []
 isleyen = []
+anlik_calisan = []
+tekli_calisan = []
+gece_tag = []
+rxyzdev_tagTot = {}
+rxyzdev_initT = {} 
+rxyzdev_stopT = {}
+gruplar = []
+ozel_list = []
+grup_sayi = []
+etiketuye = []
+isleyen = []
+user_sayi = []
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -164,6 +176,69 @@ async def tag4(_, query: CallbackQuery):
         ]
     )
 )
+
+@app.on_message(filters.command("utag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
+    
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
+    
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+        msg = msg_list[1]
+        if msg == "/utag":
+            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir mesaj verin.")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+    
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply(ibaslama)
+        
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"{usr.user.first_name}, "
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 7:
+                await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
+                await asyncio.sleep(2)
+                usrnum = 0
+                usrtxt = ""
+        
+        sender = await message.chat.get_member(message.from_user.id)
+        rxyzdev_initT = f"{sender.user.first_name}"      
+        if message.chat.id in rxyzdev_tagTot:
+            await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
