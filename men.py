@@ -225,6 +225,8 @@ async def utag(client, message):
     async for usr in client.iter_chat_members(message.chat.id):
         if usr.user.is_bot or usr.user.is_deleted:
             continue
+        if message.chat.id not in rxyzdev_tagTot:
+            rxyzdev_tagTot[message.chat.id] = 0
         rxyzdev_tagTot[message.chat.id] += 1
         usrnum += 1
         usrtxt += f"{usr.user.first_name}, "
