@@ -238,7 +238,7 @@ async def utag(client, message):
         if message.chat.id in rxyzdev_tagTot:
             await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
             
-if mode == "text_on_reply":
+async def tag_users(message):
     anlik_calisan.append(message.chat.id)
     usrnum = 0
     usrtxt = ""
@@ -262,7 +262,9 @@ if mode == "text_on_reply":
     rxyzdev_initT = f"{sender.user.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-		
+
+await tag_users(message)
+
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
