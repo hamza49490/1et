@@ -178,6 +178,7 @@ async def tag4(_, query: CallbackQuery):
 )
 
 @app.on_message(filters.command("utag", prefixes="/"))
+@app.on_message(filters.text & filters.group)
 async def utag(client, message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
@@ -237,11 +238,6 @@ async def utag(client, message):
         rxyzdev_initT = f"{sender.user.first_name}"      
         if message.chat.id in rxyzdev_tagTot:
             await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-
-@app.on_message(filters.text & ~filters.command("utag", prefixes="/"))
-async def reply_with_utag(client, message):
-    if message.reply_to_message and message.reply_to_message.from_user.is_bot and message.reply_to_message.text == "Etiketlemeye başlıyorum .":
-        await message.reply(message.text, mention_author=True)
 	    
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
