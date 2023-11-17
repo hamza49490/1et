@@ -70,6 +70,8 @@ isleyen = []
 gece_tag = [] #utag
 anlik_calisan = [] #utag
 rxyzdev_tagTot = {} #utag
+rxyzdev_initT = {} #utag
+rxyzdev_stopT = {} #cancel
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
