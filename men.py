@@ -213,8 +213,9 @@ async def utag(client, message):
     if mode == "text_on_cmd":
         if message.chat.id in gece_tag:
             return await message.reply("Zaten aktif bir işlem var.")
-        
-        anlik_calisan.append(message.chat.id)
+    
+    gece_tag.append(message.chat.id)
+    anlik_calisan.append(message.chat.id)
         usrnum = 0
         usrtxt = ""
         await message.reply("Etiketlemeye başlıyorum.")
