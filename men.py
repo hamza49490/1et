@@ -219,9 +219,6 @@ async def utag(client, message):
     usrtxt = ""
     await message.reply("Etiketlemeye başlıyorum.")
     
-    gece_tag.append(message.chat.id)
-    usrnum = 0
-    usrtxt = ""   
     async for usr in client.iter_chat_members(message.chat.id):
         if usr.user.is_bot or usr.user.is_deleted:
             continue
@@ -242,6 +239,7 @@ async def utag(client, message):
     rxyzdev_initT = f"{sender.user.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
+    gece_tag.remove(message.chat.id)
 	    
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
