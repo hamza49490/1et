@@ -70,7 +70,6 @@ isleyen = []
 gece_tag = [] #utag
 anlik_calisan = [] #utag
 rxyzdev_tagTot = {} #utag
-tagged_users = [] #cancel
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -169,8 +168,8 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-@app.on_message(filters.command("cancel", prefixes="/"))
-async def cancel(client, message):
+@app.on_message(filters.command("iptal", prefixes="/"))
+async def utagiptal(client, message):
     global gece_tag
     if message.chat.type == "private":
         return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
@@ -182,15 +181,11 @@ async def cancel(client, message):
         return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
     
     if message.chat.id not in gece_tag:
-        return await message.reply("Zaten işlem yok.")
+        return await message.reply("Zaten bir etiketleme işlemi yok.")
     
     gece_tag.remove(message.chat.id)
-    
-    async for member in client.iter_chat_members(message.chat.id):
-        if member.user.id in gece_tag:
-            tagged_users.append(member.user.id)
-    
-    return await message.reply(f"İşlem iptal edildi. İşlemi iptal eden kullanıcı: {message.from_user.id}. Etiketlenen kullanıcılar: {tagged_users}")
+    tagged_users = rxyzdev_tagTot.get(message.chat.id, 0)
+    await message.reply(f"Etiketleme iptal edildi.\n\nİptal eden kullanıcı: {message.from_user.first_name}\nEtiketlenen kullanıcı sayısı: {tagged_users}")
 	
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
