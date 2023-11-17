@@ -180,7 +180,6 @@ async def tag4(_, query: CallbackQuery):
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
-    rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
         return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
     
