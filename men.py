@@ -65,20 +65,12 @@ app = Client(
 
 oyun = {}
 rating = {}
-blocked_users = []
+blocked_users = [] #block
 isleyen = []
-anlik_calisan = []
-tekli_calisan = []
-gece_tag = []
-rxyzdev_tagTot = {}
-rxyzdev_initT = {} 
-rxyzdev_stopT = {}
-gruplar = []
-ozel_list = []
-grup_sayi = []
-etiketuye = []
-isleyen = []
-user_sayi = []
+gece_tag = [] #utag
+anlik_calisan = [] #utag
+rxyzdev_tagTot = {} #utag
+tagged_users = [] #cancel
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -177,6 +169,29 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
+@app.on_message(filters.command("cancel", prefixes="/"))
+async def cancel(client, message):
+    global gece_tag
+    if message.chat.type == "private":
+        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
+    
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
+    
+    if message.chat.id not in gece_tag:
+        return await message.reply("Zaten işlem yok.")
+    
+    gece_tag.remove(message.chat.id)
+    
+    async for member in client.iter_chat_members(message.chat.id):
+        if member.user.id in gece_tag:
+            tagged_users.append(member.user.id)
+    
+    return await message.reply(f"İşlem iptal edildi. İşlemi iptal eden kullanıcı: {message.from_user.id}. Etiketlenen kullanıcılar: {tagged_users}")
+	
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
@@ -212,7 +227,7 @@ async def utag(client, message):
     if mode == "text_on_cmd":
         if message.chat.id in gece_tag:
             return await message.reply("Zaten aktif bir işlem var.")
-    
+
     gece_tag.append(message.chat.id)
     anlik_calisan.append(message.chat.id)
     usrnum = 0
@@ -226,10 +241,8 @@ async def utag(client, message):
             rxyzdev_tagTot[message.chat.id] = 0
         rxyzdev_tagTot[message.chat.id] += 1
         usrnum += 1
-        usrtxt += f"{usr.user.first_name}, "
-        if message.chat.id not in gece_tag:
-            return
-        if usrnum == 1:
+        usrtxt += f"{usr.user.first_name}"
+        if usrnum == 1:  #Kullanıcı sayı 
             await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
             await asyncio.sleep(2)
             usrnum = 0
@@ -240,7 +253,7 @@ async def utag(client, message):
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     gece_tag.remove(message.chat.id)
-	    
+	
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
