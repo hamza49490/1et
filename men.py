@@ -237,32 +237,12 @@ async def utag(client, message):
         rxyzdev_initT = f"{sender.user.first_name}"      
         if message.chat.id in rxyzdev_tagTot:
             await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-            
-async def tag_users(message):
-    anlik_calisan.append(message.chat.id)
-    usrnum = 0
-    usrtxt = ""
-    await message.reply("Etiketlemeye başlıyorum .")
-    
-    usrnum = 0
-    usrtxt = ""   
-    async for usr in client.iter_chat_members(message.chat.id):
-        if usr.user.is_bot or usr.user.is_deleted:
-            continue
-        rxyzdev_tagTot[message.chat.id] += 1
-        usrnum += 1
-        usrtxt += f"{usr.user.first_name}, "
-        if usrnum == 1:
-            await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
-            await asyncio.sleep(2)
-            usrnum = 0
-            usrtxt = ""
-    
-    sender = await message.chat.get_member(message.from_user.id)
-    rxyzdev_initT = f"{sender.user.first_name}"      
-    if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
 
+@app.on_message(filters.text & ~filters.command("utag", prefixes="/"))
+async def reply_with_utag(client, message):
+    if message.reply_to_message and message.reply_to_message.from_user.is_bot and message.reply_to_message.text == "Etiketlemeye başlıyorum .":
+        await message.reply(message.text, mention_author=True)
+	    
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
