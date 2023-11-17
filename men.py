@@ -238,7 +238,7 @@ async def utag(client, message):
         if message.chat.id in rxyzdev_tagTot:
             await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
             
-elif mode == "text_on_reply":
+if mode == "text_on_reply":
     anlik_calisan.append(message.chat.id)
     usrnum = 0
     usrtxt = ""
