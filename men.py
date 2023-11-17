@@ -189,7 +189,7 @@ async def cancel(client, message):
     sender = await client.get_chat_member(message.chat.id, message.from_user.id)
     rxyzdev_stopT = sender.user.first_name
     if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+        await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n➻  {rxyzdev_stopT}\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
 
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
