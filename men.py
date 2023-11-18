@@ -44,9 +44,9 @@ LOGGER = logging.getLogger(__name__)
 
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "SpotifTRBot")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6907624117:AAHIU98IN3gWgcCQYrlXjxTp7v2B4pmjr5s")
-BOT_ID = int(os.environ.get("BOT_ID", "6907624117"))
+BOT_USERNAME = os.environ.get("BOT_USERNAME", "EpicTaggerBot")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6865081184:AAFcDOrflr2l_tibi7tvQ3A9Sv288XxevLA")
+BOT_ID = int(os.environ.get("BOT_ID", "6865081184"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
@@ -67,6 +67,7 @@ oyun = {}
 rating = {}
 blocked_users = [] #block
 isleyen = []
+
 gece_tag = [] #utag
 anlik_calisan = [] #utag
 rxyzdev_tagTot = {} #utag
@@ -170,28 +171,58 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-@app.on_message(filters.command("cancel", prefixes="/"))
-async def cancel(client, message):
+from pyrogram import Client, filters
+import asyncio
+
+gece_tag = []
+rxyzdev_tagTot = {}
+
+@app.on_message(filters.command("utag", prefixes="/"))
+async def tag(client, message):
     global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    
     if message.chat.type == "private":
-        return await message.reply("nogroup")
+        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
     
     admins = []
     async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
         admins.append(admin.user.id)
+        
     if message.from_user.id not in admins:
-        return await message.reply("noadmin")
+        return await message.reply("Bu komutu kullanma yetkiniz yok.")
     
-    if message.chat.id not in gece_tag:
-        return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
-    
-    gece_tag.remove(message.chat.id)
-    sender = await client.get_chat_member(message.chat.id, message.from_user.id)
-    rxyzdev_stopT = sender.user.first_name
-    if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n➻  {rxyzdev_stopT}\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg = " ".join(message.command[1:], sep=" ")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Eski mesajları göremiyorum!")
+    else:
+        gece_tag.append(message.chat.id)
+        await message.reply("✅ Etiketleme işlemi başarıyla başlatıldı.")
+        
+        async for user in client.iter_chat_members(message.chat.id):
+            if user.user.is_bot or user.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            if message.chat.id not in gece_tag:
+                return
+            if rxyzdev_tagTot[message.chat.id] % 1 == 0:
+                await client.send_message(message.chat.id, f"➻ {msg}\n\n{user.user.first_name}")
+                await asyncio.sleep(2)
+            else:
+                await client.send_message(message.chat.id, f"{user.user.first_name}")
+                await asyncio.sleep(2)
+        
+        sender = message.from_user
+        rxyzdev_initT = sender.first_name
+        return await message.reply(f"✅ İşlem tamamlandı.\n\n👤 Etiketlerin sayısı: {rxyzdev_tagTot[message.chat.id]}\n🗣 İşlemi başlatan: {rxyzdev_initT}")
 
-@app.on_message(filters.command("utag", prefixes="/"))
+
+@app.on_message(filters.command("ndjrkr", prefixes="/"))
 async def utag(client, message):
     global gece_tag
     if message.chat.type == "private":
