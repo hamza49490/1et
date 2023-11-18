@@ -314,23 +314,20 @@ async def handle_eros(client: Client, message: Message):
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-
+		
 @app.on_message(filters.group & filters.command(["info", "id"], prefixes="/"))
-async def get_user_info(client: Client, message: Message):
+async def get_user_info(client: Client, message: types.Message):
     user = None
 
     if message.reply_to_message:
         user = message.reply_to_message.from_user
     elif len(message.command) > 1:
         username = message.command[1]
-        user = client.get_users(username)
+        user = await client.get_users(username)
 
     if user:
-        if user.is_bot:
-            status = "Durumu: Bot"
-        elif user.is_deleted:
-            status = "Durumu: Silinen hesap"
-        elif user.is_admin:
+        chat_member = await client.get_chat_member(message.chat.id, user.id)
+        if chat_member.status == "administrator" or chat_member.status == "creator":
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
@@ -343,11 +340,8 @@ async def get_user_info(client: Client, message: Message):
                f"{status}"
         await message.reply_text(info)
     else:
-        if message.from_user.is_bot:
-            status = "Durumu: Bot"
-        elif message.from_user.is_deleted:
-            status = "Durumu: Silinen hesap"
-        elif message.from_user.is_admin:
+        chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+        if chat_member.status == "administrator" or chat_member.status == "creator":
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
