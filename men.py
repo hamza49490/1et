@@ -250,8 +250,9 @@ async def utag(client: Client, message: Message):
     rxyzdev_initT = f"{sender.user.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-    gece_tag.remove(message.chat.id)
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
+    if message.chat.id in anlik_calisan:
+        anlik_calisan.remove(message.chat.id)   	
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
