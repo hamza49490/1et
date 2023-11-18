@@ -322,8 +322,11 @@ async def get_user_info(client: Client, message: types.Message):
     if message.reply_to_message:
         user = message.reply_to_message.from_user
     elif len(message.command) > 1:
-        username = message.command[1]
-        user = await client.get_users(username)
+        user_id = message.command[1]
+        try:
+            user = await client.get_users(int(user_id))
+        except ValueError:
+            pass
 
     if user:
         chat_member = await client.get_chat_member(message.chat.id, user.id)
@@ -331,26 +334,24 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-        profile_link = f"tg://openmessage?user_id={user.id}"
-        info = f"Kullanıcı: ({user.first_name})[{profile_link}]\n" \
-	       f"Kullanıcı Adı: {user.username}\n" \
+        info = f"Kullanıcı: {user.first_name}\n" \
+               f"Kullanıcı Adı: @{user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
-        await message.reply_text(info)
+        await message.reply_text(info, parse_mode="Markdown")
     else:
         chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
         if chat_member.status == "administrator" or chat_member.status == "creator":
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-        profile_link = f"tg://openmessage?user_id={message.from_user.id}"
-        info = f"Kullanıcı: ({message.from_user.first_name})[{profile_link}]\n" \
-	       f"Kullanıcı Adı: {message.from_user.username}\n" \
+        info = f"Kullanıcı: ({message.from_user.first_name})\n" \
+               f"Kullanıcı Adı: @{message.from_user.username}\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
-        await message.reply_text(info)
+        await message.reply_text(info, parse_mode="Markdown")
 	    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 async def reload_command(client: Client, message: Message):
