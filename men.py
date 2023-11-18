@@ -314,7 +314,7 @@ async def handle_eros(client: Client, message: Message):
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-		
+
 @app.on_message(filters.group & filters.command(["info", "id"], prefixes="/"))
 async def get_user_info(client: Client, message: types.Message):
     user = None
@@ -331,15 +331,10 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-
-        if hasattr(chat_member.user, 'total_count'):
-            message_count = chat_member.user.total_count
-        else:
-            message_count = "Bilinmiyor"
-
-        info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
+        profile_link = f"tg://openmessage?user_id={user.id}"
+        info = f"Kullanıcı: ({user.user.first_name)[{profile_link}]\n" \
+	       f"Kullanıcı Adı: {user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
-               f"Mesaj Sayısı: {message_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
         await message.reply_text(info)
@@ -349,15 +344,10 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-
-        if hasattr(chat_member.user, 'total_count'):
-            message_count = chat_member.user.total_count
-        else:
-            message_count = "Bilinmiyor"
-
-        info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
+        profile_link = f"tg://openmessage?user_id={message.from_user.id}"
+        info = f"Kullanıcı: ({message.from_user.first_name})[{profile_link}]\n" \
+	       f"Kullanıcı Adı: {message.from_user.username}\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
-               f"Mesaj Sayısı: {message_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
         await message.reply_text(info)
