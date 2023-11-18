@@ -365,15 +365,15 @@ async def reload_command(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"Grupta Kullan .")
 
-    chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
-        client.send_message(message.chat.id, "🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !")
+        await client.send_message(message.chat.id, "🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !")
     else:
-        client.send_message(
+        await client.send_message(
             message.chat.id,
             "✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !"
 	)
-
+	    
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
