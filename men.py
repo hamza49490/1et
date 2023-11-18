@@ -190,9 +190,9 @@ async def cancel(client, message):
     
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
-	    
+
 @app.on_message(filters.command("utag"))
-async def utag(client: Client, message: Message):
+async def utag(client, message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
     if message.chat.type == "private":
         return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
@@ -254,7 +254,7 @@ async def utag(client: Client, message: Message):
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
     if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)   	
+        gece_tag.remove(message.chat.id)
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
