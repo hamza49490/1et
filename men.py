@@ -50,6 +50,8 @@ BOT_ID = int(os.environ.get("BOT_ID", "6865081184"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
+PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
+MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDuyuru")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
@@ -162,142 +164,132 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 	    
-'''@app.on_message(filters.command("utag"))
-async def utag(client: Client, message: Message):
-    global gece_tag, rxyzdev_tagTot, anlik_calisan
-    if message.chat.type == "private":
-        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
+'''
+@app.on_message(filters.command(["bul", "song"]) & ~filters.edited)
+async def bul(_, message):
+    try:
+        await message.delete()
+    except:
+        pass
+    query = " ".join(message.command[1:])
+    m = await message.reply("**__✦ şᴀʀᴋɪ ᴀʀᴀɴɪʏᴏʀ !__**")
+    ydl_ops = {"format": "bestaudio[ext=m4a]"}
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        link = f"https://youtube.com{results[0]['url_suffix']}"
+        title = results[0]["title"][:40]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        duration = results[0]["duration"]
     
-    admins = []
-    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
-        admins.append(admin.user.id)
-    if message.from_user.id not in admins:
-        return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
-    
-    if len(message.command) > 1:
-        mode = "text_on_cmd"
-        msg_list = message.text.split(None, 1)
-        if len(msg_list) < 2:
-            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
-        msg = msg_list[1]
-    elif message.reply_to_message:
-        mode = "text_on_reply"
-        msg = message.reply_to_message.message_id
-        if msg == None:
-            return await message.reply("Bir mesaj verin.")
-    elif len(message.command) > 1 and message.reply_to_message:
-        mode = "text_on_cmd"
-        msg_list = message.text.split(None, 1)
-        if len(msg_list) < 2:
-            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
-        msg = msg_list[1]
-    else:
-        mode = "text_on_cmd"
-        msg = ""
-    
-    if mode == "text_on_cmd":
-        if message.chat.id in gece_tag:
-            return await message.reply("Zaten aktif bir işlem var.")
+    except Exception as e:
+        await m.edit("**__✦ şᴀʀᴋɪ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !__**")
+        print(str(e))
+        return
+    await m.edit("**__✦ şᴀʀᴋɪ ɪɴᴅɪʀɪʟɪʏᴏʀ !__**")
+    try:
+        with yt_dlp.YoutubeDL(ydl_ops) as ydl:
+            info_dict = ydl.extract_info(link, download=False)
+            audio_file = ydl.prepare_filename(info_dict)
+            ydl.process_info(info_dict)
+        rep = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
+        res = f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {title[:35]}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**"
+        secmul, dur, dur_arr = 1, 0, duration.split(":")
+        for i in range(len(dur_arr) - 1, -1, -1):
+            dur += int(float(dur_arr[i])) * secmul
+            secmul *= 60
+        await m.edit("**__✦ şᴀʀᴋɪ ʏᴜ̈ᴋʟᴇɴɪʏᴏʀ !__**")
+        await message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖬𝗎̈𝗓𝗂𝗄 𝖪𝖺𝗒ı𝗍  ✦", url=f"t.me/{MCHANNEL}")]]))
+        await m.delete()
+        await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+    except Exception as e:
+        await m.edit("**__✦ ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**")
+        print(e)
 
-    gece_tag.append(message.chat.id)  # Bu satırı ekledim
-    anlik_calisan.append(message.chat.id)
-    usrnum = 0
-    usrtxt = ""
-    await message.reply("Etiketlemeye başlıyorum.")
-    
-    async for usr in client.iter_chat_members(message.chat.id):
-        if usr.user.is_bot or usr.user.is_deleted:
-            continue
-        if message.chat.id not in rxyzdev_tagTot:
-            rxyzdev_tagTot[message.chat.id] = 0
-        rxyzdev_tagTot[message.chat.id] += 1
-        usrnum += 1
-        usrtxt += f"{usr.user.first_name} , "
-        if usrnum == 1:  # Kullanıcı sayı
-            await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
-            await asyncio.sleep(2)
-            usrnum = 0
-            usrtxt = ""
-    
-    sender = await message.chat.get_member(message.from_user.id)
-    rxyzdev_initT = f"{sender.user.first_name}"      
-    if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-    rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
-    if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)'''  
+    try:
+        os.remove(audio_file)
+        os.remove(thumb_name)
+    except Exception as e:
+        print(e)
 
-@app.on_message(filters.command('group', prefixes='/'))
-async def grup_info(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"nogroup")
-     
-    chat = message.chat
-    group_name = chat.title
-    group_id = chat.id
-
-    chat_info = await client.get_chat(group_id)
-
-    deleted_count = 0
-    active_count = 0
-    bot_count = 0
-    total_count = 0
-
-    async for participant in client.iter_chat_members(chat_info.id):
-        total_count += 1
-        if participant.user.is_deleted:
-            deleted_count += 1
-        elif not participant.user.is_bot:
-            active_count += 1
-        elif participant.user.is_bot:
-            bot_count += 1
-
-    special_status = ""
-    if deleted_count > 0:
-        special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
-    if bot_count > 0:
-        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
-
-    if not special_status:
-        special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
-
-    response_text = (
-        f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
-        f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
-        f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
-        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
-        f'{special_status}'
+@app.on_message(filters.command(["vbul", "vsong"]) & ~filters.edited)
+async def vsong(client, message):
+    try:
+        await message.delete()
+    except:
+        pass
+    ydl_opts = {
+        "format": "best",
+        "keepvideo": True,
+        "prefer_ffmpeg": False,
+        "geo_bypass": True,
+        "outtmpl": "%(title)s.%(ext)s",
+        "quite": True,
+    }
+    query = " ".join(message.command[1:])
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        link = f"https://youtube.com{results[0]['url_suffix']}"
+        title = results[0]["title"][:40]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        duration = results[0]["duration"]
+        views = results[0]["views"]
+        mention = message.from_user.mention
+    except Exception as e:
+        print(e)
+    try:
+        msg = await message.reply("**__✦ ᴠɪᴅᴇᴏ ᴀʀᴀɴɪʏᴏʀ !__**")
+        with YoutubeDL(ydl_opts) as ytdl:
+            ytdl_data = ytdl.extract_info(link, download=True)
+            file_name = ytdl.prepare_filename(ytdl_data)
+    except Exception as e:
+        return await msg.edit(f"**__✦ ᴠɪᴅᴇᴏ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !__**")
+    preview = wget.download(thumbnail)
+    await msg.edit("**__✦ ᴠɪᴅᴇᴏ ɪɴᴅɪʀɪʟɪʏᴏʀ !__**")
+    await message.reply_video(
+        file_name,
+        duration=int(ytdl_data["duration"]),
+        thumb=preview,
+        caption=f"**__✦ ᴘᴀʀᴄ̧ᴀ__ : {ytdl_data['title']}\n__✦ sᴜ̈ʀᴇ__ : {duration}\n\n__✦ ɪsᴛᴇʏᴇɴ__ : [{message.from_user.first_name}](tg://user?id={message.from_user.id})**",
     )
+    try:
+        os.remove(file_name)
+        os.remove(thumb_name)
+        await msg.delete()
+    except Exception as e:
+        print(e)
 
-    await message.reply_text(response_text)
-	
-@app.on_message(filters.command(["bots"], prefixes="/"))
-async def show_bots(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"nogroup")
-	    
-    all_users = await client.get_chat_members(message.chat.id)
-    bot_list = []
-    for user in all_users:
-        if user.user.is_bot:
-            bot_list.append(user.user.username)
-    if bot_list:
-        await message.reply_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
-    else:
-        await message.reply_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
-	    
-@app.on_message(filters.command("admins", prefixes="/"))
-async def show_admins(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"nogroup")
-
-    chat = message.chat
-    admins = await client.get_chat_members(chat.id, filter="administrators")
-    admin_list = ""
-    for admin in admins:
-        user = admin.user
-        admin_list += f"\n➻  ({user.first_name})[tg://user?id={user.id}]"
-    await message.reply_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
+@app.on_message(filters.command(["ara", "search"]) & ~filters.edited)
+async def ytsearch(_, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+    try:
+        if len(message.command) < 2:
+            return await message.reply_text("**__✦ sᴏɴᴜᴄ̧ ʙᴜʟᴜɴᴀᴍᴀᴅɪ !**")
+        query = message.text.split(None, 1)[1]
+        m = await message.reply_text("**__✦ ᴀʀɪʏᴏʀᴜᴍ !__**")
+        results = YoutubeSearch(query, max_results=6).to_dict()
+        i = 0
+        text = ""
+        while i < 6:
+            text += f"**__💬 ᴘᴀʀᴄ̧ᴀ__ : {results[i]['title']}**\n"
+            text += f"**__⌚ sᴜ̈ʀᴇ__ : {results[i]['duration']}**\n"
+            text += f"**__🔗 ʟɪɴᴋ__ : [ ʏᴏᴜᴛᴜʙᴇ'ᴅᴇɴ ɪᴢʟᴇ ](https://youtube.com{results[i]['url_suffix']})**\n\n"
+            i += 1
+        await m.edit_text(
+            text=text,
+            disable_web_page_preview=True,
+        )
+    except Exception as e:
+        await message.reply_text(str(e))
+'''  
 	
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
@@ -387,6 +379,78 @@ async def handle_eros(client: Client, message: Message):
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
+@app.on_message(filters.command('group', prefixes='/'))
+async def grup_info(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+     
+    chat = message.chat
+    group_name = chat.title
+    group_id = chat.id
+
+    chat_info = await client.get_chat(group_id)
+
+    deleted_count = 0
+    active_count = 0
+    bot_count = 0
+    total_count = 0
+
+    async for participant in client.iter_chat_members(chat_info.id):
+        total_count += 1
+        if participant.user.is_deleted:
+            deleted_count += 1
+        elif not participant.user.is_bot:
+            active_count += 1
+        elif participant.user.is_bot:
+            bot_count += 1
+
+    special_status = ""
+    if deleted_count > 0:
+        special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
+    if bot_count > 0:
+        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
+
+    if not special_status:
+        special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
+
+    response_text = (
+        f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
+        f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
+        f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
+        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
+        f'{special_status}'
+    )
+
+    await message.reply_text(response_text)
+	
+@app.on_message(filters.command(["bots"], prefixes="/"))
+async def show_bots(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+	    
+    all_users = await client.get_chat_members(message.chat.id)
+    bot_list = []
+    for user in all_users:
+        if user.user.is_bot:
+            bot_list.append(user.user.username)
+    if bot_list:
+        await message.reply_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
+    else:
+        await message.reply_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
+	    
+@app.on_message(filters.command("admins", prefixes="/"))
+async def show_admins(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+
+    chat = message.chat
+    admins = await client.get_chat_members(chat.id, filter="administrators")
+    admin_list = ""
+    for admin in admins:
+        user = admin.user
+        admin_list += f"\n➻  [{user.first_name}](tg://user?id={user.id})"
+    await message.reply_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
+	
 @app.on_message(filters.group & filters.command(["info", "id"], prefixes="/"))
 async def get_user_info(client: Client, message: types.Message):
     user = None
