@@ -295,9 +295,10 @@ async def show_admins(client: Client, message: Message):
     admins = await client.get_chat_members(chat.id, filter="administrators")
     admin_list = ""
     for admin in admins:
-        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
+        user = admin.user
+        admin_list += f"\n➻  ({user.first_name})[tg://user?id={user.id}]"
     await message.reply_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
-
+	
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
