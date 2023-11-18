@@ -180,18 +180,19 @@ async def cancel(client, message):
     if message.from_user.id not in admins:
         return await message.reply("noadmin")
     
-    if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)
+    if message.chat.id not in gece_tag:
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
-     
+    
+    gece_tag.remove(message.chat.id)  # Bu satırı ekleyin
+    
     sender = await client.get_chat_member(message.chat.id, message.from_user.id)
     rxyzdev_stopT = f"{sender.user.first_name}"
     
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
-
+	    
 @app.on_message(filters.command("utag"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
     if message.chat.type == "private":
         return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
@@ -226,33 +227,34 @@ async def utag(client, message):
     if mode == "text_on_cmd":
         if message.chat.id in gece_tag:
             return await message.reply("Zaten aktif bir işlem var.")
-        gece_tag.append(message.chat.id)
-        anlik_calisan.append(message.chat.id)
-        usrnum = 0
-        usrtxt = ""
-        await message.reply("Etiketlemeye başlıyorum.")
-        
-        async for usr in client.iter_chat_members(message.chat.id):
-            if usr.user.is_bot or usr.user.is_deleted:
-                continue
-            if message.chat.id not in rxyzdev_tagTot:
-                rxyzdev_tagTot[message.chat.id] = 0
-            rxyzdev_tagTot[message.chat.id] += 1
-            usrnum += 1
-            usrtxt += f"{usr.user.first_name} , "
-            if usrnum == 1:  # Kullanıcı sayı
-                await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
-                await asyncio.sleep(2)
-                usrnum = 0
-                usrtxt = ""
-        
-        sender = await message.chat.get_member(message.from_user.id)
-        rxyzdev_initT = f"{sender.user.first_name}"      
-        if message.chat.id in rxyzdev_tagTot:
-            await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-        rxyzdev_tagTot[message.chat.id] = 0
-        if message.chat.id in gece_tag:
-            gece_tag.remove(message.chat.id)
+
+    gece_tag.append(message.chat.id)  # Bu satırı ekledim
+    anlik_calisan.append(message.chat.id)
+    usrnum = 0
+    usrtxt = ""
+    await message.reply("Etiketlemeye başlıyorum.")
+    
+    async for usr in client.iter_chat_members(message.chat.id):
+        if usr.user.is_bot or usr.user.is_deleted:
+            continue
+        if message.chat.id not in rxyzdev_tagTot:
+            rxyzdev_tagTot[message.chat.id] = 0
+        rxyzdev_tagTot[message.chat.id] += 1
+        usrnum += 1
+        usrtxt += f"{usr.user.first_name} , "
+        if usrnum == 1:  # Kullanıcı sayı
+            await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
+            await asyncio.sleep(2)
+            usrnum = 0
+            usrtxt = ""
+    
+    sender = await message.chat.get_member(message.from_user.id)
+    rxyzdev_initT = f"{sender.user.first_name}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
+    rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
+    if message.chat.id in gece_tag:
+        gece_tag.remove(message.chat.id)
 		
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
