@@ -231,8 +231,8 @@ async def utag(client: Client, message: Message):
 async def grup_info(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
-	    
-    chat = await message.get_chat()
+     
+    chat = message.chat
     group_name = chat.title
     group_id = chat.id
 
@@ -291,8 +291,8 @@ async def show_admins(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
 
-    chat = await client.get_chat(message.chat.id)
-    admins = await client.get_chat_members(chat.id, filter=types.ChatMembersAdmins)
+    chat = message.chat
+    admins = await client.get_chat_members(chat.id, filter=types.ChatMemberUpdated)
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
