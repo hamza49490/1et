@@ -334,7 +334,6 @@ async def get_user_info(client: Client, message: types.Message):
 
         info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
                f"Kullanıcı ID: {user.id}\n" \
-               f"Katılma Tarihi: {user.date}\n" \
                f"Mesaj Sayısı: {user.total_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
@@ -348,7 +347,6 @@ async def get_user_info(client: Client, message: types.Message):
 
         info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
-               f"Katılma Tarihi: {message.from_user.date}\n" \
                f"Mesaj Sayısı: {message.from_user.total_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
