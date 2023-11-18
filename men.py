@@ -238,54 +238,8 @@ async def slap(client: Client, message: Message):
         if user:
             user_name = f"{user.first_name}"
             slap_phrases = [
-	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
-	             	                f"{user_name} 'ın Kulağını Çekti! Acımış Olmalı 😕",
-		                        f"{user_name} 'ı Arabayla Ezdi! Öldün Bebek 🥴",
-		                        f"{user_name} 'ı Soydu! 5 Kuruş'u Kaldı 😕",
-		                        f"{user_name} 'ı Yemeğe Çıkardı! Hayrola İnşallah 🤭",
-		                        f"{user_name} 'a Sarıldı! Sevgi Dolu Kucaklaşma 💞",
-		                        f"{user_name} 'ın Üstüne Çay Döktü! Yanıyorsun Fuat Abi 🔥",
-                                        f"{user_name} 'ın Üzerine Pasta Fırlattı! Afiyet Olsun 😋",
-                                        f"{user_name} 'ın Üstüne Benzin Döktü!",
-                                        f"{user_name} 'ı Ateşe Attı! Yanıyorsun Ayten 🤣",
-                                        f"{user_name} 'ın Üstüne Su Döktü!",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Yerle Bir Oldu :)",
-                                        f"{user_name} 'a Çikolata Verdi! Hadi Yine İyisin 🥳",
-                                        f"{user_name} 'ı Zencilere Sattı! Geçmiş Olsun 🥳",
-                                        f"{user_name} 'ı Turşu Kavonozuna Soktu! Turşu {user_name}",
-                                        f"{user_name} 'ın Üzerine Buz Dolabı Attı!",
-                                        f"{user_name} 'ın Kafasını Duvara Sürterek Yaktı! Zavallı Ağlicak :)",
-                                        f"{user_name} 'ı Ormana Kaçırdı! Acaba Ne Olacak 🤭",
-                                        f"{user_name} 'ı Banyoda Suikast Etti! Banyoda Ne İşin Vardı 🤣",
-		                        f"{user_name} 'a Kafa Attı! Mermiler Seksin, Alemde Teksin 😁",
-		                        f"{user_name} 'a Harçlık Verdi! Kendine Çikolata Alırsın 😁",
-                                        f"{user_name} 'a Kavanoz Fırlattı! Başka Bişey Bulamadı Sanırım 🙄",
-	  	                        f"{user_name} 'a Domates Fırlattı! Suratı Kıp Kırmızı Oldu 😁",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a İğne Sapladı! Bu Acıtmıştır Sanırım 🥲",
-		                        f"{user_name} 'a Çelme Taktı! Geber 😁",
-		                        f"{user_name} 'ın Yüzüne Tükürdü 🤬",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a Omuz attı! Ne bakıyon Birader !",
-		                        f"{user_name} 'a Yumurta Fırlattı! Tam isabet 🎯",
-		                        f"{user_name} 'ın Saçını Çekti! Acıdı mı 😁",
-		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'ın Kafasında Şişe Kırdı! Kafası Acımış Olmalı 🥲",
-		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'a Kafa Attı! Burnu Kırıldı 😱",
-		                        f"{user_name} 'a Yumruk attı ! Buz Koy Morarmasın 🤕",
-		                        f"{user_name} 'ın Kafasına Taş Attı! Rahmetliyi Sevmezdik 🥴",
-                                        f"{user_name} 'a 619 Çekti! Zavallı Bayıldı 😁",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Şamar Oğlana Döndü 😱",
-                                        f"Marketten Beyin Satın Aldı! Artık {user_name} 'ın Beyni Var .",
-                                        f"Beyni'nin Yarısını {user_name} 'a Verdi! Artık Aç Kalmayacak 😋",
-                                        f"{user_name} 'ı Camdan Attı! Kafası Yarıldı ve Öldü .",
-                                        f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
-                                        f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
-                                        f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
-		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
-	    ]
+                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+            ]
             slap_phrase = random.choice(slap_phrases)
             await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
         else:
@@ -295,62 +249,16 @@ async def slap(client: Client, message: Message):
         user = await client.get_users(user_id)
         if user:
             user_name = f"{user.first_name}"
-	    slap_phrases = [
-	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
-	             	                f"{user_name} 'ın Kulağını Çekti! Acımış Olmalı 😕",
-		                        f"{user_name} 'ı Arabayla Ezdi! Öldün Bebek 🥴",
-		                        f"{user_name} 'ı Soydu! 5 Kuruş'u Kaldı 😕",
-		                        f"{user_name} 'ı Yemeğe Çıkardı! Hayrola İnşallah 🤭",
-		                        f"{user_name} 'a Sarıldı! Sevgi Dolu Kucaklaşma 💞",
-		                        f"{user_name} 'ın Üstüne Çay Döktü! Yanıyorsun Fuat Abi 🔥",
-                                        f"{user_name} 'ın Üzerine Pasta Fırlattı! Afiyet Olsun 😋",
-                                        f"{user_name} 'ın Üstüne Benzin Döktü!",
-                                        f"{user_name} 'ı Ateşe Attı! Yanıyorsun Ayten 🤣",
-                                        f"{user_name} 'ın Üstüne Su Döktü!",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Yerle Bir Oldu :)",
-                                        f"{user_name} 'a Çikolata Verdi! Hadi Yine İyisin 🥳",
-                                        f"{user_name} 'ı Zencilere Sattı! Geçmiş Olsun 🥳",
-                                        f"{user_name} 'ı Turşu Kavonozuna Soktu! Turşu {user_name}",
-                                        f"{user_name} 'ın Üzerine Buz Dolabı Attı!",
-                                        f"{user_name} 'ın Kafasını Duvara Sürterek Yaktı! Zavallı Ağlicak :)",
-                                        f"{user_name} 'ı Ormana Kaçırdı! Acaba Ne Olacak 🤭",
-                                        f"{user_name} 'ı Banyoda Suikast Etti! Banyoda Ne İşin Vardı 🤣",
-		                        f"{user_name} 'a Kafa Attı! Mermiler Seksin, Alemde Teksin 😁",
-		                        f"{user_name} 'a Harçlık Verdi! Kendine Çikolata Alırsın 😁",
-                                        f"{user_name} 'a Kavanoz Fırlattı! Başka Bişey Bulamadı Sanırım 🙄",
-	  	                        f"{user_name} 'a Domates Fırlattı! Suratı Kıp Kırmızı Oldu 😁",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a İğne Sapladı! Bu Acıtmıştır Sanırım 🥲",
-		                        f"{user_name} 'a Çelme Taktı! Geber 😁",
-		                        f"{user_name} 'ın Yüzüne Tükürdü 🤬",
-		                        f"{user_name} 'a Kanepeyi Fırlattı! Öyle Ölmez Füze Atsaydın 😱",
-		                        f"{user_name} 'a Omuz attı! Ne bakıyon Birader !",
-		                        f"{user_name} 'a Yumurta Fırlattı! Tam isabet 🎯",
-		                        f"{user_name} 'ın Saçını Çekti! Acıdı mı 😁",
-		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'ın Kafasında Şişe Kırdı! Kafası Acımış Olmalı 🥲",
-		                        f"{user_name} 'a Taş Attı! Kafası Yarıldı 🤭",
-		                        f"{user_name} 'a Kafa Attı! Burnu Kırıldı 😱",
-		                        f"{user_name} 'a Yumruk attı ! Buz Koy Morarmasın 🤕",
-		                        f"{user_name} 'ın Kafasına Taş Attı! Rahmetliyi Sevmezdik 🥴",
-                                        f"{user_name} 'a 619 Çekti! Zavallı Bayıldı 😁",
-                                        f"{user_name} 'a Osmanlı Tokatı Attı! Şamar Oğlana Döndü 😱",
-                                        f"Marketten Beyin Satın Aldı! Artık {user_name} 'ın Beyni Var .",
-                                        f"Beyni'nin Yarısını {user_name} 'a Verdi! Artık Aç Kalmayacak 😋",
-                                        f"{user_name} 'ı Camdan Attı! Kafası Yarıldı ve Öldü .",
-                                        f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
-                                        f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
-                                        f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
-		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
-	    ]
+            slap_phrases = [
+                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+            ]
             slap_phrase = random.choice(slap_phrases)
             await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
         else:
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
     else:
         await message.reply("Bir mesaja yanıt verin veya bir kullanıcıyı etiketleyin!")
-
+	    
 
 
 @app.on_message(filters.command(["dnjdkf"], prefixes=['/', '']))
