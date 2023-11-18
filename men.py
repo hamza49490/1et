@@ -181,7 +181,7 @@ async def cancel(client, message):
         return await message.reply("noadmin")
     
     if message.chat.id in gece_tag:
-    gece_tag.remove(message.chat.id)
+        gece_tag.remove(message.chat.id)
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
     
     gece_tag.remove(message.chat.id)
@@ -226,7 +226,7 @@ async def utag(client, message):
         msg = ""
     
     if mode == "text_on_cmd":
-    gece_tag.append(message.chat.id)
+        gece_tag.append(message.chat.id)
         if message.chat.id in gece_tag:
             return await message.reply("Zaten aktif bir işlem var.")
 
