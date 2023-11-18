@@ -185,14 +185,13 @@ async def cancelutag(client, message):
     if message.chat.id not in gece_tag:
         return await message.reply("Aktif bir işlem bulunmamaktadır.")
     
-    if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)
-        rxyzdev_tagTot[message.chat.id] = 0
-        sender = await message.chat.get_member(message.from_user.id)
-        await message.reply(f"Etiketleme işlemi iptal edildi.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-        if message.chat.id in anlik_calisan:
-            anlik_calisan.remove(message.chat.id)
-     
+    gece_tag.remove(message.chat.id)  # İşlemi iptal etmek için işlem listesinden çıkar
+    rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
+    sender = await message.chat.get_member(message.from_user.id)
+    await message.reply(f"Etiketleme işlemi iptal edildi.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
+    if message.chat.id in anlik_calisan:
+        anlik_calisan.remove(message.chat.id)
+	    
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
