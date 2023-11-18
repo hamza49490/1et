@@ -167,28 +167,30 @@ anlik_calisan = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {}
 rxyzdev_stopT = {}
-@app.on_message(filters.command("stop"))
-async def stoputag(client: Client, message: Message):
-    global gece_tag, rxyzdev_tagTot, anlik_calisan
+
+
+@app.on_message(filters.command("cancel", prefixes="/"))
+async def cancel(client, message):
+    global gece_tag
     if message.chat.type == "private":
-        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
+        return await message.reply("nogroup")
     
     admins = []
     async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
         admins.append(admin.user.id)
     if message.from_user.id not in admins:
-        return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
+        return await message.reply("noadmin")
     
     if message.chat.id not in gece_tag:
-        return await message.reply("Aktif bir işlem bulunmamaktadır.")
+        return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
     
-    gece_tag.remove(message.chat.id)  # İşlemi iptal etmek için işlem listesinden çıkar
-    rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
-    sender = await message.chat.get_member(message.from_user.id)
-    await message.reply(f"Etiketleme işlemi durduruldu.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-    if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)
+    gece_tag.remove(message.chat.id)
+    sender = await client.get_chat_member(message.chat.id, message.from_user.id)
+    rxyzdev_stopT = f"{sender.user.first_name}"
     
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+	    
 @app.on_message(filters.command("utag"))
 async def utag(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
