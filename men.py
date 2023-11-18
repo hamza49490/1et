@@ -332,9 +332,14 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
 
+        if hasattr(chat_member.user, 'total_count'):
+            message_count = chat_member.user.total_count
+        else:
+            message_count = "Bilinmiyor"
+
         info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
                f"Kullanıcı ID: {user.id}\n" \
-               f"Mesaj Sayısı: {chat_member.user.total_count}\n" \
+               f"Mesaj Sayısı: {message_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
         await message.reply_text(info)
@@ -345,9 +350,14 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
 
+        if hasattr(chat_member.user, 'total_count'):
+            message_count = chat_member.user.total_count
+        else:
+            message_count = "Bilinmiyor"
+
         info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
-               f"Mesaj Sayısı: {chat_member.user.total_count}\n" \
+               f"Mesaj Sayısı: {message_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
         await message.reply_text(info)
