@@ -316,7 +316,7 @@ async def handle_eros(client: Client, message: Message):
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
 @app.on_message(filters.group & filters.command(["info", "id"], prefixes="/"))
-def get_user_info(client: Client, message: Message):
+async def get_user_info(client: Client, message: Message):
     user = None
 
     if message.reply_to_message:
@@ -326,18 +326,38 @@ def get_user_info(client: Client, message: Message):
         user = client.get_users(username)
 
     if user:
+        if user.is_bot:
+            status = "Durumu: Bot"
+        elif user.is_deleted:
+            status = "Durumu: Silinen hesap"
+        elif user.is_admin:
+            status = "Durumu: Yönetici"
+        else:
+            status = "Durumu: Üye"
+
         info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Katılma Tarihi: {user.date}\n" \
                f"Mesaj Sayısı: {user.total_count}\n" \
-               f"Grup ID: {message.chat.id}"
+               f"Grup ID: {message.chat.id}\n" \
+               f"{status}"
         await message.reply_text(info)
     else:
+        if message.from_user.is_bot:
+            status = "Durumu: Bot"
+        elif message.from_user.is_deleted:
+            status = "Durumu: Silinen hesap"
+        elif message.from_user.is_admin:
+            status = "Durumu: Yönetici"
+        else:
+            status = "Durumu: Üye"
+
         info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
                f"Katılma Tarihi: {message.from_user.date}\n" \
                f"Mesaj Sayısı: {message.from_user.total_count}\n" \
-               f"Grup ID: {message.chat.id}"
+               f"Grup ID: {message.chat.id}\n" \
+               f"{status}"
         await message.reply_text(info)
 	    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
