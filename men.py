@@ -186,8 +186,8 @@ async def stoputag(client: Client, message: Message):
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
     sender = await message.chat.get_member(message.from_user.id)
     await message.reply(f"Etiketleme işlemi durduruldu.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-    if message.chat.id in anlik_calisan:
-        anlik_calisan.remove(message.chat.id)
+    if message.chat.id in gece_tag:
+        gece_tag.remove(message.chat.id)
     
 @app.on_message(filters.command("utag"))
 async def utag(client: Client, message: Message):
@@ -251,8 +251,8 @@ async def utag(client: Client, message: Message):
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
-    if message.chat.id in anlik_calisan:
-        anlik_calisan.remove(message.chat.id)   	
+    if message.chat.id in gece_tag:
+        gece_tag.remove(message.chat.id)   	
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
