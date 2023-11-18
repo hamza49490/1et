@@ -232,21 +232,14 @@ async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
-    if message.reply_to_message:
-        reply_message = message.reply_to_message
-        user = reply_message.from_user
-        if user:
-            user_name = f"{user.first_name}"
-            slap_phrases = [
-                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-            ]
-            slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
-        else:
-            await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
-    elif message.entities and message.entities[0].type == "mention":
-        user_id = message.entities[0].user.id
-        user = await client.get_users(user_id)
+    if message.reply_to_message or message.entities:
+        if message.reply_to_message:
+            reply_message = message.reply_to_message
+            user = reply_message.from_user
+        elif message.entities and message.entities[0].type == "mention":
+            user_id = message.entities[0].user.id
+            user = await client.get_users(user_id)
+        
         if user:
             user_name = f"{user.first_name}"
             slap_phrases = [
