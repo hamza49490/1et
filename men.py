@@ -292,7 +292,7 @@ async def show_admins(client: Client, message: Message):
         return await message.reply(f"nogroup")
 
     chat = message.chat
-    admins = await client.get_chat_members(chat.id, filter=types.ChatMemberUpdated)
+    admins = await client.get_chat_members(chat.id, filter="administrators")
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
