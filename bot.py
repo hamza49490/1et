@@ -23,9 +23,126 @@ bot_token = os.environ.get("TOKEN","6923679994:AAFN1YVRdcZm-jtv3aYyORkyZgMRsiRB-
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
+anlik_calisan = []
+tekli_calisan = []
+gece_tag = []
+rxyzdev_tagTot = {}
+rxyzdev_initT = {} 
+rxyzdev_stopT = {}
+isleyen = []
 
-##################################################
-##################################################
+@client.on(events.NewMessage(pattern='(?i)/cagir'))
+async def handle_tagging(event):
+    if event.is_private:
+        await event.respond(f"{nogroup}", parse_mode='markdown')
+        return
+    # Komutu kullanan kişinin kullanıcı adını al
+    sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
+    
+    # Tüm kullanıcıları al
+    all_users = await client.get_participants(event.chat_id)
+    
+    # Etiketlenecek kullanıcı sayısı
+    tag_count = 100
+    
+    # Botlar ve silinen hesapları hariç tut
+    valid_users = [user for user in all_users if not user.bot and not user.deleted]
+    
+    # İlk tag_count kullanıcıyı al
+    tagged_users = valid_users[:tag_count]
+    
+    # Etiketleri oluştur
+    tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
+    
+    # Mesajı oluştur
+    message = f'**{tags}\n\n➻  {sender_username}\n✦ __sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ .__**'
+    
+    # Mesajı gönder
+    await client.send_message(event.chat_id, message)
+
+@client.on(events.NewMessage(pattern='/utag'))
+async def utag(event):
+    global gece_tag, rxyzdev_tagTot, anlik_calisan
+    if event.is_private:
+        return await event.respond("Bu komut yalnızca gruplarda kullanılabilir.")
+    
+    admins = []
+    async for admin in client.iter_participants(event.chat_id, filter=events.ChatParticipantsAdmins):
+        admins.append(admin.id)
+    if event.sender_id not in admins:
+        return await event.respond("Bu komutu yalnızca yöneticiler kullanabilir.")
+    
+    if len(event.message.text.split()) > 1:
+        mode = "text_on_cmd"
+        msg_list = event.message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await event.respond("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+        msg = msg_list[1]
+    elif event.message.reply_to_msg_id:
+        mode = "text_on_reply"
+        msg = event.message.reply_to_msg_id
+        if msg == None:
+            return await event.respond("Bir mesaj verin.")
+    elif len(event.message.text.split()) > 1 and event.message.reply_to_msg_id:
+        mode = "text_on_cmd"
+        msg_list = event.message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await event.respond("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+        msg = msg_list[1]
+    else:
+        mode = "text_on_cmd"
+        msg = ""
+    
+    if mode == "text_on_cmd":
+        if event.chat_id in gece_tag:
+            return await event.respond("Zaten aktif bir işlem var.")
+
+    gece_tag.append(event.chat_id)  # Bu satırı ekledim
+    anlik_calisan.append(event.chat_id)
+    usrnum = 0
+    usrtxt = ""
+    await event.respond("Etiketlemeye başlıyorum.")
+    
+    async for usr in client.iter_participants(event.chat_id):
+        if usr.bot or usr.deleted:
+            continue
+        if event.chat_id not in rxyzdev_tagTot:
+            rxyzdev_tagTot[event.chat_id] = 0
+        rxyzdev_tagTot[event.chat_id] += 1
+        usrnum += 1
+        usrtxt += f"{usr.first_name} , "
+        if usrnum == 1:  # Kullanıcı sayı
+            await client.send_message(event.chat_id, f"{msg}\n\n{usrtxt}")
+            await asyncio.sleep(2)
+            usrnum = 0
+            usrtxt = ""
+    
+    sender = await client.get_entity(event.sender_id)
+    rxyzdev_initT = f"{sender.first_name}"      
+    if event.chat_id in rxyzdev_tagTot:
+        await event.respond(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[event.chat_id]}")
+    rxyzdev_tagTot[event.chat_id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
+    if event.chat_id in gece_tag:
+        gece_tag.remove(event.chat_id)
+
+@client.on(events.NewMessage(pattern='/cancel'))
+async def cancel(event):
+    global gece_tag
+    if event.is_private:
+        return await event.respond("Bu komut yalnızca gruplarda kullanılabilir.")
+    
+    admins = []
+    async for admin in client.iter_participants(event.chat_id, filter=events.ChatParticipantsAdmins):
+        admins.append(admin.id)
+    if event.sender_id not in admins:
+        return await event.respond("Bu komutu yalnızca yöneticiler kullanabilir.")
+    
+    if event.chat_id in gece_tag:
+        gece_tag.remove(event.chat_id)
+        return await event.respond("Etiketleme işlemi durduruldu. Toplam etiketlenen kullanıcı sayısı: {rxyzdev_tagTot[event.chat_id]}, Etiketlemeyi iptal eden kullanıcı: {event.sender_id}")
+    else:
+        return await event.respond("Aktif bir etiketleme işlemi bulunmamaktadır.")
+
 ##################################################
 @client.on(events.NewMessage(pattern='(?i)(/|)/kurt'))
 async def start(event):
