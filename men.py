@@ -225,35 +225,9 @@ async def utag(client: Client, message: Message):
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
     if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)'''
+        gece_tag.remove(message.chat.id)'''  
 
-@app.on_message(filters.command(["slap"], prefixes=['/', '']))
-async def slap(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
-
-    user = None  # user değişkenini başlangıçta tanımla
-
-    if message.reply_to_message:
-        reply_message = message.reply_to_message
-        user = reply_message.from_user
-    elif message.entities and message.entities[0].type == "mention":
-        user_id = message.entities[0].user.id
-        user = await client.get_users(user_id)
-    
-    if user:
-        user_name = f"{user.first_name}"
-        slap_phrases = [
-            f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-        ]
-        slap_phrase = random.choice(slap_phrases)
-        await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
-    else:
-        await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
-	    
-
-
-@app.on_message(filters.command(["dnjdkf"], prefixes=['/', '']))
+@app.on_message(filters.command(["salla"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
@@ -262,7 +236,36 @@ async def slap(client: Client, message: Message):
         reply_message = message.reply_to_message
         user = reply_message.from_user
         if user:
-            user_name = f"[{user.first_name}](tg://user?id={user.id})" if user.username else user.first_name
+            user_name = f"{user.first_name}"
+            slap_phrases = [
+                            f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+            ]
+            slap_phrase = random.choice(slap_phrases)
+            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
+        else:
+            await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
+    else:
+        chat_members = await client.get_chat_members(message.chat.id)
+        active_members = [member.user for member in chat_members if member.status != "kicked"]
+        random_members = random.sample(active_members, 2)
+        for member in random_members:
+            user_name = f"{member.first_name}"
+            slap_phrases = [
+                            f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
+            ]
+            slap_phrase = random.choice(slap_phrases)
+            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
+
+@app.on_message(filters.command(["slap"], prefixes=['/', '']))
+async def slap(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+
+    if message.reply_to_message:
+        reply_message = message.reply_to_message
+        user = reply_message.from_user
+        if user:
+            user_name = f"[{user.first_name}](tg://user?id={user.id})"
             slap_phrases = [
 	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
 	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
