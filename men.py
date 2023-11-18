@@ -183,9 +183,7 @@ async def cancel(client, message):
     if message.chat.id in gece_tag:
         gece_tag.remove(message.chat.id)
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
-    
-    gece_tag.remove(message.chat.id)
-    
+     
     sender = await client.get_chat_member(message.chat.id, message.from_user.id)
     rxyzdev_stopT = f"{sender.user.first_name}"
     
@@ -226,10 +224,10 @@ async def utag(client, message):
         msg = ""
     
     if mode == "text_on_cmd":
+    if message.chat.id in gece_tag:
+        return await message.reply("Zaten aktif bir işlem var.")
         gece_tag.append(message.chat.id)
-        if message.chat.id in gece_tag:
-            return await message.reply("Zaten aktif bir işlem var.")
-
+	
     gece_tag.append(message.chat.id)  # Bu satırı ekledim
     anlik_calisan.append(message.chat.id)
     usrnum = 0
