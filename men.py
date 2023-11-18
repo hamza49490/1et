@@ -170,7 +170,7 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-@app.on_message(filters.command("cancelutag", prefixes="/"))
+@app.on_message(filters.command("cancel", prefixes="/"))
 async def cancelutag(client, message):
     global gece_tag, rxyzdev_tagTot
     if message.chat.type == "private":
@@ -189,7 +189,9 @@ async def cancelutag(client, message):
     rxyzdev_tagTot[message.chat.id] = 0
     sender = await message.chat.get_member(message.from_user.id)
     await message.reply(f"Etiketleme işlemi iptal edildi.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-	
+    if message.chat.id in anlik_calisan:
+        anlik_calisan.remove(message.chat.id)
+	    
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
