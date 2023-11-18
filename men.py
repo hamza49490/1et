@@ -65,14 +65,13 @@ app = Client(
 
 oyun = {}
 rating = {}
-blocked_users = [] #block
+blocked_users = []
 isleyen = []
-
-gece_tag = [] #utag
-anlik_calisan = [] #utag
-rxyzdev_tagTot = {} #utag
-rxyzdev_initT = {} #utag
-rxyzdev_stopT = {} #cancel
+gece_tag = []
+anlik_calisan = []
+rxyzdev_tagTot = {}
+rxyzdev_initT = {}
+rxyzdev_stopT = {}
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -219,7 +218,7 @@ async def utag(client, message):
             continue
         if message.chat.id not in rxyzdev_tagTot:
             rxyzdev_tagTot[message.chat.id] = 0
-        rxyzdev_tagTot[message.chat.id] += 0
+        rxyzdev_tagTot[message.chat.id] += 1
         usrnum += 1
         usrtxt += f"{usr.user.first_name} , "
         if usrnum == 1:  # Kullanıcı sayı
