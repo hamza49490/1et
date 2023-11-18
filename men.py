@@ -171,58 +171,7 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
-from pyrogram import Client, filters
-import asyncio
-
-gece_tag = []
-rxyzdev_tagTot = {}
-
 @app.on_message(filters.command("utag", prefixes="/"))
-async def tag(client, message):
-    global gece_tag
-    rxyzdev_tagTot[message.chat.id] = 0
-    
-    if message.chat.type == "private":
-        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
-    
-    admins = []
-    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
-        admins.append(admin.user.id)
-        
-    if message.from_user.id not in admins:
-        return await message.reply("Bu komutu kullanma yetkiniz yok.")
-    
-    if len(message.command) > 1:
-        mode = "text_on_cmd"
-        msg = " ".join(message.command[1:], sep=" ")
-    elif message.reply_to_message:
-        mode = "text_on_reply"
-        msg = message.reply_to_message.message_id
-        if msg == None:
-            return await message.reply("Eski mesajları göremiyorum!")
-    else:
-        gece_tag.append(message.chat.id)
-        await message.reply("✅ Etiketleme işlemi başarıyla başlatıldı.")
-        
-        async for user in client.iter_chat_members(message.chat.id):
-            if user.user.is_bot or user.user.is_deleted:
-                continue
-            rxyzdev_tagTot[message.chat.id] += 1
-            if message.chat.id not in gece_tag:
-                return
-            if rxyzdev_tagTot[message.chat.id] % 1 == 0:
-                await client.send_message(message.chat.id, f"➻ {msg}\n\n{user.user.first_name}")
-                await asyncio.sleep(2)
-            else:
-                await client.send_message(message.chat.id, f"{user.user.first_name}")
-                await asyncio.sleep(2)
-        
-        sender = message.from_user
-        rxyzdev_initT = sender.first_name
-        return await message.reply(f"✅ İşlem tamamlandı.\n\n👤 Etiketlerin sayısı: {rxyzdev_tagTot[message.chat.id]}\n🗣 İşlemi başlatan: {rxyzdev_initT}")
-
-
-@app.on_message(filters.command("ndjrkr", prefixes="/"))
 async def utag(client, message):
     global gece_tag
     if message.chat.type == "private":
@@ -252,7 +201,11 @@ async def utag(client, message):
             return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
         msg = msg_list[1]
     else:
-        return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
+        if len(message.command) > 1 and message.command[1] != "":
+            mode = "text_on_cmd"
+            msg = message.command[1]
+        else:
+            return await message.reply("Bir mesaj verin.\nÖrnek: /utag Merhaba")
     
     if mode == "text_on_cmd":
         if message.chat.id in gece_tag:
@@ -272,7 +225,7 @@ async def utag(client, message):
         rxyzdev_tagTot[message.chat.id] += 1
         usrnum += 1
         usrtxt += f"{usr.user.first_name}"
-        if usrnum == 1:  #Kullanıcı sayı 
+        if usrnum == 5:  #Kullanıcı sayı 
             await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
             await asyncio.sleep(2)
             usrnum = 0
