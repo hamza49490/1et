@@ -332,7 +332,7 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
         info = f"Kullanıcı: {user.first_name}\n" \
-        f"Kullanıcı Adı: @{user.username}\n" \
+               f"Kullanıcı Adı: @{user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
@@ -345,8 +345,8 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-        info = f"Kullanıcı: ({message.from_user.first_name})\n" \
-        f"Kullanıcı Adı: @{message.from_user.username}\n" \
+        info = f"Kullanıcı: {message.from_user.first_name}\n" \
+               f"Kullanıcı Adı: @{message.from_user.username}\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
