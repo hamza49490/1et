@@ -183,10 +183,10 @@ async def cancel(client, message):
     if message.chat.id not in gece_tag:
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
     
-    gece_tag.remove(message.chat.id)  # Bu satırı ekleyin
+    gece_tag.remove(message.chat.id)
     
     sender = await client.get_chat_member(message.chat.id, message.from_user.id)
-    rxyzdev_stopT = f"{sender.user.first_name}"
+    rxyzdev_stopT[message.chat.id] = f"{sender.user.first_name}"
     
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
@@ -249,10 +249,10 @@ async def utag(client, message):
             usrtxt = ""
     
     sender = await message.chat.get_member(message.from_user.id)
-    rxyzdev_initT = f"{sender.user.first_name}"      
+    rxyzdev_initT[message.chat.id] = f"{sender.user.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
-    rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
+    rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.id in gece_tag:
         gece_tag.remove(message.chat.id)
 
