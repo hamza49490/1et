@@ -168,7 +168,6 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {}
 rxyzdev_stopT = {}
 
-
 @app.on_message(filters.command("cancel", prefixes="/"))
 async def cancel(client, message):
     global gece_tag
@@ -184,7 +183,8 @@ async def cancel(client, message):
     if message.chat.id not in gece_tag:
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
     
-    gece_tag.remove(message.chat.id)
+    gece_tag.remove(message.chat.id)  # Bu satırı ekleyin
+    
     sender = await client.get_chat_member(message.chat.id, message.from_user.id)
     rxyzdev_stopT = f"{sender.user.first_name}"
     
