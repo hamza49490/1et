@@ -227,6 +227,77 @@ async def utag(client: Client, message: Message):
     if message.chat.id in gece_tag:
         gece_tag.remove(message.chat.id)'''  
 
+@app.on_message(filters.command('group', prefixes='/'))
+async def grup_info(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+	    
+    chat = await message.get_chat()
+    group_name = chat.title
+    group_id = chat.id
+
+    chat_info = await client.get_chat(group_id)
+
+    deleted_count = 0
+    active_count = 0
+    bot_count = 0
+    total_count = 0
+
+    async for participant in client.iter_chat_members(chat_info.id):
+        total_count += 1
+        if participant.user.is_deleted:
+            deleted_count += 1
+        elif not participant.user.is_bot:
+            active_count += 1
+        elif participant.user.is_bot:
+            bot_count += 1
+
+    special_status = ""
+    if deleted_count > 0:
+        special_status += f'➻ sɪʟɪɴᴇɴ ʜᴇsᴀᴘ sᴀʏɪsɪ : {deleted_count}\n'
+    if bot_count > 0:
+        special_status += f'➻ ɢʀᴜᴘ ʙᴏᴛ sᴀʏɪsɪ : {bot_count}\n'
+
+    if not special_status:
+        special_status = "ʙᴜʟᴜɴᴀᴍᴀᴅɪ"
+
+    response_text = (
+        f'➻ ɢʀᴜᴘ ᴀᴅɪ : {group_name}\n'
+        f'➻ ɢʀᴜᴘ ɪᴅ : -100{group_id}\n'
+        f'➻ ᴜʏᴇ sᴀʏɪsɪ : {total_count}\n'
+        f'➻ ᴀᴋᴛɪғ ᴜʏᴇ sᴀʏɪsɪ : {active_count}\n'
+        f'{special_status}'
+    )
+
+    await message.edit_text(response_text)
+	
+@app.on_message(filters.command(["bots"], prefixes="/"))
+async def show_bots(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+	    
+    all_users = await client.get_chat_members(message.chat.id)
+    bot_list = []
+    for user in all_users:
+        if user.user.is_bot:
+            bot_list.append(user.user.username)
+    if bot_list:
+        await message.edit_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
+    else:
+        await message.edit_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
+	    
+@app.on_message(filters.command("admins", prefixes="/"))
+async def show_admins(client, message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+
+    chat = await client.get_chat(message.chat.id)
+    admins = await client.get_chat_members(chat.id, filter=types.ChatMembersAdmins)
+    admin_list = ""
+    for admin in admins:
+        admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
+    await message.edit_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
+
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
