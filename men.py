@@ -191,6 +191,7 @@ async def cancelutag(client, message):
     await message.reply(f"Etiketleme işlemi iptal edildi.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     if message.chat.id in anlik_calisan:
         anlik_calisan.remove(message.chat.id)
+    return  # Fonksiyonu sonlandır
 	    
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
