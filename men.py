@@ -228,7 +228,7 @@ async def utag(client: Client, message: Message):
         gece_tag.remove(message.chat.id)'''  
 
 @app.on_message(filters.command('group', prefixes='/'))
-async def grup_info(client, message):
+async def grup_info(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
 	    
@@ -269,10 +269,10 @@ async def grup_info(client, message):
         f'{special_status}'
     )
 
-    await message.edit_text(response_text)
+    await message.reply_text(response_text)
 	
 @app.on_message(filters.command(["bots"], prefixes="/"))
-async def show_bots(client, message):
+async def show_bots(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
 	    
@@ -282,12 +282,12 @@ async def show_bots(client, message):
         if user.user.is_bot:
             bot_list.append(user.user.username)
     if bot_list:
-        await message.edit_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
+        await message.reply_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
     else:
-        await message.edit_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
+        await message.reply_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
 	    
 @app.on_message(filters.command("admins", prefixes="/"))
-async def show_admins(client, message):
+async def show_admins(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"nogroup")
 
@@ -296,7 +296,7 @@ async def show_admins(client, message):
     admin_list = ""
     for admin in admins:
         admin_list += f"\n➻  [{admin.first_name}](tg://user?id={admin.id})"
-    await message.edit_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
+    await message.reply_text(f"🗨️  ɢʀᴜᴘᴛᴀᴋɪ ᴀᴅᴍɪɴʟᴇʀ : \n{admin_list}")
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
