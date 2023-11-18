@@ -170,6 +170,26 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
+@app.on_message(filters.command("cancelutag", prefixes="/"))
+async def cancelutag(client, message):
+    global gece_tag, rxyzdev_tagTot
+    if message.chat.type == "private":
+        return await message.reply("Bu komut yalnızca gruplarda kullanılabilir.")
+    
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("Bu komutu yalnızca yöneticiler kullanabilir.")
+    
+    if message.chat.id not in gece_tag:
+        return await message.reply("Aktif bir işlem bulunmamaktadır.")
+    
+    gece_tag.remove(message.chat.id)
+    rxyzdev_tagTot[message.chat.id] = 0
+    sender = await message.chat.get_member(message.from_user.id)
+    await message.reply(f"Etiketleme işlemi iptal edildi.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
+	
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
