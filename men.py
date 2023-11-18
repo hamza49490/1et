@@ -322,11 +322,8 @@ async def get_user_info(client: Client, message: types.Message):
     if message.reply_to_message:
         user = message.reply_to_message.from_user
     elif len(message.command) > 1:
-        user_id = message.command[1]
-        try:
-            user = await client.get_users(int(user_id))
-        except ValueError:
-            pass
+        username = message.command[1]
+        user = await client.get_users(username)
 
     if user:
         chat_member = await client.get_chat_member(message.chat.id, user.id)
@@ -335,11 +332,13 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
         info = f"Kullanıcı: {user.first_name}\n" \
-               f"Kullanıcı Adı: @{user.username}\n" \
+        f"Kullanıcı Adı: @{user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
-        await message.reply_text(info, parse_mode="Markdown")
+        button = InlineKeyboardButton(text="Profil", url=f"tg://openmessage?user_id={user.id}")
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[[button]])
+        await message.reply_text(info, reply_markup=keyboard)
     else:
         chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
         if chat_member.status == "administrator" or chat_member.status == "creator":
@@ -347,12 +346,14 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
         info = f"Kullanıcı: ({message.from_user.first_name})\n" \
-               f"Kullanıcı Adı: @{message.from_user.username}\n" \
+        f"Kullanıcı Adı: @{message.from_user.username}\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
-        await message.reply_text(info, parse_mode="Markdown")
-	    
+        button = InlineKeyboardButton(text="Kullanıcı Profili", url=f"tg://openmessage?user_id={message.from_user.id}")
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[[button]])
+        await message.reply_text(info, reply_markup=keyboard)
+	
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 async def reload_command(client: Client, message: Message):
     if message.chat.type == "private":
