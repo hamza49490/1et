@@ -246,7 +246,7 @@ async def slap(client: Client, message: Message):
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
     elif message.text == "/salla":
         chat_members = await client.get_chat_members(message.chat.id)
-        active_members = [member.user for member in chat_members if member.status != "kicked" and not member.is_bot and not member.is_deleted]
+        active_members = [member.user for member in chat_members if member.status != "kicked" and not member.user.is_bot and not member.user.is_deleted]
         random_members = random.sample(active_members, 2)
         for member in random_members:
             user_name = f"{member.first_name}"
