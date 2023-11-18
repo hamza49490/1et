@@ -332,7 +332,7 @@ async def get_user_info(client: Client, message: types.Message):
         else:
             status = "Durumu: Üye"
         profile_link = f"tg://openmessage?user_id={user.id}"
-        info = f"Kullanıcı: ({user.user.first_name)[{profile_link}]\n" \
+        info = f"Kullanıcı: ({user.user.first_name})[{profile_link}]\n" \
 	       f"Kullanıcı Adı: {user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
