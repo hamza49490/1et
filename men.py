@@ -188,8 +188,7 @@ async def stoputag(client: Client, message: Message):
     await message.reply(f"Etiketleme işlemi durduruldu.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     if message.chat.id in anlik_calisan:
         anlik_calisan.remove(message.chat.id)
-    break  # Döngüden çıkarak etiketleme işlemini durdur
-	    
+    
 @app.on_message(filters.command("utag"))
 async def utag(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
