@@ -63,15 +63,7 @@ app = Client(
     bot_token=BOT_TOKEN
     )
 
-oyun = {}
-rating = {}
-blocked_users = []
 isleyen = []
-gece_tag = []
-anlik_calisan = []
-rxyzdev_tagTot = {}
-rxyzdev_initT = {}
-rxyzdev_stopT = {}
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -170,6 +162,11 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
+gece_tag = []
+anlik_calisan = []
+rxyzdev_tagTot = {}
+rxyzdev_initT = {}
+rxyzdev_stopT = {}
 @app.on_message(filters.command("stop"))
 async def stoputag(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
@@ -191,7 +188,7 @@ async def stoputag(client: Client, message: Message):
     await message.reply(f"Etiketleme işlemi durduruldu.\n\n➻ {sender.user.first_name}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     if message.chat.id in anlik_calisan:
         anlik_calisan.remove(message.chat.id)
-    return  # Fonksiyonu sonlandır
+    break  # Döngüden çıkarak etiketleme işlemini durdur
 	    
 @app.on_message(filters.command("utag"))
 async def utag(client: Client, message: Message):
@@ -344,25 +341,36 @@ async def handle_eros(client: Client, message: Message):
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-
-@app.on_message(filters.command("id", prefixes="/"))
+'''
+@app.on_message(filters.command(["id", "info"], ["/", ""]))
 async def id(client: Client, message: Message):
     if message.reply_to_message:
         previous_message = await client.get_messages(message.chat.id, message.reply_to_message.message_id)
-        user_id = previous_message.from_user.id
-        chat_id = message.chat.id
-        if message.chat.type == "private":
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}")
+        if previous_message:
+            user_id = previous_message.from_user.id
+            chat_id = message.chat.id
+            user_name = previous_message.from_user.username
+            user_label = previous_message.from_user.first_name
+            join_date = previous_message.from_user.joined_date
+            total_messages = previous_message.from_user.total_messages
+            if message.chat.type == "private":
+                await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}")
+            else:
+                await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
         else:
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
+            await message.reply_text("Önceki mesaj bulunamadı.")
     else:
         user_id = message.from_user.id
         chat_id = message.chat.id
+        user_name = message.from_user.username
+        user_label = message.from_user.first_name
+        join_date = message.from_user.joined_date
+        total_messages = message.from_user.total_messages
         if message.chat.type == "private":
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}")
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}")
         else:
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
-    
+            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
+'''		
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
@@ -420,7 +428,9 @@ async def dsor(client: Client, message: Message):
 @app.on_message(filters.command(["soz"], ["/", ""]))
 async def dsor(client: Client, message: Message):
     await message.reply_text(f"**🌹 𝖦𝗎̈𝗓𝖾𝗅 𝖲𝗈̈𝗓 :\n\n{random.choice(guzelsoz)}**")
-    
+
+oyun = {}
+rating = {}
 @app.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
 async def kelimeoyun(c:Client, m:types.Message):
     if message.chat.type == "private":
@@ -623,6 +633,7 @@ async def ratingsa(c:Client, m:Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
+blocked_users = []
 @app.on_message(filters.command("block") & filters.user(OWNER_ID))
 def block_user(client: Client, message: Message):
     if len(message.command) == 2:
