@@ -227,35 +227,6 @@ async def utag(client: Client, message: Message):
     if message.chat.id in gece_tag:
         gece_tag.remove(message.chat.id)'''  
 
-@app.on_message(filters.command(["salla"], prefixes=['/', '']))
-async def slap(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"nogroup")
-
-    if message.reply_to_message:
-        reply_message = message.reply_to_message
-        user = reply_message.from_user
-        if user:
-            user_name = f"{user.first_name}"
-            slap_phrases = [
-                            f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-            ]
-            slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
-        else:
-            await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
-    elif message.text == "/salla" and "salla":
-        chat_members = await client.get_chat_members(message.chat.id)
-        active_members = [member.user for member in chat_members if member.status != "kicked" and not member.user.is_bot and not member.user.is_deleted]
-        random_members = random.sample(active_members, 1)
-        for member in random_members:
-            user_name = f"{member.first_name}"
-            slap_phrases = [
-                            f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
-            ]
-            slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
-
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
@@ -338,43 +309,45 @@ async def handle_eros(client: Client, message: Message):
         participants = await client.get_chat_members(chat.id)
         active_users = [user for user in participants if not user.user.is_bot and not user.user.is_deleted and not user.user.is_self]
         if len(active_users) < 2:
-            await message.reply_text("**__⛔ Yᴇᴛᴇʀʟɪ Aᴋᴛɪғ Kᴜʟʟᴀɴɪᴄɪ Yᴏᴋ !__**")
+            await message.reply_text("**__⛔ ʏᴇᴛᴇʀʟɪ ᴀᴋᴛɪғ ᴋᴜʟʟᴀɴɪᴄɪ ʏᴏᴋ !__**")
         else:
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
-'''@app.on_message(filters.command(["id", "info"], ["/", ""]))
-async def id(client: Client, message: Message):
+@app.on_message(filters.command(["info", "id"], prefixes="/"))
+def get_user_info(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+     
+    user = None
+
     if message.reply_to_message:
-        previous_message = await client.get_messages(message.chat.id, message.reply_to_message.message_id)
-        if previous_message:
-            user_id = previous_message.from_user.id
-            chat_id = message.chat.id
-            user_name = previous_message.from_user.username
-            user_label = previous_message.from_user.first_name
-            join_date = previous_message.from_user.joined_date
-            total_messages = previous_message.from_user.total_messages
-            if message.chat.type == "private":
-                await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}")
-            else:
-                await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
-        else:
-            await message.reply_text("Önceki mesaj bulunamadı.")
+        user = message.reply_to_message.from_user
+    elif len(message.command) > 1:
+        username = message.command[1]
+        user = client.get_users(username)
+
+    if user:
+        info = f"Kullanıcı Adı: ({user.username})[{user.id}]\n" \
+               f"Kullanıcı ID: {user.id}\n" \
+               f"Gruba Katılma Tarihi: {user.date}\n" \
+               f"Toplam Mesaj Sayısı: {user.total_count}\n" \
+               f"Grup ID: {message.chat.id}"
+        await message.reply_text(info)
     else:
-        user_id = message.from_user.id
-        chat_id = message.chat.id
-        user_name = message.from_user.username
-        user_label = message.from_user.first_name
-        join_date = message.from_user.joined_date
-        total_messages = message.from_user.total_messages
-        if message.chat.type == "private":
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}")
-        else:
-            await message.reply_text(f"✓ ᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : {user_id}\n✓ İsim: {user_label}\n✓ Kullanıcı Adı: {user_name}\n✓ Gruba Giriş Tarihi: {join_date}\n✓ Toplam Mesaj Sayısı: {total_messages}\n✓ ɢʀᴜᴘ ɪᴅ : {chat_id}")
-'''		
+        info = f"Kullanıcı Adı: ({message.from_user.username})[{message.from_user.id}]\n" \
+               f"Kullanıcı ID: {message.from_user.id}\n" \
+               f"Gruba Katılma Tarihi: {message.from_user.date}\n" \
+               f"Toplam Mesaj Sayısı: {message.from_user.total_count}\n" \
+               f"Grup ID: {message.chat.id}"
+        await message.reply_text(info)
+	    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 def reload_command(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
         client.send_message(message.chat.id, "**__🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !__**")
