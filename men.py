@@ -219,7 +219,7 @@ async def utag(client, message):
             continue
         if message.chat.id not in rxyzdev_tagTot:
             rxyzdev_tagTot[message.chat.id] = 0
-        rxyzdev_tagTot[message.chat.id] += 1
+        rxyzdev_tagTot[message.chat.id] += 0
         usrnum += 1
         usrtxt += f"{usr.user.first_name} , "
         if usrnum == 1:  # Kullanıcı sayı
@@ -233,7 +233,7 @@ async def utag(client, message):
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     gece_tag.remove(message.chat.id)
-	
+
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
