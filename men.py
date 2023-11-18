@@ -222,7 +222,7 @@ async def utag(client, message):
         rxyzdev_tagTot[message.chat.id] += 1
         usrnum += 1
         usrtxt += f"{usr.user.first_name} , "
-        if usrnum == 5:  #Kullanıcı sayı 
+        if usrnum == 1:  # Kullanıcı sayı
             await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
             await asyncio.sleep(2)
             usrnum = 0
