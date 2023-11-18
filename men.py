@@ -241,12 +241,12 @@ async def slap(client: Client, message: Message):
                             f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
             ]
             slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
+            await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
         else:
             await message.reply("Üzgünüm, kullanıcıyı bulamıyorum!")
-    else:
+    elif message.text == "/salla":
         chat_members = await client.get_chat_members(message.chat.id)
-        active_members = [member.user for member in chat_members if member.status != "kicked"]
+        active_members = [member.user for member in chat_members if member.status != "kicked" and not member.is_bot and not member.is_deleted]
         random_members = random.sample(active_members, 2)
         for member in random_members:
             user_name = f"{member.first_name}"
@@ -254,7 +254,7 @@ async def slap(client: Client, message: Message):
                             f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
             ]
             slap_phrase = random.choice(slap_phrases)
-            await message.reply(f"**{message.from_user.first_name} ,  {slap_phrase}**")
+            await message.reply(f"{message.from_user.first_name} ,  {slap_phrase}")
 
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
