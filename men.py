@@ -232,6 +232,8 @@ async def slap(client: Client, message: Message):
     if message.chat.type == "private":
         return await message.reply(f"{nogroup}")
 
+    user = None  # user değişkenini başlangıçta tanımla
+
     if message.reply_to_message or message.entities:
         if message.reply_to_message:
             reply_message = message.reply_to_message
