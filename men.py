@@ -361,18 +361,18 @@ async def get_user_info(client: Client, message: Message):
         await message.reply_text(info)
 	    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
-def reload_command(client: Client, message: Message):
+async def reload_command(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"nogroup")
+        return await message.reply(f"Grupta Kullan .")
 
     chat_member = client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
-        client.send_message(message.chat.id, "**__🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !__**")
+        client.send_message(message.chat.id, "🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !")
     else:
         client.send_message(
             message.chat.id,
-            "**__✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**"
-        )
+            "✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !"
+	)
 
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
