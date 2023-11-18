@@ -334,7 +334,7 @@ async def get_user_info(client: Client, message: types.Message):
 
         info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
                f"Kullanıcı ID: {user.id}\n" \
-               f"Katılma Tarihi: {user.joined_date}\n" \
+               f"Katılma Tarihi: {user.date}\n" \
                f"Mesaj Sayısı: {user.total_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
@@ -348,7 +348,7 @@ async def get_user_info(client: Client, message: types.Message):
 
         info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
-               f"Katılma Tarihi: {message.from_user.joined_date}\n" \
+               f"Katılma Tarihi: {message.from_user.date}\n" \
                f"Mesaj Sayısı: {message.from_user.total_count}\n" \
                f"Grup ID: {message.chat.id}\n" \
                f"{status}"
@@ -356,7 +356,9 @@ async def get_user_info(client: Client, message: types.Message):
 	    
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 async def reload_command(client: Client, message: Message):
-
+    if message.chat.type == "private":
+        return await message.reply(f"nogroup")
+	    
     chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
         await client.send_message(message.chat.id, "🎄 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎄 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !")
