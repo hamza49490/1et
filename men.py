@@ -315,11 +315,8 @@ async def handle_eros(client: Client, message: Message):
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
 
-@app.on_message(filters.command(["info", "id"], prefixes="/"))
+@app.on_message(filters.group & filters.command(["info", "id"], prefixes="/"))
 def get_user_info(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"nogroup")
-     
     user = None
 
     if message.reply_to_message:
@@ -329,17 +326,17 @@ def get_user_info(client: Client, message: Message):
         user = client.get_users(username)
 
     if user:
-        info = f"Kullanıcı Adı: ({user.username})[{user.id}]\n" \
+        info = f"Kullanıcı: ({user.username})[{user.id}]\n" \
                f"Kullanıcı ID: {user.id}\n" \
-               f"Gruba Katılma Tarihi: {user.date}\n" \
-               f"Toplam Mesaj Sayısı: {user.total_count}\n" \
+               f"Katılma Tarihi: {user.date}\n" \
+               f"Mesaj Sayısı: {user.total_count}\n" \
                f"Grup ID: {message.chat.id}"
         await message.reply_text(info)
     else:
-        info = f"Kullanıcı Adı: ({message.from_user.username})[{message.from_user.id}]\n" \
+        info = f"Kullanıcı: ({message.from_user.username})[{message.from_user.id}]\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
-               f"Gruba Katılma Tarihi: {message.from_user.date}\n" \
-               f"Toplam Mesaj Sayısı: {message.from_user.total_count}\n" \
+               f"Katılma Tarihi: {message.from_user.date}\n" \
+               f"Mesaj Sayısı: {message.from_user.total_count}\n" \
                f"Grup ID: {message.chat.id}"
         await message.reply_text(info)
 	    
