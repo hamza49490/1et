@@ -161,37 +161,8 @@ async def tag4(_, query: CallbackQuery):
         ]
     )
 )
-
-gece_tag = []
-anlik_calisan = []
-rxyzdev_tagTot = {}
-rxyzdev_initT = {}
-rxyzdev_stopT = {}
-
-@app.on_message(filters.command("cancel", prefixes="/"))
-async def cancel(client, message):
-    global gece_tag
-    if message.chat.type == "private":
-        return await message.reply("nogroup")
-    
-    admins = []
-    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
-        admins.append(admin.user.id)
-    if message.from_user.id not in admins:
-        return await message.reply("noadmin")
-    
-    if message.chat.id not in gece_tag:
-        return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
-    
-    gece_tag.remove(message.chat.id)  # Bu satırı ekleyin
-    
-    sender = await client.get_chat_member(message.chat.id, message.from_user.id)
-    rxyzdev_stopT = f"{sender.user.first_name}"
-    
-    if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
 	    
-@app.on_message(filters.command("utag"))
+'''@app.on_message(filters.command("utag"))
 async def utag(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot, anlik_calisan
     if message.chat.type == "private":
@@ -254,18 +225,18 @@ async def utag(client: Client, message: Message):
         await message.reply(f"🗨️ Etiketleme tamamlandı.\n\n➻ {rxyzdev_initT}\n👤 Etiketlenenlerin sayısı: {rxyzdev_tagTot[message.chat.id]}")
     rxyzdev_tagTot[message.chat.id] = 0  # Etiketlenen kullanıcı sayısını sıfırla
     if message.chat.id in gece_tag:
-        gece_tag.remove(message.chat.id)
+        gece_tag.remove(message.chat.id)'''
 		
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
+        return await message.reply(f"nogroup")
 
     if message.reply_to_message:
         reply_message = message.reply_to_message
         user = reply_message.from_user
         if user:
-            user_name = f"[{user.first_name}](tg://user?id={user.id})"
+            user_name = f"@{user.username}" if user.username else user.first_name
             slap_phrases = [
 	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
 	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
@@ -325,7 +296,7 @@ async def slap(client: Client, message: Message):
 @app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
 async def handle_eros(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
+        return await message.reply(f"nogroup")
 
     chat = await client.get_chat(message.chat.id)
     if message.reply_to_message:
@@ -343,8 +314,8 @@ async def handle_eros(client: Client, message: Message):
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
             await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ .\n✦  ɢɪᴢʟɪ ᴀşɪᴋʟᴀʀ :__\n\n[{user1.user.first_name}](tg://user?id={user1.user.id})  💕  [{user2.user.first_name}](tg://user?id={user2.user.id}) \n\n__💞 sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
-'''
-@app.on_message(filters.command(["id", "info"], ["/", ""]))
+
+'''@app.on_message(filters.command(["id", "info"], ["/", ""]))
 async def id(client: Client, message: Message):
     if message.reply_to_message:
         previous_message = await client.get_messages(message.chat.id, message.reply_to_message.message_id)
