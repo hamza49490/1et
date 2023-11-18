@@ -233,10 +233,10 @@ async def slap(client: Client, message: Message):
         return await message.reply(f"nogroup")
 
     if message.reply_to_message:
-        reply_message = message.reply_to_message
+        reply_message = message.reply_to_message.from_user
         user = reply_message.from_user
         if user:
-            user_name = f"@{user.username}" if user.username else user.first_name
+            user_name = f"[{user.first_name}](tg://user?id={user.id})" if user.username else user.first_name
             slap_phrases = [
 	          	                f"{user_name} 'ın Gözlerini Oydu! Kör Oldu Zavallı 😱",
 	             	                f"{user_name} 'ın Sırtına Bindi! At Gibi Koşuyorsun Mübarek .",
