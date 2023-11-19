@@ -343,7 +343,7 @@ async def atag(client, message):
         gece_tag.append(message.chat.id)
         usrnum = 0
         usrtxt = ""   
-   async for usr in client.iter_chat_members(message.chat.id):
+async for usr in client.iter_chat_members(message.chat.id):
     if usr.user.is_bot or usr.user.is_deleted:
         continue
     if usr.user.id in admins:  # Yalnızca yöneticileri etiketleyin
