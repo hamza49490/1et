@@ -156,7 +156,7 @@ async def cancel(event):
         return await event.respond("Bu komut yalnızca gruplarda kullanılabilir.")
     
     admins = []
-    async for admin in client.iter_participants(event.chat_id, filter=events.ChatParticipantsAdmins):
+    async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
         admins.append(admin.id)
     if event.sender_id not in admins:
         return await event.respond("Bu komutu yalnızca yöneticiler kullanabilir.")
@@ -166,7 +166,7 @@ async def cancel(event):
         return await event.respond("Etiketleme işlemi durduruldu. Toplam etiketlenen kullanıcı sayısı: {rxyzdev_tagTot[event.chat_id]}, Etiketlemeyi iptal eden kullanıcı: {event.sender_id}")
     else:
         return await event.respond("Aktif bir etiketleme işlemi bulunmamaktadır.")
-
+	    
 ##################################################
 @client.on(events.NewMessage(pattern='(?i)(/|)/kurt'))
 async def start(event):
