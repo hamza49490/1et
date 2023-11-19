@@ -1,10 +1,20 @@
 import random
+import aiofiles
+import random, os, logging, requests
 import telethon
 from mesaj.kurtmesaj import *
 from mesaj.botmesaj import *
+from telethon.tl.types import MessageEntityBold
+from telethon.sync import TelegramClient, events
+from telethon.tl.types import User
 from telethon.tl import types
+from telethon.tl import functions
+from pyrogram.handlers import MessageHandler
+from telethon import errors
+from telethon.sync import types
 from telethon import Button
 from telethon import TelegramClient, events
+from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.sync import TelegramClient, events
 from pyrogram.types import Message, User
 from pyrogram import Client, filters
