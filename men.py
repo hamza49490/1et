@@ -297,6 +297,7 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
+
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
@@ -314,23 +315,23 @@ async def utag(client, message):
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
         if len(msg_list) < 2:
-            return await message.reply("💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba")
+            return await message.reply("Bir Mesaj Verin")
         msg = msg_list[1]
         if msg == "/utag":
-            return await message.reply("💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba")
+            return await message.reply("Bir Mesaj Verin")
     elif message.reply_to_message:
         mode = "text_on_reply"
         msg = message.reply_to_message.message_id
         if msg == None:
-            return await message.reply("")
+            return await message.reply("Bir Mesaj Verin")
     elif len(message.command) > 1 and message.reply_to_message:
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
         if len(msg_list) < 2:
-            return await message.reply("💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba")
+            return await message.reply("Bir Mesaj Verin")
         msg = msg_list[1]
     else:
-        return await message.reply("💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba")
+        return await message.reply("Bir Mesaj Verin")
   
     if mode == "text_on_cmd":
         anlik_calisan.append(message.chat.id)
@@ -350,10 +351,7 @@ async def utag(client, message):
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
-                if msg:
-                    await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
-                else:
-                    await client.send_message(message.chat.id, usrtxt)
+                await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
                 await asyncio.sleep(2)
                 usrnum = 0
                 usrtxt = ""
@@ -362,7 +360,8 @@ async def utag(client, message):
     rxyzdev_initT = f"{sender.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
-	    
+
+
 @app.on_message(filters.command("cancel", prefixes="/"))
 async def cancel(client, message):
     global gece_tag
