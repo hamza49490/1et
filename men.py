@@ -303,13 +303,13 @@ async def utag(client, message):
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
         return await message.reply("nogroup")
-  
+
     admins = []
     async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
         admins.append(admin.user.id)
     if message.from_user.id not in admins:
         return await message.reply("noadmin")
-  
+
     if len(message.command) > 1:
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
@@ -322,19 +322,19 @@ async def utag(client, message):
         if msg == None:
             await message.reply()
     if len(message.command) > 1 and message.reply_to_message:
-    mode = "text_on_cmd"
-    msg_list = message.text.split(None, 1)
-    if len(msg_list) < 2:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply()
+        msg = msg_list[1]
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply()
+    else:
         return await message.reply()
-    msg = msg_list[1]
-elif message.reply_to_message:
-    mode = "text_on_reply"
-    msg = message.reply_to_message.message_id
-    if msg == None:
-        return await message.reply()
-else:
-    return await message.reply()
-  
+
     if mode == "text_on_cmd":
         anlik_calisan.append(message.chat.id)
         usrnum = 0
@@ -343,7 +343,7 @@ else:
 
         gece_tag.append(message.chat.id)
         usrnum = 0
-        usrtxt = ""   
+        usrtxt = ""
         async for usr in client.iter_chat_members(message.chat.id):
             if usr.user.is_bot or usr.user.is_deleted:
                 continue
@@ -357,9 +357,9 @@ else:
                 await asyncio.sleep(2)
                 usrnum = 0
                 usrtxt = ""
-     
+
     sender = await message.from_user()
-    rxyzdev_initT = f"{sender.first_name}"      
+    rxyzdev_initT = f"{sender.first_name}"
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
 
