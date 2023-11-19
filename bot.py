@@ -23,7 +23,7 @@ from telethon import errors
 from time import time
 from os import remove
 from telethon.sync import types
-from datetime import datetime 
+from telethon import types
 from telethon import Button
 from telethon import TelegramClient, events
 from telethon.tl.types import ChannelParticipantsAdmins
@@ -91,7 +91,7 @@ async def utag(event):
         return await event.respond("Bu komut yalnızca gruplarda kullanılabilir.")
     
     admins = []
-    async for admin in client.iter_participants(event.chat_id, filter=events.ChatParticipantsAdmins):
+    async for admin in client.iter_participants(event.chat_id, filter=types.ChannelParticipantsAdmins):
         admins.append(admin.id)
     if event.sender_id not in admins:
         return await event.respond("Bu komutu yalnızca yöneticiler kullanabilir.")
