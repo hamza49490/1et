@@ -297,7 +297,6 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
-
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
@@ -315,23 +314,26 @@ async def utag(client, message):
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
         if len(msg_list) < 2:
-            return await message.reply("Bir Mesaj Verin")
+            return await message.reply()
         msg = msg_list[1]
-        if msg == "/utag":
-            return await message.reply("Bir Mesaj Verin")
     elif message.reply_to_message:
         mode = "text_on_reply"
         msg = message.reply_to_message.message_id
         if msg == None:
-            return await message.reply("Bir Mesaj Verin")
-    elif len(message.command) > 1 and message.reply_to_message:
-        mode = "text_on_cmd"
-        msg_list = message.text.split(None, 1)
-        if len(msg_list) < 2:
-            return await message.reply("Bir Mesaj Verin")
-        msg = msg_list[1]
-    else:
-        return await message.reply("Bir Mesaj Verin")
+            await message.reply()
+    if len(message.command) > 1 and message.reply_to_message:
+    mode = "text_on_cmd"
+    msg_list = message.text.split(None, 1)
+    if len(msg_list) < 2:
+        return await message.reply()
+    msg = msg_list[1]
+elif message.reply_to_message:
+    mode = "text_on_reply"
+    msg = message.reply_to_message.message_id
+    if msg == None:
+        return await message.reply()
+else:
+    return await message.reply()
   
     if mode == "text_on_cmd":
         anlik_calisan.append(message.chat.id)
