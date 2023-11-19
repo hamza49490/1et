@@ -27,10 +27,10 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-API_ID = int(os.environ.get("API_ID", "26573250"))
-API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "EpicTaggerBot")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6865081184:AAFcDOrflr2l_tibi7tvQ3A9Sv288XxevLA")
+api_id = int(os.environ.get("APP_ID","26573250"))
+api_hash = os.environ.get("API_HASH","6306d2d23b1083a6f757f64f0b0c609c")
+bot_token = os.environ.get("TOKEN","6865081184:AAFcDOrflr2l_tibi7tvQ3A9Sv288XxevLA")
+BOT_USERNAME = os.environ.get("BOT_USERNAME","EpicTaggerBot")
 
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
