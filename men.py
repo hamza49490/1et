@@ -297,7 +297,9 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
-@app.on_message(filters.command("tag", prefixes="/"))
+
+
+@app.on_message(filters.command("atag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
@@ -316,7 +318,7 @@ async def utag(client, message):
         if len(msg_list) < 2:
             return await message.reply("Bir Mesaj Verin")
         msg = msg_list[1]
-        if msg == "/tag":
+        if msg == "/atag":
             return await message.reply("Bir Mesaj Verin")
     elif message.reply_to_message:
         mode = "text_on_reply"
@@ -344,22 +346,23 @@ async def utag(client, message):
         async for usr in client.iter_chat_members(message.chat.id):
             if usr.user.is_bot or usr.user.is_deleted:
                 continue
+	    if usr.user.id in admins:  # Yalnızca yöneticileri etiketleyin
             rxyzdev_tagTot[message.chat.id] += 1
             usrnum += 1
             usrtxt += f"{usr.user.first_name} , "
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
-                await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}", parse_mode="html")
+                await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
                 await asyncio.sleep(2)
                 usrnum = 0
                 usrtxt = ""
      
-    sender = await message.from_user()
+    sender = message.from_user
     rxyzdev_initT = f"{sender.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}", parse_mode="html")
-	    
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
     global gece_tag
@@ -418,7 +421,7 @@ async def utag(client, message):
                 usrnum = 0
                 usrtxt = ""
      
-    sender = await message.from_user()
+    sender = message.from_user
     rxyzdev_initT = f"{sender.first_name}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
