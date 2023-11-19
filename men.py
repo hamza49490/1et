@@ -290,6 +290,13 @@ async def ytsearch(_, message: Message):
     except Exception as e:
         await message.reply_text(str(e))
 '''  
+anlik_calisan = []
+tekli_calisan = []
+gece_tag = []
+rxyzdev_tagTot = {}
+rxyzdev_initT = {} 
+rxyzdev_stopT = {}
+
 
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
