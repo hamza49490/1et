@@ -316,7 +316,7 @@ async def utag(client, message):
         if len(msg_list) < 2:
             return await message.reply("Bir Mesaj Verin")
         msg = msg_list[1]
-        if msg == "/utag":
+        if msg == "/tag":
             return await message.reply("Bir Mesaj Verin")
     elif message.reply_to_message:
         mode = "text_on_reply"
