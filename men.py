@@ -333,7 +333,7 @@ async def utag(client, message):
         if msg == None:
             return await message.reply()
     else:
-        return await message.reply()
+        return await message.reply("Cevap metni")
 
     if mode == "text_on_cmd":
         anlik_calisan.append(message.chat.id)
