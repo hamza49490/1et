@@ -353,7 +353,7 @@ async def utag(client, message):
                 if msg:
                     await client.send_message(message.chat.id, f"{msg}\n\n{usrtxt}")
                 else:
-                    await client.send_message(message.chat.id, f"➻ {usrtxt}")
+                    await client.send_message(message.chat.id, usrtxt)
                 await asyncio.sleep(2)
                 usrnum = 0
                 usrtxt = ""
