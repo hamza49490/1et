@@ -297,8 +297,6 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
-
-
 @app.on_message(filters.command("atag", prefixes="/"))
 async def atag(client, message):
     global gece_tag
@@ -343,20 +341,20 @@ async def atag(client, message):
         gece_tag.append(message.chat.id)
         usrnum = 0
         usrtxt = ""   
-async for usr in client.iter_chat_members(message.chat.id):
-    if usr.user.is_bot or usr.user.is_deleted:
-        continue
-    if usr.user.id in admins:  # Yalnızca yöneticileri etiketleyin
-        rxyzdev_tagTot[message.chat.id] += 1
-        usrnum += 1
-        usrtxt += f"{usr.user.first_name} , "
-        if message.chat.id not in gece_tag:
-            return
-        if usrnum == 1:
-            await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
-            await asyncio.sleep(2)
-            usrnum = 0
-            usrtxt = ""
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            if usr.user.id in admins:  # Yalnızca yöneticileri etiketleyin
+                rxyzdev_tagTot[message.chat.id] += 1
+                usrnum += 1
+                usrtxt += f"{usr.user.first_name} , "
+                if message.chat.id not in gece_tag:
+                    return
+                if usrnum == 1:
+                    await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
+                    await asyncio.sleep(2)
+                    usrnum = 0
+                    usrtxt = ""
      
     sender = message.from_user
     rxyzdev_initT = f"{sender.first_name}"      
