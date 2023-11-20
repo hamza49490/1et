@@ -14,6 +14,7 @@ import ffmpeg
 import random
 import youtube_dl, requests, time
 import config
+from config import *
 from datetime import datetime, timedelta
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
