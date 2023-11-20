@@ -1,41 +1,31 @@
 import wget
 import logging
 import datetime
-import aiohttp
 import asyncio
-import datetime
 import shutil, psutil, traceback, os
 import random
 import string
-import traceback
+import time
 import aiofiles
+import motor.motor_asyncio
 import yt_dlp
 import ffmpeg
-import random
-import youtube_dl, requests, time
+import aiohttp
 import config
 from config import *
-import motor.motor_asyncio
-from mesaj.botmesaj import *
-from mesaj.kelimeler import *
-from mesaj.kelimeler import kelime_sec
-from telethon.sessions import StringSession
-from telethon.tl.types import ChannelParticipantsAdmins
-from telethon import Button
-from telethon import TelegramClient, events
-from datetime import datetime, timedelta
+import youtube_dl, requests, time
 from pyrogram import filters
-from pyrogram.handlers import MessageHandler
-from time import sleep
-from random import shuffle
-from random import randint
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from pyrogram import Client, filters, types, __version__
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-from pyrogram.types.messages_and_media import Message
+from pyrogram import Client, filters, types
+from time import sleep
+from random import shuffle
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from mesaj.botmesaj import *
+from mesaj.kelimeler import *
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+from pyrogram import Client, filters, __version__
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
