@@ -75,6 +75,7 @@ async def start(_, message: Message):
         message_id=loading_message.message_id,
         text=f"""✦ Merhaba {message.from_user.mention}""",
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
+    )
 	
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
