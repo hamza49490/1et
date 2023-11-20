@@ -1113,6 +1113,21 @@ async def ratingsa(c:Client, m:Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
+# İstatistikleri tutmak için değişkenler
+total_groups = 0
+total_pms = 0
+
+# /stats komutunu işle
+@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
+def stats_command_handler(client: Client, message: Message):
+    global total_groups, total_pms
+    
+    # Grup ve PM sayılarını güncelle
+    total_groups = len(client.get_dialogs()[0])
+    total_pms = len(client.get_dialogs()[1])
+    
+    # İstatistikleri gönder
+    message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam PM sayısı: {total_pms}")
 
 print("Pyrogram Aktif !")
 app.run()
