@@ -36,9 +36,9 @@ LOGGER = logging.getLogger(__name__)
 
 app = Client(
     ":memory:",
-    API_ID,
-    API_HASH,
-    bot_token=BOT_TOKEN
+    config.API_ID,
+    config.API_HASH,
+    bot_token=config.BOT_TOKEN
     )
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
