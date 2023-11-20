@@ -180,7 +180,8 @@ async def yeni_mesaj_handler(client, message):
 async def anonim_handler(client, callback_query):
     global mesaj
     global tesdiq
-    chat_id = callback_query.message.chat.username  # Doğru sohbet kimliğini alın
+    chat_id = callback_query.message.chat.id  # Doğru sohbet kimliğini alın
+    resolved_chat_id = await client.resolve_peer(chat_id)
     async for user in client.iter_chat_members(chat_id):
         gonderen = f"{user.user.first_name}"
         etiraf_eden = "Anonim"
@@ -198,6 +199,7 @@ async def aciq(client, callback_query):
     global mesaj
     global tesdiq
     chat_id = callback_query.message.chat.id
+    resolved_chat_id = await client.resolve_peer(chat_id)
     async for usr in client.iter_chat_members(chat_id):
         etiraf_eden = f"{usr.user.first_name}"
         sonluq = f"\n💌 Etirafınızı ... edin"
