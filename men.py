@@ -1109,64 +1109,6 @@ async def ratingsa(c:Client, m:Message):
             break
     await c.send_message(m.chat.id, metin)
 '''	    
-
-isleyen = []
-
-async def is_group_admin(client, message):
-    chat_id = message.chat.id
-    user_id = message.from_user.id
-    member = await client.get_chat_member(chat_id, user_id)
-    return member.status in ["creator", "administrator"]
-
-@app.on_message(filters.command("chatbot", prefixes="/"))
-async def chatbot(client, message):
-    if message.chat.type == "private":
-        await message.reply("nogroup", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(client, message):
-        await message.reply("noadmin", parse_mode='markdown')
-        return
-     
-    global isleyen
-    if message.chat.id in isleyen:
-        status = "✅ ᴀᴋᴛɪ‌ғ"
-    else:
-        status = "⛔ ᴋᴀᴘᴀʟɪ"
-    
-    await message.reply(f"✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", callback_data="sohbetmod_on")],
-            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
-        ]
-    ))
-
-@app.on_callback_query(filters.regex("sohbetmod_on"))
-async def callback_sohbetmod_on(client, callback_query):
-    qrup = callback_query.message.chat.id
-    if qrup not in isleyen:
-        isleyen.append(qrup)
-        aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
-        await callback_query.edit_message_text(aktiv_olundu)
-        await asyncio.sleep(3600)
-        while qrup in isleyen:
-            users = await client.get_chat_members(qrup)
-            active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
-            if active_users:
-                random_user = random.choice(active_users)
-                await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
-            await asyncio.sleep(3600)
-        return
-    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
-
-@app.on_callback_query(filters.regex("sohbetmod_off"))
-async def callback_sohbetmod_off(client, callback_query):
-    qrup = callback_query.message.chat.id
-    if qrup in isleyen:
-        isleyen.remove(qrup)
-        await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
-        return
-    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 	
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
