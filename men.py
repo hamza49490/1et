@@ -97,6 +97,9 @@ async def help(_, query: CallbackQuery):
                 InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag3")
             ],
             [
+	        InlineKeyboardButton("🔹 𝖲𝗎𝖽𝗈 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag4")
+            ],
+            [
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
             ]
         ]
@@ -128,7 +131,7 @@ async def tag2(_, query: CallbackQuery):
 )
 
 @app.on_callback_query(filters.regex("tag3"))
-async def tag4(_, query: CallbackQuery):
+async def tag3(_, query: CallbackQuery):
     oyunn = "✦ Oyun Komutlar!"
     await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
         [
@@ -139,6 +142,20 @@ async def tag4(_, query: CallbackQuery):
     )
 )
 
+@app.on_callback_query(filters.regex("tag4") & filters.user(OWNER_ID))
+async def tag4(_, query: CallbackQuery):
+    oyunn = "✦ Oyun Komutlar!"
+    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    )
+)
+else:
+    await query.answer("İznin yok!")
+	
 anlik_calisan = []
 tekli_calisan = []
 gece_tag = []
