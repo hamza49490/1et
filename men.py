@@ -151,7 +151,7 @@ async def tag4(_, query: CallbackQuery):
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
             ]
         ]
-    )
+    ))
     await query.answer("İznin yok!")
 	
 anlik_calisan = []
