@@ -11,3 +11,6 @@ PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
+GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDuyuru")
+GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
+LANGAUGE = os.environ.get("LANGAUGE", "TR")
