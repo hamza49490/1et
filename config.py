@@ -11,3 +11,7 @@ PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
+
+log_qrup = "-1001983841726" # Kendi günlük grubu kimliğinizle değiştirin
+admin_qrup = "-1001983841726" # Kendi yönetici grubu kimliğinizle değiştirin
+kanal = "-1002000742906"
