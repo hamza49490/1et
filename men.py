@@ -144,6 +144,10 @@ async def tag3(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag4") & filters.user(OWNER_ID))
 async def tag4(_, query: CallbackQuery):
+    if query.from_user.id != OWNER_ID:
+        await query.answer("İznin yok!")
+        return
+    
     oyunn = "✦ Oyun Komutlar!"
     await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
         [
@@ -152,7 +156,6 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     ))
-    await query.answer("İznin yok!")
 	
 anlik_calisan = []
 tekli_calisan = []
