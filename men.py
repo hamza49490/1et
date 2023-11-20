@@ -302,42 +302,42 @@ async def atag(client, message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
-        return await message.reply("nogroup")
-  
+        return await message.reply(f"nogroup")
+    
     admins = []
     async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
         admins.append(admin.user.id)
     if message.from_user.id not in admins:
-        return await message.reply("noadmin")
-  
+        return await message.reply(f"noadmin")
+    
     if len(message.command) > 1:
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
         if len(msg_list) < 2:
-            return await message.reply("Bir Mesaj Verin")
+            return await message.reply(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba")
         msg = msg_list[1]
         if msg == "/atag":
-            return await message.reply("Bir Mesaj Verin")
+            return await message.reply(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba")
     elif message.reply_to_message:
         mode = "text_on_reply"
         msg = message.reply_to_message.message_id
         if msg == None:
-            return await message.reply("Bir Mesaj Verin")
+            return await message.reply("")
     elif len(message.command) > 1 and message.reply_to_message:
         mode = "text_on_cmd"
         msg_list = message.text.split(None, 1)
         if len(msg_list) < 2:
-            return await message.reply("Bir Mesaj Verin")
+            return await message.reply(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba")
         msg = msg_list[1]
     else:
-        return await message.reply("Bir Mesaj Verin")
-  
+        return await message.reply(f"💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba")
+    
     if mode == "text_on_cmd":
         anlik_calisan.append(message.chat.id)
         usrnum = 0
         usrtxt = ""
-        await message.reply("ibaslama")
-
+        await message.reply(f"ibaslama")
+    
         gece_tag.append(message.chat.id)
         usrnum = 0
         usrtxt = ""   
@@ -347,19 +347,19 @@ async def atag(client, message):
             if usr.user.id in admins:  # Yalnızca yöneticileri etiketleyin
                 rxyzdev_tagTot[message.chat.id] += 1
                 usrnum += 1
-                usrtxt += f"{usr.user.first_name} , "
+                usrtxt += f"{usr.user.first_name}"  # Kullanıcı adını kullanarak yöneticiyi etiketleyin
                 if message.chat.id not in gece_tag:
                     return
                 if usrnum == 1:
-                    await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
+                    await client.send_message(message.chat.id, f"{usrtxt}  {msg}")
                     await asyncio.sleep(2)
                     usrnum = 0
                     usrtxt = ""
-     
-    sender = message.from_user
-    rxyzdev_initT = f"{sender.first_name}"      
-    if message.chat.id in rxyzdev_tagTot:
-        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+        
+        sender = message.from_user
+        rxyzdev_initT = f"{sender.first_name}"      
+        if message.chat.id in rxyzdev_tagTot:
+            await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
 
 @app.on_message(filters.command("utag", prefixes="/"))
 async def utag(client, message):
