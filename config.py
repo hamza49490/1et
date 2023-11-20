@@ -11,3 +11,7 @@ PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "Sahip"
+
+admin_grup = int(os.environ.get("ADMIN_GRUP", "-1001983841726"))
+etiraf_grup = int(os.environ.get("ETIRAF_GRUP", "-1002000742906"))
+log_grup = int(os.environ.get("LOG_GRUP", "-1001983841726"))
