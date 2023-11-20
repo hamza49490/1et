@@ -44,12 +44,12 @@ app = Client(
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
-    await message.reply_text("**🔄 Yükleniyor ...**")
-    await asyncio.sleep(3)
-    await app.delete_messages(chat_id=message.chat.id, message_ids=message.message_id)
-    await message.reply_photo(
-        "https://telegra.ph/file/dcbfffc19d29281424d8a.jpg",
-        caption=f"""✦ Merhaba {message.from_user.mention}""",
+    loading_message = await message.reply_text("🔄 Yükleniyor ...")
+    await asyncio.sleep(2)
+    await app.edit_message_text(
+        chat_id=message.chat.id,
+        message_id=loading_message.message_id,
+        text=f"""✦ Merhaba {message.from_user.mention}""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -65,7 +65,6 @@ async def start(_, message: Message):
             ]
         )
     )
-
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
     startmesaj = f"✦ Merhaba {query.from_user.mention}"
@@ -84,7 +83,6 @@ async def start(_, query: CallbackQuery):
         ]
     )
 )
-
 @app.on_callback_query(filters.regex("help"))
 async def help(_, query: CallbackQuery):
     startbutton = "✦ !"
@@ -108,7 +106,6 @@ async def help(_, query: CallbackQuery):
         ]
     )
 )
-
 @app.on_callback_query(filters.regex("tag1"))
 async def tag1(_, query: CallbackQuery):
     etikett = "✦ Etiket !"
