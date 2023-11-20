@@ -145,13 +145,7 @@ async def tag3(_, query: CallbackQuery):
 @app.on_callback_query(filters.regex("tag4"))
 async def tag4(_, query: CallbackQuery):
     if query.from_user.id != OWNER_ID:
-        await query.message.edit_text("İznin yok!", reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-                ]
-            ]
-        ))
+        await query.answer("İznin yok!", show_alert=True)  # show_alert parametresini True olarak ayarlayarak yanıtın boyutunu büyütebilirsiniz
         return
     
     oyunn = "✦ Oyun Komutlar!"
@@ -162,7 +156,7 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     ))
-	
+
 anlik_calisan = []
 tekli_calisan = []
 gece_tag = []
