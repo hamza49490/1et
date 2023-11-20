@@ -42,7 +42,121 @@ app = Client(
     bot_token=config.BOT_TOKEN
     )
 
+@app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
+async def start(_, message: Message):
+    loading_message = await message.reply_text("🔄 Yükleniyor ...")
+    await asyncio.sleep(2)
+    await app.edit_message_text(
+        chat_id=message.chat.id,
+        message_id=loading_message.message_id,
+        text=f"""✦ Merhaba {message.from_user.mention}""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('✚  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                ],
+                [
+                    InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                    InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
+                ],
+                [
+                    InlineKeyboardButton(". xd", callback_data="etiraf"),
+                    InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
+                ]
+            ]
+        )
+    )
+	
+@app.on_callback_query(filters.regex("start"))
+async def start(_, query: CallbackQuery):
+    startmesaj = f"✦ Merhaba {query.from_user.mention}"
+    await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=a")
+            ],
+            [
+                InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
+                InlineKeyboardButton("🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı", url=f"https://t.me/{CHANNELL}")
+            ],
+            [
+                InlineKeyboardButton("✦  𝖣𝖾𝗌𝗍𝖾𝗄", url=f"tg://openmessage?user_id={OWNER_ID}")
+            ]
+        ]
+    )
+)
+	
+@app.on_callback_query(filters.regex("help"))
+async def help(_, query: CallbackQuery):
+    startbutton = "✦ !"
+    await query.message.edit_text(startbutton, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("📇 𝖤𝗍𝗂𝗄𝖾𝗍 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag1"),
+                InlineKeyboardButton("🗒️ 𝖤𝗄 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="tag2")
+            ],
+            [
+                InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag3"),
+	        InlineKeyboardButton("🔹 𝖲𝗎𝖽𝗈 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag4")
+            ],
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
+            ]
+        ]
+    )
+)
+	
+@app.on_callback_query(filters.regex("tag1"))
+async def tag1(_, query: CallbackQuery):
+    etikett = "✦ Etiket !"
+    await query.message.edit_text(etikett, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    )
+)
 
+@app.on_callback_query(filters.regex("tag2"))
+async def tag2(_, query: CallbackQuery):
+    extraa = "✦ Ek Komutlar"
+    await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    )
+)
+
+@app.on_callback_query(filters.regex("tag3"))
+async def tag3(_, query: CallbackQuery):
+    oyunn = "✦ Oyun Komutlar!"
+    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    )
+)
+
+@app.on_callback_query(filters.regex("tag4"))
+async def tag4(_, query: CallbackQuery):
+    if query.from_user.id != OWNER_ID:
+        await query.answer("İznin yok!", show_alert=True)  # show_alert parametresini True olarak ayarlayarak yanıtın boyutunu büyütebilirsiniz
+        return
+    
+    oyunn = "✦ Oyun Komutlar!"
+    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
+            ]
+        ]
+    ))
+	
 # Callback query handler
 @app.on_callback_query(filters.regex("etiraf"))
 async def handler(_, query):
@@ -123,119 +237,7 @@ async def sil(event):
         etiraf = await app.get_messages(event.chat_id, event.reply_to_message.message_id)
         await etiraf.delete()
         await event.edit("🗑️ İtiraf Silindi ...")
-
-@app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
-async def start(_, message: Message):
-    loading_message = await message.reply_text("🔄 Yükleniyor ...")
-    await asyncio.sleep(2)
-    await app.edit_message_text(
-        chat_id=message.chat.id,
-        message_id=loading_message.message_id,
-        text=f"""✦ Merhaba {message.from_user.mention}""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton('✚  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
-                ],
-                [
-                    InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
-                    InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
-                ],
-                [
-                    InlineKeyboardButton(". xd", callback_data="etiraf"),
-                    InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
-                ]
-            ]
-        )
-    )
-@app.on_callback_query(filters.regex("start"))
-async def start(_, query: CallbackQuery):
-    startmesaj = f"✦ Merhaba {query.from_user.mention}"
-    await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("➕  𝖡𝖾𝗇𝗂 𝖦𝗋𝗎𝖻𝖺 𝖤𝗄𝗅𝖾  ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=a")
-            ],
-            [
-                InlineKeyboardButton("📚 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="help"),
-                InlineKeyboardButton("🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı", url=f"https://t.me/{CHANNELL}")
-            ],
-            [
-                InlineKeyboardButton("✦  𝖣𝖾𝗌𝗍𝖾𝗄", url=f"tg://openmessage?user_id={OWNER_ID}")
-            ]
-        ]
-    )
-)
-@app.on_callback_query(filters.regex("help"))
-async def help(_, query: CallbackQuery):
-    startbutton = "✦ !"
-    await query.message.edit_text(startbutton, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("📇 𝖤𝗍𝗂𝗄𝖾𝗍 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag1"),
-                InlineKeyboardButton("🗒️ 𝖤𝗄 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="tag2")
-            ],
-            [
-                InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag3"),
-	        InlineKeyboardButton("🔹 𝖲𝗎𝖽𝗈 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag4")
-            ],
-            [
-                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
-            ]
-        ]
-    )
-)
-@app.on_callback_query(filters.regex("tag1"))
-async def tag1(_, query: CallbackQuery):
-    etikett = "✦ Etiket !"
-    await query.message.edit_text(etikett, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-            ]
-        ]
-    )
-)
-
-@app.on_callback_query(filters.regex("tag2"))
-async def tag2(_, query: CallbackQuery):
-    extraa = "✦ Ek Komutlar"
-    await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-            ]
-        ]
-    )
-)
-
-@app.on_callback_query(filters.regex("tag3"))
-async def tag3(_, query: CallbackQuery):
-    oyunn = "✦ Oyun Komutlar!"
-    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-            ]
-        ]
-    )
-)
-
-@app.on_callback_query(filters.regex("tag4"))
-async def tag4(_, query: CallbackQuery):
-    if query.from_user.id != OWNER_ID:
-        await query.answer("İznin yok!", show_alert=True)  # show_alert parametresini True olarak ayarlayarak yanıtın boyutunu büyütebilirsiniz
-        return
-    
-    oyunn = "✦ Oyun Komutlar!"
-    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-            ]
-        ]
-    ))
-
+	    
 anlik_calisan = []
 tekli_calisan = []
 gece_tag = []
