@@ -1157,12 +1157,16 @@ def handle_messages(client: Client, message: Message):
         # Kara listedeki kullanıcının mesajını algılama
         return
 
+from pyrogram import Client, filters
+
+# Botunuzun diğer kodlarını buraya ekleyin
+
 # /stats komutunu işle
 @app.on_message(filters.command("stats") & filters.user(OWNER_ID))
 def stats_command_handler(client: Client, message: Message):
     # Toplam grup sayısını al
     total_groups = 0
-    dialogs = client.get_dialogs()
+    dialogs = client.iter_dialogs()
     for dialog in dialogs:
         if dialog.chat.type == "supergroup" or dialog.chat.type == "group":
             total_groups += 1
@@ -1175,6 +1179,6 @@ def stats_command_handler(client: Client, message: Message):
 
     # Veritabanına kaydet
     db.stats.insert_one({"total_groups": total_groups, "total_pm_messages": total_pm_messages})
-
+	
 print("Pyrogram Aktif !")
 app.run()
