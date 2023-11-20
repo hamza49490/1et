@@ -180,7 +180,8 @@ async def yeni_mesaj_handler(client, message):
 async def anonim_handler(client, callback_query):
     global mesaj
     global tesdiq
-    async for user in client.iter_chat_members(callback_query.message.chat.id):
+    chat_id = callback_query.message.chat.username  # Doğru sohbet kimliğini alın
+    async for user in client.iter_chat_members(chat_id):
         gonderen = f"{user.user.first_name}"
         etiraf_eden = "Anonim"
         yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj}")
@@ -191,12 +192,13 @@ async def anonim_handler(client, callback_query):
     await callback_query.edit_message_text(gonderildi, reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("💌 Yeni İtiraf", callback_data="itiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
     ), disable_web_page_preview=True)
-
+	
 @app.on_callback_query(filters.regex("aciq"))
 async def aciq(client, callback_query):
     global mesaj
     global tesdiq
-    async for usr in client.iter_chat_members(callback_query.message.chat.id):
+    chat_id = callback_query.message.chat.id
+    async for usr in client.iter_chat_members(chat_id):
         etiraf_eden = f"{usr.user.first_name}"
         sonluq = f"\n💌 Etirafınızı ... edin"
         yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n{sonluq}")
