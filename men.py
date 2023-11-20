@@ -297,6 +297,29 @@ rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
 
+
+@app.on_message(filters.command(['cagir'], prefixes='/'))
+async def handle_tagging(client, message):
+    if message.chat.type == 'private':
+        await message.reply_text(f"{nogroup}", parse_mode='markdown')
+        return
+    
+    sender_username = f"{message.from_user.first_name}"
+    
+    all_users = await client.get_chat_members(message.chat.id)
+    
+    tag_count = 100
+    
+    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted]
+    
+    tagged_users = valid_users[:tag_count]
+    
+    tags = ' , '.join(f'[{user.user.first_name}' for user in tagged_users])
+    
+    message_text = f'{tags}\n\n➻  {sender_username}\n✦ sɪᴢɪ ᴄ‌ᴀɢ‌ɪʀɪʏᴏʀ .'
+    
+    await client.send_message(message.chat.id, message_text)
+	
 @app.on_message(filters.command("atag", prefixes="/"))
 async def atag(client, message):
     global gece_tag
@@ -426,7 +449,7 @@ async def utag(client, message):
 
 @app.on_message(filters.command("cancel", prefixes="/"))
 async def cancel(client, message):
-    global gece_tag
+    global gece_tag, rxyzdev_tagTot
     if message.chat.type == "private":
         return await message.reply("nogroup")
   
@@ -440,6 +463,7 @@ async def cancel(client, message):
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
 
     gece_tag.remove(message.chat.id)
+    rxyzdev_tagTot[message.chat.id] = 0  # etiketleme sayısını sıfırla
     sender = message.from_user
     rxyzdev_stopT = f"{sender.first_name}"
     await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}\n\n👤 ɪᴘᴛᴀʟ ᴇᴅᴇɴ ᴋᴜʟʟᴀɴɪᴄɪ : {rxyzdev_stopT}")
