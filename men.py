@@ -314,8 +314,8 @@ async def handle_tagging(client, message):
     
     tagged_users = valid_users[:tag_count]
     
-    tags = ' , '.join(f'[{user.user.first_name}' for user in tagged_users])
-    
+    tags = ' , '.join(f'[{user.user.first_name}]' for user in tagged_users)    
+
     message_text = f'{tags}\n\n➻  {sender_username}\n✦ sɪᴢɪ ᴄ‌ᴀɢ‌ɪʀɪʏᴏʀ .'
     
     await client.send_message(message.chat.id, message_text)
