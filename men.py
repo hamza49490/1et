@@ -1204,15 +1204,13 @@ db = Database(DATABASE_URL, BOT_USERNAME)
 mongo_db_veritabani = MongoClient(DATABASE_URL)
 dcmdb = mongo_db_veritabani.handlers
 
-
-
 ################## KULLANICI KONTROLLERİ #############
 async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
     chat_id = cmd.chat.id
     if not await db.is_user_exist(chat_id):
         if cmd.chat.type == "private":
             await db.add_user(chat_id)
-            await bot.send_message(LOG_GROUP,LAN.BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id))
+            await bot.send_message(LOG_CHANNEL,LAN.BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id))
         else:
             await db.add_user(chat_id)
             chat = bot.get_chat(chat_id)
@@ -1220,15 +1218,15 @@ async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
                 new_chat_id = str(chat_id)[4:]
             else:
                 new_chat_id = str(chat_id)[1:]
-            await bot.send_message(LOG_GROUP,LAN.GRUP_BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id, chat.title, cmd.chat.id, cmd.chat.id, cmd.message_id))
+            await bot.send_message(LOG_CHANNEL,LAN.GRUP_BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id, chat.title, cmd.chat.id, cmd.chat.id, cmd.message_id))
 
     ban_status = await db.get_ban_status(chat_id) # Yasaklı Kullanıcı Kontrolü
     if ban_status["is_banned"]:
         if int((datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])).days) > int(ban_status["ban_duration"]):
             await db.remove_ban(chat_id)
         else:
-            if SUPPORT:
-                msj = f"@{SUPPORT}"
+            if GROUP_SUPPORT:
+                msj = f"@{GROUP_SUPPORT}"
             else:
                 msj = f"[{LAN.SAHIBIME}](tg://user?id={OWNER_ID})"
             if cmd.chat.type == "private":
@@ -1239,12 +1237,8 @@ async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
             return
     await cmd.continue_propagation()
 
-
-
-
 ############### Broadcast araçları ###########
 broadcast_ids = {}
-
 
 async def send_msg(user_id, message): # Mesaj Gönderme
     try:
@@ -1308,8 +1302,6 @@ async def main_broadcast_handler(m, db): # Ana Broadcast Mantığı
         await m.reply_document(document="broadcast-logs-g4rip.txt", caption=LAN.BROADCAST_STOPPED.format(completed_in, total_users, done, success, failed), quote=True,)
     os.remove("broadcast-logs-g4rip.txt")
 
-
-
 # Genelde müzik botlarının mesaj silme özelliği olur. Bu özelliği ReadMe.md dosyasındaki örnekteki gibi kullanabilirsiniz.
 delcmdmdb = dcmdb.admins
 
@@ -1331,11 +1323,8 @@ async def delcmd_off(chat_id: int): # Grup için mesaj silme özeliğini kapatı
         return
     return await delcmdmdb.insert_one({"chat_id": chat_id})
 
-
-
 ################# SAHİP KOMUTLARI #############
-# Verileri listeleme komutu
-@app.on_message(filters.command("istatistik") & filters.user(OWNER_ID))
+@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
 async def botstats(bot: Client, message: Message):
     g4rip = await bot.send_message(message.chat.id, LAN.STATS_STARTED.format(message.from_user.mention))
     all_users = await db.get_all_users()
@@ -1356,20 +1345,103 @@ async def botstats(bot: Client, message: Message):
     total_users = await db.total_users_count()
     await g4rip.edit(text=LAN.STATS.format(BOT_USERNAME, total_users, groups, pms, total, used, disk_usage, free, cpu_usage, ram_usage, __version__), parse_mode="md")
 
-
-
 # Botu ilk başlatan kullanıcıların kontrolünü sağlar.
 @app.on_message()
 async def G4RIP(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
-
-
 
 # Broadcast komutu
 @app.on_message(filters.command("reklam") & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
+# Bir kullanıcı yasaklama komutu
+@app.on_message(filters.command("block") & filters.user(OWNER_ID))
+async def ban(c: Client, m: Message):
+    if m.reply_to_message:
+        user_id = m.reply_to_message.from_user.id
+        if len(m.command) <= 1:
+            ban_duration = 9999
+            ban_reason = LAN.BAN_REASON.format(BOT_USERNAME)
+        elif len(m.command) == 2:
+            ban_duration = 9999
+            ban_reason = " ".join(m.command[1:])
+    else:
+        if len(m.command) <= 1:
+            return await m.reply(LAN.NEED_USER)
+        elif len(m.command) == 2:
+            user_id = int(m.command[1])
+            ban_duration = 9999
+            ban_reason = LAN.BAN_REASON.format(BOT_USERNAME)
+        elif len(m.command) == 3:
+            user_id = int(m.command[1])
+            ban_duration = 9999
+            ban_reason = " ".join(m.command[2:])
+    
+        if str(user_id).startswith("-"):
+            try:    
+                ban_log_text = LAN.BANNED_GROUP.format(m.from_user.mention, user_id, ban_duration, ban_reason)
+                await c.send_message(user_id, LAN.AFTER_BAN_GROUP.format(ban_reason))
+                await c.leave_chat(user_id)
+                ban_log_text += LAN.GROUP_BILGILENDIRILDI
+            except BaseException:
+                traceback.print_exc()
+                ban_log_text += LAN.GRUP_BILGILENDIRILEMEDI.format(traceback.format_exc())
+        else:
+            try:    
+                ban_log_text = LAN.USER_BANNED.format(m.from_user.mention, user_id, ban_duration, ban_reason)
+                await c.send_message(user_id, LAN.AFTER_BAN_USER.format(ban_reason))
+                ban_log_text += LAN.KULLANICI_BILGILENDIRME
+            except BaseException:
+                traceback.print_exc()
+                ban_log_text += LAN.KULLANICI_BILGILENDIRMEME.format(traceback.format_exc())
+        await db.ban_user(user_id, ban_duration, ban_reason)
+        await c.send_message(LOG_CHANNEL, ban_log_text)
+        await m.reply_text(ban_log_text, quote=True)
+
+# Bir kullanıcın yasağını kaldırmak komutu
+@app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
+async def unban(c: Client, m: Message):
+        if m.reply_to_message:
+            user_id = m.reply_to_message.from_user.id
+        else:
+            if len(m.command) <= 1:
+                return await m.reply(LAN.NEED_USER)
+            else:
+                user_id = int(m.command[1])
+        unban_log_text = LAN.UNBANNED_USER.format(m.from_user.mention, user_id)
+        if not str(user_id).startswith("-"):
+            try:
+                await c.send_message(user_id, LAN.USER_UNBAN_NOTIFY)
+                unban_log_text += LAN.KULLANICI_BILGILENDIRME
+            except BaseException:
+                traceback.print_exc()
+                unban_log_text += LAN.KULLANICI_BILGILENDIRMEME.format(traceback.format_exc())
+        await db.remove_ban(user_id)
+        await c.send_message(LOG_CHANNEL, unban_log_text)
+        await m.reply_text(unban_log_text, quote=True)
+
+# Yasaklı listesini görme komutu
+@app.on_message(filters.command("blocklist") & filters.user(OWNER_ID))
+async def _banned_usrs(_, m: Message):
+    all_banned_users = await db.get_all_banned_users()
+    banned_usr_count = 0
+    text = ""
+    async for banned_user in all_banned_users:
+        user_id = banned_user["id"]
+        ban_duration = banned_user["ban_status"]["ban_duration"]
+        banned_on = banned_user["ban_status"]["banned_on"]
+        ban_reason = banned_user["ban_status"]["ban_reason"]
+        banned_usr_count += 1
+        text += LAN.BLOCKS.format(user_id, ban_duration, banned_on, ban_reason)
+    reply_text = LAN.TOTAL_BLOCK.format(banned_usr_count, text)
+    if len(reply_text) > 4096:
+        with open("banned-user-list.txt", "w") as f:
+            f.write(reply_text)
+        await m.reply_document("banned-user-list.txt", True)
+        os.remove("banned-user-list.txt")
+        return
+    await m.reply_text(reply_text, True)
 
 ############## BELİRLİ GEREKLİ DEF'LER ###########
 def humanbytes(size):
@@ -1383,7 +1455,6 @@ def humanbytes(size):
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
 
-
 ########### ÇOKLU DİL ##############
 class LAN(object):
 
@@ -1392,6 +1463,8 @@ class LAN(object):
         BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})**"
         GRUP_BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})\n💬 Grub : {}\n🌟 Grub ID: {}\n🎲 Mesaj Linki : [Buraya Tıkla](https://t.me/c/{}/{})**"
         SAHIBIME = "sahibime"
+        PRIVATE_BAN = "🗒️ **Üzgünüm, yasaklandınız! Bunun bir hata olduğunu düşünyorsanız {} yazın.**"
+        GROUP_BAN = "🗒️ **Üzgünüm, grubunuz karalisteye alındı! Burada daha fazla kalamam. Bunun bir hata olduğunu düşünyorsanız {} yazın.**"
         NOT_ONLINE = "Aktif değil"
         BOT_BLOCKED = "Botu engellemiş"
         USER_ID_FALSE = "**Kullanıcı ID Yanlış .**"
@@ -1399,6 +1472,20 @@ class LAN(object):
         BROADCAST_STOPPED = "**✓ Reklam ( {} )  tamamlandı .\n\n👤 Kayıtlı Kullanıcı : {}\n♻️ Gönderme Denemesi : {}\n✅ Başarılı : {}\n⛔ Başarısız : {}**"
         STATS_STARTED = "{} **Veriler Toplanıyor !**"
         STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""
+        BAN_REASON = "Yasaklandığınız için @{} tarafından otomatik olarak oluşturulmuştur ."
+        NEED_USER = "**Lütfen Kullanıcı kimliği verin.**"
+        BANNED_GROUP = "🚷 **Yasaklandı!\n\nTarafından : {}\nGrup ID : {}\nSüre : {}\nSebep : {}**"
+        AFTER_BAN_GROUP = "**Üzgünüm grubunuz kara listeye alındı! \n\nSebep :{}**\n\n**Daha fazla burada kalamam. Bunun bir hata olduğunu düşünüyorsanız destek grubuna gelin.**"
+        GROUP_BILGILENDIRILDI = "\n\n✅ **Grubu bilgilendirdim ve gruptan ayrıldım.**"
+        GRUP_BILGILENDIRILEMEDI = "\n\n❌ **Grubu bilgilendirmeye çalışırken bir hata oluştu:** \n\n`{}`"
+        USER_BANNED = "🚷 **Yasaklandı! \n\nTarafından : {}\nKullanıcı ID : {}\nSüre : {}\nSebep : {}**"
+        AFTER_BAN_USER = "**Üzgünüm kara listeye alındınız! \n\nSebep : {}**"
+        KULLANICI_BILGILENDIRME = "\n\n**✓ Kişiyi bilgilendirdim.**"
+        KULLANICI_BILGILENDIRMEME = "\n\n❌ **Kişiyi bilgilendirmeye çalışırken bir hata oluştu:** \n\n`{}`"
+        UNBANNED_USER = "🆓 **Yasak Kaldırıldı !\nKaldıran : {}\nKullanıcı ID : {}**"
+        USER_UNBAN_NOTIFY = "**💞 Hoppala, Çok Şanslısın ! \n👨🏻‍💻 [ㅤᴀɪᴋᴏㅤ](tg://openmessage?user_id=6540285284) Yasağınızı kaldırdı !**"
+        BLOCKS = "🆔 **Kullanıcı ID : {}\n⏱ Süre : {}\n🗓 Yasaklanan Tarih : {}\n💬 Sebep : {}**\n\n"
+        TOTAL_BLOCK = "🚷 **Yasaklanan Kullanıcılar :** `{}`\n\n{}"
 	
 print("Pyrogram Aktif !")
 app.run()
