@@ -1134,12 +1134,12 @@ def stats_command_handler(client: Client, message: Message):
     global total_groups, total_pms
     
     # Grup ve PM sayılarını güncelle
-    dialogs = client.get_dialogs()
+    dialogs = client.iter_dialogs()
     total_groups = len([dialog for dialog in dialogs if isinstance(dialog.chat, Chat) and not dialog.chat.is_user])
     total_pms = len([dialog for dialog in dialogs if isinstance(dialog.chat, User)])
     
     # İstatistikleri gönder
     message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam PM sayısı: {total_pms}")
-
+	
 print("Pyrogram Aktif !")
 app.run()
