@@ -953,7 +953,7 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-        info = f"Kullanıcı: {user.first_name}\n" \
+        info = f"Kullanıcı: {user.mention}\n" \
                f"Kullanıcı Adı: @{user.username}\n" \
                f"Kullanıcı ID: {user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
@@ -967,7 +967,7 @@ async def get_user_info(client: Client, message: types.Message):
             status = "Durumu: Yönetici"
         else:
             status = "Durumu: Üye"
-        info = f"Kullanıcı: {message.from_user.first_name}\n" \
+        info = f"Kullanıcı: {message.from_user.mention}\n" \
                f"Kullanıcı Adı: @{message.from_user.username}\n" \
                f"Kullanıcı ID: {message.from_user.id}\n" \
                f"Grup ID: {message.chat.id}\n" \
@@ -1235,9 +1235,15 @@ async def ratingsa(c:Client, m:Message):
         if eklenen == 21:
             break
     await c.send_message(m.chat.id, metin)
-'''
+'''	    
 
 isleyen = []
+
+async def is_group_admin(client, message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+    member = await client.get_chat_member(chat_id, user_id)
+    return member.status in ["creator", "administrator"]
 
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
@@ -1262,7 +1268,6 @@ async def chatbot(client, message):
         ]
     ))
 
-
 @app.on_callback_query(filters.regex("sohbetmod_on"))
 async def callback_sohbetmod_on(client, callback_query):
     qrup = callback_query.message.chat.id
@@ -1280,7 +1285,6 @@ async def callback_sohbetmod_on(client, callback_query):
             await asyncio.sleep(3600)
         return
     await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
-  
 
 @app.on_callback_query(filters.regex("sohbetmod_off"))
 async def callback_sohbetmod_off(client, callback_query):
@@ -1301,7 +1305,7 @@ async def buket_handler(client, message):
     await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
 
 @app.on_message()
-async def chatbot(client, message):
+async def chatbot_message(client, message):
     global isleyen
     mesaj = str(message.text)
     qrup = message.chat.id
@@ -1318,8 +1322,8 @@ async def chatbot(client, message):
        cevap = random.choice(bottst)
        bold_cevap = f"<b>{cevap}</b>"
        await message.reply(bold_cevap, parse_mode='html')
-	    
 
+	
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
