@@ -1117,12 +1117,20 @@ blocked_users = []
 @app.on_message(filters.command("block") & filters.user(OWNER_ID))
 async def block_user(client: Client, message: Message):
     if len(message.command) == 2:
-        user_id = int(message.command[1])
+        try:
+            user_id = int(message.command[1])
+        except ValueError:
+            message.reply_text("Geçersiz kullanıcı kimliği.")
+            return
+
         if user_id not in blocked_users:
             blocked_users.append(user_id)
-            user = await client.get_chat(user_id)
-            user_name = user.first_name
-            message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
+            try:
+                user = await client.get_chat(user_id)
+                user_name = user.first_name
+                message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
+            except pyrogram.errors.exceptions.bad_request_400.PeerIdInvalid:
+                message.reply_text("Geçersiz kullanıcı kimliği.")
         else:
             message.reply_text(f"Kullanıcı {user_id} zaten kara listede.")
     else:
