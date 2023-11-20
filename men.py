@@ -35,9 +35,6 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
-mongo_client = MongoClient(DATABASE_URL)
-db = mongo_client[":memory:"]
-
 app = Client(
     ":memory:",
     config.API_ID,
@@ -1161,6 +1158,9 @@ def handle_messages(client: Client, message: Message):
         return
 
 from pymongo import MongoClient
+
+mongo_client = MongoClient(DATABASE_URL)
+db = mongo_client[":memory:"]
 
 # /stats komutunu işle
 @app.on_message(filters.command("stats") & filters.user(OWNER_ID))
