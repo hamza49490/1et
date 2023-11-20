@@ -608,7 +608,7 @@ async def show_bots(client: Client, message: Message):
         if user.user.is_bot:
             bot_list.append(user.user.mention)
     if bot_list:
-        await message.reply_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  @" + "\n➻  @".join(bot_list))
+        await message.reply_text(f"🤖 ɢʀᴜᴘᴛᴀᴋɪ ʙᴏᴛʟᴀʀ :\n\n➻  " + "\n➻  ".join(bot_list))
     else:
         await message.reply_text("🤖 ʙᴜ ɢʀᴜᴘᴛᴀ ʜɪᴄ‌ ʙᴏᴛ ʏᴏᴋ .")
 	    
