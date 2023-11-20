@@ -1124,22 +1124,57 @@ async def ratingsa(c:Client, m:Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-# İstatistikleri tutmak için değişkenler
-total_groups = 0
-total_pms = 0
+# /reklam komutunu dinleyen bir filtre
+@app.on_message(filters.command("reklam"))
+def reklam_command(client, message):
+    # Butonları içeren bir markup oluşturun
+    markup = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("Gruplar", callback_data="gruplar"),
+                InlineKeyboardButton("PM", callback_data="pm")
+            ]
+        ]
+    )
+    # Butonlarla birlikte bir mesaj gönderin
+    client.send_message(
+        chat_id=message.chat.id,
+        text="Reklamınızı nereye göndermek istersiniz?",
+        reply_markup=markup
+    )
 
-# /stats komutunu işle
-@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
-def stats_command_handler(client: Client, message: Message):
-    global total_groups, total_pms
-    
-    # Grup ve PM sayılarını güncelle
-    dialogs = client.iter_dialogs()
-    total_groups = len([dialog for dialog in dialogs if isinstance(dialog.chat, Chat) and not dialog.chat.is_user])
-    total_pms = len([dialog for dialog in dialogs if isinstance(dialog.chat, User)])
-    
-    # İstatistikleri gönder
-    message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam PM sayısı: {total_pms}")
-	
+# Butonlara tıklama olaylarını dinleyen bir filtre
+@app.on_callback_query()
+def button_click(client, callback_query):
+    # Butonlardan birine tıklandığında yapılacak işlemler
+    if callback_query.data == "gruplar":
+        # Gruplara reklam mesajını gönderin
+        client.send_message(
+            chat_id=callback_query.message.chat.id,
+            text="Reklamınız gruplara gönderildi!"
+        )
+        # Toplam gönderilen grup sayısını artırın
+        global total_grup
+        total_grup += 1
+    elif callback_query.data == "pm":
+        # PM kullanıcılarına reklam mesajını gönderin
+        client.send_message(
+            chat_id=callback_query.message.chat.id,
+            text="Reklamınız PM kullanıcılarına gönderildi!"
+        )
+        # Toplam gönderilen PM sayısını artırın
+        global total_pm
+        total_pm += 1
+    # Buton tıklama olayını yanıtlayın
+    callback_query.answer()
+
+# Toplam gönderilen grup ve PM sayılarını tutan değişkenler
+total_grup = 0
+total_pm = 0
+
+# İşlem tamamlandıktan sonra toplam gönderilen grup ve PM sayılarını gösterin
+print("Toplam gönderilen grup sayısı:", total_grup)
+print("Toplam gönderilen PM sayısı:", total_pm)
+
 print("Pyrogram Aktif !")
 app.run()
