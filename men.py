@@ -158,7 +158,6 @@ async def tag4(_, query: CallbackQuery):
         ]
     ))
 
-# Callback query handler for "itiraf" button
 @app.on_callback_query(filters.regex("itiraf"))
 async def itiraf_handler(client, callback_query):
     etirafyaz = "🥴 Lütfen Paylaşılmasını İstediğiniz İtirafı Yazın ..."
@@ -166,20 +165,17 @@ async def itiraf_handler(client, callback_query):
         [[InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
     ), disable_web_page_preview=True)
 
-# New message handler
 @app.on_message(filters.private)
 async def yeni_mesaj_handler(client, message):
     global mesaj
     if not message.text == "/start":
         mesaj = str(message.text)
-	etirafmsg = "**👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?**"
+        etirafmsg = "👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?"
         await client.send_message(message.chat.id, etirafmsg, reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("🌟 Açık", callback_data="aciq")],
              [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
         ), disable_web_page_preview=True)
-
-etiraf_anonim = "💌 Etiraf Bot\n📲 Telegram - 1.24.0"
-
+	    
 @app.on_callback_query(filters.regex("anonim"))
 async def anonim_handler(client, callback_query):
     global mesaj
@@ -195,9 +191,6 @@ async def anonim_handler(client, callback_query):
     await callback_query.edit_message_text(gonderildi, reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("💌 Yeni İtiraf", callback_data="itiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
     ), disable_web_page_preview=True)
-
-anonim = etiraf_anonim
-etiraf_aciq = b"\xE2\x84\xB9\xEF\xB8\x8F\x20\x42\x6F\x74\x20\x62\x61\xC5\x9F\x6C\x61\x64\xC4\xB1\x6C\x64\xC4\xB1\x20\x70\x72\x6F\x62\x6C\x65\x6D\x20\x79\x61\x72\x61\x6E\x64\xC4\xB1\x71\x64\x61\x20\x73\x75\x70\x70\x6F\x72\x74\x20\x71\x72\x75\x70\x75\x6E\x61\x20\x79\x61\x7A\xC4\xB1\x6E\x0A\xE2\x9A\xA1\x20\x42\x6F\x74\x75\x6E\x75\x7A\x20\x53\x75\x70\x65\x72\x20\xC4\xB0\xC5\x9F\x6C\x65\x79\x69\x72\x2E\x2E\x2E"
 
 @app.on_callback_query(filters.regex("aciq"))
 async def aciq(client, callback_query):
