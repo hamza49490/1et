@@ -1363,7 +1363,7 @@ async def G4RIP(bot: Client, cmd: Message):
 
 
 # Broadcast komutu
-@app.on_message(filters.command("yolla") & filters.user(OWNER_ID) & filters.reply)
+@app.on_message(filters.command("reklam") & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
@@ -1410,7 +1410,7 @@ async def ban(c: Client, m: Message):
                 traceback.print_exc()
                 ban_log_text += LAN.KULLANICI_BILGILENDIRMEME.format(traceback.format_exc())
         await db.ban_user(user_id, ban_duration, ban_reason)
-        await c.send_message(LOG_CHANNEL, ban_log_text)
+        await c.send_message(LOG_GROUP, ban_log_text)
         await m.reply_text(ban_log_text, quote=True)
 
 
@@ -1434,7 +1434,7 @@ async def unban(c: Client, m: Message):
                 traceback.print_exc()
                 unban_log_text += LAN.KULLANICI_BILGILENDIRMEME.format(traceback.format_exc())
         await db.remove_ban(user_id)
-        await c.send_message(LOG_CHANNEL, unban_log_text)
+        await c.send_message(LOG_GROUP, unban_log_text)
         await m.reply_text(unban_log_text, quote=True)
 
 
