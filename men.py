@@ -1242,11 +1242,11 @@ isleyen = []
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
-        await message.reply("{nogroup}", parse_mode='markdown')
+        await message.reply("nogroup", parse_mode='markdown')
         return
 
     if not await is_group_admin(client, message):
-        await message.reply("{noadmin}", parse_mode='markdown')
+        await message.reply("noadmin", parse_mode='markdown')
         return
      
     global isleyen
