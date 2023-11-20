@@ -13,7 +13,7 @@ import yt_dlp
 import ffmpeg
 import random
 import youtube_dl, requests, time
-import motor.motor_asyncio
+import config
 from datetime import datetime, timedelta
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
@@ -23,35 +23,16 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, filters, types, __version__
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
-
-API_ID = int(os.environ.get("API_ID", "26573250"))
-API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "EpicTaggerBot")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6865081184:AAFcDOrflr2l_tibi7tvQ3A9Sv288XxevLA")
-BOT_ID = int(os.environ.get("BOT_ID", "6865081184"))
-OWNER_ID = int(os.environ.get("OWNER_ID", "5581058044"))
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
-PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
-MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
-CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
-OWNERNAME = "Sahip"
 
 app = Client(
     ":memory:",
