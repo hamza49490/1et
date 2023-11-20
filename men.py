@@ -172,6 +172,7 @@ async def yeni_mesaj_handler(client, message):
     global mesaj
     if not message.text == "/start":
         mesaj = str(message.text)
+	etirafmsg = "**👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?**"
         await client.send_message(message.chat.id, etirafmsg, reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("🌟 Açık", callback_data="aciq")],
              [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
