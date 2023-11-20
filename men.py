@@ -76,7 +76,7 @@ async def start(_, query: CallbackQuery):
                 InlineKeyboardButton("🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı", url=f"https://t.me/{CHANNELL}")
             ],
             [
-                InlineKeyboardButton("✦  𝖲𝖺𝗁𝗂𝗉  ✦", url=f"tg://openmessage?user_id={OWNER_ID}")
+                InlineKeyboardButton("✦  𝖣𝖾𝗌𝗍𝖾𝗄", url=f"tg://openmessage?user_id={OWNER_ID}")
             ]
         ]
     )
@@ -142,7 +142,7 @@ async def tag3(_, query: CallbackQuery):
     )
 )
 
-@app.on_callback_query(filters.regex("tag4") & filters.user(OWNER_ID))
+@app.on_callback_query(filters.regex("tag4"))
 async def tag4(_, query: CallbackQuery):
     if query.from_user.id != OWNER_ID:
         await query.answer("İznin yok!")
