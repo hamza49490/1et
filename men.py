@@ -11,6 +11,7 @@ import motor.motor_asyncio
 import yt_dlp
 import ffmpeg
 import aiohttp
+import datetime
 import config
 from config import *
 import youtube_dl, requests, time
@@ -25,6 +26,7 @@ from random import shuffle
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
+from mesaj.kelimeler import kelime_sec
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, filters, __version__
 from pyrogram.errors import (
@@ -929,8 +931,6 @@ oyun = {}
 rating = {}
 @app.on_message(filters.command("turet") & ~filters.private & ~filters.channel)
 async def kelimeoyun(c:Client, m:types.Message):
-    if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
 
     global oyun
     aktif = False
