@@ -161,6 +161,7 @@ async def tag4(_, query: CallbackQuery):
 # Callback query handler for "itiraf" button
 @app.on_callback_query(filters.regex("itiraf"))
 async def itiraf_handler(client, callback_query):
+    etirafyaz = "🥴 Lütfen Paylaşılmasını İstediğiniz İtirafı Yazın ..."
     await callback_query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
     ), disable_web_page_preview=True)
@@ -176,7 +177,7 @@ async def yeni_mesaj_handler(client, message):
              [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
         ), disable_web_page_preview=True)
 
-etiraf_anonim = "💌 Etiraf Bot\n📲 Telegram - 1.24.0\n📣 Support - @RobotlariTg"
+etiraf_anonim = "💌 Etiraf Bot\n📲 Telegram - 1.24.0"
 
 @app.on_callback_query(filters.regex("anonim"))
 async def anonim_handler(client, callback_query):
@@ -185,11 +186,11 @@ async def anonim_handler(client, callback_query):
     async for user in client.iter_chat_members(callback_query.message.chat.id):
         gonderen = f"{user.user.first_name}"
         etiraf_eden = "Anonim"
-        yeni_etiraf = await client.send_message(admin_qrup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n\n📣 Etirafınızı {botad} -a edin")
+        yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj}")
         tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✅ Onaylandı", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]]
         ), disable_web_page_preview=True)
-    await client.send_message(log_qrup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı")
+    await client.send_message(log_grup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı")
     await callback_query.edit_message_text(gonderildi, reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("💌 Yeni İtiraf", callback_data="itiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
     ), disable_web_page_preview=True)
@@ -203,16 +204,16 @@ async def aciq(client, callback_query):
     global tesdiq
     async for usr in client.iter_chat_members(callback_query.message.chat.id):
         etiraf_eden = f"{usr.user.first_name}"
-        sonluq = f"\n💌 Etirafınızı {botad} -a edin"
-        yeni_etiraf = await client.send_message(admin_qrup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n{sonluq}")
+        sonluq = f"\n💌 Etirafınızı ... edin"
+        yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n{sonluq}")
         tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("✅ Təsdiqlə", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
             ]
         ),
         disable_web_page_preview=True)
-    await client.send_message(log_qrup, f"ℹ️ {etiraf_eden} Açıq Etiraf Yazdı")
-    await callback_query.edit_message_text(f"{gonderildi}", reply_markup=InlineKeyboardMarkup(
+    await client.send_message(log_grup, f"ℹ️ {etiraf_eden} Açıq Etiraf Yazdı")
+    await callback_query.edit_message_text(f"gönderildi", reply_markup=InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("💌 Yeni Etiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Səhifə", callback_data="start")]
         ]
