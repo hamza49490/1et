@@ -1115,20 +1115,21 @@ async def ksayi(c:Client, m:Message):
 
 blocked_users = []
 @app.on_message(filters.command("block") & filters.user(OWNER_ID))
-def block_user(client: Client, message: Message):
+async def block_user(client: Client, message: Message):
     if len(message.command) == 2:
         user_id = int(message.command[1])
         if user_id not in blocked_users:
             blocked_users.append(user_id)
-            user_name = client.get_chat(user_id).first_name
+            user = await client.get_chat(user_id)
+            user_name = user.first_name
             message.reply_text(f"Kullanıcı {user_id} ({user_name}) kara listeye alındı.")
         else:
             message.reply_text(f"Kullanıcı {user_id} zaten kara listede.")
     else:
         message.reply_text("Kullanım: /block <kullanıcı_id>")
-
+	    
 @app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
-def unblock_user(client: Client, message: Message):
+async def unblock_user(client: Client, message: Message):
     if len(message.command) == 2:
         user_id = int(message.command[1])
         if user_id in blocked_users:
@@ -1145,40 +1146,21 @@ def blocklist(client: Client, message: Message):
     if len(blocked_users) > 0:
         blocked_users_text = ""
         for user_id in blocked_users:
-            user_name = client.get_chat(user_id).first_name
-            blocked_users_text += f"{user_id} - {user_name}\n"
+            try:
+                user_name = client.get_chat(user_id).first_name
+                blocked_users_text += f"{user_id} - {user_name}\n"
+            except Exception as e:
+                # Hata durumunda yapılacak işlemler
+                print(f"Hata: {e}")
         message.reply_text(f"Kara listede olan kullanıcılar:\n{blocked_users_text}")
     else:
         message.reply_text("Kara listede hiç kullanıcı yok.")
-
+	    
 @app.on_message(~filters.user(OWNER_ID))
 def handle_messages(client: Client, message: Message):
     if message.from_user.id in blocked_users:
         # Kara listedeki kullanıcının mesajını algılama
         return
 
-from pyrogram import Client, filters
-
-# Botunuzun diğer kodlarını buraya ekleyin
-
-# /stats komutunu işle
-@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
-def stats_command_handler(client: Client, message: Message):
-    # Toplam grup sayısını al
-    total_groups = 0
-    dialogs = client.iter_dialogs()
-    for dialog in dialogs:
-        if dialog.chat.type == "supergroup" or dialog.chat.type == "group":
-            total_groups += 1
-
-    # Toplam pm mesaj sayısını al
-    total_pm_messages = db.messages.count_documents({})
-
-    # Sonuçları gönder
-    message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam pm mesaj sayısı: {total_pm_messages}")
-
-    # Veritabanına kaydet
-    db.stats.insert_one({"total_groups": total_groups, "total_pm_messages": total_pm_messages})
-	
 print("Pyrogram Aktif !")
 app.run()
