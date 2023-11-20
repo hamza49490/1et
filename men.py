@@ -42,6 +42,88 @@ app = Client(
     bot_token=config.BOT_TOKEN
     )
 
+
+# Callback query handler
+@app.on_callback_query(filters.regex("etiraf"))
+async def handler(_, query):
+    etirafyaz = "🥴 Lütfen Paylaşılmasını İstediğiniz İtirafı Yazın ..."
+    await query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
+        ]
+    ), disable_web_page_preview=True)
+
+# New message handler
+@app.on_message(filters.private)
+async def yeni_mesaj(_, message):
+    etirafmsg = "**👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?**"
+    if message.text != "/start":
+        await message.reply(etirafmsg, reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("👤 Açık", callback_data="aciq")],
+                [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
+            ]
+        ), disable_web_page_preview=True)
+
+# Anonim callback query handler
+@app.on_callback_query(filters.regex("anonim"))
+async def anonim(_, query):
+    mesaj = query.message.text
+    gonderen = query.from_user.first_name
+    etiraf_eden = "Anonim"
+    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n\n💌 İtirafınızı {botad} 'a yazın .")
+    tesdiq = await yeni_etiraf.reply("İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ Yayınla", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
+        ]
+    ), disable_web_page_preview=True)
+    await app.send_message(log_qrup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı .")
+    await query.edit_message_text("Your gonderildi text", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("💌 Yeni İtiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
+        ]
+    ), disable_web_page_preview=True)
+
+# Aciq callback query handler
+@app.on_callback_query(filters.regex("aciq"))
+async def aciq(_, query):
+    mesaj = query.message.text
+    etiraf_eden = query.from_user.first_name
+    sonluq = f"\n💌 İtirafınızı {BOT_USERNAME} 'a yazın ."
+    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n{sonluq}")
+    tesdiq = await yeni_etiraf.reply("💬 İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ Yayınla", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
+        ]
+    ), disable_web_page_preview=True)
+    await app.send_message(log_qrup, f"ℹ️ {etiraf_eden} Açık İtiraf Yazdı .")
+    await query.edit_message_text("Your gonderildi text", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("💌 Yeni İtiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
+        ]
+    ), disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("tesdiq"))
+async def tesdiq(event):
+    global tesdiq
+    async for usr in app.iter_participants(event.chat_id):
+        tesdiqliyen = f"{usr.first_name}"
+    if event.reply_to_message:
+        etiraff = await app.get_messages(event.chat_id, event.reply_to_message.message_id)
+        etiraf = etiraff.text
+        await app.send_message(etiraf_qrup, etiraf)
+        await event.edit(f"✅ İtiraf Yayınlansın Mı ?")
+
+@app.on_callback_query(filters.regex("sil"))
+async def sil(event):
+    global tesdiq
+    if not event.reply_to_message:
+        return await event.edit("Silinirken bir hata oluştu.")
+    if event.reply_to_message:
+        etiraf = await app.get_messages(event.chat_id, event.reply_to_message.message_id)
+        await etiraf.delete()
+        await event.edit("🗑️ İtiraf Silindi ...")
+
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
@@ -60,6 +142,7 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
+                    InlineKeyboardButton(". xd", callback_data="etiraf"),
                     InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
                 ]
             ]
