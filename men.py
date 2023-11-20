@@ -304,7 +304,7 @@ async def handle_tagging(client, message):
         await message.reply_text(f"{nogroup}", parse_mode='markdown')
         return
     
-    sender_username = f"{message.from_user.first_name}"
+    sender_username = f"{message.from_user.mention}"
     
     all_users = await client.get_chat_members(message.chat.id)
     
@@ -314,7 +314,7 @@ async def handle_tagging(client, message):
     
     tagged_users = valid_users[:tag_count]
     
-    tags = ' , '.join(f'[{user.user.first_name}]' for user in tagged_users)    
+    tags = ' , '.join(f'[{user.user.mention}]' for user in tagged_users)    
 
     message_text = f'{tags}\n\n➻  {sender_username}\n✦ sɪᴢɪ ᴄ‌ᴀɢ‌ɪʀɪʏᴏʀ .'
     
@@ -463,10 +463,11 @@ async def cancel(client, message):
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
 
     gece_tag.remove(message.chat.id)
+    tag_count = rxyzdev_tagTot[message.chat.id]  # etiketlenen kullanıcı sayısını sakla
     rxyzdev_tagTot[message.chat.id] = 0  # etiketleme sayısını sıfırla
     sender = message.from_user
     rxyzdev_stopT = f"{sender.first_name}"
-    await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}\n\n👤 ɪᴘᴛᴀʟ ᴇᴅᴇɴ ᴋᴜʟʟᴀɴɪᴄɪ : {rxyzdev_stopT}")
+    await message.reply(f"⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {tag_count}\n\n👤 ɪᴘᴛᴀʟ ᴇᴅᴇɴ ᴋᴜʟʟᴀɴɪᴄɪ : {rxyzdev_stopT}")
 	
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
