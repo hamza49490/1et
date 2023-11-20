@@ -65,7 +65,7 @@ async def start(_, message: Message):
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
-    startmesaj = f"✦ Merhaba {message.from_user.mention}"
+    startmesaj = f"✦ Merhaba {query.from_user.mention}"
     await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
         [
             [
