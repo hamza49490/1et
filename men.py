@@ -185,6 +185,7 @@ async def anonim(_, query):
     mesaj = query.message.text
     gonderen = query.from_user.first_name
     etiraf_eden = "Anonim"
+    admin_qrup = await app.resolve_peer(admin_qrup)
     yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n\n💌 İtirafınızı {BOT_USERNAME} 'a yazın .")
     tesdiq = await yeni_etiraf.reply("İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
         [
@@ -204,6 +205,7 @@ async def aciq(_, query):
     mesaj = query.message.text
     etiraf_eden = query.from_user.first_name
     sonluq = f"\n💌 İtirafınızı {BOT_USERNAME} 'a yazın ."
+    admin_qrup = await app.resolve_peer(admin_qrup)
     yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n{sonluq}")
     tesdiq = await yeni_etiraf.reply("💬 İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
         [
