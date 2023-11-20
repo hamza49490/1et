@@ -149,21 +149,14 @@ async def tag4(_, query: CallbackQuery):
         return
     
     oyunn = "✦ Oyun Komutlar!"
-    await query.message.edit_text(
-        oyunn,
-        reply_markup=InlineKeyboardMarkup(
+    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+        [
             [
-                [
-                    InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
-                ]
+                InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="help")
             ]
-        ),
-        reply_to_message_id=query.message.message_id,
-        disable_web_page_preview=True,
-        parse_mode="Markdown",
-        reply_markup=None,
-        quote=False
-    )
+        ],
+        row_width=1
+    ))
 	
 anlik_calisan = []
 tekli_calisan = []
