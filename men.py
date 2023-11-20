@@ -42,7 +42,7 @@ app = Client(
     bot_token=config.BOT_TOKEN
     )
 
-@app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
+@app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
     await asyncio.sleep(2)
@@ -65,6 +65,16 @@ async def start(_, message: Message):
             ]
         )
     )
+
+@app.on_message(filters.command("start") & filters.group)
+async def start(_, message: Message):
+    loading_message = await message.reply_text("🔄 Yükleniyor ...")
+    await asyncio.sleep(2)
+    await app.edit_message_text(
+        chat_id=message.chat.id,
+        message_id=loading_message.message_id,
+        text=f"""✦ Merhaba {message.from_user.mention}""",
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
 	
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
@@ -1123,11 +1133,11 @@ def stats_command_handler(client: Client, message: Message):
     global total_groups, total_pms
     
     # Grup ve PM sayılarını güncelle
-    total_groups = len(client.get_dialogs()[0])
-    total_pms = len(client.get_dialogs()[1])
+    total_groups = client.get_dialogs_count().groups
+    total_pms = client.get_dialogs_count().chats - total_groups
     
     # İstatistikleri gönder
     message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam PM sayısı: {total_pms}")
-
+	
 print("Pyrogram Aktif !")
 app.run()
