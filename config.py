@@ -10,4 +10,4 @@ DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmer
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
-OWNERNAME = "Sahip"
+OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
