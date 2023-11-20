@@ -1294,35 +1294,6 @@ async def callback_sohbetmod_off(client, callback_query):
         await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
         return
     await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
-
-@app.on_message(filters.regex(r"(?i)(/|)duygu") & filters.incoming)
-async def buket_handler(client, message):
-    if message.chat.type == "private":
-        return
-    chat_id = message.chat.id
-    if chat_id in isleyen:
-        return
-    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
-
-@app.on_message()
-async def chatbot_message(client, message):
-    global isleyen
-    mesaj = str(message.text)
-    qrup = message.chat.id
-    if qrup not in isleyen:
-        return
-    
-    me = await client.get_me()
-    if message.from_user.id == me.id:
-        return
-    
-    kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
-
-    if "bot" in kelimeler:
-       cevap = random.choice(bottst)
-       bold_cevap = f"<b>{cevap}</b>"
-       await message.reply(bold_cevap, parse_mode='html')
-
 	
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
