@@ -45,8 +45,8 @@ app = Client(
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
     await message.reply_photo(
-        "https://telegra.ph/file/608001bdce5b396b50ea2.jpg",
-        caption=f"""✦ Merhaba {message.from_user.mention}\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !""",
+        "https://telegra.ph/file/dcbfffc19d29281424d8a.jpg",
+        caption=f"""✦ Merhaba {message.from_user.mention}""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -57,7 +57,6 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
-		    InlineKeyboardButton("🔹 İtiraf", callback_data="itiraf"),
                     InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
                 ]
             ]
@@ -66,7 +65,7 @@ async def start(_, message: Message):
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
-    startmesaj = "✦ Merhaba !"
+    startmesaj = "✦ Merhaba {message.from_user.mention}"
     await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
         [
             [
