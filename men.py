@@ -185,7 +185,7 @@ async def anonim(_, query):
     mesaj = query.message.text
     gonderen = query.from_user.first_name
     etiraf_eden = "Anonim"
-    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n\n💌 İtirafınızı {botad} 'a yazın .")
+    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n\n💌 İtirafınızı {BOT_USERNAME} 'a yazın .")
     tesdiq = await yeni_etiraf.reply("İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("✅ Yayınla", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
