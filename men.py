@@ -14,21 +14,27 @@ import ffmpeg
 import random
 import youtube_dl, requests, time
 import config
-import motor.motor_asyncio
 from config import *
+import motor.motor_asyncio
+from mesaj.botmesaj import *
+from mesaj.kelimeler import *
+from mesaj.kelimeler import kelime_sec
+from telethon.sessions import StringSession
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon import Button
+from telethon import TelegramClient, events
 from datetime import datetime, timedelta
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
 from time import sleep
 from random import shuffle
+from random import randint
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from mesaj.botmesaj import *
-from mesaj.kelimeler import *
-from mesaj.kelimeler import kelime_sec
 from pyrogram import Client, filters, types, __version__
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
+from pyrogram.types.messages_and_media import Message
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram.errors import (
     FloodWait,
@@ -1205,13 +1211,15 @@ db = Database(DATABASE_URL, BOT_USERNAME)
 mongo_db_veritabani = MongoClient(DATABASE_URL)
 dcmdb = mongo_db_veritabani.handlers
 
+
+
 ################## KULLANICI KONTROLLERİ #############
 async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
     chat_id = cmd.chat.id
     if not await db.is_user_exist(chat_id):
         if cmd.chat.type == "private":
             await db.add_user(chat_id)
-            await bot.send_message(LOG_CHANNEL,LAN.BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id))
+            await bot.send_message(LOG_GROUP,LAN.BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id))
         else:
             await db.add_user(chat_id)
             chat = bot.get_chat(chat_id)
@@ -1219,15 +1227,15 @@ async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
                 new_chat_id = str(chat_id)[4:]
             else:
                 new_chat_id = str(chat_id)[1:]
-            await bot.send_message(LOG_CHANNEL,LAN.GRUP_BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id, chat.title, cmd.chat.id, cmd.chat.id, cmd.message_id))
+            await bot.send_message(LOG_GROUP,LAN.GRUP_BILDIRIM.format(cmd.from_user.first_name, cmd.from_user.id, cmd.from_user.first_name, cmd.from_user.id, chat.title, cmd.chat.id, cmd.chat.id, cmd.message_id))
 
     ban_status = await db.get_ban_status(chat_id) # Yasaklı Kullanıcı Kontrolü
     if ban_status["is_banned"]:
         if int((datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])).days) > int(ban_status["ban_duration"]):
             await db.remove_ban(chat_id)
         else:
-            if GROUP_SUPPORT:
-                msj = f"@{GROUP_SUPPORT}"
+            if SUPPORT:
+                msj = f"@{SUPPORT}"
             else:
                 msj = f"[{LAN.SAHIBIME}](tg://user?id={OWNER_ID})"
             if cmd.chat.type == "private":
@@ -1238,8 +1246,12 @@ async def handle_user_status(bot: Client, cmd: Message): # Kullanıcı kontrolü
             return
     await cmd.continue_propagation()
 
+
+
+
 ############### Broadcast araçları ###########
 broadcast_ids = {}
+
 
 async def send_msg(user_id, message): # Mesaj Gönderme
     try:
@@ -1303,6 +1315,8 @@ async def main_broadcast_handler(m, db): # Ana Broadcast Mantığı
         await m.reply_document(document="broadcast-logs-g4rip.txt", caption=LAN.BROADCAST_STOPPED.format(completed_in, total_users, done, success, failed), quote=True,)
     os.remove("broadcast-logs-g4rip.txt")
 
+
+
 # Genelde müzik botlarının mesaj silme özelliği olur. Bu özelliği ReadMe.md dosyasındaki örnekteki gibi kullanabilirsiniz.
 delcmdmdb = dcmdb.admins
 
@@ -1324,7 +1338,10 @@ async def delcmd_off(chat_id: int): # Grup için mesaj silme özeliğini kapatı
         return
     return await delcmdmdb.insert_one({"chat_id": chat_id})
 
+
+
 ################# SAHİP KOMUTLARI #############
+# Verileri listeleme komutu
 @app.on_message(filters.command("stats") & filters.user(OWNER_ID))
 async def botstats(bot: Client, message: Message):
     g4rip = await bot.send_message(message.chat.id, LAN.STATS_STARTED.format(message.from_user.mention))
@@ -1346,15 +1363,21 @@ async def botstats(bot: Client, message: Message):
     total_users = await db.total_users_count()
     await g4rip.edit(text=LAN.STATS.format(BOT_USERNAME, total_users, groups, pms, total, used, disk_usage, free, cpu_usage, ram_usage, __version__), parse_mode="md")
 
+
+
 # Botu ilk başlatan kullanıcıların kontrolünü sağlar.
 @app.on_message()
 async def G4RIP(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
 
+
+
 # Broadcast komutu
-@app.on_message(filters.command("reklam") & filters.user(OWNER_ID) & filters.reply)
+@app.on_message(filters.command("yolla") & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
+
+
 
 # Bir kullanıcı yasaklama komutu
 @app.on_message(filters.command("block") & filters.user(OWNER_ID))
@@ -1400,6 +1423,8 @@ async def ban(c: Client, m: Message):
         await c.send_message(LOG_CHANNEL, ban_log_text)
         await m.reply_text(ban_log_text, quote=True)
 
+
+
 # Bir kullanıcın yasağını kaldırmak komutu
 @app.on_message(filters.command("unblock") & filters.user(OWNER_ID))
 async def unban(c: Client, m: Message):
@@ -1421,6 +1446,8 @@ async def unban(c: Client, m: Message):
         await db.remove_ban(user_id)
         await c.send_message(LOG_CHANNEL, unban_log_text)
         await m.reply_text(unban_log_text, quote=True)
+
+
 
 # Yasaklı listesini görme komutu
 @app.on_message(filters.command("blocklist") & filters.user(OWNER_ID))
@@ -1444,6 +1471,8 @@ async def _banned_usrs(_, m: Message):
         return
     await m.reply_text(reply_text, True)
 
+
+
 ############## BELİRLİ GEREKLİ DEF'LER ###########
 def humanbytes(size):
     if not size:
@@ -1455,6 +1484,8 @@ def humanbytes(size):
         size /= power
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
+
+
 
 ########### ÇOKLU DİL ##############
 class LAN(object):
