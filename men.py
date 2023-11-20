@@ -1157,16 +1157,15 @@ def handle_messages(client: Client, message: Message):
         # Kara listedeki kullanıcının mesajını algılama
         return
 
-from pymongo import MongoClient
-
-mongo_client = MongoClient(DATABASE_URL)
-db = mongo_client[":memory:"]
-
 # /stats komutunu işle
 @app.on_message(filters.command("stats") & filters.user(OWNER_ID))
 def stats_command_handler(client: Client, message: Message):
     # Toplam grup sayısını al
-    total_groups = len(client.get_dialogs())
+    total_groups = 0
+    dialogs = client.get_dialogs()
+    for dialog in dialogs:
+        if dialog.chat.type == "supergroup" or dialog.chat.type == "group":
+            total_groups += 1
 
     # Toplam pm mesaj sayısını al
     total_pm_messages = db.messages.count_documents({})
@@ -1176,7 +1175,6 @@ def stats_command_handler(client: Client, message: Message):
 
     # Veritabanına kaydet
     db.stats.insert_one({"total_groups": total_groups, "total_pm_messages": total_pm_messages})
-
 
 print("Pyrogram Aktif !")
 app.run()
