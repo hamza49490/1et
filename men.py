@@ -11,7 +11,6 @@ import traceback
 import aiofiles
 import yt_dlp
 import ffmpeg
-import aiohttp
 import random
 import youtube_dl, requests, time
 import motor.motor_asyncio
@@ -60,8 +59,6 @@ app = Client(
     API_HASH,
     bot_token=BOT_TOKEN
     )
-
-isleyen = []
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
@@ -432,9 +429,324 @@ async def utag(client, message):
             usrtxt += f"{usr.user.mention} , "
             if message.chat.id not in gece_tag:
                 return
-            if usrnum == 1:
+            if usrnum == 7:
                 await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
                 await asyncio.sleep(2)
+                usrnum = 0
+                usrtxt = ""
+     
+    sender = message.from_user
+    rxyzdev_initT = f"{sender.mention}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+
+@app.on_message(filters.command("tag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("nogroup")
+  
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("noadmin")
+  
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+        if msg == "/tag":
+            return await message.reply("Bir Mesaj Verin")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir Mesaj Verin")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir Mesaj Verin")
+  
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply("ibaslama")
+
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"{usr.user.mention} , "
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 1:
+                await client.send_message(message.chat.id, f"{usrtxt}  {msg}")
+                await asyncio.sleep(4)
+                usrnum = 0
+                usrtxt = ""
+     
+    sender = message.from_user
+    rxyzdev_initT = f"{sender.mention}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+
+@app.on_message(filters.command("etag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("nogroup")
+  
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("noadmin")
+  
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+        if msg == "/etag":
+            return await message.reply("Bir Mesaj Verin")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir Mesaj Verin")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir Mesaj Verin")
+  
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply("ibaslama")
+
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"[{random.choice(emj)}]({usr.user.mention})"
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 5:
+                await client.send_message(message.chat.id, f"➻ {msg}\n\n{usrtxt}")
+                await asyncio.sleep(2)
+                usrnum = 0
+                usrtxt = ""
+     
+    sender = message.from_user
+    rxyzdev_initT = f"{sender.mention}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+
+@app.on_message(filters.command("vtag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("nogroup")
+  
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("noadmin")
+  
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+        if msg == "/vtag":
+            return await message.reply("Bir Mesaj Verin")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir Mesaj Verin")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir Mesaj Verin")
+  
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply("ibaslama")
+
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"{usr.user.mention} , "
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 1:
+                await client.send_message(message.chat.id, f"{usrtxt}  {random.choice(sor)}")
+                await asyncio.sleep(4)
+                usrnum = 0
+                usrtxt = ""
+     
+    sender = message.from_user
+    rxyzdev_initT = f"{sender.mention}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+	    
+@app.on_message(filters.command("otag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("nogroup")
+  
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("noadmin")
+  
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+        if msg == "/otag":
+            return await message.reply("Bir Mesaj Verin")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir Mesaj Verin")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir Mesaj Verin")
+  
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply("ibaslama")
+
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"[{random.choice(rutbe)}]({usr.user.mention})"
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 1:
+                await client.send_message(message.chat.id, f"{usrtxt}")
+                await asyncio.sleep(4)
+                usrnum = 0
+                usrtxt = ""
+     
+    sender = message.from_user
+    rxyzdev_initT = f"{sender.mention}"      
+    if message.chat.id in rxyzdev_tagTot:
+        await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
+
+@app.on_message(filters.command("stag", prefixes="/"))
+async def utag(client, message):
+    global gece_tag
+    rxyzdev_tagTot[message.chat.id] = 0
+    if message.chat.type == "private":
+        return await message.reply("nogroup")
+  
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply("noadmin")
+  
+    if len(message.command) > 1:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+        if msg == "/stag":
+            return await message.reply("Bir Mesaj Verin")
+    elif message.reply_to_message:
+        mode = "text_on_reply"
+        msg = message.reply_to_message.message_id
+        if msg == None:
+            return await message.reply("Bir Mesaj Verin")
+    elif len(message.command) > 1 and message.reply_to_message:
+        mode = "text_on_cmd"
+        msg_list = message.text.split(None, 1)
+        if len(msg_list) < 2:
+            return await message.reply("Bir Mesaj Verin")
+        msg = msg_list[1]
+    else:
+        return await message.reply("Bir Mesaj Verin")
+  
+    if mode == "text_on_cmd":
+        anlik_calisan.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""
+        await message.reply("ibaslama")
+
+        gece_tag.append(message.chat.id)
+        usrnum = 0
+        usrtxt = ""   
+        async for usr in client.iter_chat_members(message.chat.id):
+            if usr.user.is_bot or usr.user.is_deleted:
+                continue
+            rxyzdev_tagTot[message.chat.id] += 1
+            usrnum += 1
+            usrtxt += f"{usr.user.mention} , "
+            if message.chat.id not in gece_tag:
+                return
+            if usrnum == 1:
+                await client.send_message(message.chat.id, f"{usrtxt}  {random.choice(guzelsoz)}")
+                await asyncio.sleep(4)
                 usrnum = 0
                 usrtxt = ""
      
@@ -924,6 +1236,89 @@ async def ratingsa(c:Client, m:Message):
             break
     await c.send_message(m.chat.id, metin)
 '''
+
+isleyen = []
+
+@app.on_message(filters.command("chatbot", prefixes="/"))
+async def chatbot(client, message):
+    if message.chat.type == "private":
+        await message.reply("{nogroup}", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(client, message):
+        await message.reply("{noadmin}", parse_mode='markdown')
+        return
+     
+    global isleyen
+    if message.chat.id in isleyen:
+        status = "✅ ᴀᴋᴛɪ‌ғ"
+    else:
+        status = "⛔ ᴋᴀᴘᴀʟɪ"
+    
+    await message.reply(f"✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
+        ]
+    ))
+
+
+@app.on_callback_query(filters.regex("sohbetmod_on"))
+async def callback_sohbetmod_on(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if qrup not in isleyen:
+        isleyen.append(qrup)
+        aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+        await callback_query.edit_message_text(aktiv_olundu)
+        await asyncio.sleep(3600)
+        while qrup in isleyen:
+            users = await client.get_chat_members(qrup)
+            active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
+            if active_users:
+                random_user = random.choice(active_users)
+                await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
+            await asyncio.sleep(3600)
+        return
+    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+  
+
+@app.on_callback_query(filters.regex("sohbetmod_off"))
+async def callback_sohbetmod_off(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if qrup in isleyen:
+        isleyen.remove(qrup)
+        await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+        return
+    await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
+
+@app.on_message(filters.regex(r"(?i)(/|)duygu") & filters.incoming)
+async def buket_handler(client, message):
+    if message.chat.type == "private":
+        return
+    chat_id = message.chat.id
+    if chat_id in isleyen:
+        return
+    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+
+@app.on_message()
+async def chatbot(client, message):
+    global isleyen
+    mesaj = str(message.text)
+    qrup = message.chat.id
+    if qrup not in isleyen:
+        return
+    
+    me = await client.get_me()
+    if message.from_user.id == me.id:
+        return
+    
+    kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
+
+    if "bot" in kelimeler:
+       cevap = random.choice(bottst)
+       bold_cevap = f"<b>{cevap}</b>"
+       await message.reply(bold_cevap, parse_mode='html')
+	    
 
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
