@@ -152,8 +152,6 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     )
-)
-else:
     await query.answer("İznin yok!")
 	
 anlik_calisan = []
