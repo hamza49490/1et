@@ -44,6 +44,9 @@ app = Client(
 
 @app.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(_, message: Message):
+    await message.reply_text("**🔄 Yükleniyor ...**")
+    await asyncio.sleep(3)
+    await app.delete_messages(chat_id=message.chat.id, message_ids=message.message_id)
     await message.reply_photo(
         "https://telegra.ph/file/dcbfffc19d29281424d8a.jpg",
         caption=f"""✦ Merhaba {message.from_user.mention}""",
@@ -156,88 +159,6 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     ))
-
-@app.on_callback_query(filters.regex("itiraf"))
-async def itiraf_handler(client, callback_query):
-    etirafyaz = "🥴 Lütfen Paylaşılmasını İstediğiniz İtirafı Yazın ..."
-    await callback_query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
-    ), disable_web_page_preview=True)
-
-@app.on_message(filters.private)
-async def yeni_mesaj_handler(client, message):
-    global mesaj
-    if not message.text == "/start":
-        mesaj = str(message.text)
-        etirafmsg = "👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?"
-        await client.send_message(message.chat.id, etirafmsg, reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("🌟 Açık", callback_data="aciq")],
-             [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
-        ), disable_web_page_preview=True)
-	    
-@app.on_callback_query(filters.regex("anonim"))
-async def anonim_handler(client, callback_query):
-    global mesaj
-    global tesdiq
-    chat_id = callback_query.message.chat.id  # Doğru sohbet kimliğini alın
-    resolved_chat_id = await client.resolve_peer(chat_id)
-    async for user in client.iter_chat_members(resolved_chat_id):
-        gonderen = f"{user.user.first_name}"
-        etiraf_eden = "Anonim"
-        yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj}")
-        tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("✅ Onaylandı", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]]
-        ), disable_web_page_preview=True)
-    await client.send_message(log_grup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı")
-    await callback_query.edit_message_text(gonderildi, reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton("💌 Yeni İtiraf", callback_data="itiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
-    ), disable_web_page_preview=True)
-	
-@app.on_callback_query(filters.regex("aciq"))
-async def aciq(client, callback_query):
-    global mesaj
-    global tesdiq
-    chat_id = callback_query.message.chat.id
-    resolved_chat_id = await client.resolve_peer(chat_id)
-    async for usr in client.iter_chat_members(resolved_chat_id):
-        etiraf_eden = f"{usr.user.first_name}"
-        sonluq = f"\n💌 Etirafınızı ... edin"
-        yeni_etiraf = await client.send_message(admin_grup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n{sonluq}")
-        tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("✅ Təsdiqlə", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
-            ]
-        ),
-        disable_web_page_preview=True)
-    await client.send_message(log_grup, f"ℹ️ {etiraf_eden} Açıq Etiraf Yazdı")
-    await callback_query.edit_message_text(f"gönderildi", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("💌 Yeni Etiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Səhifə", callback_data="start")]
-        ]
-    ),
-    disable_web_page_preview=True)
-
-@app.on_callback_query(filters.regex("tesdiq"))
-async def tesdiq(client, callback_query):
-    global tesdiq
-    async for usr in client.iter_chat_members(callback_query.message.chat.id):
-        tesdiqliyen = f"{usr.user.first_name}"
-    if callback_query.message.reply_to_message:
-        etiraff = await callback_query.message.reply_to_message
-        etiraf = etiraff.text
-        await client.send_message(etiraf_qrup, etiraf)
-        await callback_query.edit_message_text("✅ İtiraf Onaylandı")
-
-@app.on_callback_query(filters.regex("sil"))
-async def sil(client, callback_query):
-    global tesdiq
-    if not callback_query.message.reply_to_message:
-        return await callback_query.edit_message_text("Silmede hata oluştu")
-    if callback_query.message.reply_to_message:
-        etiraf = await callback_query.message.reply_to_message
-        await etiraf.delete()
-        await callback_query.edit_message_text("🗑️ itiraf Silindi")
-
 
 anlik_calisan = []
 tekli_calisan = []
