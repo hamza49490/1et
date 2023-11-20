@@ -57,6 +57,7 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
+		    InlineKeyboardButton("🔹 İtiraf", callback_data="itiraf"),
                     InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
                 ]
             ]
@@ -156,6 +157,89 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     ))
+
+
+# Callback query handler for "itiraf" button
+@app.on_callback_query(filters.callback_query("itiraf"))
+async def itiraf_handler(client, callback_query):
+    await callback_query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
+        [[InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
+    ), disable_web_page_preview=True)
+
+# New message handler
+@app.on_message(filters.private)
+async def yeni_mesaj_handler(client, message):
+    global mesaj
+    if not message.text == "/start":
+        mesaj = str(message.text)
+        await client.send_message(message.chat.id, etirafmsg, reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("🌟 Açık", callback_data="aciq")],
+             [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
+        ), disable_web_page_preview=True)
+
+etiraf_anonim = "💌 Etiraf Bot\n📲 Telegram - 1.24.0\n📣 Support - @RobotlariTg"
+@app.on_callback_query(filters.callback_query("anonim"))
+async def anonim_handler(client, callback_query):
+    global mesaj
+    global tesdiq
+    async for user in client.iter_chat_members(callback_query.message.chat.id):
+        gonderen = f"{user.user.first_name}"
+        etiraf_eden = "Anonim"
+        yeni_etiraf = await client.send_message(admin_qrup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n\n📣 Etirafınızı {botad} -a edin")
+        tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("✅ Onaylandı", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]]
+        ), disable_web_page_preview=True)
+    await client.send_message(log_qrup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı")
+    await callback_query.edit_message_text(gonderildi, reply_markup=InlineKeyboardMarkup(
+        [[InlineKeyboardButton("💌 Yeni İtiraf", callback_data="itiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
+    ), disable_web_page_preview=True)
+
+anonim = etiraf_anonim
+etiraf_aciq = b"\xE2\x84\xB9\xEF\xB8\x8F\x20\x42\x6F\x74\x20\x62\x61\xC5\x9F\x6C\x61\x64\xC4\xB1\x6C\x64\xC4\xB1\x20\x70\x72\x6F\x62\x6C\x65\x6D\x20\x79\x61\x72\x61\x6E\x64\xC4\xB1\x71\x64\x61\x20\x73\x75\x70\x70\x6F\x72\x74\x20\x71\x72\x75\x70\x75\x6E\x61\x20\x79\x61\x7A\xC4\xB1\x6E\x0A\xE2\x9A\xA1\x20\x42\x6F\x74\x75\x6E\x75\x7A\x20\x53\x75\x70\x65\x72\x20\xC4\xB0\xC5\x9F\x6C\x65\x79\x69\x72\x2E\x2E\x2E"
+
+@app.on_callback_query(filters.regex("aciq"))
+async def aciq(client, callback_query):
+    global mesaj
+    global tesdiq
+    async for usr in client.iter_chat_members(callback_query.message.chat.id):
+        etiraf_eden = f"{usr.user.first_name}"
+        sonluq = f"\n💌 Etirafınızı {botad} -a edin"
+        yeni_etiraf = await client.send_message(admin_qrup, f"📣 Yeni etiraf\n\n🗣️ Etiraf Edən - {etiraf_eden} \n📜 Etirafı - {mesaj} \n{sonluq}")
+        tesdiq = await yeni_etiraf.reply("Etiraf Təsdiqlənsin ?", reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("✅ Təsdiqlə", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
+            ]
+        ),
+        disable_web_page_preview=True)
+    await client.send_message(log_qrup, f"ℹ️ {etiraf_eden} Açıq Etiraf Yazdı")
+    await callback_query.edit_message_text(f"{gonderildi}", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("💌 Yeni Etiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Səhifə", callback_data="start")]
+        ]
+    ),
+    disable_web_page_preview=True)
+
+@app.on_callback_query(filters.regex("tesdiq"))
+async def tesdiq(client, callback_query):
+    global tesdiq
+    async for usr in client.iter_chat_members(callback_query.message.chat.id):
+        tesdiqliyen = f"{usr.user.first_name}"
+    if callback_query.message.reply_to_message:
+        etiraff = await callback_query.message.reply_to_message
+        etiraf = etiraff.text
+        await client.send_message(etiraf_qrup, etiraf)
+        await callback_query.edit_message_text("✅ İtiraf Onaylandı")
+
+@app.on_callback_query(filters.regex("sil"))
+async def sil(client, callback_query):
+    global tesdiq
+    if not callback_query.message.reply_to_message:
+        return await callback_query.edit_message_text("Silmede hata oluştu")
+    if callback_query.message.reply_to_message:
+        etiraf = await callback_query.message.reply_to_message
+        await etiraf.delete()
+        await callback_query.edit_message_text("🗑️ itiraf Silindi")
+
 
 anlik_calisan = []
 tekli_calisan = []
