@@ -610,6 +610,8 @@ async def utag(client, message):
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
 
+gece_tag = []  # gece_tag listesini boşalt
+
 @app.on_message(filters.command("cancel", prefixes="/"))
 async def cancel(client, message):
     global gece_tag, rxyzdev_tagTot
@@ -625,7 +627,7 @@ async def cancel(client, message):
     if message.chat.id not in gece_tag:
         return await message.reply("• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !")
 
-    gece_tag.remove(message.chat.id)
+    gece_tag = []  # gece_tag listesini boşalt
     tag_count = rxyzdev_tagTot[message.chat.id]  # etiketlenen kullanıcı sayısını sakla
     rxyzdev_tagTot[message.chat.id] = 0  # etiketleme sayısını sıfırla
     sender = message.from_user
