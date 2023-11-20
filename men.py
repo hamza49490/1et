@@ -158,9 +158,8 @@ async def tag4(_, query: CallbackQuery):
         ]
     ))
 
-
 # Callback query handler for "itiraf" button
-@app.on_callback_query(filters.callback_query("itiraf"))
+@app.on_callback_query(filters.regex("itiraf"))
 async def itiraf_handler(client, callback_query):
     await callback_query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]]
@@ -178,7 +177,8 @@ async def yeni_mesaj_handler(client, message):
         ), disable_web_page_preview=True)
 
 etiraf_anonim = "💌 Etiraf Bot\n📲 Telegram - 1.24.0\n📣 Support - @RobotlariTg"
-@app.on_callback_query(filters.callback_query("anonim"))
+
+@app.on_callback_query(filters.regex("anonim"))
 async def anonim_handler(client, callback_query):
     global mesaj
     global tesdiq
