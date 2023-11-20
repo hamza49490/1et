@@ -35,6 +35,9 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
+mongo_client = MongoClient(DATABASE_URL)
+db = mongo_client[":memory:"]
+
 app = Client(
     ":memory:",
     config.API_ID,
@@ -60,7 +63,6 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
-                    InlineKeyboardButton(". xd", callback_data="etiraf"),
                     InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
                 ]
             ]
@@ -156,94 +158,7 @@ async def tag4(_, query: CallbackQuery):
             ]
         ]
     ))
-	
-# Callback query handler
-@app.on_callback_query(filters.regex("etiraf"))
-async def handler(_, query):
-    etirafyaz = "🥴 Lütfen Paylaşılmasını İstediğiniz İtirafı Yazın ..."
-    await query.edit_message_text(etirafyaz, reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
-        ]
-    ), disable_web_page_preview=True)
-
-# New message handler
-@app.on_message(filters.private)
-async def yeni_mesaj(_, message):
-    etirafmsg = "**👋🏻 İtirafınızı Nasıl Paylaşmamızı İstersiniz ?**"
-    if message.text != "/start":
-        await message.reply(etirafmsg, reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("🔒 Anonim", callback_data="anonim"), InlineKeyboardButton("👤 Açık", callback_data="aciq")],
-                [InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
-            ]
-        ), disable_web_page_preview=True)
-
-# Anonim callback query handler
-@app.on_callback_query(filters.regex("anonim"))
-async def anonim(_, query):
-    mesaj = query.message.text
-    gonderen = query.from_user.first_name
-    etiraf_eden = "Anonim"
-    log_qrup = "-1001983841726"
-    admin_qrup = "-1001983841726"
-    admin_qrup = await app.resolve_peer(admin_qrup)
-    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n\n💌 İtirafınızı {BOT_USERNAME} 'a yazın .")
-    tesdiq = await yeni_etiraf.reply("İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("✅ Yayınla", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
-        ]
-    ), disable_web_page_preview=True)
-    await app.send_message(log_qrup, f"ℹ️ {gonderen} Anonim İtiraf Yazdı .")
-    await query.edit_message_text("Your gonderildi text", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("💌 Yeni İtiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
-        ]
-    ), disable_web_page_preview=True)
-
-# Aciq callback query handler
-@app.on_callback_query(filters.regex("aciq"))
-async def aciq(_, query):
-    mesaj = query.message.text
-    etiraf_eden = query.from_user.first_name
-    sonluq = f"\n💌 İtirafınızı {BOT_USERNAME} 'a yazın ."
-    log_qrup = "-1001983841726"
-    admin_qrup = "-1001983841726"
-    admin_qrup = await app.resolve_peer(admin_qrup)
-    yeni_etiraf = await app.send_message(admin_qrup, f"💬 Yeni İtiraf\n\n👤 İtiraf Eden ➻ {etiraf_eden} \n👥 İtirafı ➻ {mesaj} \n{sonluq}")
-    tesdiq = await yeni_etiraf.reply("💬 İtiraf Yayınlansın Mı ?", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("✅ Yayınla", callback_data="tesdiq"), InlineKeyboardButton("🗑️ Sil", callback_data="sil")]
-        ]
-    ), disable_web_page_preview=True)
-    await app.send_message(log_qrup, f"ℹ️ {etiraf_eden} Açık İtiraf Yazdı .")
-    await query.edit_message_text("Your gonderildi text", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("💌 Yeni İtiraf", callback_data="etiraf"), InlineKeyboardButton("🏠 Ana Sayfa", callback_data="start")]
-        ]
-    ), disable_web_page_preview=True)
-
-@app.on_callback_query(filters.regex("tesdiq"))
-async def tesdiq(event):
-    global tesdiq
-    async for usr in app.iter_participants(event.chat_id):
-        tesdiqliyen = f"{usr.first_name}"
-    if event.reply_to_message:
-        etiraff = await app.get_messages(event.chat_id, event.reply_to_message.message_id)
-        etiraf = etiraff.text
-        await app.send_message(etiraf_qrup, etiraf)
-        await event.edit(f"✅ İtiraf Yayınlansın Mı ?")
-
-@app.on_callback_query(filters.regex("sil"))
-async def sil(event):
-    global tesdiq
-    if not event.reply_to_message:
-        return await event.edit("Silinirken bir hata oluştu.")
-    if event.reply_to_message:
-        etiraf = await app.get_messages(event.chat_id, event.reply_to_message.message_id)
-        await etiraf.delete()
-        await event.edit("🗑️ İtiraf Silindi ...")
-	    
+	   
 anlik_calisan = []
 tekli_calisan = []
 gece_tag = []
@@ -1244,7 +1159,23 @@ def handle_messages(client: Client, message: Message):
     if message.from_user.id in blocked_users:
         # Kara listedeki kullanıcının mesajını algılama
         return
-        
+
+from pymongo import MongoClient
+
+# /stats komutunu işle
+@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
+def stats_command_handler(client: Client, message: Message):
+    # Toplam grup sayısını al
+    total_groups = len(client.get_dialogs())
+
+    # Toplam pm mesaj sayısını al
+    total_pm_messages = db.messages.count_documents({})
+
+    # Sonuçları gönder
+    message.reply_text(f"Toplam grup sayısı: {total_groups}\nToplam pm mesaj sayısı: {total_pm_messages}")
+
+    # Veritabanına kaydet
+    db.stats.insert_one({"total_groups": total_groups, "total_pm_messages": total_pm_messages})
 
 
 print("Pyrogram Aktif !")
