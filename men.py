@@ -65,7 +65,7 @@ async def start(_, message: Message):
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
-    startmesaj = "**✦ Merhaba !\n\n✦ Son Derece Gelişmiş ve Birçok Özelliğe Sahip Bir Telegram Botuyum !\n\n✦ Komutlar veya Destek için Aşağıdaki Butonları Kullanın !**"
+    startmesaj = "✦ Merhaba !"
     await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -84,7 +84,7 @@ async def start(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_, query: CallbackQuery):
-    startbutton = "✦  Lütfen Buton Seçin !"
+    startbutton = "✦ !"
     await query.message.edit_text(startbutton, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -94,7 +94,7 @@ async def help(_, query: CallbackQuery):
                 InlineKeyboardButton("🗒️ 𝖤𝗄 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋", callback_data="tag2")
             ],
             [
-                InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag4")
+                InlineKeyboardButton("🎯 𝖮𝗒𝗎𝗇 𝖪𝗈𝗆𝗎𝗍𝗅𝖺𝗋ı", callback_data="tag3")
             ],
             [
                 InlineKeyboardButton("➡️ 𝖦𝖾𝗋𝗂 𝖣𝗈‌𝗇", callback_data="start")
@@ -105,7 +105,7 @@ async def help(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag1"))
 async def tag1(_, query: CallbackQuery):
-    etikett = "**✦ Etiket Komutları :\n\n✓ Not : Silinen Hesapları ve Botları Etiketlemez !\n\n» /utag - Üyeleri Toplu Etiketler !\n\n» /tag - Üyeleri Tek Tek Etiketler !\n\n» /atag - Yöneticileri Tek Tek Etiketler !\n\n» /etag - Üyeleri Emojilerle Etiketler !\n\n» /stag - Üyeleri Sözlerle Etiketler !\n\n» /vtag - Üyeleri Sorularla Etiketler !\n\n» /otag - Üyeleri Rütbelerle Etiketler !\n\n» /cancel - Etiketlemeyi Durdurur !\n\n» /cagir - Aktif Üyeleri Oyuna Çağırır !**"
+    etikett = "✦ Etiket !"
     await query.message.edit_text(etikett, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -117,7 +117,7 @@ async def tag1(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag2"))
 async def tag2(_, query: CallbackQuery):
-    extraa = "**✦ Ek Komutlar :\n\n» /reload - Yönetici Listesini Yeniler !\n\n» /grup - Grup Hakkında Bilgi Verir !\n\n» /dels - Toplu Mesaj Siler !\n\n» /id - Kullanıcı ID'si Atar !\n\n» /chatbot - Chatbotu Aktif Edin !\n\n» /kurt - Kurt Oyunu Rolleri !**"
+    extraa = "✦ Ek Komutlar"
     await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -127,9 +127,9 @@ async def tag2(_, query: CallbackQuery):
     )
 )
 
-@app.on_callback_query(filters.regex("tag4"))
+@app.on_callback_query(filters.regex("tag3"))
 async def tag4(_, query: CallbackQuery):
-    oyunn = "**✦ Oyun Komutları :\n\n» /eros - Gruptaki Üyeleri Shipler !\n\n» /slap - Eğlenmek için Kullanın !\n\n» /sayi - Sayı Tahmin Oyunu Açar !\n\n» /d - Doğruluk Sorusu Atar !\n\n» /c - Cesaret Sorusu Atar !\n\n» /soz - Çeşitli Sözler Atar !\n\n» /turet - Kelime Türet Oyunu Başlatır !\n\n» /iptal - Oyunu İptal Eder !\n\n » /zar - Zar Atar !\n\n » /bow - Bowling Atar !\n\n » /basket - Basket Atar !\n\n » /slots - Slot Atar !\n\n » /top - Top Atar !\n\n » /ok - Ok Atar !**"
+    oyunn = "✦ Oyun Komutlar!"
     await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -344,7 +344,7 @@ async def utag(client, message):
                 continue
             rxyzdev_tagTot[message.chat.id] += 1
             usrnum += 1
-            usrtxt += f"{usr.user.mention} , "
+            usrtxt += f"{usr.user.mention}"
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
@@ -407,7 +407,7 @@ async def utag(client, message):
                 continue
             rxyzdev_tagTot[message.chat.id] += 1
             usrnum += 1
-            usrtxt += f"[{random.choice(emj)}](tg://openmessage?user_id={usr.user.id})"
+            usrtxt += f"[{random.choice(emj)}](tg://openmessage?user_id={usr.user.id}) , "
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 5:
