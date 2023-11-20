@@ -407,7 +407,7 @@ async def utag(client, message):
                 continue
             rxyzdev_tagTot[message.chat.id] += 1
             usrnum += 1
-            usrtxt += f"[{random.choice(emj)}]({usr.user.mention})"
+            usrtxt += f"[{random.choice(emj)}](tg://openmessage?user_id={usr.user.id})"
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 5:
@@ -533,7 +533,7 @@ async def utag(client, message):
                 continue
             rxyzdev_tagTot[message.chat.id] += 1
             usrnum += 1
-            usrtxt += f"[{random.choice(rutbe)}]({usr.user.mention})"
+            usrtxt += f"[{random.choice(rutbe)}](tg://openmessage?user_id={usr.user.id})"
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
@@ -609,8 +609,6 @@ async def utag(client, message):
     rxyzdev_initT = f"{sender.mention}"      
     if message.chat.id in rxyzdev_tagTot:
         await message.reply(f"🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n➻  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}")
-
-gece_tag = []  # gece_tag listesini boşalt
 
 @app.on_message(filters.command("cancel", prefixes="/"))
 async def cancel(client, message):
