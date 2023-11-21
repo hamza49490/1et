@@ -23,7 +23,7 @@ from pyrogram.handlers import MessageHandler
 from pyrogram import Client, filters, types
 from time import sleep
 from random import shuffle
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatAction, ParseMode
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
