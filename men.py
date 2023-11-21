@@ -117,11 +117,11 @@ async def chatbot(client, message):
     
     kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
 
-    if len(kelimeler) > 0 and kelimeler[0].lower() == "derya":
+    if kelimeler[0] in["derya"]:
         cevap = random.choice(bkt)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
-    
+		
     if kelimeler[0] in["bot"]:
         cevap = random.choice(bottst)
         bold_cevap = f"<b>{cevap}</b>"
