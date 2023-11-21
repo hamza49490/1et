@@ -28,7 +28,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
-from pyrogram import Client, filters, __version__
+from pyrogram import Client, filters
 
 logging.basicConfig(
     level=logging.INFO,
@@ -94,6 +94,12 @@ async def callback_sohbetmod(client, callback_query):
             return
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
+@app.on_message()
+async def reply_to_derya(client, message):
+    if message.text.lower() == "derya":
+        if message.chat.id in isleyen:
+            await message.reply("Sohbet modu şu anda kapalı.")
+	
 @app.on_message()
 async def chatbot(client, message):
     global isleyen
