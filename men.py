@@ -93,13 +93,15 @@ async def start(_, message: Message):
     chat_id = message.chat.id
     chat_name = message.chat.title
 
-    # Grubun gizli olup olmadığını kontrol et
-    if chat_id == None:
-        chat_name = "private"
+# Grubun linkini al
+if chat_link is None:
+    chat_link = "Gizli Grup"
+else:
+    chat_link = await app.export_chat_invite_link(chat_id)
 
-    # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}"
-    await app.send_message(LOG_GROUP_ID, log_message)
+# Log grubuna kullanıcı id, adı ve grup linkini bildir
+log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}\nGrup Linki: {chat_link}"
+await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
