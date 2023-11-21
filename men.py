@@ -14,7 +14,6 @@ import ffmpeg
 import aiohttp
 import datetime
 import pyrogram
-import motor.motor_asyncio
 import config 
 from config import *
 from datetime import datetime, timedelta
@@ -30,13 +29,6 @@ from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
 from pyrogram import Client, filters, __version__
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
 
 logging.basicConfig(
     level=logging.INFO,
