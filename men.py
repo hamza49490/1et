@@ -42,6 +42,41 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
+# Log grubu bilgileri
+LOG_GROUP_ID = -1001983841726  # Log grubunun ID'si
+
+# Log özelliğini kontrol etmek için bir değişken
+log_aktif = False
+
+# Kullanıcı komutunu dinleme
+@app.on_message(filters.command(["log"]))
+def log_command(client, message):
+    global log_aktif
+    
+    # Sadece bot sahibi tarafından kullanılabilir
+    if message.from_user.id == OWNER_ID:
+        if len(message.command) > 1:
+            if message.command[1] == "aktif":
+                log_aktif = True
+                message.reply("Log özelliği aktif edildi.")
+            elif message.command[1] == "kapat":
+                log_aktif = False
+                message.reply("Log özelliği kapatıldı.")
+
+# Kullanıcı mesajlarını dinleme
+@app.on_message(filters.group)
+def log_messages(client, message):
+    global log_aktif
+    
+    # Log özelliği aktifse ve mesaj bir komut ise log grubuna bildirim gönder
+    if log_aktif and message.command:
+        log_message = f"Kullanıcı Adı: {message.from_user.username}\n" \
+                      f"Kullanıcı ID: {message.from_user.id}\n" \
+                      f"Grup Adı: {message.chat.title}\n" \
+                      f"Grup Linki: {client.export_chat_invite_link(message.chat.id)}\n" \
+                      f"Kullanıcı Komutu: {message.text}\n" \
+                      f"Mesaj: {message.reply_to_message.text if message.reply_to_message else ''}"
+        client.send_message(LOG_GROUP_ID, log_message)
 
 
 @app.on_message(filters.command("start") & filters.private)
