@@ -71,7 +71,7 @@ async def start(_, message: Message):
     user_name = message.from_user.mention
     
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}"
+    log_message = f"Kullanıcı : {user_name}\nKullanıcı ID: {user_id}\n\nBotu PM'den Başlattı !"
     await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_message(filters.command("start") & filters.group)
@@ -100,7 +100,7 @@ async def start(_, message: Message):
         chat_link = "Gizli Grup"
 
     # Log grubuna kullanıcı id, adı ve grup linkini bildir
-    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}\nGrup Linki: {chat_link}"
+    log_message = f"Kullanıcı : {user_name}\nKullanıcı ID: {user_id}\nGrup Adı: {chat_name}\nGrup ID: {chat_id}\nGrup Linki: {chat_link}\n\nBotu Grup'ta Başlattı ."
     await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_callback_query(filters.regex("start"))
@@ -898,18 +898,21 @@ async def reload_command(client: Client, message: Message):
             message.chat.id,
             "✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !"
 	)
-	    
+
 @app.on_message(filters.new_chat_members, group=1)
 async def zar(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
+            group_link = f"https://t.me/c/{msg.chat.username}"
             await msg.reply(
-                f'''**__✦ ᴍᴇʀʜᴀʙᴀ__ , {msg.from_user.mention}\n\n__✦ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ̆ɪɴ ɪᴄ̧ɪɴ ᴛᴇşşᴇᴋᴜ̈ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ̈ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ̧ɪɴ ᴀşşᴀɢ̆ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !__**''', 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
-    )
+                f'''✦ ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n✦ ʙᴇɴɪ {group_name} ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !''', 
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
+            )
+            log_message = f"Kullanıcı Adı: {msg.from_user.mention}\nKullanıcı ID: {msg.from_user.id}\n\nGrup Adı: {group_name}\nGrup ID: {msg.chat.id}\nGrup Linki: {group_link}"
+            await bot.send_message(LOG_GROUP_ID, log_message)
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
-
+		
 @app.on_message(filters.command(["zar"], ["/", ""]))
 def zar_at(client: Client, message: Message):
     client.send_dice(message.chat.id)
