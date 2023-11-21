@@ -72,7 +72,7 @@ async def start(_, message: Message):
     user_username = message.from_user.username
     
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı : {user_name}\nKullanıcı Adı: {user_username}\nKullanıcı ID: {user_id}\n\nBotu PM'den Başlattı !"
+    log_message = f"Kullanıcı : {user_name}\nKullanıcı Adı: @{user_username}\nKullanıcı ID: {user_id}\n\nBotu PM'den Başlattı !"
     await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_message(filters.command("start") & filters.group)
@@ -89,19 +89,15 @@ async def start(_, message: Message):
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
     user_name = message.from_user.mention
+    user_username = message.from_user.username
 
     # Grubun kullanıcı id ve adını al
     chat_id = message.chat.id
     chat_name = message.chat.title
-
-    # Grubun linkini al
-    chat_link = await app.export_chat_invite_link(chat_id)
-
-    if chat_link is None:
-        chat_link = "Gizli Grup"
+    chat_username = message.chat.username
 
     # Log grubuna kullanıcı id, adı ve grup linkini bildir
-    log_message = f"Kullanıcı : {user_name}\nKullanıcı ID: {user_id}\nGrup Adı: {chat_name}\nGrup ID: {chat_id}\nGrup Linki: {chat_link}\n\nBotu Grup'ta Başlattı ."
+    log_message = f"Kullanıcı : {user_name}\nKullanıcı Adı: @{user_username}\nKullanıcı ID: {user_id}\nGrup Adı: {chat_name}\nGrup ID: {chat_id}\nGrup Linki: @{chat_username}\n\nBotu Grup'ta Başlattı ."
     await app.send_message(LOG_GROUP_ID, log_message)
 '''
 @app.on_callback_query(filters.regex("start"))
@@ -909,7 +905,7 @@ async def welcomebot(bot: Client, msg: Message):
                 f'''✦ ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n✦ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !''', 
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
             )
-            log_message = f"Kullanıcı: {msg.from_user.mention}\nKullanıcı Adı: {msg.from_user.username}\nKullanıcı ID: {msg.from_user.id}\n\nGrup Adı: {msg.chat.title}\nGrup ID: {msg.chat.id}\nGrup Linki: {msg.chat.username}"
+            log_message = f"Kullanıcı: {msg.from_user.mention}\nKullanıcı Adı: @{msg.from_user.username}\nKullanıcı ID: {msg.from_user.id}\n\nGrup Adı: {msg.chat.title}\nGrup Linki: @{msg.chat.username}\nGrup ID: {msg.chat.id}\n\n🔹 Bot Gruba Eklendi ."
             await bot.send_message(LOG_GROUP_ID, log_message)
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
