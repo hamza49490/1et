@@ -44,7 +44,6 @@ app = Client(
 )
 
 isleyen = []
-
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
@@ -69,7 +68,6 @@ async def chatbot(client, message):
             [InlineKeyboardButton("⛔ Kapat", callback_data="sohbetmod_off")]
         ]
     ))
-
 
 @app.on_callback_query()
 async def callback_sohbetmod(client, callback_query):
@@ -105,7 +103,7 @@ async def buket_handler(client, message):
         return
     await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
 
-@app.on_message(filters.private)
+@app.on_message()
 async def chatbot(client, message):
     global isleyen
     mesaj = str(message.text)
