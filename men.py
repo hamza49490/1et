@@ -12,6 +12,7 @@ import ffmpeg
 import aiohttp
 import datetime
 import config
+import pyrogram 
 from config import *
 import youtube_dl, requests, time
 from datetime import datetime, timedelta
@@ -41,6 +42,35 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
+from pyrogram.types import ChatAction, ParseMode
+import openai
+
+StartTime = time.time()
+
+openai.api_key = "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"
+
+@app.on_message(filters.command(["ask"], prefixes=["", "/"]))
+async def chat(bot, message):
+    try:
+        start_time = time.time()
+        await bot.send_chat_action(message.chat.id, action=ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text("✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ .")
+        else:
+            a = message.text.split(' ', 1)[1]
+            MODEL = "gpt-3.5-turbo"
+            resp = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=a,
+                temperature=0.2,
+                max_tokens=100
+            )
+            x = resp.choices[0].text
+            end_time = time.time()
+            await message.reply_text(f"{x}", parse_mode=ParseMode.MARKDOWN)
+    except Exception as e:
+        await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
+	    
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
@@ -1118,5 +1148,9 @@ async def ratingsa(c:Client, m:Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-print("Pyrogram Aktif !")
-app.run()
+if name == "__main__":
+    print(f"Bot Aktif !")
+    try:
+        app.run()
+    except Exception as e:
+        print(str(e))
