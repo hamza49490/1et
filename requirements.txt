@@ -5,14 +5,7 @@ aiohttp
 tglogging
 requests
 heroku3
-pymongo
 tgcrypto
-cryptg
-motor
-pillow
-pymongo[srv]
-psutil
-emoji
 aiofiles
 py-tgcalls==0.9.6
 python-dotenv
