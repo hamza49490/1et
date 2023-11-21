@@ -121,7 +121,7 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
-                    InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'tg://openmessage?user_id={OWNER_ID}')
+                    InlineKeyboardButton('✦  𝖣𝖾𝗌𝗍𝖾𝗄', url=f'https://t.me/{SUPPORT}')
                 ]
             ]
         )
@@ -160,7 +160,7 @@ async def start(_, query: CallbackQuery):
                 InlineKeyboardButton("🗨️ 𝖡𝗂𝗅𝗀𝗂 𝖪𝖺𝗇𝖺𝗅ı", url=f"https://t.me/{CHANNELL}")
             ],
             [
-                InlineKeyboardButton("✦  𝖣𝖾𝗌𝗍𝖾𝗄", url=f"tg://openmessage?user_id={OWNER_ID}")
+                InlineKeyboardButton("✦  𝖣𝖾𝗌𝗍𝖾𝗄", url=f"https://t.me/{SUPPORT}")
             ]
         ]
     )
