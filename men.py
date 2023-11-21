@@ -69,7 +69,6 @@ async def chatbot(client, message):
         ]
     ))
 
-
 @app.on_callback_query()
 async def callback_sohbetmod(client, callback_query):
     qrup = callback_query.message.chat.id
@@ -95,37 +94,17 @@ async def callback_sohbetmod(client, callback_query):
             return
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
-async def chatbot_handler(client, message):
-    global isleyen
-    mesaj = str(message.text)
-    qrup = message.chat.id
-    if qrup not in isleyen:
-        return
-    
-    me = await client.get_me()
-    if message.from_user.id == me.id:
-        return
-    
-    kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
-
-    if kelimeler[0] in ["derya"]:
-        cevap = random.choice(bkt)
-        bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
-        return
-
-@app.on_message(filters.regex(r"(?i)(/|)derya"))
+'''@app.on_message(filters.regex(r"(?i)(/|)derya"))
 async def buket_handler(client, message):
     if message.chat.type == "private":
         return
     chat_id = message.chat.id
     if chat_id in isleyen:
         return
-    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")'''
 
 @app.on_message()
-async def message_handler(client, message):
-    await chatbot_handler(client, message)
+async def chatbot(client, message):
     global isleyen
     mesaj = str(message.text)
     qrup = message.chat.id
