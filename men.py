@@ -68,10 +68,10 @@ async def start(_, message: Message):
 
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
-    user_name = message.from_user.username
+    user_name = message.from_user.mention
     
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_mention}"
+    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}"
     await app.send_message(LOG_GROUP_ID, log_message)
 
 
@@ -89,7 +89,7 @@ async def start(_, message: Message):
 async def send_log_message():
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
-    user_name = message.from_user.username
+    user_name = message.from_user.mention
 
     # Grubun kullanıcı id ve adını al
     chat_id = message.chat.id
@@ -100,7 +100,7 @@ async def send_log_message():
         chat_name = "private"
 
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_mention}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}"
+    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}"
     await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_callback_query(filters.regex("start"))
