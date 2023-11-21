@@ -85,21 +85,7 @@ async def start(_, message: Message):
         text=f"""✦ Merhaba {message.from_user.mention}""",
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
-'''
-    # Kullanıcı id ve adını al
-    user_id = message.from_user.id
-    user_name = message.from_user.mention
-    user_username = message.from_user.username
 
-    # Grubun kullanıcı id ve adını al
-    chat_id = message.chat.id
-    chat_name = message.chat.title
-    chat_username = message.chat.username
-
-    # Log grubuna kullanıcı id, adı ve grup linkini bildir
-    log_message = f"Kullanıcı : {user_name}\nKullanıcı Adı: @{user_username}\nKullanıcı ID: {user_id}\nGrup Adı: {chat_name}\nGrup ID: {chat_id}\nGrup Linki: @{chat_username}\n\nBotu Grup'ta Başlattı ."
-    await app.send_message(LOG_GROUP_ID, log_message)
-'''
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
     startmesaj = f"✦ Merhaba {query.from_user.mention}"
