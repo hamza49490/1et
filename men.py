@@ -51,9 +51,11 @@ async def chatbot(client, message):
         await message.reply("Bu komut yalnızca gruplarda kullanılabilir.", parse_mode='markdown')
         return
      
-    if message.from_user.id not in [admin.user.id for admin in await client.get_chat_administrators(message.chat.id)]:
-        await message.reply("Bu komutu kullanma yetkiniz bulunmamaktadır.", parse_mode='markdown')
-        return
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply(f"noadmin")
     
     global isleyen
     if message.chat.id in isleyen:
@@ -243,10 +245,6 @@ gece_tag = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
-
-@app.on_message(filters.command("sesecagir") & filters.private)
-def sesecagir_private(client, message):
-    message.reply_text("Bu komut sadece gruplarda kullanılabilir.")
 
 @app.on_message(filters.command(['cagir'], prefixes='/'))
 async def handle_tagging(client, message):
