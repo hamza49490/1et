@@ -44,32 +44,41 @@ app = Client(
 
 import openai
 
-StartTime = time.time()
-
+# OpenAI API anahtarınızı buraya girin
 openai.api_key = "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"
 
-@app.on_message(filters.command(["ask"], prefixes=["", "/"]))
-async def chat(bot, message):
-    try:
-        start_time = time.time()
-        await bot.send_chat_action(message.chat.id, action="typing")
-        if len(message.command) < 2:
-            await message.reply_text("✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ .")
-        else:
-            a = message.text.split(' ', 1)[1]
-            MODEL = "gpt-3.5-turbo"
-            resp = openai.Completion.create(
-                engine="text-davinci-003",
-                prompt=a,
-                temperature=0.2,
-                max_tokens=100
-            )
-            x = resp.choices[0].text
-            end_time = time.time()
-            await message.reply_text(f"{x}", parse_mode="HTML")
-    except Exception as e:
-        await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
-	    
+# /ask komutuna gelen mesajları işleyen fonksiyon
+def ask_command(client, message):
+    # Gelen mesajı OpenAI API'sine gönderin
+    response = openai.Completion.create(
+        engine="davinci",
+        prompt=message.text,
+        max_tokens=100,
+        temperature=0.7,
+        n=1,
+        stop=None,
+        temperature=0.7
+    )
+    
+    # OpenAI'den gelen yanıtı alın
+    answer = response.choices[0].text.strip()
+    
+    # Yanıtı gönderin
+    message.reply_text(answer)
+
+# /ask komutunu işleyen handler
+@app.on_message(pyrogram.Filters.command(["ask"]))
+def ask_command_handler(client, message):
+    ask_command(client, message)
+
+# Diğer mesajları işleyen handler
+@app.on_message(pyrogram.Filters.text)
+def text_handler(client, message):
+    # /ask komutu dışındaki mesajlara da yanıt verin
+    if not message.command:
+        ask_command(client, message)
+
+
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
