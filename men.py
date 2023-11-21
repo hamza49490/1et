@@ -54,7 +54,7 @@ def invite_to_voice_chat(client, message):
         return
     
     # Asistan hesabını gruba davet et
-    client.add_chat_members(chat_id, "hofhkoohgi")
+    client.send_message(chat_id, "hofhkoohgi")
     
     # Grubun son 50 aktif kullanıcısını sese davet et
     members = client.get_chat_members(chat_id, filter="recent")
@@ -62,7 +62,7 @@ def invite_to_voice_chat(client, message):
         if member.user.is_bot:
             continue
         client.send_voice_chat_invite(chat_id, member.user.id)
-    
+	    
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
