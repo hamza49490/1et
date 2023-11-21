@@ -28,7 +28,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
-from pyrogram import Client, filters
+from pyrogram import Client, filters, __version__
 
 logging.basicConfig(
     level=logging.INFO,
@@ -529,7 +529,7 @@ async def handle_tagging(client, message):
     
     tag_count = 100
     
-    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted and user.user.id != message.from_user.id]
+    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted]
     
     tagged_users = valid_users[:tag_count]
     
