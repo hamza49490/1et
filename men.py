@@ -130,7 +130,7 @@ async def chatbot(client, message):
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["selam", "slm", "sea", "sa"]:
-    if len(kelimeler) > 1 and kelimeler[1] == "selamün aleyküm":
+        if len(kelimeler) > 1 and kelimeler[1] == "selamün aleyküm":
         cevap = random.choice(selam)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
