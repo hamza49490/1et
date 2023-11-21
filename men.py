@@ -28,7 +28,6 @@ from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
 from pyrogram import Client, filters, __version__
 
-
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -36,11 +35,11 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
 app = Client(
-    ":memory:",
+    "Tag-Bot",
     config.API_ID,
     config.API_HASH,
     bot_token=config.BOT_TOKEN
-    )
+)
 
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
@@ -1018,9 +1017,6 @@ async def passs(c:Client, cb:types.CallbackQuery):
      
 @app.on_message(filters.command("iptal") & ~filters.private & ~filters.channel)
 async def stop(c:Client, m:Message):
-    if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
-
     global oyun
     
     if m.chat.id in oyun and "oyuncular" in oyun[m.chat.id]:
