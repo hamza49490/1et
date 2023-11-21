@@ -1143,10 +1143,10 @@ class Database:
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
-                banned_on=datetime.date.max.isoformat(),
+                banned_on=datetime.date.max().isoformat(),
                 ban_reason="",
             ),
-        )
+	)
 
     async def add_user(self, id): # Veritabına yeni kullanıcı eklemek için ön def
         user = self.new_user(id)
@@ -1174,26 +1174,26 @@ class Database:
             ban_reason=ban_reason,
         )
         await self.col.update_one({"id": user_id}, {"$set": {"ban_status": ban_status}})
-
+	    
     async def remove_ban(self, id): # Veritabanınızdaki yasaklılar listesinde bulunan bir kullanıcın yasağını kaldırır.
         ban_status = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.date.max().isoformat(),
             ban_reason="",
         )
         await self.col.update_one({"id": id}, {"$set": {"ban_status": ban_status}})
-
+	    
     async def get_ban_status(self, id): # Bir kullanıcın veritabanınızda yasaklılar listesinde olup olmadığını kontrol eder.
         default = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.date.max().isoformat(),
             ban_reason="",
         )
         user = await self.col.find_one({"id": int(id)})
         return user.get("ban_status", default)
-
+	    
     async def get_all_banned_users(self): # Veritabınızdaki yasaklı kullanıcılar listesini verir.
         return self.col.find({"ban_status.is_banned": True})
 
