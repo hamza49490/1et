@@ -1087,61 +1087,6 @@ async def buldu(c: Client, m: Message):
                 await c.send_message(m.chat.id, text, reply_markup=keyboard)
     except KeyError:
         pass   
-	
-@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
-async def ksayi(c:Client, m:Message):
-    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
-
-isleyen = []
-@app.on_message(filters.command("chatbot", prefixes="/"))
-async def chatbot(client, message):
-    if message.chat.type == "private":
-        await message.reply("Bu komut yalnızca gruplarda kullanılabilir.", parse_mode='markdown')
-        return
-     
-    admins = []
-    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
-        admins.append(admin.user.id)
-    if message.from_user.id not in admins:
-        return await message.reply(f"noadmin")
-    
-    global isleyen
-    if message.chat.id in isleyen:
-        status = "✅ Aktif"
-    else:
-        status = "⛔ Kapalı"
-    
-    await message.reply(f"✦ Bir buton seçin ..!\n\n✦ Durum: {status}", reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("✅ Aktif Et", callback_data="sohbetmod_on")],
-            [InlineKeyboardButton("⛔ Kapat", callback_data="sohbetmod_off")]
-        ]
-    ))
-
-@app.on_callback_query()
-async def callback_sohbetmod(client, callback_query):
-    qrup = callback_query.message.chat.id
-    if callback_query.data == "sohbetmod_on":
-        if qrup not in isleyen:
-            isleyen.append(qrup)
-            aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
-            await callback_query.edit_message_text(aktiv_olundu)
-            await asyncio.sleep(3600)
-            while qrup in isleyen:
-                users = await client.get_chat_members(qrup)
-                active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
-                if active_users:
-                    random_user = random.choice(active_users)
-                    await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
-                await asyncio.sleep(3600)
-            return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
-    elif callback_query.data == "sohbetmod_off":
-        if qrup in isleyen:
-            isleyen.remove(qrup)
-            await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
-            return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
 @app.on_message()
 async def chatbot(client, message):
@@ -1424,6 +1369,61 @@ async def chatbot(client, message):
         cevap = random.choice(snen)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+
+isleyen = []
+@app.on_message(filters.command("chatbot", prefixes="/"))
+async def chatbot(client, message):
+    if message.chat.type == "private":
+        await message.reply("Bu komut yalnızca gruplarda kullanılabilir.", parse_mode='markdown')
+        return
+     
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply(f"noadmin")
+    
+    global isleyen
+    if message.chat.id in isleyen:
+        status = "✅ Aktif"
+    else:
+        status = "⛔ Kapalı"
+    
+    await message.reply(f"✦ Bir buton seçin ..!\n\n✦ Durum: {status}", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ Aktif Et", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ Kapat", callback_data="sohbetmod_off")]
+        ]
+    ))
+
+@app.on_callback_query()
+async def callback_sohbetmod(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if callback_query.data == "sohbetmod_on":
+        if qrup not in isleyen:
+            isleyen.append(qrup)
+            aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            await callback_query.edit_message_text(aktiv_olundu)
+            await asyncio.sleep(3600)
+            while qrup in isleyen:
+                users = await client.get_chat_members(qrup)
+                active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
+                if active_users:
+                    random_user = random.choice(active_users)
+                    await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
+                await asyncio.sleep(3600)
+            return
+        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+    elif callback_query.data == "sohbetmod_off":
+        if qrup in isleyen:
+            isleyen.remove(qrup)
+            await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+            return
+        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 	    
+@app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
+async def ksayi(c:Client, m:Message):
+    await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
+
 print(" Bot çalışıyor :)")
 app.run()
