@@ -65,7 +65,7 @@ async def start(_, message: Message):
             ]
         )
     )
-
+	
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
     user_name = message.from_user.mention
@@ -73,7 +73,6 @@ async def start(_, message: Message):
     # Log grubuna kullanıcı id ve adını bildir
     log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}"
     await app.send_message(LOG_GROUP_ID, log_message)
-
 
 @app.on_message(filters.command("start") & filters.group)
 async def start(_, message: Message):
@@ -85,8 +84,7 @@ async def start(_, message: Message):
         text=f"""✦ Merhaba {message.from_user.mention}""",
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
-	
-async def send_log_message():
+
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
     user_name = message.from_user.mention
