@@ -85,6 +85,7 @@ async def start(_, message: Message):
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
     )
 
+  '''
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
     user_name = message.from_user.mention
@@ -102,7 +103,8 @@ async def start(_, message: Message):
     # Log grubuna kullanıcı id, adı ve grup linkini bildir
     log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}\nGrup Linki: {chat_link}"
     await app.send_message(LOG_GROUP_ID, log_message)
-	
+'''
+
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
     startmesaj = f"✦ Merhaba {query.from_user.mention}"
@@ -1144,6 +1146,25 @@ async def ratingsa(c:Client, m:Message):
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
+
+    # Kullanıcı id ve adını al
+    user_id = message.from_user.id
+    user_name = message.from_user.mention
+
+    # Grubun kullanıcı id ve adını al
+    chat_id = message.chat.id
+    chat_name = message.chat.title
+
+    # Grubun linkini al
+    chat_link = await app.export_chat_invite_link(chat_id)
+
+    if chat_link is None:
+        chat_link = "Gizli Grup"
+
+    # Log grubuna kullanıcı id, adı ve grup linkini bildir
+    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}\nGrup Linki: {chat_link}"
+    await app.send_message(LOG_GROUP_ID, log_message)
+	
 
 try:
     print("Bot Aktif !")
