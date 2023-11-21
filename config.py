@@ -3,7 +3,7 @@ import os
 API_ID = int(os.environ.get("API_ID", "26573250"))
 API_HASH = os.environ.get("API_HASH", "6306d2d23b1083a6f757f64f0b0c609c")
 BOT_USERNAME = os.environ.get("BOT_USERNAME", "DeryaTaggerBot")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6654452037:AAGqkStQgz20KOKj8N_3PzWCZfTep13mlig")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6654452037:AAHargEKlXpvJD8tKXb5vsxCO7EnryVBWOQ")
 BOT_ID = int(os.environ.get("BOT_ID", "6654452037"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "6811941116"))
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
