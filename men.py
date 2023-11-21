@@ -117,22 +117,23 @@ async def chatbot(client, message):
     
     kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
 
-    for kelime in kelimeler:
-        if "derya" in kelime:
-            cevap = random.choice(bkt)
-            bold_cevap = f"<b>{cevap}</b>"
-            await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
-            break
-		
-    if kelimeler[0] in["bot"]:
+    if "derya" in kelimeler:
+        cevap = random.choice(bkt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        return
+  
+    if kelimeler[0] in ["bot"]:
         cevap = random.choice(bottst)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        return
 
-    if "selamün" in mesaj.lower() and "aleyküm" in mesaj.lower():
+    if "selamün aleyküm" in mesaj.lower() or kelimeler[0] in ["slm", "sea"]:
         cevap = random.choice(selam)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        return
 	
     if kelimeler[0] in ["nasılsın", "naber", "ne haber", "nbr"]:
         cevap = random.choice(nasilsin)
