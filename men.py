@@ -94,15 +94,6 @@ async def callback_sohbetmod(client, callback_query):
             return
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
-'''@app.on_message(filters.regex(r"(?i)(/|)derya"))
-async def buket_handler(client, message):
-    if message.chat.type == "private":
-        return
-    chat_id = message.chat.id
-    if chat_id in isleyen:
-        return
-    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")'''
-
 @app.on_message()
 async def chatbot(client, message):
     global isleyen
@@ -538,7 +529,7 @@ async def handle_tagging(client, message):
     
     tag_count = 100
     
-    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted]
+    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted and user.user.id != message.from_user.id]
     
     tagged_users = valid_users[:tag_count]
     
