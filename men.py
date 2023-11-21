@@ -95,12 +95,6 @@ async def callback_sohbetmod(client, callback_query):
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
 @app.on_message()
-async def reply_to_derya(client, message):
-    if message.text.lower() == "derya":
-        if message.chat.id in isleyen:
-            await message.reply("Sohbet modu şu anda kapalı.")
-	
-@app.on_message()
 async def chatbot(client, message):
     global isleyen
     mesaj = str(message.text)
