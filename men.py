@@ -42,7 +42,67 @@ app = Client(
     config.API_HASH,
     bot_token=config.BOT_TOKEN
 )
-	    
+
+isleyen = []
+
+@app.on_message(filters.command("chatbot", prefixes="/"))
+async def chatbot(client, message):
+    if message.chat.type == "private":
+        await message.reply("nogroup", parse_mode='markdown')
+        return
+
+    if not await is_group_admin(client, message):
+        await message.reply("noadmin", parse_mode='markdown')
+        return
+     
+    global isleyen
+    if message.chat.id in isleyen:
+        status = "✅ ᴀᴋᴛɪ‌ғ"
+    else:
+        status = "⛔ ᴋᴀᴘᴀʟɪ"
+    
+    await message.reply(f"✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
+        ]
+    ))
+
+
+@app.on_callback_query()
+async def callback_sohbetmod(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if callback_query.data == "sohbetmod_on":
+        if qrup not in isleyen:
+            isleyen.append(qrup)
+            aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            await callback_query.edit_message_text(aktiv_olundu)
+            await asyncio.sleep(3600)
+            while qrup in isleyen:
+                users = await client.get_chat_members(qrup)
+                active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
+                if active_users:
+                    random_user = random.choice(active_users)
+                    await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
+                await asyncio.sleep(3600)
+            return
+        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+    elif callback_query.data == "sohbetmod_off":
+        if qrup in isleyen:
+            isleyen.remove(qrup)
+            await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+            return
+        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
+
+@app.on_message(filters.regex(r"(?i)(/|)duygu"))
+async def buket_handler(client, message):
+    if message.chat.type == "private":
+        return
+    chat_id = message.chat.id
+    if chat_id in isleyen:
+        return
+    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
