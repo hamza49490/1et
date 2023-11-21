@@ -41,27 +41,6 @@ app = Client(
     config.API_HASH,
     bot_token=config.BOT_TOKEN
 )
-
-
-@app.on_message(filters.command("ses"))
-def invite_to_voice_chat(client, message):
-    chat_id = message.chat.id
-    user_id = message.from_user.id
-    
-    # Botun yetkilerini kontrol et
-    if not client.get_chat_member(chat_id, "me").can_invite_users:
-        message.reply_text("Lütfen botu yönetici yapın.")
-        return
-    
-    # Asistan hesabını gruba davet et
-    client.send_message(chat_id, "hofhkoohgi")
-    
-    # Grubun son 50 aktif kullanıcısını sese davet et
-    members = client.get_chat_members(chat_id, filter="recent")
-    for member in members:
-        if member.user.is_bot:
-            continue
-        client.send_voice_chat_invite(chat_id, member.user.id)
 	    
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
