@@ -42,7 +42,6 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-from pyrogram.types import ChatAction, ParseMode
 import openai
 
 StartTime = time.time()
@@ -53,7 +52,7 @@ openai.api_key = "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"
 async def chat(bot, message):
     try:
         start_time = time.time()
-        await bot.send_chat_action(message.chat.id, action=ChatAction.TYPING)
+        await bot.send_chat_action(message.chat.id, action="typing")
         if len(message.command) < 2:
             await message.reply_text("✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ .")
         else:
@@ -67,7 +66,7 @@ async def chat(bot, message):
             )
             x = resp.choices[0].text
             end_time = time.time()
-            await message.reply_text(f"{x}", parse_mode=ParseMode.MARKDOWN)
+            await message.reply_text(f"{x}")
     except Exception as e:
         await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
 	    
