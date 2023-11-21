@@ -187,19 +187,6 @@ rxyzdev_stopT = {}
 def sesecagir_private(client, message):
     message.reply_text("Bu komut sadece gruplarda kullanılabilir.")
 
-@app.on_message(filters.command("sesecagir") & filters.group)
-def sesecagir_group(client, message):
-    # Gruptaki son 50 kullanıcıyı al
-    users = client.get_chat_members(message.chat.id, limit=50)
-    
-    # Kullanıcıları sese davet et
-    for user in users:
-        if user.user.is_bot or user.user.is_deleted:
-            continue
-        client.add_chat_members(message.chat.id, user.user.id)
-    
-    message.reply_text("Kullanıcılar sese davet edildi.")
-	
 @app.on_message(filters.command(['cagir'], prefixes='/'))
 async def handle_tagging(client, message):
     if message.chat.type == 'private':
@@ -898,8 +885,7 @@ async def reload_command(client: Client, message: Message):
             message.chat.id,
             "✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !"
 	)
-
-
+	    
 @app.on_message(filters.new_chat_members, group=1)
 async def welcomebot(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
