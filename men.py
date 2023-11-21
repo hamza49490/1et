@@ -42,43 +42,6 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-# Log grubu bilgileri
-LOG_GROUP_ID = -1001983841726  # Log grubunun ID'si
-
-# Log özelliğini kontrol etmek için bir değişken
-log_aktif = False
-
-# Kullanıcı komutunu dinleme
-@app.on_message(filters.command(["log"]))
-def log_command(client, message):
-    global log_aktif
-    
-    # Sadece bot sahibi tarafından kullanılabilir
-    if message.from_user.id == OWNER_ID:
-        if len(message.command) > 1:
-            if message.command[1] == "aktif":
-                log_aktif = True
-                message.reply("Log özelliği aktif edildi.")
-            elif message.command[1] == "kapat":
-                log_aktif = False
-                message.reply("Log özelliği kapatıldı.")
-
-# Kullanıcı mesajlarını dinleme
-@app.on_message(filters.group)
-def log_messages(client, message):
-    global log_aktif
-    
-    # Log özelliği aktifse ve mesaj bir komut ise log grubuna bildirim gönder
-    if log_aktif and message.command:
-        log_message = f"Kullanıcı Adı: {message.from_user.username}\n" \
-                      f"Kullanıcı ID: {message.from_user.id}\n" \
-                      f"Grup Adı: {message.chat.title}\n" \
-                      f"Grup Linki: {client.export_chat_invite_link(message.chat.id)}\n" \
-                      f"Kullanıcı Komutu: {message.text}\n" \
-                      f"Mesaj: {message.reply_to_message.text if message.reply_to_message else ''}"
-        client.send_message(LOG_GROUP_ID, log_message)
-
-
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
@@ -102,6 +65,19 @@ async def start(_, message: Message):
             ]
         )
     )
+
+    # Kullanıcı id ve adını al
+    user_id = message.from_user.id
+    user_name = message.from_user.username
+    
+    # Grubun kullanıcı id ve adını al
+    chat_id = message.chat.id
+    chat_name = message.chat.title
+    
+    # Log grubuna kullanıcı id ve adını bildir
+    log_message = f"Kullanıcı ID: {user_id}\nKullanıcı Adı: {user_name}\nGrup ID: {chat_id}\nGrup Adı: {chat_name}"
+    await app.send_message(LOG_GROUP_ID, log_message)
+
 
 @app.on_message(filters.command("start") & filters.group)
 async def start(_, message: Message):
