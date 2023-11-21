@@ -69,9 +69,10 @@ async def start(_, message: Message):
     # Kullanıcı id ve adını al
     user_id = message.from_user.id
     user_name = message.from_user.mention
+    user_username = message.from_user.username
     
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"Kullanıcı : {user_name}\nKullanıcı ID: {user_id}\n\nBotu PM'den Başlattı !"
+    log_message = f"Kullanıcı : {user_name}\nKullanıcı Adı: {user_username}\nKullanıcı ID: {user_id}\n\nBotu PM'den Başlattı !"
     await app.send_message(LOG_GROUP_ID, log_message)
 
 @app.on_message(filters.command("start") & filters.group)
@@ -899,16 +900,16 @@ async def reload_command(client: Client, message: Message):
             "✨ ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !"
 	)
 
+
 @app.on_message(filters.new_chat_members, group=1)
-async def zar(bot: Client, msg: Message):
+async def welcomebot(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
-            group_link = f"https://t.me/c/{msg.chat.username}"
             await msg.reply(
-                f'''✦ ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n✦ ʙᴇɴɪ {group_name} ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !''', 
+                f'''✦ ᴍᴇʀʜᴀʙᴀ , {msg.from_user.mention}\n\n✦ ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦ ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !''', 
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✦  𝖡𝗎𝗋𝖺𝗒𝖺 𝖳ı𝗄𝗅𝖺  ✦", url=f"https://t.me/{BOT_USERNAME}?start")]])
             )
-            log_message = f"Kullanıcı Adı: {msg.from_user.mention}\nKullanıcı ID: {msg.from_user.id}\n\nGrup Adı: {group_name}\nGrup ID: {msg.chat.id}\nGrup Linki: {group_link}"
+            log_message = f"Kullanıcı: {msg.from_user.mention}\nKullanıcı Adı: {msg.from_user.username}\nKullanıcı ID: {msg.from_user.id}\n\nGrup Adı: {msg.chat.title}\nGrup ID: {msg.chat.id}\nGrup Linki: {msg.chat.username}"
             await bot.send_message(LOG_GROUP_ID, log_message)
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
