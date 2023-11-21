@@ -42,35 +42,6 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-import openai
-
-openai.api_key = "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"
-
-def generate_response(prompt):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        temperature=0.2,
-        max_tokens=100
-    )
-    return response.choices[0].text
-
-@app.on_message(filters.command(["ask"], prefixes=["", "/"]))
-async def chat(bot, message):
-    try:
-        start_time = time.time()
-        await bot.send_chat_action(message.chat.id, action="typing")
-        if len(message.command) < 2:
-            await message.reply_text("✦ ʙᴜʏʀᴜɴ, sᴏʀᴜɴᴜᴢ ɴᴇᴅɪʀ !\n\n☆ öʀɴᴇᴋ : ᴀsᴋ ɢüᴢᴇʟ ʙɪ‌ʀ söᴢ söʏʟᴇ .")
-        else:
-            a = message.text.split(' ', 1)[1]
-            response = generate_response(a)
-            end_time = time.time()
-            await message.reply_text(f"{response}", parse_mode="HTML")
-    except Exception as e:
-        await message.reply_text(f"✦ ᴅᴀʜᴀ sᴏɴʀᴀ ᴛᴇᴋʀᴀʀ ᴅᴇɴᴇ !")
-	    
-
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
