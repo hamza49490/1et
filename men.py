@@ -48,23 +48,23 @@ isleyen = []
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
-        await message.reply("nogroup", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(client, message):
-        await message.reply("noadmin", parse_mode='markdown')
+        await message.reply("Bu komut yalnızca gruplarda kullanılabilir.", parse_mode='markdown')
         return
      
+    if message.from_user.id not in [admin.user.id for admin in await client.get_chat_administrators(message.chat.id)]:
+        await message.reply("Bu komutu kullanma yetkiniz bulunmamaktadır.", parse_mode='markdown')
+        return
+    
     global isleyen
     if message.chat.id in isleyen:
-        status = "✅ ᴀᴋᴛɪ‌ғ"
+        status = "✅ Aktif"
     else:
-        status = "⛔ ᴋᴀᴘᴀʟɪ"
+        status = "⛔ Kapalı"
     
-    await message.reply(f"✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", reply_markup=InlineKeyboardMarkup(
+    await message.reply(f"✦ Bir buton seçin ..!\n\n✦ Durum: {status}", reply_markup=InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", callback_data="sohbetmod_on")],
-            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
+            [InlineKeyboardButton("✅ Aktif Et", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ Kapat", callback_data="sohbetmod_off")]
         ]
     ))
 
