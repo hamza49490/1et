@@ -41,16 +41,6 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-# Kullanıcı bilgileri ve komutları loglamak için bir filtre oluşturun
-@app.on_message(filters.command)
-def log_commands(client, message):
-    user_info = f"Kullanıcı: {message.from_user.first_name} ({message.from_user.id})"
-    commands = [str(c) if case_sensitive else str(c).lower() for c in commands]
-    commands = {c if case_sensitive else c.lower() for c in commands}
-    command = f"Komut: {message.text}"
-    log_message = f"{user_info}\n{command}"
-    client.send_message(LOG_CHANNEL, log_message)
-	
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
