@@ -196,7 +196,7 @@ async def handle_tagging(client, message):
     
     tag_count = 100
     
-    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted]
+    valid_users = [user for user in all_users if not user.user.is_bot and not user.user.is_deleted and user.user.id != message.from_user.id]
     
     tagged_users = valid_users[:tag_count]
     
