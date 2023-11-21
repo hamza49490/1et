@@ -7,7 +7,6 @@ import random
 import string
 import time
 import aiofiles
-import motor.motor_asyncio
 import yt_dlp
 import ffmpeg
 import aiohttp
@@ -27,14 +26,8 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, filters, __version__
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
+
 
 logging.basicConfig(
     level=logging.INFO,
