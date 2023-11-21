@@ -3,9 +3,7 @@ asyncio==3.4.3
 python-dotenv
 aiohttp
 tglogging
-telethon
 requests
-psutil
 heroku3
 tgcrypto
 aiofiles
