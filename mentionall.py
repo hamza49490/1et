@@ -1132,4 +1132,7 @@ async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
 print(" Bot çalışıyor :)")
-app.run()
+app.start()
+
+app.stop()
+print(" Bot Durdu :)")
