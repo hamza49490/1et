@@ -19,3 +19,4 @@ wget
 ffmpeg-python
 ujson
 yt-dlp
+telethon
