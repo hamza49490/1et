@@ -1147,9 +1147,8 @@ async def ratingsa(c:Client, m:Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-if name == "__main__":
-    print(f"Bot Aktif !")
-    try:
-        app.run()
-    except Exception as e:
-        print(str(e))
+try:
+    print("Bot Aktif !")
+    app.run()
+except Exception as e:
+    print(str(e))
