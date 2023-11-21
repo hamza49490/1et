@@ -126,13 +126,13 @@ async def chatbot(client, message):
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
-		
-    if kelimeler[0] == "selam" or kelimeler[0] == "selamün aleyküm" or kelimeler[0] == "slm" or kelimeler[0] == "sea" or kelimeler[0] == "sa":
+  
+    if kelimeler[0] in ["selam", "selamün", "aleyküm", "slm", "sea", "sa"]:
        cevap = random.choice(selam)
        bold_cevap = f"<b>{cevap}</b>"
        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
-	    	    
-    if kelimeler[0] == "nasılsın" or kelimeler[0] == "naber" or kelimeler[0] == "ne haber" or kelimeler[0] == "nbr":
+          
+    if kelimeler[0] in ["nasılsın", "naber", "ne", "haber", "nbr"]:
         cevap = random.choice(nasilsin)
         bold_cevap = f"<b>{cevap}</b>"
         await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
