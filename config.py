@@ -12,6 +12,3 @@ MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek")
-GONDERME_TURU = os.environ.get("GONDERME_TURU", True)
-LANGAUGE = os.environ.get("LANGAUGE", "TR")
