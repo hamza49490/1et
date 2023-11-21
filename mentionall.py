@@ -1099,33 +1099,7 @@ async def buldu(c: Client, m: Message):
 
                 await c.send_message(m.chat.id, text, reply_markup=keyboard)
     except KeyError:
-        pass
-                
-'''
-@app.on_message(filters.command("skorssk"))
-async def ratingsa(c:Client, m:Message):
-    if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
-
-    metin = """**🎖️  Global Top 20  🎖️**
-
-"""
-    eklenen = 1
-    s = sorted(rating.items(), key=lambda x: x[1], reverse=True)
-    for kisi in s:
-        if eklenen == 1:
-            metin +=  f"🥇  **{kisi[0]}  :  {kisi[1]}  Puan**\n" 
-        if eklenen == 2:
-            metin +=  f"🥈  **{kisi[0]}  :  {kisi[1]}  Puan**\n"
-        if eklenen == 3:
-            metin +=  f"🥉  **{kisi[0]}  :  {kisi[1]}  Puan**\n"
-        if  not eklenen in [1,2,3]:
-            metin +=  f" **{eklenen})  {kisi[0]}**  :  **{kisi[1]}  Puan**\n" 
-        eklenen+=1
-        if eklenen == 21:
-            break
-    await c.send_message(m.chat.id, metin)
-'''	    
+        pass   
 	
 @app.on_message(filters.command("sinfo") & filters.user(OWNER_ID))
 async def ksayi(c:Client, m:Message):
