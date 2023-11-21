@@ -42,6 +42,37 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# GPT-2 modeli ve tokenizer'ı yüklenir
+model_name = "gpt2"
+model = GPT2LMHeadModel.from_pretrained(model_name)
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+# Sadece "ask" kelimesiyle başlayan mesajları algılamak için bir filtre oluşturulur
+@filters.create(lambda _, __, message: message.text and message.text.lower().startswith("ask"))
+def filter_ask(_, __, message: Message):
+    return True
+
+# Bot, sadece "ask" kelimesiyle başlayan mesajları işler
+@app.on_message(filter_ask)
+def handle_ask(_, message: Message):
+    # Gelen mesajın içeriği alınır
+    input_text = message.text.lower().replace("ask", "").strip()
+    
+    # Model tarafından üretilen yanıt alınır
+    response = generate_response(input_text)
+    
+    # Yanıtı gönderir
+    message.reply_text(response)
+
+# GPT-2 modelini kullanarak bir yanıt üretir
+def generate_response(input_text):
+    input_ids = tokenizer.encode(input_text, return_tensors="pt")
+    output = model.generate(input_ids, max_length=100, num_return_sequences=1)
+    response = tokenizer.decode(output[0], skip_special_tokens=True)
+    return response
+
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 Yükleniyor ...")
