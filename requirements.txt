@@ -19,4 +19,4 @@ wget
 ffmpeg-python
 ujson
 yt-dlp
-transformers: 4.11.3
+transformers==4.11.3
