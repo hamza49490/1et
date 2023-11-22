@@ -35,7 +35,7 @@ isleyen = []
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
-        await message.reply("Bu komut yalnızca gruplarda kullanılabilir.", parse_mode='markdown')
+        await message.reply("__**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__", parse_mode='markdown')
         return
      
     admins = []
@@ -46,14 +46,14 @@ async def chatbot(client, message):
     
     global isleyen
     if message.chat.id in isleyen:
-        status = "✅ Aktif"
+        status = "🔹 ᴀᴋᴛɪ̇ғ"
     else:
-        status = "⛔ Kapalı"
+        status = "🔹 ᴋᴀᴘᴀʟɪ"
     
-    await message.reply(f"✦ Bir buton seçin ..!\n\n✦ Durum: {status}", reply_markup=InlineKeyboardMarkup(
+    await message.reply(f"__**✦ ᴀşᴀɢ̆ɪᴅᴀɴ sᴇᴄ̧ɪ̇ᴍ ʏᴀᴘɪɴ ! \n\n✦ ᴅᴜʀᴜᴍ : {status}**__", reply_markup=InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("✅ Aktif Et", callback_data="sohbetmod_on")],
-            [InlineKeyboardButton("⛔ Kapat", callback_data="sohbetmod_off")]
+            [InlineKeyboardButton("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
         ]
     ))
 
@@ -63,7 +63,7 @@ async def callback_sohbetmod(client, callback_query):
     if callback_query.data == "sohbetmod_on":
         if qrup not in isleyen:
             isleyen.append(qrup)
-            aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            aktiv_olundu = "__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**__"
             await callback_query.edit_message_text(aktiv_olundu)
             await asyncio.sleep(3600)
             while qrup in isleyen:
@@ -71,16 +71,16 @@ async def callback_sohbetmod(client, callback_query):
                 active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
                 if active_users:
                     random_user = random.choice(active_users)
-                    await client.send_message(qrup, f"{random_user.user.first_name} {random.choice(smesajs)}")
+                    await client.send_message(qrup, f"**{random_user.user.mention} {random.choice(smesajs)}**")
                 await asyncio.sleep(3600)
             return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .**__")
     elif callback_query.data == "sohbetmod_off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+            await callback_query.edit_message_text("__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**__")
             return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !**__")
 
 @app.on_message()
 async def chatbot(client, message):
@@ -89,7 +89,7 @@ async def chatbot(client, message):
     qrup = message.chat.id
     if qrup not in isleyen:
         if "derya" in mesaj.lower().split(" "):
-            await message.reply("✦ Sohbet modu şu anda kapalı.")
+            await message.reply("__**✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot**__")
         return
     
     me = await client.get_me()
