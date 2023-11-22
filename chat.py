@@ -88,6 +88,8 @@ async def chatbot(client, message):
     mesaj = str(message.text)
     qrup = message.chat.id
     if qrup not in isleyen:
+        if "derya" in mesaj.lower().split(" "):
+            await message.reply("✦ Sohbet modu şu anda kapalı.")
         return
     
     me = await client.get_me()
@@ -97,13 +99,10 @@ async def chatbot(client, message):
     kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
 
     if "derya" in kelimeler:
-        if qrup in isleyen:
-            cevap = random.choice(bkt)
-            bold_cevap = f"<b>{cevap}</b>"
-            await message.reply(bold_cevap, parse_mode='html')
-        else:
-            await message.reply("Sohbetmod'u Kapalı")
-            return
+        cevap = random.choice(bkt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await message.reply(bold_cevap, parse_mode='html')
+        return
   
     if kelimeler[0] in ["bot"]:
         cevap = random.choice(bottst)
