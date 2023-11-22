@@ -71,7 +71,7 @@ async def callback_sohbetmod(client, callback_query):
                 active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
                 if active_users:
                     random_user = random.choice(active_users)
-                    await client.send_message(qrup, f"**{random_user.user.mention} {random.choice(smesajs)}**")
+                    await client.send_message(qrup, f"**{random_user.mention} {random.choice(smesajs)}**")
                 await asyncio.sleep(3600)
             return
         await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .**__")
