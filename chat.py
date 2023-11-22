@@ -35,14 +35,14 @@ isleyen = []
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
-        await message.reply("__**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__", parse_mode='markdown')
+        await message.reply("🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__", parse_mode='markdown')
         return
      
     admins = []
     async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
         admins.append(admin.user.id)
     if message.from_user.id not in admins:
-        return await message.reply(f"noadmin")
+        return await message.reply(f"😏 __**ʏᴏ̈ɴᴇᴛɪ̇ᴄɪ̇ ᴅᴇɢ̆ɪ̇ʟsɪ̇ɴ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__")
     
     global isleyen
     if message.chat.id in isleyen:
