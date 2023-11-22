@@ -82,15 +82,6 @@ async def callback_sohbetmod(client, callback_query):
             return
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
 
-@app.on_message(filters.command("derya", prefixes=""))
-async def buket_handler(client, message):
-    if message.chat.type == "private":
-        return
-    chat_id = message.chat.id
-    if chat_id in isleyen:
-        return
-    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
-
 @app.on_message()
 async def chatbot(client, message):
     global isleyen
@@ -106,10 +97,14 @@ async def chatbot(client, message):
     kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
 
     if "derya" in kelimeler:
-        cevap = random.choice(bkt)
-        bold_cevap = f"<b>{cevap}</b>"
-        await message.reply(bold_cevap, parse_mode='html')
-        return
+        if chat_id in isleyen:
+            cevap = random.choice(bkt)
+            bold_cevap = f"<b>{cevap}</b>"
+            await message.reply(bold_cevap, parse_mode='html')
+            return
+        else:
+            await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+            return
   
     if kelimeler[0] in ["bot"]:
         cevap = random.choice(bottst)
