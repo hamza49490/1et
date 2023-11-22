@@ -44,12 +44,7 @@ app = Client(
 )
 
 isleyen = []
-@app.on_message()
-async def check_message(client, message):
-    if message.text.lower() == "derya":
-        if message.chat.id in isleyen:
-            await message.reply("Sohbet modu şu anda kapalı.")
-        
+
 @app.on_message(filters.command("chatbot", prefixes="/"))
 async def chatbot(client, message):
     if message.chat.type == "private":
