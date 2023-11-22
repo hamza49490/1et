@@ -111,7 +111,7 @@ async def chatbot(client, message):
     if "derya" in kelimeler:
         cevap = random.choice(bkt)
         bold_cevap = f"<b>{cevap}</b>"
-        await message.reply(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
         return
   
     if kelimeler[0] in ["bot"]:
