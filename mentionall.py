@@ -117,264 +117,264 @@ async def chatbot(client, message):
     if kelimeler[0] in ["bot"]:
         cevap = random.choice(bottst)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
         return
 
     if "selamün aleyküm" in mesaj.lower() or kelimeler[0] in ["slm", "selam", "sa", "sea"]:
         cevap = random.choice(selam)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
         return
 	
     if "ne haber" in mesaj.lower() or kelimeler[0] in ["nasılsın", "naber", "nbr"]:
         cevap = random.choice(nasilsin)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["erkek", "adam"]:
         cevap = random.choice(adam)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["iyiyim", "mükemmel", "harika"]:
         cevap = random.choice(iyiyim)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "hoş geldin" in mesaj.lower() or kelimeler[0] in ["hg"]:
         cevap = random.choice(hoş)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["merhaba", "mrb"]:
         cevap = random.choice(merhaba)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["ban", "/ban", "banned", "banla"]:
         cevap = random.choice(ban)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "ne yapıyorsun" in mesaj.lower() or kelimeler[0] in ["nabiyon", "napıyorsun"]:
         cevap = random.choice(nabiyon)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["😔", "🥺", "😢"]:
         cevap = random.choice(uzgun)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["valla", "vallahi", "yemin"]:
         cevap = random.choice(valla)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    	    
     if kelimeler[0] in ["sg", "siktir"]:
         cevap = random.choice(sg)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["mal", "gerizekalı", "it", "şrfsz", "şerefsiz"]:
         cevap = random.choice(mal)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["balım", "bebeğim", "aşkım"]:
         cevap = random.choice(balim)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["canım", "bitanem", "yavrum"]:
         cevap = random.choice(canim)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["gidiyorum", "gittim", "görüşürüz"]:
         cevap = random.choice(gidiyorum)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["sinirlendim", "sinirliyim", "sinirleniyorum", "😡", "😤"]:
         cevap = random.choice(sinirlendim)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "tanışabilir miyiz" in mesaj.lower() or "tanışalım mı" in mesaj.lower():
         cevap = random.choice(tanis)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "adın ne" in mesaj.lower() or "ismin ne" in mesaj.lower():
         cevap = random.choice(adne)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "idare eder" in mesaj.lower() or kelimeler[0] in ["kötü", "iyi"]:
         cevap = random.choice(iyisen)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["😅", "😂", "🤣"]:
         cevap = random.choice(gullu)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["büyüğüm", "büyük"]:
         cevap = random.choice(buyuk)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	
     if kelimeler[0] in ["aiko"]:
         cevap = random.choice(aiko)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["günaydın", "günaydınnn", "gny", "rojbaş"]:
         cevap = random.choice(gnyy)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if "iyi akşamlar" in mesaj.lower() or "iyi geceler" in mesaj.lower():
         cevap = random.choice(igece)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if "kaç yaşındasın" in mesaj.lower() or "yaşın kaç" in mesaj.lower():
         cevap = random.choice(kyas)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["nerelisin"]:
         cevap = random.choice(nereli)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["konuşma", "sus", "knşma"]:
         cevap = random.choice(pms)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["kırdı", "krldm", "kırıcı", "kırıldım"]:
         cevap = random.choice(krdn)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["skldm", "sıkıldım"]:
         cevap = random.choice(skdm)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["hm", "hmmm"]:
         cevap = random.choice(hms)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if "geçmiş olsun" in mesaj.lower():
         cevap = random.choice(bts)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["oyun", "game"]:
         cevap = random.choice(trt)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["evt", "evet"]:
         cevap = random.choice(evt)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["hyr", "hayır"]:
         cevap = random.choice(hyrr)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["🙄"]:
         cevap = random.choice(gzs)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["of", "offf"]:
         cevap = random.choice(ofs)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["çikolata"]:
         cevap = random.choice(cklta)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["lan", "ln"]:
         cevap = random.choice(lna)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["dedim"]:
         cevap = random.choice(dddm)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["yalan", "yalancı"]:
         cevap = random.choice(ylna)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["sağol"]:
         cevap = random.choice(sgll)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["çirkin"]:
         cevap = random.choice(crkn)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["dm", "pm"]:
         cevap = random.choice(dmy)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["tatlı", "yemek"]:
         cevap = random.choice(tymm)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["kes", "kesss"]:
         cevap = random.choice(kmm)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["kanka", "knk", "kanki"]:
         cevap = random.choice(kankas)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["öp"]:
         cevap = random.choice(opsss)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["sanane", "sağne", "sanne"]:
         cevap = random.choice(sgne)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
     if kelimeler[0] in ["banne", "banane", "bağne"]:
         cevap = random.choice(bgne)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["ben", "bennn"]:
         cevap = random.choice(bnen)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
     if kelimeler[0] in ["sen", "sennn"]:
         cevap = random.choice(snen)
         bold_cevap = f"<b>{cevap}</b>"
-        await client.send_message(message.chat.id, bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
