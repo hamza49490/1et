@@ -87,6 +87,7 @@ async def chatbot(client, message):
     global isleyen
     mesaj = str(message.text)
     qrup = message.chat.id
+    chat_id = qrup
     if qrup not in isleyen:
         return
     
