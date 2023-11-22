@@ -61,7 +61,7 @@ async def start(_, message: Message):
                     InlineKeyboardButton('🗨️  ᴋᴀɴᴀʟ', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
-                    InlineKeyboardButton('⚙️  ᴅᴇsᴛᴇᴋ', url=f'https://t.me/{SUPPORT}')
+                    InlineKeyboardButton('🔹  ᴅᴇsᴛᴇᴋ', url=f'https://t.me/{SUPPORT}')
                 ]
             ]
         )
@@ -100,7 +100,7 @@ async def start(_, query: CallbackQuery):
                 InlineKeyboardButton("🗨️  ᴋᴀɴᴀʟ", url=f"https://t.me/{CHANNELL}")
             ],
             [
-                InlineKeyboardButton("⚙️  ᴅᴇsᴛᴇᴋ", url=f"https://t.me/{SUPPORT}")
+                InlineKeyboardButton("🔹  ᴅᴇsᴛᴇᴋ", url=f"https://t.me/{SUPPORT}")
             ]
         ]
     )
@@ -113,10 +113,10 @@ async def help(_, query: CallbackQuery):
         [
             [
                 InlineKeyboardButton("📚 ᴇᴛɪ̇ᴋᴇᴛ ᴋᴏᴍᴜᴛʟᴀʀɪ", callback_data="tag1"),
-                InlineKeyboardButton("⚙️ ᴅɪ̇ɢ̆ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ", callback_data="tag2")
+                InlineKeyboardButton("🔹 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ", callback_data="tag2")
             ],
             [
-	        InlineKeyboardButton("🔹 sᴜᴅᴏ ᴋᴏᴍᴜᴛʟᴀʀɪ", callback_data="tag3")
+	        InlineKeyboardButton("⚙️ ᴅɪ̇ɢ̆ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ", callback_data="tag3")
             ],
             [
                 InlineKeyboardButton("➡️ ɢᴇʀɪ̇ ᴅᴏ̈ɴ", callback_data="start")
@@ -127,7 +127,7 @@ async def help(_, query: CallbackQuery):
 	
 @app.on_callback_query(filters.regex("tag1"))
 async def tag1(_, query: CallbackQuery):
-    etikett = "✦"
+    etikett = "**🔹 ᴇᴛɪ‌ᴋᴇᴛ ᴋᴏᴍᴜᴛʟᴀʀɪ  :\n\n/cagir - ᴜ‌ʏᴇʟᴇʀɪ‌ ᴛᴏᴘʟᴜ ᴄ‌ᴀɢ‌ɪʀɪɴ .\n/atag - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/utag - ᴜ‌ʏᴇʟᴇʀɪ‌ ᴛᴏᴘʟᴜ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/tag - ᴜ‌ʏᴇʟᴇʀɪ‌ ᴛᴇᴋ ᴛᴇᴋ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/etag - ᴜ‌ʏᴇʟᴇʀɪ‌ ᴇᴍᴏᴊɪ‌ʟᴇʀʟᴇ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/vtag - ᴜ‌ʏᴇʟᴇʀɪ‌ sᴏʀᴜʟᴀʀʟᴀ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/stag - ᴜ‌ʏᴇʟᴇʀɪ‌ sᴏ‌ᴢʟᴇʀʟᴇ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/otag - ᴜ‌ʏᴇʟᴇʀɪ‌ ʀᴜ‌ᴛʙᴇʟᴇʀʟᴇ ᴇᴛɪ‌ᴋᴇᴛʟᴇʀ .\n/cancel - ᴇᴛɪ‌ᴋᴇᴛʟᴇᴍᴇʏɪ‌ ᴅᴜʀᴅᴜʀᴜʀ .**"
     await query.message.edit_text(etikett, reply_markup=InlineKeyboardMarkup(
         [
             [
@@ -139,8 +139,8 @@ async def tag1(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag2"))
 async def tag2(_, query: CallbackQuery):
-    extraa = "✦"
-    await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
+    oyunn = "**🔹 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ  :\n\n/slap - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ ᴛᴏᴋᴀᴛʟᴀʏɪɴ .\n/eros - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ sʜɪ‌ᴘʟᴇʀ .\n/d - ᴅᴏɢ‌ʀᴜʟᴜᴋ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/c - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/soz - ʀᴀsᴛɢᴇʟᴇ sᴏ‌ᴢ ᴀᴛᴀʀ .\n/ok - ᴏᴋ ᴀᴛᴀʀ .\n/top - ᴛᴏᴘ ᴀᴛᴀʀ .\n/slots - sʟᴏᴛ ᴀᴛᴀʀ .\n/basket - ʙᴀsᴋᴇᴛ ᴀᴛᴀʀ .\n/bow - ʙᴏᴡʟɪ‌ɴɢ ᴀᴛᴀʀ .\n/zar - ᴢᴀʀ ᴀᴛᴀʀ .\n/turet - ᴋᴇʟɪ‌ᴍᴇ ᴛᴜ‌ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ‌ᴀʀ .\n/iptal - ᴏʏᴜɴᴜ ɪ‌ᴘᴛᴀʟ ᴇᴅᴇʀ .**"
+    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton("➡️ ɢᴇʀɪ̇ ᴅᴏ̈ɴ", callback_data="help")
@@ -151,6 +151,18 @@ async def tag2(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag3"))
 async def tag3(_, query: CallbackQuery):
+    extraa = "**🔹 ᴅɪ‌ɢ‌ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ :\n\n/bul - s‌ᴀʀᴋɪ‌ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/vbul - ᴠɪ‌ᴅᴇᴏ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/group - ɢʀᴜᴘ ʙɪ‌ʟɢɪ‌ᴇʀɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/admins - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/bots - ʙᴏᴛʟᴀʀɪ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/id - ᴋᴜʟʟᴀɴɪᴄɪ ɪ‌ᴅ'sɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/reload - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ ʟɪ‌sᴛᴇsɪ‌ɴɪ‌ ɢᴜ‌ɴᴄᴇʟʟᴇʀ .\n/chatbot - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴘᴀɴᴇʟɪ‌ .\n/ask - ʏᴀᴘᴀʏ ᴢᴇᴋᴀ ɪ‌ʟᴇ ᴋᴏɴᴜs‌ᴜɴ .**"
+    await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("➡️ ɢᴇʀɪ̇ ᴅᴏ̈ɴ", callback_data="help")
+            ]
+        ]
+    )
+)
+
+@app.on_callback_query(filters.regex("tag4"))
+async def tag4(_, query: CallbackQuery):
     if query.from_user.id != OWNER_ID:
         await query.answer("ʙᴜɴᴀ ɪ̇ᴢɴɪ̇ɴ ʏᴏᴋ ᴋᴏᴄ̧ᴜᴍ .", show_alert=True)  # show_alert parametresini True olarak ayarlayarak yanıtın boyutunu büyütebilirsiniz
         return
