@@ -13,6 +13,8 @@ import ffmpeg
 import aiohttp
 import random
 import os, youtube_dl, requests, time
+import config
+from config import *
 from pyrogram import filters
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
