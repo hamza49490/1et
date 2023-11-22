@@ -920,7 +920,7 @@ async def grup_info(client: Client, message: Message):
         f'**ɢʀᴜᴘ ᴀᴅɪ : {group_name}**\n'
         f'**ɢʀᴜᴘ ɪᴅ :** `{group_id}`\n'
         f'**ᴜʏᴇ sᴀʏɪsɪ : {total_count}**\n'
-        f'**ᴀᴋᴛɪғ ᴋᴜʟʟᴀɴɪᴄɪ : {active_count}**\n'
+        f'**ɢᴇʀᴄ̧ᴇᴋ ᴋᴜʟʟᴀɴɪᴄɪ : {active_count}**\n'
         f'**{special_status}**'
     )
 
