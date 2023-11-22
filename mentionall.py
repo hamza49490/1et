@@ -1,14 +1,17 @@
+import wget
 import logging
 import datetime
 import asyncio
-import os
+import datetime
 import random
+import string
 import time
+import traceback
 import aiofiles
-import pyrogram
-import config 
-from config import *
-from datetime import datetime, timedelta
+import aiohttp
+import random
+import os, requests, time
+from pyrogram import filters
 from pyrogram.handlers import MessageHandler
 from pyrogram import Client, filters, types
 from time import sleep
@@ -17,6 +20,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
+
 
 logging.basicConfig(
     level=logging.INFO,
