@@ -103,7 +103,7 @@ async def chatbot(client, message):
             await message.reply(bold_cevap, parse_mode='html')
         else:
             await message.reply("Sohbetmod'u Kapalı")
-        return
+            return
   
     if kelimeler[0] in ["bot"]:
         cevap = random.choice(bottst)
