@@ -1,25 +1,14 @@
-import wget
 import logging
 import datetime
 import asyncio
-import youtube_dl, requests, time
-import shutil, psutil, traceback, os
-import traceback
+import os
 import random
-import string
 import time
 import aiofiles
-import yt_dlp
-import ffmpeg
-import aiohttp
-import datetime
 import pyrogram
 import config 
 from config import *
 from datetime import datetime, timedelta
-from pyrogram import filters
-from yt_dlp import YoutubeDL
-from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
 from pyrogram import Client, filters, types
 from time import sleep
@@ -28,7 +17,6 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from mesaj.botmesaj import *
 from mesaj.kelimeler import *
 from mesaj.kelimeler import kelime_sec
-from pyrogram import Client, filters, __version__
 
 logging.basicConfig(
     level=logging.INFO,
@@ -42,6 +30,7 @@ app = Client(
     config.API_HASH,
     bot_token=config.BOT_TOKEN
 )
+
 
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
@@ -1092,5 +1081,5 @@ async def buldu(c: Client, m: Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**Sistemde kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-print(" Bot çalışıyor :)")
+print(" Mentionall çalışıyor :)")
 app.run()
