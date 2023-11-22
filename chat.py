@@ -46,9 +46,9 @@ async def chatbot(client, message):
     
     global isleyen
     if message.chat.id in isleyen:
-        status = "🔹 ᴀᴋᴛɪ̇ғ"
+        status = " ᴀᴋᴛɪ̇ғ"
     else:
-        status = "🔹 ᴋᴀᴘᴀʟɪ"
+        status = " ᴋᴀᴘᴀʟɪ"
     
     await message.reply(f"__**✦ ᴀşᴀɢ̆ɪᴅᴀɴ sᴇᴄ̧ɪ̇ᴍ ʏᴀᴘɪɴ ! \n\n✦ ᴅᴜʀᴜᴍ : {status}**__", reply_markup=InlineKeyboardMarkup(
         [
@@ -89,7 +89,7 @@ async def chatbot(client, message):
     qrup = message.chat.id
     if qrup not in isleyen:
         if "derya" in mesaj.lower().split(" "):
-            await message.reply("__**✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot**__")
+            await message.reply("__**✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot**__")
         return
     
     me = await client.get_me()
