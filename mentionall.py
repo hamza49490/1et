@@ -151,8 +151,8 @@ async def tag2(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag3"))
 async def tag3(_, query: CallbackQuery):
-    extraa = "**🔹 ᴅɪ‌ɢ‌ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ :\n\n/bul - s‌ᴀʀᴋɪ‌ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/vbul - ᴠɪ‌ᴅᴇᴏ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/group - ɢʀᴜᴘ ʙɪ‌ʟɢɪ‌ᴇʀɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/admins - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/bots - ʙᴏᴛʟᴀʀɪ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/id - ᴋᴜʟʟᴀɴɪᴄɪ ɪ‌ᴅ'sɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/reload - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ ʟɪ‌sᴛᴇsɪ‌ɴɪ‌ ɢᴜ‌ɴᴄᴇʟʟᴇʀ .\n/chatbot - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴘᴀɴᴇʟɪ‌ .\n/ask - ʏᴀᴘᴀʏ ᴢᴇᴋᴀ ɪ‌ʟᴇ ᴋᴏɴᴜs‌ᴜɴ .**"
-    await query.message.edit_text(extraa, reply_markup=InlineKeyboardMarkup(
+    digerr = "**🔹 ᴅɪ‌ɢ‌ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ :\n\n/bul - s‌ᴀʀᴋɪ‌ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/vbul - ᴠɪ‌ᴅᴇᴏ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/group - ɢʀᴜᴘ ʙɪ‌ʟɢɪ‌ᴇʀɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/admins - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/bots - ʙᴏᴛʟᴀʀɪ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/id - ᴋᴜʟʟᴀɴɪᴄɪ ɪ‌ᴅ'sɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/reload - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ ʟɪ‌sᴛᴇsɪ‌ɴɪ‌ ɢᴜ‌ɴᴄᴇʟʟᴇʀ .\n/chatbot - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴘᴀɴᴇʟɪ‌ .\n/ask - ʏᴀᴘᴀʏ ᴢᴇᴋᴀ ɪ‌ʟᴇ ᴋᴏɴᴜs‌ᴜɴ .**"
+    await query.message.edit_text(digerr, reply_markup=InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton("➡️ ɢᴇʀɪ̇ ᴅᴏ̈ɴ", callback_data="help")
@@ -167,8 +167,8 @@ async def tag4(_, query: CallbackQuery):
         await query.answer("ʙᴜɴᴀ ɪ̇ᴢɴɪ̇ɴ ʏᴏᴋ ᴋᴏᴄ̧ᴜᴍ .", show_alert=True)  # show_alert parametresini True olarak ayarlayarak yanıtın boyutunu büyütebilirsiniz
         return
     
-    oyunn = "✦ Yakında !"
-    await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
+    sudoo = "✦ Yakında !"
+    await query.message.edit_text(sudoo, reply_markup=InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton("➡️ ɢᴇʀɪ̇ ᴅᴏ̈ɴ", callback_data="help")
@@ -176,7 +176,7 @@ async def tag4(_, query: CallbackQuery):
         ]
     ))
 
-@app.on_message(filters.command(["bul", "song", "muzik"]) & ~filters.edited)
+'''@app.on_message(filters.command(["bul", "song", "muzik"]) & ~filters.edited)
 async def bul(_, message):
     try:
         await message.delete()
@@ -299,7 +299,7 @@ async def ytsearch(_, message: Message):
             disable_web_page_preview=True,
         )
     except Exception as e:
-        await message.reply_text(str(e))
+        await message.reply_text(str(e))'''
 	    
 anlik_calisan = []
 tekli_calisan = []
