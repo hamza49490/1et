@@ -792,7 +792,7 @@ async def cancel(client, message):
     rxyzdev_tagTot[message.chat.id] = 0  # etiketleme sayısını sıfırla
     sender = message.from_user
     rxyzdev_stopT = f"{sender.mention}"
-    await message.reply(f"**⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {tag_count}\n👤 ɪᴘᴛᴀʟ ᴇᴅᴇɴ ᴋᴜʟʟᴀɴɪᴄɪ : {rxyzdev_stopT}**")
+    await message.reply(f"**⛔ ɪs‌ʟᴇᴍɪ ɪᴘᴛᴀʟ ᴇᴛᴛɪᴍ ...\n\n👤 {rxyzdev_stopT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {tag_count}**")
 	
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
