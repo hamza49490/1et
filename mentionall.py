@@ -151,7 +151,7 @@ async def tag2(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag3"))
 async def tag3(_, query: CallbackQuery):
-    digerr = "**🔹 ᴅɪ‌ɢ‌ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ :\n\n/bul - s‌ᴀʀᴋɪ‌ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/vbul - ᴠɪ‌ᴅᴇᴏ ɪ‌ɴᴅɪ‌ʀɪ‌ʀ .\n/group - ɢʀᴜᴘ ʙɪ‌ʟɢɪ‌ᴇʀɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/admins - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/bots - ʙᴏᴛʟᴀʀɪ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/id - ᴋᴜʟʟᴀɴɪᴄɪ ɪ‌ᴅ'sɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/reload - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ ʟɪ‌sᴛᴇsɪ‌ɴɪ‌ ɢᴜ‌ɴᴄᴇʟʟᴇʀ .\n/chatbot - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴘᴀɴᴇʟɪ‌ .\n/ask - ʏᴀᴘᴀʏ ᴢᴇᴋᴀ ɪ‌ʟᴇ ᴋᴏɴᴜs‌ᴜɴ .**"
+    digerr = "**🔹 ᴅɪ‌ɢ‌ᴇʀ ᴋᴏᴍᴜᴛʟᴀʀ :\n\n/group - ɢʀᴜᴘ ʙɪ‌ʟɢɪ‌ᴇʀɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/admins - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ʟᴇʀɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/bots - ʙᴏᴛʟᴀʀɪ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/id - ᴋᴜʟʟᴀɴɪᴄɪ ɪ‌ᴅ'sɪ‌ɴɪ‌ ɢᴏ‌sᴛᴇʀɪ‌ʀ .\n/reload - ʏᴏ‌ɴᴇᴛɪ‌ᴄɪ‌ ʟɪ‌sᴛᴇsɪ‌ɴɪ‌ ɢᴜ‌ɴᴄᴇʟʟᴇʀ .\n/chatbot - sᴏʜʙᴇᴛ ᴍᴏᴅᴜ ᴘᴀɴᴇʟɪ‌ .\n/ask - ʏᴀᴘᴀʏ ᴢᴇᴋᴀ ɪ‌ʟᴇ ᴋᴏɴᴜs‌ᴜɴ .**"
     await query.message.edit_text(digerr, reply_markup=InlineKeyboardMarkup(
         [
             [
