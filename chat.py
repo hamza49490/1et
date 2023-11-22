@@ -63,23 +63,16 @@ async def callback_sohbetmod(client, callback_query):
     if callback_query.data == "sohbetmod_on":
         if qrup not in isleyen:
             isleyen.append(qrup)
-            aktiv_olundu = "✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !"
+            aktiv_olundu = "__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**__"
             await callback_query.edit_message_text(aktiv_olundu)
-            while qrup in isleyen:
-                users = await client.get_chat_members(qrup)
-                active_users = [user for user in users if not user.user.is_bot and not user.user.is_deleted]
-                if active_users:
-                    random_user = random.choice(active_users)
-                    await client.send_message(qrup, f"{random_user.first_name} {random.choice(smesajs)}")
-                await asyncio.sleep(10)
             return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .")
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .**__")
     elif callback_query.data == "sohbetmod_off":
         if qrup in isleyen:
             isleyen.remove(qrup)
-            await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
+            await callback_query.edit_message_text("__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**__")
             return
-        await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !**__")
 
 @app.on_message()
 async def chatbot(client, message):
