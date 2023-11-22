@@ -81,7 +81,16 @@ async def callback_sohbetmod(client, callback_query):
             await callback_query.edit_message_text("✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !")
             return
         await callback_query.edit_message_text("✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !")
-	    
+
+@app.on_message(filters.command("derya", prefixes=""))
+async def buket_handler(client, message):
+    if message.chat.type == "private":
+        return
+    chat_id = message.chat.id
+    if chat_id in isleyen:
+        return
+    await message.reply("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")
+
 @app.on_message()
 async def chatbot(client, message):
     global isleyen
