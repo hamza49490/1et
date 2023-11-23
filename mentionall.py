@@ -1081,7 +1081,8 @@ async def kelimeoyun(c:Client, m:types.Message):
         for harf in kelime:
             kelime_list+= harf + " "
 
-        text = f"""**{m.from_user.mention}  oyunu başlattı .
+        text = f"""**{m.from_user.mention}  tarafından
+👀 Oyun Başlatıldı !
         
 🎯 Raund : {oyun[m.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
@@ -1125,8 +1126,9 @@ async def passs(c:Client, cb:types.CallbackQuery):
             for harf in kelime:
                 kelime_list+= harf + " "
             
-            text = f"""**{cb.from_user.mention}  pass geçti .
-🔹 {pass_hakki} Pass Hakkın Kaldı.
+            text = f"""**{cb.from_user.mention}  tarafından
+🔄 Kelime Pas Geçildi .
+🎂 {pass_hakki} Pass Hakkın Kaldı .
 
 🎯 Raund : {oyun[cb.message.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
@@ -1161,7 +1163,7 @@ async def stop(c:Client, m:Message):
         for i, sira in enumerate(siralama, start=1):
             siralama_text += f"{i}) {sira}\n"     
     
-        await c.send_message(m.chat.id, f"**✦ Oyun İptal Edildi !\n\n🎖️  Puan Tablosu  🎖️\n\n{siralama_text}**", reply_to_message_id=m.message_id)
+        await c.send_message(m.chat.id, f"**{m.from_user.mention}  tarafından\n👀 Oyun İptal Edildi !\n\n🎖️  Puan Tablosu  🎖️\n\n{siralama_text}**", reply_to_message_id=m.message_id)
         oyun[m.chat.id] = {}
 
 @app.on_message(filters.text & ~filters.private & ~filters.channel)
@@ -1225,5 +1227,5 @@ async def buldu(c: Client, m: Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**🔹 Bot'ta kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-print(" Mentionall çalışıyor :)")
+print("mentionall.py çalışıyor !")
 app.run()
