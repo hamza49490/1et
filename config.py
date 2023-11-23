@@ -12,3 +12,6 @@ CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://mervetopic:topicmerve@cluster0.vpfzgml.mongodb.net/?retryWrites=true&w=majority")
+GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Alıntı ile ileti için false deneyin .
+LANGAUGE = os.environ.get("LANGAUGE", "TR")
