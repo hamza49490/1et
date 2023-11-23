@@ -1082,7 +1082,7 @@ async def kelimeoyun(c:Client, m:types.Message):
             kelime_list+= harf + " "
 
         text = f"""**{m.from_user.mention}  tarafından
-👀 Oyun Başlatıldı !
+💥 Oyun Başlatıldı !
         
 🎯 Raund : {oyun[m.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
@@ -1115,7 +1115,8 @@ async def passs(c:Client, cb:types.CallbackQuery):
         if oyun[cb.message.chat.id]["pass"] < 5:
             oyun[cb.message.chat.id]["pass"] += 1 
             pass_hakki = 5 - oyun[cb.message.chat.id]["pass"]
-            
+            await c.send_message(cb.message.chat.id,f"**{cb.from_user.mention}  tarafından \n🎂 Kelime pass geçildi .\n\n💥 Kalan Pass Hakkın `{pass_hakki}`\n👀 Doğru Kelime: `{oyun[cb.message.chat.id]['kelime']}`**")
+		
             oyun[cb.message.chat.id]["kelime"] = kelime_sec()
             oyun[cb.message.chat.id]["aktif"] = True
             
@@ -1126,11 +1127,7 @@ async def passs(c:Client, cb:types.CallbackQuery):
             for harf in kelime:
                 kelime_list+= harf + " "
             
-            text = f"""**{cb.from_user.mention}  tarafından
-🔄 Kelime Pas Geçildi .
-🎂 {pass_hakki} Pass Hakkın Kaldı .
-
-🎯 Raund : {oyun[cb.message.chat.id]['round']}/80
+            text = f"""**🎯 Raund : {oyun[cb.message.chat.id]['round']}/80
 📖 Kelime :   <code>{kelime_list}</code>
 💰 Kazandıracak Puan : 1
 🔎 İpucu : 1. {oyun[cb.message.chat.id]["kelime"][0]}
@@ -1163,7 +1160,7 @@ async def stop(c:Client, m:Message):
         for i, sira in enumerate(siralama, start=1):
             siralama_text += f"{i}) {sira}\n"     
     
-        await c.send_message(m.chat.id, f"**{m.from_user.mention}  tarafından\n👀 Oyun İptal Edildi !\n\n🎖️  Puan Tablosu  🎖️\n\n{siralama_text}**", reply_to_message_id=m.message_id)
+        await c.send_message(m.chat.id, f"**{m.from_user.mention}  tarafından\n💥 Oyun İptal Edildi !\n\n🎖️  Puan Tablosu  🎖️\n\n{siralama_text}**", reply_to_message_id=m.message_id)
         oyun[m.chat.id] = {}
 
 @app.on_message(filters.text & ~filters.private & ~filters.channel)
