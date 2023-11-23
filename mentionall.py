@@ -1115,7 +1115,7 @@ async def passs(c:Client, cb:types.CallbackQuery):
         if oyun[cb.message.chat.id]["pass"] < 5:
             oyun[cb.message.chat.id]["pass"] += 1 
             pass_hakki = 5 - oyun[cb.message.chat.id]["pass"]
-            await c.send_message(cb.message.chat.id,f"**{cb.from_user.mention}  tarafından \n🎂 Kelime pass geçildi .\n\n💥 Kalan Pass Hakkın `{pass_hakki}`\n👀 Doğru Kelime: `{oyun[cb.message.chat.id]['kelime']}`**")
+            await c.send_message(cb.message.chat.id,f"**{cb.from_user.mention}  tarafından \n🎂 Kelime pass geçildi .\n\n💥 Kalan Pass Hakkın : `{pass_hakki}`\n👀 Doğru Kelime : `{oyun[cb.message.chat.id]['kelime']}`**")
 		
             oyun[cb.message.chat.id]["kelime"] = kelime_sec()
             oyun[cb.message.chat.id]["aktif"] = True
