@@ -4,32 +4,17 @@ import random
 import string
 import aiohttp
 import random
-import datetime
-import shutil, psutil, traceback, os
-import motor.motor_asyncio
-import string
-import time
-import traceback
-import aiofiles
 
 import config
 from config import *
 
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
-from pyrogram import Client, filters, types, __version__
+from pyrogram import Client, filters, types
 from time import sleep
 from random import shuffle
 from mesaj.botmesaj import *
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
-
 
 logging.basicConfig(
     level=logging.INFO,
