@@ -7,12 +7,11 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "6654452037:AAHargEKlXpvJD8tKXb5vsxCO7En
 BOT_ID = int(os.environ.get("BOT_ID", "6654452037"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "6811941116"))
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726"))
-SUPPORT = os.environ.get("SUPPORT", "BotsDestek")
 CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://botrobin72:robin72@cluster0.ynhazzk.mongodb.net/?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
-GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://botrobin72:robin72@cluster0.ynhazzk.mongodb.net/?retryWrites=true&w=majority")
+GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
