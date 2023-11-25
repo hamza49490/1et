@@ -37,7 +37,7 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-'''API_ID = int(os.environ.get("API_ID","18049084"))
+API_ID = int(os.environ.get("API_ID","18049084"))
 API_HASH = os.environ.get("API_HASH","7e74b1e22026fcc291d32b3d431aa21e")
 BOT_TOKEN = os.environ.get("TOKEN","6654452037:AAHargEKlXpvJD8tKXb5vsxCO7EnryVBWOQ")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://botrobin72:robin72@cluster0.ynhazzk.mongodb.net/?retryWrites=true&w=majority") # MongoDB veritabanınızın url'si. Nasıl alacağınızı bilmiyorsanız destek grubu @RepoHaneX'e gelin.
@@ -46,7 +46,7 @@ LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001983841726")) # Botunuzun e
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek") # Botunuzdan yasaklanan kullanıcıların itiraz işlemleri için başvuracağı grup, kanal veya kullanıcı. Boş bırakırsanız otomatik olarak OWNER_ID kimliğine yönlendirecektir.
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 OWNER_ID = int(os.environ.get("OWNER_ID", "6811941116")) # Sahip hesabın id'si
-LANGAUGE = os.environ.get("LANGAUGE", "TR")'''
+LANGAUGE = os.environ.get("LANGAUGE", "TR")
 
 app = Client("GUNC",
              api_id=config.API_ID,
