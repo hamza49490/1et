@@ -2,6 +2,7 @@ import telebot
 import requests
 from datetime import datetime
 import config
+from config import *
 import random
 import time
 
