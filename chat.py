@@ -59,8 +59,6 @@ gece_tag = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {} 
 rxyzdev_stopT = {}
-grup_sayi = []
-etiketuye = []
 isleyen = []
 
 @client.on(events.NewMessage)
