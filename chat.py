@@ -358,5 +358,5 @@ async def chatbot(client, message):
         await message.reply(bold_cevap, parse_mode='html')
 
 
-print("chat.py çalışıyor !")
+print("chat.py aktif !")
 app.run()  
