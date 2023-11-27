@@ -43,7 +43,7 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+client = TelegramClient('client', config.API_ID, config.API_HASH).start(bot_token=config.BOT_TOKEN)
 
 isleyen = []
 
