@@ -12,6 +12,7 @@ import yt_dlp
 import ffmpeg
 import aiohttp
 import random
+import requests
 import os, youtube_dl, requests, time
 
 import config
