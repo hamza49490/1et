@@ -1,7 +1,6 @@
 import logging
 import asyncio
 import random
-import string
 import aiohttp
 import random
 
