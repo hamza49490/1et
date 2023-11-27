@@ -331,11 +331,11 @@ async def chatbot(event):
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
     if event.is_private:
-        await event.respond(f"{nogroup}", parse_mode='markdown')
+        await event.respond(f"nogroup", parse_mode='markdown')
         return
 
     if not await is_group_admin(event):
-        await event.respond(f"{noadmin}", parse_mode='markdown')
+        await event.respond(f"noadmin", parse_mode='markdown')
         return
      
     global isleyen
