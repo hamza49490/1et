@@ -185,7 +185,7 @@ rxyzdev_initT = {}
 rxyzdev_stopT = {}
 
 @app.on_message(filters.command(['cagir'], prefixes='/'))
-async def handle_tagging(client, message):
+async def handle_tagging(client: Client, message: Message):
     if message.chat.type == 'private':
         await message.reply_text(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__", parse_mode='markdown')
         return
@@ -207,7 +207,7 @@ async def handle_tagging(client, message):
     await client.send_message(message.chat.id, message_text)
 	
 @app.on_message(filters.command("atag", prefixes="/"))
-async def atag(client, message):
+async def atag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -271,7 +271,7 @@ async def atag(client, message):
             await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("utag", prefixes="/"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -334,7 +334,7 @@ async def utag(client, message):
         await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("tag", prefixes="/"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -397,7 +397,7 @@ async def utag(client, message):
         await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("etag", prefixes="/"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -460,7 +460,7 @@ async def utag(client, message):
         await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("vtag", prefixes="/"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -586,7 +586,7 @@ async def utag(client, message):
         await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("stag", prefixes="/"))
-async def utag(client, message):
+async def utag(client: Client, message: Message):
     global gece_tag
     rxyzdev_tagTot[message.chat.id] = 0
     if message.chat.type == "private":
@@ -649,7 +649,7 @@ async def utag(client, message):
         await message.reply(f"**🔹 ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤 {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[message.chat.id]}**")
 
 @app.on_message(filters.command("cancel", prefixes="/"))
-async def cancel(client, message):
+async def cancel(client: Client, message: Message):
     global gece_tag, rxyzdev_tagTot
     if message.chat.type == "private":
         return await message.reply("🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
