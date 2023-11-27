@@ -320,5 +320,5 @@ class LAN(object):
         STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""
 
 
-print("reklam.py çalışıyor !")
+print("REKLAM.PY AKTİF !")
 app.run()  
