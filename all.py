@@ -1100,5 +1100,5 @@ async def buldu(c: Client, m: Message):
 async def ksayi(c:Client, m:Message):
     await m.reply(f"**🔹 Bot'ta kayıtlı {len(kelimeler)} kelime bulunmakta .**")
 
-print("all.py aktif !")
+print("ALL.PY AKTİF !")
 app.run()
