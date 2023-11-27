@@ -261,7 +261,7 @@ async def atag(client: Client, message: Message):
                     return
                 if usrnum == 1:
                     await client.send_message(message.chat.id, f"**{usrtxt}  {msg}**")
-                    await asyncio.sleep(2)
+                    await asyncio.sleep(3)
                     usrnum = 0
                     usrtxt = ""
         
@@ -324,7 +324,7 @@ async def utag(client: Client, message: Message):
                 return
             if usrnum == 7:
                 await client.send_message(message.chat.id, f"**➻ {msg}\n\n{usrtxt}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
@@ -387,7 +387,7 @@ async def utag(client: Client, message: Message):
                 return
             if usrnum == 1:
                 await client.send_message(message.chat.id, f"**{usrtxt}  {msg}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
@@ -450,7 +450,7 @@ async def utag(client: Client, message: Message):
                 return
             if usrnum == 5:
                 await client.send_message(message.chat.id, f"**➻ {msg}\n\n{usrtxt}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
@@ -513,7 +513,7 @@ async def utag(client: Client, message: Message):
                 return
             if usrnum == 1:
                 await client.send_message(message.chat.id, f"**{usrtxt}  {random.choice(sor)}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
@@ -576,7 +576,7 @@ async def utag(client, message):
                 return
             if usrnum == 1:
                 await client.send_message(message.chat.id, f"**{usrtxt}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
@@ -639,7 +639,7 @@ async def utag(client: Client, message: Message):
                 return
             if usrnum == 1:
                 await client.send_message(message.chat.id, f"**{usrtxt}  {random.choice(guzelsoz)}**")
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
      
