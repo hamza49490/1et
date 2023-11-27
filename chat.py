@@ -1,407 +1,362 @@
+import logging
+import asyncio
 import random
-import shutil, psutil, traceback, os
-import time
-import datetime
-import motor.motor_asyncio
-import shutil, psutil, traceback
-import traceback
-import aiofiles
-import os, requests, time
-import random, os, logging, asyncio
-import telethon
+import string
+import aiohttp
+import random
 
 import config
 from config import *
 
-from mesaj.kurtmesaj import *
-from mesaj.botmesaj import *
-from telethon.tl.types import MessageEntityBold
-from telethon.sync import TelegramClient, events
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerChannel
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
-from telethon.tl.functions.channels import InviteToChannelRequest
-from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import User
-from telethon.tl import types
-from telethon.tl import functions
+from pyrogram import filters
 from pyrogram.handlers import MessageHandler
-from telethon import errors
-from asyncio import sleep
-from time import time
-from os import remove
-from telethon.sync import types
-from datetime import datetime 
-from telethon import Button
-from telethon import TelegramClient, events
-from telethon.tl.types import ChannelParticipantsAdmins
-from telethon.sync import TelegramClient, events
-from pyrogram.errors import PeerIdInvalid
-from pyrogram.types import Message, User
-from pyrogram.types.messages_and_media import Message
-from pyrogram import Client, filters
-from random import randint
-
+from pyrogram import Client, filters, types
+from time import sleep
+from random import shuffle
+from mesaj.botmesaj import *
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(name)s - [%(levelname)s] - %(message)s'
-)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
-client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+app = Client(
+    "Chat-Bot",
+    config.API_ID,
+    config.API_HASH,
+    bot_token=config.BOT_TOKEN
+)
 
-anlik_calisan = []
-tekli_calisan = []
-gece_tag = []
-rxyzdev_tagTot = {}
-rxyzdev_initT = {} 
-rxyzdev_stopT = {}
+
 isleyen = []
-
-@client.on(events.NewMessage)
-async def chatbot(event):
+@app.on_message(filters.command("chatbot", prefixes="/"))
+async def chatbot(client, message):
+    if message.chat.type == "private":
+        await message.reply("🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__", parse_mode='markdown')
+        return
+     
+    admins = []
+    async for admin in client.iter_chat_members(message.chat.id, filter="administrators"):
+        admins.append(admin.user.id)
+    if message.from_user.id not in admins:
+        return await message.reply(f"😏 __**ʏᴏ̈ɴᴇᴛɪ̇ᴄɪ̇ ᴅᴇɢ̆ɪ̇ʟsɪ̇ɴ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__")
+    
     global isleyen
-    mesaj = str(event.raw_text)
-    qrup = event.chat_id
+    if message.chat.id in isleyen:
+        status = " ᴀᴋᴛɪ̇ғ"
+    else:
+        status = " ᴋᴀᴘᴀʟɪ"
+    
+    await message.reply(f"__**✦ ᴀşᴀɢ̆ɪᴅᴀɴ sᴇᴄ̧ɪ̇ᴍ ʏᴀᴘɪɴ ! \n\n✦ ᴅᴜʀᴜᴍ : {status}**__", reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("✅ ᴀᴋᴛɪ̇ғ ᴇᴛ", callback_data="sohbetmod_on")],
+            [InlineKeyboardButton("⛔ ᴋᴀᴘᴀᴛ", callback_data="sohbetmod_off")]
+        ]
+    ))
+
+@app.on_callback_query()
+async def callback_sohbetmod(client, callback_query):
+    qrup = callback_query.message.chat.id
+    if callback_query.data == "sohbetmod_on":
+        if qrup not in isleyen:
+            isleyen.append(qrup)
+            aktiv_olundu = "__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !**__"
+            await callback_query.edit_message_text(aktiv_olundu)
+            return
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ‌ғ .**__")
+    elif callback_query.data == "sohbetmod_off":
+        if qrup in isleyen:
+            isleyen.remove(qrup)
+            await callback_query.edit_message_text("__**✦ ʙᴀs‌ᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !**__")
+            return
+        await callback_query.edit_message_text("__**✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !**__")
+
+@app.on_message()
+async def chatbot(client, message):
+    global isleyen
+    mesaj = str(message.text)
+    qrup = message.chat.id
     if qrup not in isleyen:
+        if "derya" in mesaj.lower().split(" "):
+            await message.reply("__**✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot**__")
         return
     
     me = await client.get_me()
-    if event.sender_id == me.id:
+    if message.from_user.id == me.id:
         return
     
-    kelimeler = mesaj.lower().split()  # Mesajı küçük harfe çevirip kelimelere ayır
+    kelimeler = mesaj.lower().split(" ")  # Mesajı küçük harfe çevirip kelimelere ayır
 
-    if "bot" in kelimeler:
-       cevap = random.choice(bottst)
-       bold_cevap = f"<b>{cevap}</b>"
-       await event.reply(bold_cevap, parse_mode='html')	    
-	
     if "derya" in kelimeler:
-       cevap = random.choice(bkt)
-       bold_cevap = f"<b>{cevap}</b>"
-       await event.reply(bold_cevap, parse_mode='html')
-		
-    if kelimeler[0] == "selam" or kelimeler[0] == "selamün aleyküm" or kelimeler[0] == "slm" or kelimeler[0] == "sea" or kelimeler[0] == "sa":
-       cevap = random.choice(selam)
-       bold_cevap = f"<b>{cevap}</b>"
-       await event.reply(bold_cevap, parse_mode='html')
-	    	    
-    if kelimeler[0] == "nasılsın" or kelimeler[0] == "naber" or kelimeler[0] == "ne haber" or kelimeler[0] == "nbr":
+        cevap = random.choice(bkt)
+        bold_cevap = f"<b>{cevap}</b>"
+        await message.reply(bold_cevap, parse_mode='html')
+        return
+  
+    if kelimeler[0] in ["bot"]:
+        cevap = random.choice(bottst)
+        bold_cevap = f"<b>{cevap}</b>"
+        await message.reply(bold_cevap, parse_mode='html')
+        return
+
+    if "selamün aleyküm" in mesaj.lower() or kelimeler[0] in ["slm", "selam", "sa", "sea"]:
+        cevap = random.choice(selam)
+        bold_cevap = f"<b>{cevap}</b>"
+        await message.reply(bold_cevap, parse_mode='html')
+        return
+	
+    if "ne haber" in mesaj.lower() or kelimeler[0] in ["nasılsın", "naber", "nbr"]:
         cevap = random.choice(nasilsin)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "adam" or kelimeler[0] == "erkek":
+    if kelimeler[0] in ["erkek", "adam"]:
         cevap = random.choice(adam)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "iyiyim" or kelimeler[0] == "harika" or kelimeler[0] == "mükemmel":
+    if kelimeler[0] in ["iyiyim", "mükemmel", "harika"]:
         cevap = random.choice(iyiyim)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "hoş geldin" or kelimeler[0] == "hg":
+    if "hoş geldin" in mesaj.lower() or kelimeler[0] in ["hg"]:
         cevap = random.choice(hoş)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "merhaba" or kelimeler[0] == "mrb":
+    if kelimeler[0] in ["merhaba", "mrb"]:
         cevap = random.choice(merhaba)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "ban" or kelimeler[0] == "banned" or kelimeler[0] == "banla" or kelimeler[0] == "/ban":
+    if kelimeler[0] in ["ban", "/ban", "banned", "banla"]:
         cevap = random.choice(ban)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "nabıyon" or kelimeler[0] == "napıyorsun" or kelimeler[0] == "ne yapıyorsun":
+    if "ne yapıyorsun" in mesaj.lower() or kelimeler[0] in ["nabiyon", "napıyorsun"]:
         cevap = random.choice(nabiyon)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "😔" or kelimeler[0] == "🥺"  or kelimeler[0] == "😥":
+    if kelimeler[0] in ["😔", "🥺", "😢"]:
         cevap = random.choice(uzgun)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "valla" or kelimeler[0] == "vallahi" or kelimeler[0] == "yemin":
+    if kelimeler[0] in ["valla", "vallahi", "yemin"]:
         cevap = random.choice(valla)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    	    
-    if kelimeler[0] == "sg" or kelimeler[0] == "siktir":
+    if kelimeler[0] in ["sg", "siktir"]:
         cevap = random.choice(sg)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "mal" or kelimeler[0] == "gerizekalı" or kelimeler[0] == "it" or kelimeler[0] == "şrfsz" or kelimeler[0] == "şerefsiz":
+    if kelimeler[0] in ["mal", "gerizekalı", "it", "şrfsz", "şerefsiz"]:
         cevap = random.choice(mal)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "balım" or kelimeler[0] == "bebeğim" or kelimeler[0] == "aşkım":
+    if kelimeler[0] in ["balım", "bebeğim", "aşkım"]:
         cevap = random.choice(balim)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "canım" or kelimeler[0] == "bitanem" or kelimeler[0] == "yavrum":
+    if kelimeler[0] in ["canım", "bitanem", "yavrum"]:
         cevap = random.choice(canim)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "gidiyorum" or kelimeler[0] == "gittim" or kelimeler[0] == "görüşürüz":
+    if kelimeler[0] in ["gidiyorum", "gittim", "görüşürüz"]:
         cevap = random.choice(gidiyorum)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "sinirlendim" or kelimeler[0] == "😡" or kelimeler[0] == "🤬" or kelimeler[0] == "sinirliyim":
+    if kelimeler[0] in ["sinirlendim", "sinirliyim", "sinirleniyorum", "😡", "😤"]:
         cevap = random.choice(sinirlendim)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "tanışalım mı" or kelimeler[0] == "tanışabilir miyiz":
+    if "tanışabilir miyiz" in mesaj.lower() or "tanışalım mı" in mesaj.lower():
         cevap = random.choice(tanis)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "ismin ne" or kelimeler[0] == "adın ne":
+    if "adın ne" in mesaj.lower() or "ismin ne" in mesaj.lower():
         cevap = random.choice(adne)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "iyi" or kelimeler[0] == "kötü" or kelimeler[0] == "idare eder":
+    if "idare eder" in mesaj.lower() or kelimeler[0] in ["kötü", "iyi"]:
         cevap = random.choice(iyisen)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "😅" or kelimeler[0] == "😂" or kelimeler[0] == "🤣":
+    if kelimeler[0] in ["😅", "😂", "🤣"]:
         cevap = random.choice(gullu)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "büyüğüm" or kelimeler[0] == "büyük":
+    if kelimeler[0] in ["büyüğüm", "büyük"]:
         cevap = random.choice(buyuk)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	
-    if kelimeler[0] == "aiko":
+    if kelimeler[0] in ["aiko"]:
         cevap = random.choice(aiko)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "günaydın" or kelimeler[0] == "gny" or kelimeler[0] == "günaydınnn" or kelimeler[0] == "rojbaş":
+    if kelimeler[0] in ["günaydın", "günaydınnn", "gny", "rojbaş"]:
         cevap = random.choice(gnyy)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "iyi geceler" or kelimeler[0] == "iyi akşamlar":
+    if "iyi akşamlar" in mesaj.lower() or "iyi geceler" in mesaj.lower():
         cevap = random.choice(igece)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "kaç yaşındasın" or kelimeler[0] == "yaşın kaç":
+    if "kaç yaşındasın" in mesaj.lower() or "yaşın kaç" in mesaj.lower():
         cevap = random.choice(kyas)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "nerelisin":
+    if kelimeler[0] in ["nerelisin"]:
         cevap = random.choice(nereli)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "konuşma" or kelimeler[0] == "sus" or kelimeler[0] == "knşma":
+    if kelimeler[0] in ["konuşma", "sus", "knşma"]:
         cevap = random.choice(pms)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "kırdın" or kelimeler[0] == "kırıldım" or kelimeler[0] == "kırıcı" or kelimeler[0] == "krldm":
+    if kelimeler[0] in ["kırdı", "krldm", "kırıcı", "kırıldım"]:
         cevap = random.choice(krdn)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "sıkıldım" or kelimeler[0] == "skldm":
+    if kelimeler[0] in ["skldm", "sıkıldım"]:
         cevap = random.choice(skdm)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "hm" or kelimeler[0] == "hmmm":
+    if kelimeler[0] in ["hm", "hmmm"]:
         cevap = random.choice(hms)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "geçmiş olsun":
+    if "geçmiş olsun" in mesaj.lower():
         cevap = random.choice(bts)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "oyun" or kelimeler[0] == "game":
+    if kelimeler[0] in ["oyun", "game"]:
         cevap = random.choice(trt)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "evet" or kelimeler[0] == "evt":
+    if kelimeler[0] in ["evt", "evet"]:
         cevap = random.choice(evt)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "hyr" or kelimeler[0] == "hayır":
+    if kelimeler[0] in ["hyr", "hayır"]:
         cevap = random.choice(hyrr)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "🙄":
+    if kelimeler[0] in ["🙄"]:
         cevap = random.choice(gzs)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "of" or kelimeler[0] == "offf":
+    if kelimeler[0] in ["of", "offf"]:
         cevap = random.choice(ofs)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "çikolata":
+    if kelimeler[0] in ["çikolata"]:
         cevap = random.choice(cklta)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "lan" or kelimeler[0] == "ln":
+    if kelimeler[0] in ["lan", "ln"]:
         cevap = random.choice(lna)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "dedim":
+    if kelimeler[0] in ["dedim"]:
         cevap = random.choice(dddm)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "yalan" or kelimeler[0] == "yalancı":
+    if kelimeler[0] in ["yalan", "yalancı"]:
         cevap = random.choice(ylna)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "sağol":
+    if kelimeler[0] in ["sağol"]:
         cevap = random.choice(sgll)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "çirkin":
+    if kelimeler[0] in ["çirkin"]:
         cevap = random.choice(crkn)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "dm" or kelimeler[0] == "pm":
+    if kelimeler[0] in ["dm", "pm"]:
         cevap = random.choice(dmy)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "tatlı" or kelimeler[0] == "yemek":
+    if kelimeler[0] in ["tatlı", "yemek"]:
         cevap = random.choice(tymm)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "kes":
+    if kelimeler[0] in ["kes", "kesss"]:
         cevap = random.choice(kmm)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "kanka" or kelimeler[0] == "knk" or kelimeler[0] == "kanki":
+    if kelimeler[0] in ["kanka", "knk", "kanki"]:
         cevap = random.choice(kankas)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "öp":
+    if kelimeler[0] in ["öp"]:
         cevap = random.choice(opsss)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "sanane" or kelimeler[0] == "sağne":
+    if kelimeler[0] in ["sanane", "sağne", "sanne"]:
         cevap = random.choice(sgne)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 	    
-    if kelimeler[0] == "banane" or kelimeler[0] == "bağne":
+    if kelimeler[0] in ["banne", "banane", "bağne"]:
         cevap = random.choice(bgne)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "ben":
+    if kelimeler[0] in ["ben", "bennn"]:
         cevap = random.choice(bnen)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
-    if kelimeler[0] == "sen":
+    if kelimeler[0] in ["sen", "sennn"]:
         cevap = random.choice(snen)
         bold_cevap = f"<b>{cevap}</b>"
-        await event.reply(bold_cevap, parse_mode='html')
+        await message.reply(bold_cevap, parse_mode='html')
 
 
-
-@client.on(events.NewMessage(pattern="(?i)/chatbot"))
-async def chatbot(event):
-    if event.is_private:
-        await event.respond(f"nogroup", parse_mode='markdown')
-        return
-
-    if not await is_group_admin(event):
-        await event.respond(f"noadmin", parse_mode='markdown')
-        return
-     
-    global isleyen
-    if event.chat_id in isleyen:
-        status = "✅ ᴀᴋᴛɪ‌ғ"
-    else:
-        status = "⛔ ᴋᴀᴘᴀʟɪ"
-    
-    await event.reply(f"**__✦ ʙɪ̇ʀ ʙᴜᴛᴏɴ sᴇᴄ̧ɪ̇ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}__**", buttons=[
-        [Button.inline("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", data="sohbetmod_on")],
-        [Button.inline("⛔ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
-    ])
-
-
-@client.on(events.CallbackQuery(pattern=b"sohbetmod_on"))
-async def callback_sohbetmod_on(event):
-    qrup = event.chat_id
-    if qrup not in isleyen:
-        isleyen.append(qrup)
-        aktiv_olundu = "**__✦ ʙᴀşᴀʀɪʏʟᴀ ᴀᴋᴛɪғ ᴇᴅɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀʙɪʟɪʀɪᴍ !__**"
-        await event.edit(aktiv_olundu)
-        await asyncio.sleep(3600)
-        while qrup in isleyen:
-            users = await client.get_participants(qrup)
-            active_users = [user for user in users if not user.bot and not user.deleted]
-            if active_users:
-                random_user = random.choice(active_users)
-                await client.send_message(qrup, f"**[{random_user.first_name}](tg://user?id={random_user.id}) {random.choice(smesajs)}**")
-            await asyncio.sleep(3600)
-        return
-    await event.edit("**__✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴀᴋᴛɪ̇ғ .__**")
-		
-
-@client.on(events.CallbackQuery(pattern=b"sohbetmod_off"))
-async def callback_sohbetmod_off(event):
-    qrup = event.chat_id
-    if qrup in isleyen:
-        isleyen.remove(qrup)
-        await event.edit("**__✦ ʙᴀşᴀʀɪʏʟᴀ ᴋᴀᴘᴀᴛɪʟᴅɪ .\n\n✦ ᴀʀᴛıᴋ ᴋᴏɴᴜs‌ᴀᴍᴀᴍ !__**")
-        return
-    await event.edit("**__✦ ᴄʜᴀᴛ ʙᴏᴛ ᴢᴀᴛᴇɴ ᴋᴀᴘᴀʟɪ !__**")
-
-@client.on(events.NewMessage(pattern=r"(?i)(/|)derya", incoming=True))
-async def buket_handler(event):
-    if event.is_private:
-        return
-    chat_id = event.chat_id
-    if chat_id in isleyen:
-        return
-    await event.respond("**__✦ ᴄʜᴀᴛ ʙᴏᴛ şᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ̧ᴍᴀᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /chatbot __**")
-
-
-print("chat.py Aktif !")
-client.start()
-client.run_until_disconnected()
+print("chat.py çalışıyor !")
+app.run()  
