@@ -10,29 +10,13 @@ from config import *
 from mesaj.botmesaj import *
 from telethon.tl.types import MessageEntityBold
 from telethon.sync import TelegramClient, events
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerChannel
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
-from telethon.tl.functions.channels import InviteToChannelRequest
-from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import User
-from telethon.tl import types
-from telethon.tl import functions
 from pyrogram.handlers import MessageHandler
-from telethon import errors
-from asyncio import sleep
-from time import time
-from os import remove
 from telethon.sync import types 
 from telethon import Button
 from telethon import TelegramClient, events
 from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.sync import TelegramClient, events
-from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
-from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 from random import randint
 
