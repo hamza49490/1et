@@ -816,11 +816,11 @@ async def chatbot(event):
   
     global isleyen
     if event.chat_id in isleyen:
-        status = "✅ ᴀᴋᴛɪ‌ғ"
+        status = "ᴀᴋᴛɪ‌ғ"
     else:
-        status = "⛔ ᴋᴀᴘᴀʟɪ"
+        status = "ᴋᴀᴘᴀʟɪ"
     
-    await event.reply(f"✦ ʙɪ‌ʀ ʙᴜᴛᴏɴ sᴇᴄ‌ɪ‌ɴ ..!\n\n✦ ᴅᴜʀᴜᴍ : {status}", buttons=[
+    await event.reply(f"__**✦ ᴀşᴀɢ̆ɪᴅᴀɴ sᴇᴄ̧ɪ̇ᴍ ʏᴀᴘɪɴ !\n\n✦ ᴅᴜʀᴜᴍ : {status}**__", buttons=[
         [Button.inline("✅ ᴀᴋᴛɪ‌ғ ᴇᴛ", data="sohbetmod_on")],
         [Button.inline("⛔ ᴋᴀᴘᴀᴛ", data="sohbetmod_off")]
     ])
@@ -862,7 +862,7 @@ async def buket_handler(event):
     if chat_id in isleyen:
         return
     if event.is_group:
-        await event.respond("✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot ")	
+        await event.respond("**__✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot__**")	
 
 ##################################################
 ##################################################
