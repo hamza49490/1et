@@ -259,7 +259,7 @@ async def atag(client: Client, message: Message):
                 if message.chat.id not in gece_tag:
                     return
                 if usrnum == 1:
-                    await client.send_message(message.chat.id, f"**{msg}  {usrtxt}**")
+                    await client.send_message(message.chat.id, f"**{usrtxt}  {msg}**")
                     await asyncio.sleep(3)
                     usrnum = 0
                     usrtxt = ""
@@ -385,7 +385,7 @@ async def utag(client: Client, message: Message):
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
-                await client.send_message(message.chat.id, f"**{msg}  {usrtxt}**")
+                await client.send_message(message.chat.id, f"**{usrtxt}  {msg}**")
                 await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
@@ -511,7 +511,7 @@ async def utag(client: Client, message: Message):
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
-                await client.send_message(message.chat.id, f"**{random.choice(sor)}  {usrtxt}**")
+                await client.send_message(message.chat.id, f"**{usrtxt}  {random.choice(sor)}**")
                 await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
@@ -637,7 +637,7 @@ async def utag(client: Client, message: Message):
             if message.chat.id not in gece_tag:
                 return
             if usrnum == 1:
-                await client.send_message(message.chat.id, f"**{random.choice(guzelsoz)}  {usrtxt}**")
+                await client.send_message(message.chat.id, f"**{usrtxt}  {random.choice(guzelsoz)}**")
                 await asyncio.sleep(3)
                 usrnum = 0
                 usrtxt = ""
