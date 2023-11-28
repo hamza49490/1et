@@ -442,35 +442,35 @@ async def stag(event):
   global gece_tag
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
-    return await event.respond(f"{nogroup}")
+    return await event.reply(f"{nogroup}")
   
   admins = []
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond(f"{noadmin}")
+    return await event.reply(f"{noadmin}")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
     msg = msg_list[1]
     if msg == "/stag":
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.respond("____")
+        return await event.reply("____")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
     msg = msg_list[1]
   else:
-      return await event.respond(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -497,7 +497,7 @@ async def stag(event):
     sender = await event.get_sender()
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
-      await event.respond(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+      await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
 async def cancel(event):
