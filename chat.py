@@ -185,6 +185,7 @@ async def utag(event):
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
 	    
 
+@client.on(events.NewMessage(pattern="^(?i)/tektag ?(.*)"))
 @client.on(events.NewMessage(pattern="^(?i)/tag ?(.*)"))
 async def tag(event):
   global gece_tag
