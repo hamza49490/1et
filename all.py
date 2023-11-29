@@ -179,7 +179,7 @@ async def tag4(_, query: CallbackQuery):
 @app.on_message(filters.command(["slap"], prefixes=['/', '']))
 async def slap(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
 
     if message.reply_to_message:
         reply_message = message.reply_to_message
@@ -245,7 +245,7 @@ async def slap(client: Client, message: Message):
 @app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
 async def handle_eros(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
 
     chat = await client.get_chat(message.chat.id)
     if message.reply_to_message:
@@ -253,7 +253,7 @@ async def handle_eros(client: Client, message: Message):
         user1 = await client.get_chat_member(chat.id, reply_msg.from_user.id)
         user2 = await client.get_chat_member(chat.id, message.from_user.id)
         love_percentage = random.randint(0, 100)
-        await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ !__\n\n{user2.user.mention}  💖  {user1.user.mention}\n\n✦ sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
+        await message.reply_text(f"**🎈 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ !\n\n{user2.user.mention}  ❣️  {user1.user.mention}\n\n✦ sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
     else:
         participants = await client.get_chat_members(chat.id)
         active_users = [user for user in participants if not user.user.is_bot and not user.user.is_deleted and not user.user.is_self]
@@ -262,12 +262,12 @@ async def handle_eros(client: Client, message: Message):
         else:
             user1, user2 = random.sample(active_users, 2)
             love_percentage = random.randint(0, 100)
-            await message.reply_text(f"**__💘 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ !__\n\n{user1.user.mention}  💖  {user2.user.mention}\n\n__✦ sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}__**")
+            await message.reply_text(f"**🎈 ᴇʀᴏs'ᴜɴ ᴏᴋᴜɴᴜ ᴀᴛᴛɪᴍ !\n\n{user1.user.mention}  ❣️  {user2.user.mention}\n\n✦ sᴇᴠɢɪ ᴏʀᴀɴɪ : %{love_percentage}**")
 
 @app.on_message(filters.command('group', prefixes='/'))
 async def grup_info(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
      
     chat = message.chat
     group_name = chat.title
@@ -311,7 +311,7 @@ async def grup_info(client: Client, message: Message):
 @app.on_message(filters.command(["bots", "botlist"], prefixes="/"))
 async def show_bots(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
 	    
     all_users = await client.get_chat_members(message.chat.id)
     bot_list = []
@@ -326,7 +326,7 @@ async def show_bots(client: Client, message: Message):
 @app.on_message(filters.command(["admins", "adminlist"], prefixes="/"))
 async def show_admins(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
 
     chat = message.chat
     admins = await client.get_chat_members(chat.id, filter="administrators")
@@ -374,11 +374,11 @@ async def get_user_info(client: Client, message: types.Message):
 @app.on_message(filters.command("reload", prefixes="/") & filters.group)
 async def reload_command(client: Client, message: Message):
     if message.chat.type == "private":
-        return await message.reply(f"🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__")
+        return await message.reply(f"{nogroup}")
 	    
     chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
     if chat_member.status in ["creator", "administrator"]:
-        await client.send_message(message.chat.id, "**🔹 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🔹 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !**")
+        await client.send_message(message.chat.id, "**🎈 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎈 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !**")
     else:
         await client.send_message(
             message.chat.id,
@@ -390,7 +390,7 @@ async def welcomebot(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(BOT_ID):
             await msg.reply(
-                f'''__**✦  ʜᴇʏ  {msg.from_user.mention}\n\n✦  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦  ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !**__''', 
+                f'''**✦  ʜᴇʏ  {msg.from_user.mention}\n\n✦  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦  ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !**''', 
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔹 ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀʏɪɴ", url=f"https://t.me/{BOT_USERNAME}?start")]])
             )
             log_message = f"**ᴋᴜʟʟᴀɴɪᴄɪ : {msg.from_user.mention}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : @{msg.from_user.username}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : `{msg.from_user.id}`\n\nɢʀᴜᴘ ᴀᴅɪ : {msg.chat.title}\nɢʀᴜᴘ ʟɪ̇ɴᴋɪ̇ : @{msg.chat.username}\nɢʀᴜᴘ ᴀᴅɪ : `{msg.chat.id}`\n\n🔹 ʙᴏᴛ ɢʀᴜʙᴀ ᴇᴋʟᴇɴᴅɪ̇ .**"
