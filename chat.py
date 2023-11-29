@@ -512,7 +512,7 @@ async def cancel(event):
     return await event.reply(f"{noadmin}")
 
   if event.chat_id not in gece_tag:
-    return await event.reply("**• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !**")
+    return await event.reply("**🎂 ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !**")
 
   gece_tag = []  # gece_tag listesini boşalt
   sender = await event.get_sender()
