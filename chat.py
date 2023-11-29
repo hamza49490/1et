@@ -512,10 +512,9 @@ async def cancel(event):
     return await event.reply(f"{noadmin}")
 
   if event.chat_id not in gece_tag:
-    return await event.reply("**__• ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ʏᴏᴋ !__**")
+    return await event.reply("**• ᴀᴋᴛɪ‌ғ ʙɪ‌ʀ ɪ‌s‌ʟᴇᴍ ʏᴏᴋ !**")
 
   gece_tag = []  # gece_tag listesini boşalt
-  gece_tag.remove(event.chat_id)
   sender = await event.get_sender()
   rxyzdev_stopT = f"[{sender.first_name}](tg://user?id={sender.id})"      
   if event.chat_id in rxyzdev_tagTot:
