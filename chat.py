@@ -978,7 +978,7 @@ async def start(event):
                     ),
                     link_preview=False)
 
-@client.on(events.callbackquery.CallbackQuery(data="grstart"))
+@client.on(events.callbackquery.CallbackQuery(data="gwolf"))
 async def start(event):
      await event.edit(f"{rols}",
                     buttons=(
@@ -1065,7 +1065,7 @@ async def handler(event):
                       Button.inline("Lanetli 😾", data="lanetli")
                       ],
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="gwolf")
                       ]
                     ),
                     link_preview=False)
@@ -1093,7 +1093,7 @@ async def handler(event):
                       Button.inline("Kara Melek 👼🐺", data="karmelek")
                       ],
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="gwolf")
                       ]
                     ),
                     link_preview=False)
@@ -1121,7 +1121,7 @@ async def handler(event):
                       Button.inline("Necromancer ⚰️", data="necromancer")
                       ],
                       [
-                      Button.inline("👈 Geri", data="grstart")
+                      Button.inline("👈 Geri", data="gwolf")
                       ]
                     ),
                     link_preview=False)
