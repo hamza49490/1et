@@ -963,7 +963,7 @@ async def handle_tagging(event):
 ##################################################
 ##################################################
 ##################################################
-@client.on(events.NewMessage(pattern='(?i)(/|)/kurt'))
+@client.on(events.NewMessage(pattern='(?i)(/|)/werewolfrole'))
 async def start(event):
      await event.reply(f"{rols}", buttons=(
                       [
