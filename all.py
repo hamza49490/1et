@@ -139,7 +139,7 @@ async def tag1(_, query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("tag2"))
 async def tag2(_, query: CallbackQuery):
-    oyunn = "**🔹 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ  :\n\n/slap - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ ᴛᴏᴋᴀᴛʟᴀʏɪɴ .\n/eros - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ sʜɪ‌ᴘʟᴇʀ .\n/d - ᴅᴏɢ‌ʀᴜʟᴜᴋ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/c - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/soz - ʀᴀsᴛɢᴇʟᴇ sᴏ‌ᴢ ᴀᴛᴀʀ .\n/ok - ᴏᴋ ᴀᴛᴀʀ .\n/top - ᴛᴏᴘ ᴀᴛᴀʀ .\n/slot - sʟᴏᴛ ᴀᴛᴀʀ .\n/basket - ʙᴀsᴋᴇᴛ ᴀᴛᴀʀ .\n/bow - ʙᴏᴡʟɪ‌ɴɢ ᴀᴛᴀʀ .\n/zar - ᴢᴀʀ ᴀᴛᴀʀ .\n/sayi - sᴀʏɪ ᴛᴀʜᴍɪ‌ɴ ᴏʏᴜɴᴜ ᴀᴄ‌ᴀʀ .\n/turet - ᴋᴇʟɪ‌ᴍᴇ ᴛᴜ‌ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ‌ᴀʀ .\n/iptal - ᴏʏᴜɴᴜ ɪ‌ᴘᴛᴀʟ ᴇᴅᴇʀ .\n/werewolfrole - ᴡᴇʀᴇᴡᴏʟғ ʀᴏʟʟᴇʀɪ̇ ʜᴀᴋᴋɪɴᴅᴀ ʙɪ̇ʟɢɪ̇ .**"
+    oyunn = "**🔹 ᴏʏᴜɴ ᴋᴏᴍᴜᴛʟᴀʀɪ  :\n\n/slap - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ ᴛᴏᴋᴀᴛʟᴀʏɪɴ .\n/eros - ᴋᴜʟʟᴀɴɪᴄɪʟᴀʀɪ sʜɪ‌ᴘʟᴇʀ .\n/d - ᴅᴏɢ‌ʀᴜʟᴜᴋ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/c - ᴄᴇsᴀʀᴇᴛ sᴏʀᴜsᴜ ᴀᴛᴀʀ .\n/soz - ʀᴀsᴛɢᴇʟᴇ sᴏ‌ᴢ ᴀᴛᴀʀ .\n/ok - ᴏᴋ ᴀᴛᴀʀ .\n/top - ᴛᴏᴘ ᴀᴛᴀʀ .\n/slot - sʟᴏᴛ ᴀᴛᴀʀ .\n/basket - ʙᴀsᴋᴇᴛ ᴀᴛᴀʀ .\n/bow - ʙᴏᴡʟɪ‌ɴɢ ᴀᴛᴀʀ .\n/zar - ᴢᴀʀ ᴀᴛᴀʀ .\n/sayi - sᴀʏɪ ᴛᴀʜᴍɪ‌ɴ ᴏʏᴜɴᴜ ᴀᴄ‌ᴀʀ .\n/turet - ᴋᴇʟɪ‌ᴍᴇ ᴛᴜ‌ʀᴇᴛ ᴏʏᴜɴᴜ ᴀᴄ‌ᴀʀ .\n/iptal - ᴏʏᴜɴᴜ ɪ‌ᴘᴛᴀʟ ᴇᴅᴇʀ .\n/werewolfrole - ᴡᴇʀᴇᴡᴏʟғ ʀᴏʟ ʙɪ‌ʟɢɪ‌ʟᴇʀɪ̇ .**"
     await query.message.edit_text(oyunn, reply_markup=InlineKeyboardMarkup(
         [
             [
