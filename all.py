@@ -73,7 +73,7 @@ async def start(_, message: Message):
     user_username = message.from_user.username
     
     # Log grubuna kullanıcı id ve adını bildir
-    log_message = f"**ᴋᴜʟʟᴀɴɪᴄɪ : {user_name}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : @{user_username}\nᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : `{user_id}`\n\n🔹 ʙᴏᴛᴜ ᴘᴍ'ᴅᴇɴ ʙᴀşʟᴀᴛᴛɪ !**"
+    log_message = f"**🎂 ʙᴏᴛᴜ ᴘᴍ'ᴅᴇɴ ʙᴀşʟᴀᴛᴛɪ !\n\nᴋᴜʟʟᴀɴɪᴄɪ : {user_name}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : @{user_username}\nᴋᴜʟʟᴀɴɪᴄɪ ɪᴅ : `{user_id}`**"
     await app.send_message(LOG_CHANNEL, log_message)
 
 @app.on_message(filters.command(["start", "help"]) & filters.group)
@@ -393,7 +393,7 @@ async def welcomebot(bot: Client, msg: Message):
                 f'''**✦  ʜᴇʏ  {msg.from_user.mention}\n\n✦  ʙᴇɴɪ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪɢ‌ɪɴ ɪᴄ‌ɪɴ ᴛᴇs‌s‌ᴇᴋᴜ‌ʀ ᴇᴅᴇʀɪᴍ, ʙᴇɴɪ ʏᴏ‌ɴᴇᴛɪᴄɪ ʏᴀᴘᴍᴀʏɪ ᴜɴᴜᴛᴍᴀʏɪɴ !\n\n✦  ᴅᴀʜᴀ ғᴀᴢʟᴀ ʙɪʟɢɪ ɪᴄ‌ɪɴ ᴀs‌s‌ᴀɢ‌ɪᴅᴀᴋɪ ʙᴜᴛᴏɴᴜ ᴋᴜʟʟᴀɴɪɴ !**''', 
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔹 ʙᴜʀᴀʏᴀ ᴛɪᴋʟᴀʏɪɴ", url=f"https://t.me/{BOT_USERNAME}?start")]])
             )
-            log_message = f"**ᴋᴜʟʟᴀɴɪᴄɪ : {msg.from_user.mention}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : @{msg.from_user.username}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : `{msg.from_user.id}`\n\nɢʀᴜᴘ ᴀᴅɪ : {msg.chat.title}\nɢʀᴜᴘ ʟɪ̇ɴᴋɪ̇ : @{msg.chat.username}\nɢʀᴜᴘ ᴀᴅɪ : `{msg.chat.id}`\n\n🔹 ʙᴏᴛ ɢʀᴜʙᴀ ᴇᴋʟᴇɴᴅɪ̇ .**"
+            log_message = f"**🎂 ʙᴏᴛᴜ ɢʀᴜʙᴀ ᴇᴋʟᴇᴅɪ̇ !\n\nᴋᴜʟʟᴀɴɪᴄɪ : {msg.from_user.mention}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : @{msg.from_user.username}\nᴋᴜʟʟᴀɴɪᴄɪ ᴀᴅɪ : `{msg.from_user.id}`\n\nɢʀᴜᴘ ᴀᴅɪ : {msg.chat.title}\nɢʀᴜᴘ ʟɪ̇ɴᴋɪ̇ : @{msg.chat.username}\nɢʀᴜᴘ ᴀᴅɪ : `{msg.chat.id}`**"
             await bot.send_message(LOG_CHANNEL, log_message)
         elif str(new_user.id) == str(OWNER_ID):
             await msg.reply(f'**__✦ ᴅᴇɢ̆ᴇʀʟɪ sᴀʜɪʙɪᴍ [{OWNERNAME}](tg://openmessage?user_id={OWNER_ID}) ɢᴇʟᴅɪ, ʜᴏş ɢᴇʟᴅɪɴ ᴇғᴇɴᴅɪᴍ ...__**')
