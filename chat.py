@@ -75,23 +75,32 @@ async def atag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/atag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/atag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /atag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -139,23 +148,32 @@ async def utag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/utag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/utag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /utag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -203,23 +221,32 @@ async def tag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/tag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/tag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /tag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -266,23 +293,32 @@ async def etag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/etag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/etag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /etag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -329,23 +365,32 @@ async def vtag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/vtag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/vtag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /vtag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -392,23 +437,32 @@ async def otag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/otag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/otag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /otag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -455,23 +509,32 @@ async def itag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /itag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/itag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /itag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/itag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /itag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /itag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
@@ -518,23 +581,32 @@ async def stag(event):
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
-    msg = msg_list[1]
-    if msg == "/stag":
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
+      if msg == "/stag":
+        mode = "text_on_cmd"
+        msg = ""
   elif event.reply_to_msg_id:
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.reply("____")
+      mode = "text_on_cmd"
+      msg = ""
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     mode = "text_on_cmd"
     msg_list = event.pattern_match.string.split(None, 1)
     if len(msg_list) < 2:
-        return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
-    msg = msg_list[1]
+      mode = "text_on_cmd"
+      msg = ""
+    else:
+      mode = "text_on_cmd"
+      msg = msg_list[1]
   else:
-      return await event.reply(f"**💭 ʙɪʀ ᴍᴇsᴀᴊ ᴠᴇʀɪɴ .\n💕 öʀɴᴇᴋ : /stag Merhaba**")
+    mode = "text_on_cmd"
+    msg = ""
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
