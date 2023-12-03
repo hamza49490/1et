@@ -42,36 +42,6 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-from pyrogram import Client, filters
-from bs4 import BeautifulSoup
-import requests
-
-# /burc komutunu işle
-@app.on_message(filters.command("burc"))
-def burc_gunluk_yorum(client, message):
-    # Mesajı alınan burcu alın
-    burc = message.text.split("/burc ", maxsplit=1)[1].lower()
-
-    # Burcun günlük yorumunu al
-    yorum = get_burc_yorumu(burc)
-
-    # Yorumu gönder
-    client.send_message(message.chat.id, yorum)
-
-# Burcun günlük yorumunu almak için fonksiyon
-def get_burc_yorumu(burc):
-    # Burcun URL'sini oluştur
-    url = f"https://www.hurriyet.com.tr/mahmure/astroloji/{burc}-burcu/"
-
-    # İstek gönder ve HTML'i al
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    # Günlük yorumu bul
-    yorum = soup.find("div", class_="daily-horoscope").text.strip()
-
-    return yorum
-
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message: Message):
     loading_message = await message.reply_text("🔄 __**ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪ̇ɴ .**__")
