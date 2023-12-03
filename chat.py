@@ -58,6 +58,36 @@ rxyzdev_initT = {}
 rxyzdev_stopT = {}
 isleyen = []
 
+@client.on(events.NewMessage(pattern='(?i)/cagir'))
+async def handle_tagging(event):
+    if event.is_private:
+        await event.reply(f"{nogroup}", parse_mode='markdown')
+        return
+    # Komutu kullanan kişinin kullanıcı adını al
+    sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
+    
+    # Tüm kullanıcıları al
+    all_users = await client.get_participants(event.chat_id)
+    
+    # Etiketlenecek kullanıcı sayısı
+    tag_count = 100
+    
+    # Botlar ve silinen hesapları hariç tut
+    valid_users = [user for user in all_users if not user.bot and not user.deleted]
+    
+    # İlk tag_count kullanıcıyı al
+    tagged_users = valid_users[:tag_count]
+    
+    # Etiketleri oluştur
+    tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
+    
+    # Mesajı oluştur
+    message = f'**{tags}\n\n👤  {sender_username}\n🔹 sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ !**'
+    
+    # Mesajı gönder
+    await client.send_message(event.chat_id, message)
+	
+
 @client.on(events.NewMessage(pattern="^(?i)/atag ?(.*)"))
 async def atag(event):
   global gece_tag
@@ -192,7 +222,7 @@ async def utag(event):
       if event.chat_id not in gece_tag:
         return
       if usrnum == 7:
-        await client.send_message(event.chat_id, f"**➻ {msg}\n\n{usrtxt}**")
+        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
@@ -337,7 +367,7 @@ async def etag(event):
       if event.chat_id not in gece_tag:
         return
       if usrnum == 5:
-        await client.send_message(event.chat_id, f"**➻ {msg}\n\n{usrtxt}**")
+        await client.send_message(event.chat_id, f"**{msg}\n\n{usrtxt}**")
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
@@ -1000,37 +1030,6 @@ async def buket_handler(event):
         return
     if event.is_group:
         await event.reply("**__✦ ᴄʜᴀᴛ ʙᴏᴛ s‌ᴜᴀɴ ᴋᴀᴘᴀʟɪ !\n✦ ᴀᴄ‌ᴍᴀᴋ ɪ‌ᴄ‌ɪɴ ➻ /chatbot__**")	
-
-
-@client.on(events.NewMessage(pattern='(?i)/cagir'))
-async def handle_tagging(event):
-    if event.is_private:
-        await event.reply(f"{nogroup}", parse_mode='markdown')
-        return
-    # Komutu kullanan kişinin kullanıcı adını al
-    sender_username = f"[{event.sender.first_name}](tg://user?id={event.sender.id})"
-    
-    # Tüm kullanıcıları al
-    all_users = await client.get_participants(event.chat_id)
-    
-    # Etiketlenecek kullanıcı sayısı
-    tag_count = 100
-    
-    # Botlar ve silinen hesapları hariç tut
-    valid_users = [user for user in all_users if not user.bot and not user.deleted]
-    
-    # İlk tag_count kullanıcıyı al
-    tagged_users = valid_users[:tag_count]
-    
-    # Etiketleri oluştur
-    tags = ' , '.join([f'[{user.first_name}](tg://user?id={user.id})' for user in tagged_users])
-    
-    # Mesajı oluştur
-    message = f'**{tags}\n\n👤  {sender_username}\n🔹 sɪᴢɪ ᴏʏᴜɴᴀ ᴄ̧ᴀɢ̆ɪʀɪʏᴏʀ !**'
-    
-    # Mesajı gönder
-    await client.send_message(event.chat_id, message)
-
 
 ##################################################
 ##################################################
