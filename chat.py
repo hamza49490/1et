@@ -91,6 +91,10 @@ async def handle_tagging(event):
 @client.on(events.NewMessage(pattern="^(?i)/atag ?(.*)"))
 async def atag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -159,11 +163,16 @@ async def atag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/utag ?(.*)"))
 async def utag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -231,12 +240,17 @@ async def utag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	    
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/tektag ?(.*)"))
 @client.on(events.NewMessage(pattern="^(?i)/tag ?(.*)"))
 async def tag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -304,11 +318,16 @@ async def tag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
+  gece_tag = []  # gece_tag listesini boşalt
 
 
 @client.on(events.NewMessage(pattern="^(?i)/etag ?(.*)"))
 async def etag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -376,11 +395,16 @@ async def etag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/vtag ?(.*)"))
 async def vtag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -448,11 +472,16 @@ async def vtag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/otag ?(.*)"))
 async def otag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -520,11 +549,16 @@ async def otag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/itag ?(.*)"))
 async def itag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -592,11 +626,16 @@ async def itag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-	    
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern="^(?i)/stag ?(.*)"))
 async def stag(event):
   global gece_tag
+  if gece_tag:
+    return await event.reply("**🎂 ᴀᴋᴛɪ̇ғ ʙɪ̇ʀ ɪ̇şʟᴇᴍ ᴠᴀʀ !\n🎈 ɪ̇ᴘᴛᴀʟ ᴇᴛᴍᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ➻ /cancel**")
+
+  gece_tag = []  # gece_tag listesini boşalt
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
     return await event.reply(f"{nogroup}")
@@ -664,7 +703,8 @@ async def stag(event):
     rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
     if event.chat_id in rxyzdev_tagTot:
       await event.reply(f"**🗨️ ᴇᴛɪᴋᴇᴛʟᴇᴍᴇʏɪ ᴛᴀᴍᴀᴍʟᴀᴅɪᴍ ...\n\n👤  {rxyzdev_initT}\n👤 ᴇᴛɪᴋᴇᴛʟᴇʀɪɴ sᴀʏɪsɪ : {rxyzdev_tagTot[event.chat_id]}**")
-
+  gece_tag = []  # gece_tag listesini boşalt
+	
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
 async def cancel(event):
