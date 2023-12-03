@@ -2,7 +2,6 @@ import random
 import shutil, psutil, traceback, os
 import time
 import datetime
-import motor.motor_asyncio
 import shutil, psutil, traceback
 import traceback
 import aiofiles
