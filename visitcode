@@ -126,7 +126,6 @@ async def ytsearch(_, message: Message):
 
 
 
-
 @app.on_message(filters.command("skorssk"))
 async def ratingsa(c:Client, m:Message):
     if message.chat.type == "private":
@@ -152,6 +151,32 @@ async def ratingsa(c:Client, m:Message):
     await c.send_message(m.chat.id, metin)
 
 
+@client.on(events.NewMessage(pattern='^/stats ?(.*)'))
+async def son_durum(event):
+    # Bot Stats 
+    if str(event.sender_id) not in SUDO_USERS:
+        return await event.reply("**Sen sudo değilsin. Botun Statiklerini Öğrenemezsin!")
+    global anlik_calisan,grup_sayi,ozel_list
+    sender = await event.get_sender()
+    if sender.id not in ozel_list:
+      return
+    await event.respond(f"**{bot_username} İstatistikleri 🤖**\n\nToplam Grup: `{len(grup_sayi)}`\nAnlık Çalışan Grup: `{len(anlik_calisan)}`")
+
+
+@client.on(events.NewMessage(pattern="^/reload$"))
+async def reload_vps(event):
+    try:
+        # Mesajı gönder
+        reload_message = await event.respond("VPS Yenileniyor... ⏳ Bu birkaç saniye sürebilir.")
+
+        # 10 saniye bekleyin
+        await asyncio.sleep(10)
+
+        # Mesajı güncelle
+        await reload_message.edit("VPS Yenilendi! ✅")
+    except Exception as e:
+        # Hata durumunda mesaj gönder
+        await event.respond(f"Hata oluştu: {str(e)}")
 
 
 
