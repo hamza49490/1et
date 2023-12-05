@@ -264,6 +264,78 @@ async def reload_vps(event):
         await event.respond(f"Hata oluştu: {str(e)}")
 
 
+@client.on(events.NewMessage(pattern="^/sozluk (.+)$"))
+async def sozluk_command(event):
+    try:
+        # Komuttan kelimeyi al
+        query_word = event.pattern_match.group(1)
+
+        # API'ye isteği gönder
+        api_url = "https://api.collectapi.com/dictionary/wordSearchTurkish"
+        headers = {
+            'content-type': 'application/json',
+            'authorization': 'apikey 4vummoAcfHEEdB2quMSNKK:3xpnojA2cyhcuZ8MM7LG6C'
+        }
+        params = {
+            'query': query_word
+        }
+
+        response = requests.get(api_url, headers=headers, params=params)
+
+        if response.status_code == 200:
+            dictionary_data = response.json()
+            if dictionary_data.get("success", False):
+                word_info_list = dictionary_data.get("result", [])
+                
+                # Sadece ilk anlamı al
+                first_word_info = word_info_list[0] if word_info_list else {}
+
+                madde = first_word_info.get('madde', {})
+                kelime_sayi = madde.get('kelime_sayı', 'Bilgi Yok')
+                kelime_list = madde.get('kelime', [])
+
+                message = f"📖 Sözlük Anlamı ({query_word}):\n\n"
+
+                for kelime in kelime_list:
+                    anlam = kelime.get('anlam', 'Bilgi Yok')
+                    ornek_list = kelime.get('ornek', [])
+                    ozellik_list = kelime.get('ozellik', [])
+
+                    for ornek in ornek_list:
+                        ornek_metni = ornek.get('ornek', 'Bilgi Yok')
+                        yazar = ornek.get('yazar', 'Bilgi Yok')
+
+                        ornek_message = (
+                            f"🔸 Anlam: {anlam}\n"
+                            f"🔸 Örnek: {ornek_metni}\n"
+                        )
+
+                        message += ornek_message
+
+                    for ozellik in ozellik_list:
+                        tam_adi = ozellik.get('tamAdı', 'Bilgi Yok')
+                        kisa_adi = ozellik.get('kısaAdı', 'Bilgi Yok')
+
+                        ozellik_message = (
+                            f"🔸 Özellik: {tam_adi} ({kisa_adi})\n"
+                        )
+
+                        message += ozellik_message
+
+                    message += "\n"
+
+                # Mesajı gönder
+                await event.respond(message)
+            else:
+                await event.respond("Sözlük anlamı bulunamadı.")
+        else:
+            await event.respond(f"Hata oluştu. HTTP Status Code: {response.status_code}")
+
+    except Exception as e:
+        # Hata durumunda mesaj gönder
+        await event.respond(f"Hata oluştu: {str(e)}")
+
+
 
 bot_token = '6404904263:AAHP25SjaF85qCncHTq5NE9zA4A-ASD5XNA'
 
