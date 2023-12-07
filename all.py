@@ -288,7 +288,7 @@ async def ytsearch(_, message: Message):
         results = YoutubeSearch(query, max_results=6).to_dict()
         i = 0
         text = ""
-        while i < 10:
+        while i < 6:
             text += f"**__💬 ᴘᴀʀᴄ̧ᴀ__ : {results[i]['title']}**\n"
             text += f"**__⌚ sᴜ̈ʀᴇ__ : {results[i]['duration']}**\n"
             text += f"**__🔗 ʟɪɴᴋ__ : [ ʏᴏᴜᴛᴜʙᴇ'ᴅᴇɴ ɪᴢʟᴇ ](https://youtube.com{results[i]['url_suffix']})**\n\n"
