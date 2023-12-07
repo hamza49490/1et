@@ -524,27 +524,81 @@ async def welcomebot(bot: Client, msg: Message):
 		
 @app.on_message(filters.command(["zar"], ["/", ""]))
 def zar_at(client: Client, message: Message):
-    client.send_dice(message.chat.id)
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="🎲")
 
 @app.on_message(filters.command(["bow"], ["/", ""]))
 def bowling_at(client: Client, message: Message):
-    client.send_dice(message.chat.id, emoji="🎳")
-
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+    
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+    
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="🎳")
+	    
 @app.on_message(filters.command(["basket"], ["/", ""]))
 def basket_at(client: Client, message: Message):
-    client.send_dice(message.chat.id, emoji="🏀")
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="🏀")
 
 @app.on_message(filters.command(["slot"], ["/", ""]))
 def slot_at(client: Client, message: Message):
-    client.send_dice(message.chat.id, emoji="🎰")
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+    
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+    
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="🎰")
 
 @app.on_message(filters.command(["top"], ["/", ""]))
 def top_at(client: Client, message: Message):
-    client.send_dice(message.chat.id, emoji="⚽️")
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+    
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+    
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="⚽️")
 
 @app.on_message(filters.command(["ok"], ["/", ""]))
 def ok_at(client: Client, message: Message):
-    client.send_dice(message.chat.id, emoji="🎯")
+    chat_id = message.chat.id
+    user_id = client.get_me().id
+    
+    chat_member = client.get_chat_member(chat_id, user_id)
+    is_admin = chat_member.status == "administrator" or chat_member.status == "creator"
+    
+    if not is_admin:
+        client.send_message(chat_id, f"{botnoadmin}")
+    else:
+        client.send_dice(chat_id, emoji="🎯")
     
 @app.on_message(filters.command(["c"], ["/", ""]))
 async def csor(client: Client, message: Message):
