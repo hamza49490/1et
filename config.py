@@ -11,7 +11,7 @@ CHANNELL = os.environ.get("CHANNELL", "BotsDuyuru")
 OWNERNAME = "ㅤᴀɪ‌ᴋᴏㅤ"
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1001916993821"))
 MCHANNEL = os.environ.get("MCHANNEL", "MuzikKayit")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://botrobin72:robin72@cluster0.ynhazzk.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://etiketmongo:mongoetiket@cluster0.uutyubt.mongodb.net/?retryWrites=true&w=majority")
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
