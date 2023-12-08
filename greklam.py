@@ -54,7 +54,7 @@ app = Client("GUNC",
              bot_token=bot_token
              )
  
-################# VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
+################### VERİTABANI VERİ GİRİŞ ÇIKIŞI #########################
 class Database: 
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
@@ -171,7 +171,7 @@ broadcast_ids = {}
 
 async def send_msg(user_id, message): # Mesaj Gönderme
     try:
-        if GONDERME_TURU is False :
+        if GONDERME_TURU is False:
             await message.forward(chat_id=user_id)
         elif GONDERME_TURU is True:
             await message.copy(chat_id=user_id)
@@ -258,7 +258,7 @@ async def delcmd_off(chat_id: int): # Grup için mesaj silme özeliğini kapatı
 
 ################# SAHİP KOMUTLARI #############
 # Verileri listeleme komutu
-@app.on_message(filters.command("istatistik") & filters.user(OWNER_ID))
+@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
 async def botstats(bot: Client, message: Message):
     g4rip = await bot.send_message(message.chat.id, LAN.STATS_STARTED.format(message.from_user.mention))
     all_users = await db.get_all_users()
@@ -312,8 +312,6 @@ class LAN(object):
 
     if LANGAUGE == "TR":
 
-        BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})**"
-        GRUP_BILDIRIM = "**🏷 Kullanıcı : {}\n📮 ID : {}\n🧝🏻‍♂️ Profili : [{}](tg://user?id={})\n💬 Grub : {}\n🌟 Grub ID: {}\n🎲 Mesaj Linki : [Buraya Tıkla](https://t.me/c/{}/{})**"
         SAHIBIME = "sahibime"
         NOT_ONLINE = "Aktif değil"
         BOT_BLOCKED = "Botu engellemiş"
@@ -323,5 +321,6 @@ class LAN(object):
         STATS_STARTED = "{} **Veriler Toplanıyor !**"
         STATS = """**@{} Kullanıcıları :\n\n» Toplam Sohbetler : {}\n» Grup Sayısı : {}\n» PM Sayısı : {}**"""
 
-print(" Bot çalışıyor :)")
-app.run()
+
+print("GREKLAM.PY AKTİF !")
+app.run()  
