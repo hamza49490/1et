@@ -506,7 +506,7 @@ async def reload_command(client: Client, message: Message):
     else:
         await client.send_message(
             message.chat.id,
-            "✨ __**ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !**__"
+            "💥 __**ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !\n🎈 ʏᴏ̈ɴᴇᴛɪ̇ᴄɪ̇ ᴏʟᴅᴜɢ̆ᴜᴍᴜ ᴅᴜ̈şᴜ̈ɴᴜ̈ʏᴏʀsᴀɴɪᴢ ➻ /reload ᴛɪᴋʟᴀʏɪɴ !**__"
 	)
 	    
 @app.on_message(filters.new_chat_members, group=1)
