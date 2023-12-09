@@ -495,19 +495,16 @@ async def get_user_info(client: Client, message: types.Message):
                f"{status}"
         await message.reply_text(info)
 	
-@app.on_message(filters.command("reload", prefixes="/") & filters.group)
-async def reload_command(client: Client, message: Message):
-    if message.chat.type == "private":
-        return await message.reply(f"{nogroup}")
-	    
-    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-    if chat_member.status in ["creator", "administrator"]:
-        await client.send_message(message.chat.id, "**🎈 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🎈 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !**")
-    else:
-        await client.send_message(
-            message.chat.id,
-            "💥 __**ʟüᴛғᴇɴ ʙᴇɴɪ ʏöɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !\n🎈 ʏᴏ̈ɴᴇᴛɪ̇ᴄɪ̇ ᴏʟᴅᴜɢ̆ᴜᴍᴜ ᴅᴜ̈şᴜ̈ɴᴜ̈ʏᴏʀsᴀɴɪᴢ ➻ /reload ᴛɪᴋʟᴀʏɪɴ !**__"
-	)
+@app.on_message(filters.command("reload", prefixes="/"))
+def update_admin_cache(client, message):
+    chat_id = message.chat.id
+    admins = client.get_chat_members(chat_id, filter="administrators")
+    admin_list = []
+    for admin in admins:
+        admin_list.append(admin.user.username)
+    # Admin listesini güncelleme işlemleri burada yapılabilir
+    print(admin_list)
+    message.reply_text("**🔹 ʙᴏᴛ ʏᴇɴɪᴅᴇɴ ʙᴀs‌ʟᴀᴅɪ !\n🔹 ᴀᴅᴍɪɴ ʟɪsᴛᴇsɪ ɢüɴᴄᴇʟʟᴇɴᴅɪ !**")
 	    
 @app.on_message(filters.new_chat_members, group=1)
 async def welcomebot(bot: Client, msg: Message):
