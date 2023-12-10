@@ -57,7 +57,7 @@ async def start(_, message: Message):
                 ],
                 [
 	            InlineKeyboardButton("❤️‍🔥  ɪ̇ᴛɪ̇ʀᴀғ ʏᴀᴢ", callback_data="itiraf"),
-                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_CHANNELL}')
+                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_KANAL}')
  
 		],
                 [
@@ -101,7 +101,7 @@ async def start(_, query: CallbackQuery):
                 ],
                 [
 	            InlineKeyboardButton("❤️‍🔥  ɪ̇ᴛɪ̇ʀᴀғ ʏᴀᴢ", callback_data="itiraf"),
-                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_CHANNELL}')
+                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_KANAL}')
  
 		],
                 [
