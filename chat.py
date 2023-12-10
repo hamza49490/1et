@@ -100,6 +100,9 @@ async def yeni_mesaj(event: events.NewMessage.Event):
             ),
             link_preview=False)
             ilk_mesaj = False
+        elif event.raw_text == "/start":
+            # İlk kez /start yazıldığında itiraf mesajı olarak algılanmayacak
+            pass
         else:
             # İtiraf modu kapalı olduğu veya ilk mesaj değilse mesajı itiraf mesajı olarak algılamayacak
             pass
