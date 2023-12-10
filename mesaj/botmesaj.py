@@ -57,7 +57,7 @@ snen = ["Evet ben !", "Eeeee...", "Hayır sen !",]
 
 itirafmsg = "**➻ İtirafınızı nasıl paylaşmak istersiniz 🤔**"
 itirafyaz = "**🎉 İşte bir itiraf yaz !\n\n🎂 Daha sonra herkese açık mı yoksa gizli mi olacağını soracağım. 😍**"
-gonderildi = f"**✅ İtirafınız gönderildi ve yöneticiler tarafından onaylandıktan sonra @{İTİRAF_CHANNELL} kanalında paylaşılacaktır !**"
+gonderildi = f"**✅ İtirafınız gönderildi ve yöneticiler tarafından onaylandıktan sonra @{İTİRAF_KANAL} kanalında paylaşılacaktır !**"
 
 ibaslama = "🎂 __**ᴇᴛɪ̇ᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__"
 nogroup = "🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__"
