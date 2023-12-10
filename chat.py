@@ -1,5 +1,13 @@
+import codecs
+import heroku3
+import asyncio
+import aiohttp
+import math
+import ssl
+import requests
 import random
-import shutil, psutil, traceback, os
+import base64
+import random
 import time
 import datetime
 import shutil, psutil, traceback
@@ -20,12 +28,15 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.types import PeerUser, PeerChat, PeerChannel
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.sessions import StringSession
+from telethon.events import StopPropagation
+from telethon.tl.functions.messages import ForwardMessagesRequest
+from telethon.tl.types import InputPeerChat
 from telethon.tl.types import User
 from telethon.tl import types
 from telethon.tl import functions
 from pyrogram.handlers import MessageHandler
 from telethon import errors
-from asyncio import sleep
 from time import time
 from os import remove
 from telethon.sync import types
@@ -33,12 +44,15 @@ from datetime import datetime
 from telethon import Button
 from telethon import TelegramClient, events
 from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.tl.functions.messages import SendMessageRequest
 from telethon.sync import TelegramClient, events
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram.types.messages_and_media import Message
 from pyrogram import Client, filters
 from random import randint
+from telethon.tl.functions import *
+from telethon.tl import functions
 
 
 logging.basicConfig(
@@ -49,6 +63,123 @@ LOGGER = logging.getLogger(__name__)
 
 client = TelegramClient('client', config.API_ID, config.API_HASH).start(bot_token=config.BOT_TOKEN)
 
+
+itiraf_eden = "Kullanıcı Seçilmedi"
+mesaj = "Mesaj Görünmedi"
+
+itiraf_modu = False
+ilk_mesaj = True
+
+     
+@client.on(events.callbackquery.CallbackQuery(data="itiraf"))
+async def handler(event):
+    global itiraf_modu, ilk_mesaj
+    itiraf_modu = True
+    await event.edit(f"{itirafyaz}", buttons=(
+        [
+            Button.inline("🏠 Ana Sayfa", data="start")
+        ]
+    ),
+    link_preview=False)
+    ilk_mesaj = True
+
+@client.on(events.NewMessage)
+async def yeni_mesaj(event: events.NewMessage.Event):
+    global mesaj, itiraf_modu, ilk_mesaj
+    if event.is_private:
+        if itiraf_modu and ilk_mesaj and event.raw_text != "/start":
+            mesaj = str(event.raw_text)
+            await client.send_message(event.chat_id, f"{itirafmsg}", buttons=(
+                [
+                    Button.inline("🔒 Gizli", data="anonim"),
+                    Button.inline("🔓 Açık", data="acik")
+                ],
+                [
+                    Button.inline("🏠 Ana Sayfa", data="start")
+                ]
+            ),
+            link_preview=False)
+            ilk_mesaj = False
+        else:
+            # İtiraf modu kapalı olduğu veya ilk mesaj değilse mesajı itiraf mesajı olarak algılamayacak
+            pass
+	  
+itiraf_anonim = b"\xF0\x9F\x92\x8C\x20\x45\x74\x69\x72\x61\x66\x20\x42\x6F\x74\x0A\xF0\x9F\x93\xB2\x20\x54\x65\x6C\x65\x74\x68\x6F\x6E\x20\x2D\x20\x31\x2E\x32\x34\x2E\x30\x0A\xF0\x9F\x93\xA3\x20\x53\x75\x70\x70\x6F\x72\x74\x20\x2D\x20\x40\x52\x6F\x42\x6F\x74\x6C\x61\x72\x69\x6D\x54\x67\x0A\xF0\x9F\x91\xA8\xF0\x9F\x8F\xBB\xE2\x80\x8D\xF0\x9F\x92\xBB\x20\x4F\x77\x6E\x65\x72\x20\x2D\x20\x40\x61\x79\x6B\x68\x61\x6E\x5F\x73"
+@client.on(events.callbackquery.CallbackQuery(data="anonim"))
+async def anonim(event):
+    global mesaj
+    global onay
+    async for usr in client.iter_participants(event.chat_id):
+     gonderen = f"[{usr.first_name}](tg://user?id={usr.id})"
+     itiraf_eden = "Gizli"
+     sonluq = f"\n❤️‍🔥 Hey Sende İtiraf Etmek İstiyorsan @{BOT_USERNAME}'una edebilirsin !"
+     yeni_itiraf = await client.send_message(LOG_CHANNEL, f"**🖇️ Yeni itiraf\n\n🗣️ İtiraf Eden : {itiraf_eden} \n📮 Edilen İtiraf : {mesaj}\n{sonluq}**")
+     onay = await yeni_itiraf.reply("**➻ Yeni İtiraf !**", buttons=(
+                      [
+                       Button.inline("✅ Onayla", data="onay"
+                       ),
+                       Button.inline("🗑️ Sil", data="sil")
+                      ]
+                    ),
+                    link_preview=False)
+    await client.send_message(LOG_CHANNEL, f"**ℹ️ {gonderen} Gizli İtiraf Yazdı !**")
+    await event.edit(f"{gonderildi}", buttons=(
+                      [
+                       Button.inline("📮 Yeni İtiraf", data="itiraf"),
+                       Button.inline("🏠 Ana Sayfa", data="start")
+                      ]
+                    ),
+                    link_preview=False)
+anonim = itiraf_anonim.decode("utf8")
+ 
+itiraf_acik = b"\xE2\x84\xB9\xEF\xB8\x8F\x20\x42\x6F\x74\x20\x62\x61\xC5\x9F\x6C\x61\x64\xC4\xB1\x6C\x64\xC4\xB1\x20\x70\x72\x6F\x62\x6C\x65\x6D\x20\x79\x61\x72\x61\x6E\x64\xC4\xB1\x71\x64\x61\x20\x73\x75\x70\x70\x6F\x72\x74\x20\x71\x72\x75\x70\x75\x6E\x61\x20\x79\x61\x7A\xC4\xB1\x6E\x0A\xE2\x9A\xA1\x20\x42\x6F\x74\x75\x6E\x75\x7A\x20\x53\x75\x70\x65\x72\x20\xC4\xB0\xC5\x9F\x6C\x65\x79\x69\x72\x2E\x2E\x2E"
+@client.on(events.callbackquery.CallbackQuery(data="acik"))
+async def aciq(event):
+    global mesaj
+    global onay
+    async for usr in client.iter_participants(event.chat_id):
+     itiraf_eden = f"[{usr.first_name}](tg://user?id={usr.id})"
+     sonluq = f"\n❤️‍🔥 Hey Sende İtiraf Etmek İstiyorsan @{BOT_USERNAME}'una edebilirsin !"
+     yeni_itiraf = await client.send_message(LOG_CHANNEL, f"**🖇️ Yeni itiraf\n\n🗣️ İtiraf Eden :** {itiraf_eden} \n**📮 Edilen İtiraf : {mesaj}\n{sonluq}**")
+     onay = await yeni_itiraf.reply("**➻ Yeni İtiraf !**", buttons=(
+                      [
+                       Button.inline("✅ Onayla", data="onay"
+                       ),
+                       Button.inline("🗑️ Sil", data="sil")
+                      ]
+                    ),
+                    link_preview=False)
+    await client.send_message(LOG_CHANNEL, f"**ℹ️ {itiraf_eden} Açık İtiraf Yazdı !**")
+    await event.edit(f"{gonderildi}", buttons=(
+                      [
+                       Button.inline("📮 Yeni İtiraf", data="itiraf"),
+                       Button.inline("🏠 Ana Sayfa", data="start")
+                      ]
+                    ),
+                    link_preview=False)
+acik = itiraf_acik.decode("utf8")
+  
+@client.on(events.callbackquery.CallbackQuery(data="onay"))
+async def onay(event):
+    global onay
+    async for usr in client.iter_participants(event.chat_id):
+      tesdiqliyen = f"[{usr.first_name}](tg://user?id={usr.id})"
+    if onay.reply_to_msg_id:
+      itiraff = await onay.get_reply_message()
+      itiraf = itiraff.text
+      await client.send_message(İTİRAF_GRUP, itiraf)
+      await event.edit(f"**🎉 İtiraf Onaylandı !**")
+      
+@client.on(events.callbackquery.CallbackQuery(data="sil"))
+async def sil(event):
+    global onay
+    if not onay.is_reply:
+      return await onay.edit("**💥 HATA !**")
+    if onay.is_reply:
+      itiraf = await onay.get_reply_message()
+      await itiraf.delete()
+      await event.edit("**🗑️ İtiraf başarıyla Silindi !**")
+	    
 anlik_calisan = []
 tekli_calisan = []
 gece_tag = []
