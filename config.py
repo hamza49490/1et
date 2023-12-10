@@ -17,4 +17,4 @@ GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek iste
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 İTİRAF_CHANNELL = int(os.environ.get("İTİRAF_CHANNELL", "-1001983841726"))
 İTİRAF_GRUP = int(os.environ.get("İTİRAF_GRUP", "-1002029504020"))
-İTİRAF_CHANNELL = os.environ.get("İTİRAF_CHANNELL", "Deryaitiraf")
+İTİRAF_KANAL = os.environ.get("İTİRAF_KANAL", "Deryaitiraf")
