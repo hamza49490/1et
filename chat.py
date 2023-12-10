@@ -87,19 +87,20 @@ async def handler(event):
 async def yeni_mesaj(event: events.NewMessage.Event):
     global mesaj, itiraf_modu, ilk_mesaj
     if event.is_private:
-        if itiraf_modu and ilk_mesaj and event.raw_text != "/start":
-            mesaj = str(event.raw_text)
-            await client.send_message(event.chat_id, f"{itirafmsg}", buttons=(
-                [
-                    Button.inline("🔒 Gizli", data="anonim"),
-                    Button.inline("🔓 Açık", data="acik")
-                ],
-                [
-                    Button.inline("🏠 Ana Sayfa", data="start")
-                ]
-            ),
-            link_preview=False)
-            ilk_mesaj = False
+        if itiraf_modu and ilk_mesaj:
+            if event.raw_text != "/start":
+                mesaj = str(event.raw_text)
+                await client.send_message(event.chat_id, f"{itirafmsg}", buttons=(
+                    [
+                        Button.inline("🔒 Gizli", data="anonim"),
+                        Button.inline("🔓 Açık", data="acik")
+                    ],
+                    [
+                        Button.inline("🏠 Ana Sayfa", data="start")
+                    ]
+                ),
+                link_preview=False)
+                ilk_mesaj = False
         elif event.raw_text == "/start":
             return
         else:
