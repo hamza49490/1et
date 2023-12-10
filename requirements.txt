@@ -9,6 +9,7 @@ emoji
 tglogging
 cryptg
 requests
+bs4
 psutil
 heroku3
 motor
