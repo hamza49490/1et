@@ -1,3 +1,5 @@
+from config import *
+
 smesajs = ["Hoş Geldin 💕", "Nasılsın 😌", "Seni Özledim 💕", "Nerdesin sen 🙄", "Gel oyun oynayalım ✨", "Şarkı dinleyelim mi 🤭",]
 bottst = ["Bana mı dedin bot diye ?", "Ben bot değilim bi kere 🙄", "Bi daha bot dersen 🤬", "Hala bot diyor ya 😡", "Adamı hasta edersin 🙄", "Olm dayak yersin ama 😬",]
 bkt = ["He canım ✨", "He aşkım 💕", "Duygularım darmadağın !", "Efendim tatlım 💞", "Bana mı seslendin 🙄", "Yaw ne ne aaaa", "Seni dinliyorum gülüm 🥰", "Al sana harçlık 💰", "Başımın etini yedin 🙄", "Seni tokatlarım 😏", "Buyrun benim ?", "Offff 🙄", "Vay arkadaş bu çocuk abayı yakmış 😅", "Sus artik Sus !", "Dost elinden yaralıyam 😔", "Kırık kalbimi onarır mısın ?", "Seni seviyorum bitanem 💕", "Gel seni öpim 😘", "Dile benden ne dilersen", "Benim başım ağrıyor 🥺", "Yar beni sevmez !", "Şarkı söyleyelim mi ✨", "Efendim hocam ?",]
@@ -52,6 +54,10 @@ sgne = ["Nasıl sanane 🙄", "Asıl sanane 😏", "Seni alakadar etmez 😏",]
 bgne = ["Yok öyle yama 😏", "Asıl banane 😏", "Şşşş bidaha duymim 🙄",]
 bnen = ["Hayır ben !", "Yok öyle yama !", "Ben ulan ben 🙄",]
 snen = ["Evet ben !", "Eeeee...", "Hayır sen !",]
+
+itirafmsg = "**➻ İtirafınızı nasıl paylaşmak istersiniz 🤔**"
+itirafyaz = "**🎉 İşte bir itiraf yaz !\n\n🎂 Daha sonra herkese açık mı yoksa gizli mi olacağını soracağım. 😍**"
+gonderildi = f"**✅ İtirafınız gönderildi ve yöneticiler tarafından onaylandıktan sonra @{İTİRAF_CHANNELL} kanalında paylaşılacaktır !**"
 
 ibaslama = "🎂 __**ᴇᴛɪ̇ᴋᴇᴛʟᴇᴍᴇʏᴇ ʙᴀşʟɪʏᴏʀᴜᴍ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__"
 nogroup = "🔹 __**ʙᴜ ᴋᴏᴍᴜᴛᴜ ɢʀᴜᴘʟᴀʀᴅᴀ ᴋᴜʟʟᴀɴ !**__"
