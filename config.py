@@ -15,3 +15,6 @@ DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://etiketmongo:mongoet
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "BotsDestek")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
+İTİRAF_CHANNELL = int(os.environ.get("İTİRAF_CHANNELL", "-1001983841726"))
+İTİRAF_GRUP = int(os.environ.get("İTİRAF_GRUP", "-1002029504020"))
+İTİRAF_CHANNELL = os.environ.get("İTİRAF_CHANNELL", "Deryaitiraf")
