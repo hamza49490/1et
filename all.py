@@ -49,7 +49,7 @@ async def start(_, message: Message):
     await app.edit_message_text(
         chat_id=message.chat.id,
         message_id=loading_message.message_id,
-        text=f"""**🎉  ʜᴇʏ  {message.from_user.mention}\n\n🌿  sᴏɴ ᴅᴇʀᴇᴄᴇ ɢᴇʟɪ̇şᴍɪ̇ş, ʙɪ̇ʀ ᴄ̧ᴏᴋ ᴏ̈ᴢᴇʟʟɪ̇ɢ̆ᴇ sᴀʜɪ̇ᴘ ʙɪ̇ʀ ʙᴏᴛᴜᴍ !\n\n💥  ᴋᴏᴍᴜᴛʟᴀʀ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ᴀşᴀɢ̆ɪᴅᴀᴋɪ̇ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ !**""",
+        text=f"""**🎉  ʜᴇʏ  {message.from_user.mention}\n\n🌿  sᴏɴ ᴅᴇʀᴇᴄᴇ ɢᴇʟɪ̇şᴍɪ̇ş, ʙɪ̇ʀ ᴄ̧ᴏᴋ ᴏ̈ᴢᴇʟʟɪ̇ɢ̆ᴇ sᴀʜɪ̇ᴘ ʙɪ̇ʀ ʙᴏᴛᴜᴍ !\n\n💥  ᴋᴏᴍᴜᴛʟᴀʀ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ᴀşᴀɢ̆ɪᴅᴀᴋɪ̇ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ !\n\n❤️‍🔥 ᴅɪ̇ʟᴇʀsᴇɴɪ̇ᴢ ɢɪ̇ᴢʟɪ̇ & ᴀᴄ̧ɪᴋ ɪ̇ᴛɪ̇ʀᴀғʟᴀʀ ᴇᴅᴇʙɪ̇ʟɪ̇ʀsɪ̇ɴɪ̇ᴢ !**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -93,7 +93,7 @@ async def start(_, message: Message):
 
 @app.on_callback_query(filters.regex("start"))
 async def start(_, query: CallbackQuery):
-    startmesaj = f"**🎉  ʜᴇʏ  {query.from_user.mention}\n\n🌿  sᴏɴ ᴅᴇʀᴇᴄᴇ ɢᴇʟɪ̇şᴍɪ̇ş, ʙɪ̇ʀ ᴄ̧ᴏᴋ ᴏ̈ᴢᴇʟʟɪ̇ɢ̆ᴇ sᴀʜɪ̇ᴘ ʙɪ̇ʀ ʙᴏᴛᴜᴍ !\n\n💥  ᴋᴏᴍᴜᴛʟᴀʀ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ᴀşᴀɢ̆ɪᴅᴀᴋɪ̇ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ !**"
+    startmesaj = f"**🎉  ʜᴇʏ  {query.from_user.mention}\n\n🌿  sᴏɴ ᴅᴇʀᴇᴄᴇ ɢᴇʟɪ̇şᴍɪ̇ş, ʙɪ̇ʀ ᴄ̧ᴏᴋ ᴏ̈ᴢᴇʟʟɪ̇ɢ̆ᴇ sᴀʜɪ̇ᴘ ʙɪ̇ʀ ʙᴏᴛᴜᴍ !\n\n💥  ᴋᴏᴍᴜᴛʟᴀʀ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ᴀşᴀɢ̆ɪᴅᴀᴋɪ̇ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ !\n\n❤️‍🔥 ᴅɪ̇ʟᴇʀsᴇɴɪ̇ᴢ ɢɪ̇ᴢʟɪ̇ & ᴀᴄ̧ɪᴋ ɪ̇ᴛɪ̇ʀᴀғʟᴀʀ ᴇᴅᴇʙɪ̇ʟɪ̇ʀsɪ̇ɴɪ̇ᴢ !**"
     await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
         [
             [
