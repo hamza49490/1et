@@ -56,11 +56,16 @@ async def start(_, message: Message):
                     InlineKeyboardButton('✚  ʙᴇɴɪ̇ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
                 ],
                 [
+	            InlineKeyboardButton("❤️‍🔥  ɪ̇ᴛɪ̇ʀᴀғ ʏᴀᴢ", callback_data="itiraf"),
+                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_CHANNELL}')
+ 
+		],
+                [
                     InlineKeyboardButton("📚  ᴋᴏᴍᴜᴛʟᴀʀ", callback_data="help"),
-                    InlineKeyboardButton('🗨️  ᴋᴀɴᴀʟ', url=f'https://t.me/{CHANNELL}')
+                    InlineKeyboardButton('🗨️  ʙɪ̇ʟɢɪ̇ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{CHANNELL}')
                 ],
                 [
-                    InlineKeyboardButton('🔹  ᴅᴇsᴛᴇᴋ', url=f'https://t.me/{GROUP_SUPPORT}')
+                    InlineKeyboardButton('👤  ᴅᴇsᴛᴇᴋ', url=f'https://t.me/{GROUP_SUPPORT}')
                 ]
             ]
         )
@@ -92,15 +97,20 @@ async def start(_, query: CallbackQuery):
     await query.message.edit_text(startmesaj, reply_markup=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✚  ʙᴇɴɪ̇ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ✚", url=f"https://t.me/{BOT_USERNAME}?startgroup=a")
-            ],
-            [
-                InlineKeyboardButton("📚  ᴋᴏᴍᴜᴛʟᴀʀ", callback_data="help"),
-                InlineKeyboardButton("🗨️  ᴋᴀɴᴀʟ", url=f"https://t.me/{CHANNELL}")
-            ],
-            [
-                InlineKeyboardButton("🔹  ᴅᴇsᴛᴇᴋ", url=f"https://t.me/{GROUP_SUPPORT}")
-            ]
+                    InlineKeyboardButton('✚  ʙᴇɴɪ̇ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a'),
+                ],
+                [
+	            InlineKeyboardButton("❤️‍🔥  ɪ̇ᴛɪ̇ʀᴀғ ʏᴀᴢ", callback_data="itiraf"),
+                    InlineKeyboardButton('🌟  ɪ̇ᴛɪ̇ʀᴀғ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{İTİRAF_CHANNELL}')
+ 
+		],
+                [
+                    InlineKeyboardButton("📚  ᴋᴏᴍᴜᴛʟᴀʀ", callback_data="help"),
+                    InlineKeyboardButton('🗨️  ʙɪ̇ʟɢɪ̇ ᴋᴀɴᴀʟɪ', url=f'https://t.me/{CHANNELL}')
+                ],
+                [
+                    InlineKeyboardButton('👤  ᴅᴇsᴛᴇᴋ', url=f'https://t.me/{GROUP_SUPPORT}')
+		]
         ]
     )
 )
