@@ -101,7 +101,7 @@ async def yeni_mesaj(event: events.NewMessage.Event):
                 ),
                 link_preview=False)
                 ilk_mesaj = False
-        elif event.raw_text == "/start":
+        elif event.raw_text == "/start" and event.sender_id != client.uid:
             return
         else:
             pass
