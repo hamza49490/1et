@@ -1124,8 +1124,7 @@ async def chatbot(event):
         return await event.reply(f"{noadmin}")
   
     global isleyen
-    if event.chat_id not in isleyen:
-        isleyen.append(event.chat_id)
+    if event.chat_id in isleyen:
         status = "ᴀᴋᴛɪ‌ғ"
     else:
         status = "ᴋᴀᴘᴀʟɪ"
