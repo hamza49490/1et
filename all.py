@@ -367,15 +367,54 @@ async def slap(client: Client, message: Message):
                                         f"{user_name} 'ın Ayağına Taş Bağlayıp Denize Attı! Boğuluyor 😨",
                                         f"{user_name} 'ın Gözüne Parmak Attı! Kör Oldu 🤣",
                                         f"{user_name} 'ın Üzerine Pitbull Köpeğini Saldı! Parçalara Ayrıldı 😱",
-		                        f"{user_name} ''a Uçan Tekme Attı! Jetli misin mübarek 😳",  
+		                        f"{user_name} 'a Uçan Tekme Attı! Jetli misin mübarek 😳",  
             ]
             slap_phrase = random.choice(slap_phrases)
             await message.reply(f"**{message.from_user.mention} ,  {slap_phrase}**")
         else:
             await message.reply("__**🔹 ʟᴀɴ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍᴀᴅɪᴍ !**__")
     else:
-        await message.reply("🔹 __**ʙɪ̇ʀ ᴍᴇsᴀᴊɪ ʏᴀɴɪᴛʟᴀ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__")
-        
+        await message.reply("__**🔹 ʙɪ̇ʀ ᴍᴇsᴀᴊɪ ʏᴀɴɪᴛʟᴀ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__")
+
+@app.on_message(filters.command(["kiss"], prefixes=['/', '']))
+async def kiss(client: Client, message: Message):
+    if message.chat.type == "private":
+        return await message.reply(f"{nogroup}")
+
+    if message.reply_to_message:
+        reply_message = message.reply_to_message
+        user = reply_message.from_user
+        if user:
+            user_name = f"{user.mention}"
+            kiss_phrases = [
+		          	        f"{user_name} 'ın kulağından öptü 😱",
+	          	                f"{user_name} 'ın boynundan öptü! Galiba birşeyler oluyor 😁",
+		    	          	f"{user_name} 'ın ayaklarından öptü! Fantezi'ye bak sen 🤭",
+	          	                f"Birilerini alnından öpmek istiyor! Bu şanslı kişi {user_name} oldu 💖",
+	          	                f"yine birilerini öptü! {user_name} 'ı kaybediyoruz 😱",
+		    	          	f"{user_name} 'ın çenesinden öptü 🤭",
+		          	        f"{user_name} 'ın parmaklarından öpmeye çalışırken, gözleri oyuldu 😳",
+	          	                f"{user_name} 'ı dudaktan öptü! Hemde herkesin gözünün önünde 😳",
+		    	          	f"öpecek kimseyi bulamayınca {user_name} 'a yöneldi, kaç ulan kaç 😁",
+	          	                f"Derya'ya öpücük gönderirken {user_name} tarafından fark edildi 👀",
+	          	                f"{user_name} 'ı burnundan öptü! ıyyyy iğrenç, ağzını yıkamayı unutma 🤮",
+		    	          	f"{user_name} 'ı dudaktan öptü! Rahatsızlık vermeyelim, biz gidiyoruz 😌",
+		          	        f"{user_name} 'ı kulak memesinden öptü! Olamaz 😳💖",
+	          	                f"{user_name} 'ı baygın iken öptü! Sence nerenden öpmüş olabilir 😁",
+		    	          	f"{user_name} 'ı boynundan öptü! Anlaşılan niyeti bozdu 🤭",
+	          	                f"{user_name} 'ı ellerinden öptü! Galiba harçlık istiyor 😅",
+	          	                f"{user_name} 'ı öpmek isterken utancından bayıldı 😂",
+		    	          	f"{user_name} 'ı ayak parmaklarından öptü! Yavaş ol yiğidim 😏",
+		          	        f"{user_name} 'ın yanağına masum ve saf bir öpücük kondurdu 😌",
+	          	                f"{user_name} 'ın saçlarından öpüp kokladı! Oha 😳",
+	    ]
+            kiss_phrase = random.choice(kiss_phrases)
+            await message.reply(f"**{message.from_user.mention} ,  {kiss_phrase}**")
+        else:
+            await message.reply("__**🔹 ʟᴀɴ, ᴋᴜʟʟᴀɴɪᴄɪʏɪ ʙᴜʟᴀᴍᴀᴅɪᴍ !**__")
+    else:
+        await message.reply("__**🔹 ʙɪ̇ʀ ᴍᴇsᴀᴊɪ ʏᴀɴɪᴛʟᴀ ʙᴇʙᴇɢ̆ɪ̇ᴍ !**__")
+		    
 @app.on_message(filters.command(["eros", "ship"], prefixes=['/', '']))
 async def handle_eros(client: Client, message: Message):
     if message.chat.type == "private":
