@@ -30,5 +30,5 @@ wget
 ffmpeg-python
 Pillow==9.1.0
 ujson
-yt-dlp
 telebot
+git+https://github.com/MehmetAtes21/ydpdl.git
