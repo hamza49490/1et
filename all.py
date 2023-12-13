@@ -225,7 +225,7 @@ async def bul(_, message):
         await m.delete()
         await _.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="✦  𝐌𝐮̈𝐳𝐢𝐤 𝐁𝐨𝐭  ✦", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
-        await m.edit("**__✦ ʙᴇɴɪ ʏᴏɴᴇᴛɪᴄɪ ʏᴀᴘɪɴ !__**")
+        await m.edit("**__✦ ʜᴀᴛᴀ : ʙᴜ ᴅᴜʀᴜᴍᴜ @BotsDestek ɢʀᴜʙᴜɴᴀ ɢᴇʟɪ̇ᴘ ʙɪ̇ʟᴅɪ̇ʀɪ̇ɴ !__**")
         print(e)
 
     try:
