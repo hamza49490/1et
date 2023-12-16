@@ -854,7 +854,12 @@ async def chatbot(event):
        cevap = random.choice(bkt)
        bold_cevap = f"<b>{cevap}</b>"
        await event.reply(bold_cevap, parse_mode='html')
-		
+
+    if "gamze" in kelimeler:
+       cevap = random.choice(gmze)
+       bold_cevap = f"<b>{cevap}</b>"
+       await event.reply(bold_cevap, parse_mode='html')
+	    
     if kelimeler[0] == "selam" or kelimeler[0] == "selamün aleyküm" or kelimeler[0] == "slm" or kelimeler[0] == "sea" or kelimeler[0] == "sa":
        cevap = random.choice(selam)
        bold_cevap = f"<b>{cevap}</b>"
@@ -1109,7 +1114,7 @@ async def chatbot(event):
         cevap = random.choice(snen)
         bold_cevap = f"<b>{cevap}</b>"
         await event.reply(bold_cevap, parse_mode='html')
-
+	    
 
 @client.on(events.NewMessage(pattern="(?i)/chatbot"))
 async def chatbot(event):
