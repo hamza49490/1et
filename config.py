@@ -16,4 +16,4 @@ GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "SohbeTutkunu")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
 İTİRAF_GRUP = int(os.environ.get("İTİRAF_GRUP", "-1002020385016"))
-İTİRAF_KANAL = os.environ.get("İTİRAF_KANAL", "SohbeTutkunuitiraf")
+İTİRAF_KANAL = os.environ.get("İTİRAF_KANAL", "itirafkanali")
