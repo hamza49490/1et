@@ -11,7 +11,7 @@ CHANNELL = os.environ.get("CHANNELL", "botdestekanali")
 OWNERNAME = "robin"
 PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID", "-1002012164341"))
 MCHANNEL = os.environ.get("MCHANNEL", "buketplaylist")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://epiktv7:epiktv86@cluster0.ttyjqmj.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://Kingbrukh:kingkhan@kingbruh.ra3pjgm.mongodb.net/?retryWrites=true&w=majority")
 GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "SohbeTutkunu")
 GONDERME_TURU = os.environ.get("GONDERME_TURU", True) #Eğer direkt iletmek isterseniz False, kopyasını göndermek isterseniz True 
 LANGAUGE = os.environ.get("LANGAUGE", "TR")
