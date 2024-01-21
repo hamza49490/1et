@@ -8,5 +8,4 @@ BOT_ID = int(os.environ.get("BOT_ID", "6404904263"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "5021621064"))
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002124041397"))
 CHANNELL = os.environ.get("CHANNELL", "botdestekanali")
-OWNERNAME = "robin"
-SUPPORT = os.environ.get("GROUP_SUPPORT", "SohbeTutkunu")
+SUPPORT = os.environ.get("SUPPORT", "SohbeTutkunu")
