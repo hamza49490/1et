@@ -75,7 +75,7 @@ async def start(event):
         buttons=[
             [Button.url('✚  ʙᴇɴɪ̇ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a')],
             [Button.inline('📚  ᴋᴏᴍᴜᴛʟᴀʀ', data='help'), Button.url('🌟  ᴋᴀɴᴀʟ', url=f'https://t.me/{CHANNELL}')],
-            [Button.url('🌍✨ Sahibi', url=f'https://t.me/{SUPPORT}')],
+            [Button.url('🌍✨ iletişim', url=f'https://t.me/{SUPPORT}')],
         ]
     )
 
