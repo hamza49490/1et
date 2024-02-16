@@ -71,7 +71,7 @@ async def start(event):
     loading_message = await event.reply("🔄 **ʟᴜ̈ᴛғᴇɴ ʙᴇᴋʟᴇʏɪ̇ɴ .**")
     await asyncio.sleep(2)
     await client.edit_message(event.chat_id, loading_message.id, 
-        f"""**🎉  ʜᴇʏ  {event.sender.first_name}\n\n🌿  sᴏɴ ᴅᴇʀᴇᴄᴇ ɢᴇʟɪ̇şᴍɪ̇ş, ʙɪ̇ʀ ᴄ̧ᴏᴋ ᴏ̈ᴢᴇʟʟɪ̇ɢ̆ᴇ sᴀʜɪ̇ᴘ ʙɪ̇ʀ ʙᴏᴛᴜᴍ !\n\n💥  ᴋᴏᴍᴜᴛʟᴀʀ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇ᴄ̧ɪ̇ɴ ᴀşᴀɢ̆ɪᴅᴀᴋɪ̇ ʙᴜᴛᴏɴʟᴀʀɪ ᴋᴜʟʟᴀɴɪɴ !\n\n❤️‍🔥 ᴅɪ̇ʟᴇʀsᴇɴɪ̇ᴢ ɢɪ̇ᴢʟɪ̇ & ᴀᴄ̧ɪᴋ ɪ̇ᴛɪ̇ʀᴀғʟᴀʀ ᴇᴅᴇʙɪ̇ʟɪ̇ʀsɪ̇ɴɪ̇ᴢ !**""",
+        f"""**🎉  ʜᴇʏ  {event.sender.first_name}\n\n🌍✨ ʙᴇɴ sᴏʜʙᴇᴛ ᴠᴇ ᴇᴛɪ̇ᴋᴇᴛ ʙᴏᴛᴜʏᴜᴍ.\n\n❤️‍🔥  ʙᴇɴɪ̇ ɢʀᴜᴘʟᴀʀᴀ ᴇᴋʟᴇʏɪ̇ᴘ ᴋᴇʏɪ̇ғʟɪ̇ sᴏʜʙᴇᴛʟᴇʀɪ̇ɴɪ̇ᴢᴇ ᴅᴀʜɪ̇ʟ ᴇᴅᴇʙɪ̇ʟɪ̇ʀsɪ̇ɴɪ̇ᴢ !\n\n💭  ʀᴇᴋʟᴀᴍ ᴠᴇ ᴅᴇsᴛᴇᴋ ɪ̇çɪ̇ɴ ᴀşᴀğɪᴅᴀᴋɪ̇ ɪ̇ʟᴇᴛɪ̇şɪ̇ᴍ ʙᴜᴛᴏɴᴜɴᴀ ᴛɪᴋʟᴀʏɪɴɪᴢ...**""",
         buttons=[
             [Button.url('✚  ʙᴇɴɪ̇ ɢʀᴜʙᴀ ᴇᴋʟᴇ  ✚', url=f'https://t.me/{BOT_USERNAME}?startgroup=a')],
             [Button.inline('📚  ᴋᴏᴍᴜᴛʟᴀʀ', data='help'), Button.url('🌟  ᴋᴀɴᴀʟ', url=f'https://t.me/{CHANNELL}')],
